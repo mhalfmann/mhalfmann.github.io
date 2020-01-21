@@ -1,0 +1,24 @@
+.button{
+    background-color: rgb(58, 57, 57);
+    border: 1px solid white;
+    border-radius: 5px;
+    opacity: 0.8;
+    color: white;
+}
+.uiElement{
+    background-color: rgb(58, 57, 57);
+    border: 1px solid white;
+    border-radius: 5px;
+    opacity: 0.8;
+    color: white;
+}
+.legende{
+    background-color: rgb(58, 57, 57);
+    border: 1px solid white;
+    border-radius: 5px;
+    opacity: 0.8;
+    color: white;
+}
+.innerButton{
+    background-color: rgb(116, 114, 114); 
+}
