@@ -139,6 +139,7 @@
                       button.style.visibility = "visible"
                       name.style.opacity = 0.0
                       allowZoom = false
+                      legendeNudel.style.visibility = 'hidden'
                     }
                     document.getElementById(e.target.id).setAttribute('found','false')
                     if(e.target.id=="Thermoplast")legendeThermoplast.style.visibility = 'hidden'
@@ -263,6 +264,7 @@
                 function switchObjectsState(){
                   if(marker1.getAttribute('found')){
                     let cState = parseInt(marker1.getAttribute('state'))
+                    if(cState!=1)legendeNudel.style.visibility='hidden'
                     if(cState<2)legendeThermoplast.style.visibility='hidden'
                     for(var i=0; i<objects1.length; i++){
                       if(i!=cState)objects1[i].object3D.visible =false
@@ -274,6 +276,7 @@
                   } 
                   if(marker2.getAttribute('found')){        
                     let cState = parseInt(marker2.getAttribute('state'))
+                    if(cState!=1)legendeNudel.style.visibility='hidden'
                     if(cState<2)legendeElastomer.style.visibility='hidden'
                     for(var i=0; i<objects2.length; i++){
                       if(i!=cState)objects2[i].object3D.visible =false
@@ -286,6 +289,7 @@
                   }
                   if(marker3.getAttribute('found')){
                     let cState = parseInt(marker3.getAttribute('state'))
+                    if(cState!=1)legendeNudel.style.visibility='hidden'
                     if(cState<2)legendeDuroplast.style.visibility='hidden'
                     for(var i=0; i<objects3.length; i++){
                       if(i!=cState)objects3[i].object3D.visible =false
@@ -313,7 +317,7 @@
                       if(oldX!=0)diff = oldX-e.clientX
                       rot+=diff*-1
                       if(window.currentObject !=null && Math.abs(diff)<60){
-                        console.log('rotation difference',diff)
+                        // console.log('rotation difference',diff)
                         window.currentObject.object3D.rotation.set(
                         THREE.Math.degToRad(0),
                         THREE.Math.degToRad(window.currentObject.object3D.rotation._y+rot),
@@ -328,6 +332,20 @@
                     var legends = document.querySelectorAll(".uiElement")
                   // console.log(legends[0].getAttribute('marker'), currentMarker.id)
                     if(window.currentMarker!=null){
+                      if(parseInt(window.currentMarker.getAttribute('state'))==1){
+                      switch(legendeNudel.style.visibility){
+                          case 'visible':
+                              // if(parseInt(window.currentMarker.getAttribute('state'))==1)legendeNudel.style.visibility = 'visible'
+                              // if(parseInt(window.currentMarker.getAttribute('state'))!=1)legendeNudel.style.visibility = 'hidden'
+                              legendeNudel.style.visibility = 'hidden'
+                            break
+                          case 'hidden':
+                              // if(parseInt(window.currentMarker.getAttribute('state'))==1)legendeNudel.style.visibility = 'visible'
+                              // if(parseInt(window.currentMarker.getAttribute('state'))!=1)legendeNudel.style.visibility = 'hidden'
+                              legendeNudel.style.visibility = 'visible'
+                            break
+                      }
+                      }
                       for(var i=0; i<legends.length; i++){
                         if(legends[i].getAttribute('marker')==window.currentMarker.id && parseInt(window.currentMarker.getAttribute('state'))>1){
                           switch(legends[i].style.visibility){
@@ -407,7 +425,7 @@
 
               return Math.sqrt( dx * dx + dy * dy + dz * dz );
             })
-          });
+          })
         </script>
       
     <a-scene renderer="logarithmicDepthBuffer: true;" embedded arjs='debugUIEnabled: false;' vr-mode-ui='enabled: false' set-marker >
@@ -458,7 +476,7 @@
     </div>
 
     <div id = "toolbar" style="position: absolute; bottom: 0px; left: 0px; display: flex;flex-direction: row;">
-      <img id="legendButton" class="button" style="margin: 5px; padding: 5px; height: 5vh; width: 5vh; opacity: 1;" src="./assets/icons/info_outline.png"><!-- Legende</div> -->
+      <div id="legendButton" class="button" style="margin: 5px; padding: 5px; opacity: 1;">Legende</div>
       <!-- <div id="homeButton" class="button" style="margin: 5px; padding: 5px;">Startseite</div> -->
       <img id="reloadButton" class="button" style="margin: 5px; padding: 5px; height: 5vh; width: 5vh; visibility: hidden;" src="./assets/icons/refresh.png"><!-- Neu laden</div> -->
       <div id="version" class="button" style="margin: 5px; padding: 5px; visibility: hidden;">zoomable</div>
@@ -470,6 +488,13 @@
         <div id="buttonAction" style="margin: 10px; padding: 5px; text-align: center; color:white"></div>
       </div>
 
+    </div>
+
+    <div id="legendeNudel" class="uiElement" style="position: absolute; top: 10%; left: 5%; display: flex; flex-direction: column; opacity: 0.8; visibility: hidden;">
+      <div id="Verknuepfung" style="display: flex; flex-direction: row; margin: 1vh;">
+        <div style="width: 2vh; height: 2vh; background: grey; border-radius: 50%" ></div>
+        <div id="VerknuepfungInfo"> = Verknuepfung</div>
+      </div>
     </div>
 
     <div id="legendeThermoplast" class="uiElement" marker="Thermoplast" style="position: absolute; top: 10%; left: 5%; display: flex; flex-direction: column; opacity: 0.8; visibility: hidden;">
