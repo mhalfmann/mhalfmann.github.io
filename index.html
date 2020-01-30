@@ -17,10 +17,12 @@
                 let marker1 = document.getElementById('Thermoplast')
                 let marker2 = document.getElementById('Elastomer')
                 let marker3 = document.getElementById('Duroplast')
+                let marker4 = document.getElementById('hiro')
 
                 let objects1 = []
                 let objects2 = []
                 let objects3 = []
+                let objects4 = []
 
                 window.objectsLoaded = 0
                 window.pointerCount = 0
@@ -43,6 +45,12 @@
                 objects3[3] = document.querySelector('#model34')
                 objects3[4] = document.querySelector('#model35')
 
+                objects4[0] = document.querySelector('#model41')
+                objects4[1] = document.querySelector('#model42')
+                objects4[2] = document.querySelector('#model43')
+                objects4[3] = document.querySelector('#model44')
+                objects4[4] = document.querySelector('#model45')
+
                 for(var i = 0; i<objects1.length; i++){
                   objects1[i].addEventListener('model-loaded',()=>{
                     window.objectsLoaded++
@@ -56,34 +64,39 @@
                     window.objectsLoaded++
                     // document.getElementById('version').innerHTML = window.objectsLoaded
                   })
+                  objects4[i].addEventListener('model-loaded',()=>{
+                    window.objectsLoaded++
+                    // document.getElementById('version').innerHTML = window.objectsLoaded
+                  })
                   objects1[i].setAttribute('marker','Thermoplast')
                   objects2[i].setAttribute('marker','Elastomer')
                   objects3[i].setAttribute('marker','Duroplast')
+                  objects4[i].setAttribute('marker','hiro')
 
                   if(i!=0) objects1[i].object3D.visible = false
                   if(i!=0) objects2[i].object3D.visible = false
                   if(i!=0) objects3[i].object3D.visible = false
+                  if(i!=0) objects4[i].object3D.visible = false
 
                   // if(i!=0) objects1[i].object3D.scale.set(0,0,0)
                   // if(i!=0) objects2[i].object3D.scale.set(0,0,0)
                   // if(i!=0) objects3[i].object3D.scale.set(0,0,0)
                 }
 
-                let stateMarker1 = 0
-                let stateMarker2 = 0
-                let stateMarker3 = 0
-
                 marker1.setAttribute('found','false')
                 marker2.setAttribute('found','false')
                 marker3.setAttribute('found','false')    
+                marker4.setAttribute('found','false')    
 
                 marker1.setAttribute('state','0')
                 marker2.setAttribute('state','0')
                 marker3.setAttribute('state','0')
+                marker4.setAttribute('state','0')
                 
                 window.currentObjMarker1 = objects1[0]
                 window.currentObjMarker2 = objects2[0]
                 window.currentObjMarker3 = objects3[0]
+                window.currentObjMarker4 = objects4[0]
 
                 window.currentMarker = null
                 window.currentObject = null
@@ -145,6 +158,7 @@
                     if(e.target.id=="Thermoplast")legendeThermoplast.style.visibility = 'hidden'
                     if(e.target.id=="Elastomer")legendeElastomer.style.visibility = 'hidden'
                     if(e.target.id=="Duroplast")legendeDuroplast.style.visibility = 'hidden'
+                    if(e.target.id=="hiro")legendeHiro.style.visibility = 'hidden'
                   })
                 }
 
@@ -159,45 +173,6 @@
                           window.currentObject.object3D.scale.set(cScale.x+deltaS, cScale.y+deltaS, cScale.z+deltaS)
                       }
                     }
-                    console.log(window.currentObject.object3D.scale.x)
-
-                    // if(window.currentObject.object3D.scale.x<blendOutThreshold && window.currentMarker.getAttribute('state')!='0' && ev.additionalEvent =='pinchin'){
-                    //     let cState = parseInt(window.currentMarker.getAttribute('state'))
-                    //     if(marker1.getAttribute('found')){
-                    //       objects1[cState-1].object3D.visible =true
-                    //       let cScaleNext = objects1[cState-1].object3D.scale
-                    //       objects1[cState-1].object3D.scale.set(cScaleNext.x+deltaS,cScaleNext.y+deltaS,cScaleNext.z+deltaS)
-                    //     }
-                    //     if(marker2.getAttribute('found')){
-                    //       objects2[cState-1].object3D.visible =true
-                    //       // let cScaleNext = objects2[cState-1].object3D.scale
-                    //       // objects2[cState-1].object3D.scale.set(cScaleNext.x+deltaS,cScaleNext.y+deltaS,cScaleNext.z+deltaS)
-                    //     }
-                    //     if(marker3.getAttribute('found')){
-                    //       objects3[cState-1].object3D.visible =true
-                    //       // let cScaleNext = objects3[cState-1].object3D.scale
-                    //       // objects3[cState-1].object3D.scale.set(cScaleNext.x-deltaS,cScaleNext.y-deltaS,cScaleNext.z-deltaS)
-                    //     }
-                    // }
-                    // if(window.currentObject.object3D.scale.x>blendInThreshold && window.currentMarker.getAttribute('state')!='4' && ev.additionalEvent =='pinchout'){
-                    //     let cState = parseInt(window.currentMarker.getAttribute('state'))
-                    //     if(marker1.getAttribute('found')){
-                    //       objects1[cState+1].object3D.visible =true
-                    //       // document.getElementById('version').innerHTML = cScale.x
-                    //       let cScaleNext = objects1[cState+1].object3D.scale
-                    //       objects1[cState+1].object3D.scale.set(cScaleNext.x+deltaS,cScaleNext.y+deltaS,cScaleNext.z+deltaS)
-                    //     }
-                    //     if(marker2.getAttribute('found')){
-                    //       objects2[cState+1].object3D.visible =true
-                    //       let cScaleNext = objects2[cState+1].object3D.scale
-                    //       objects2[cState+1].object3D.scale.set(cScaleNext.x+deltaS,cScaleNext.y+deltaS,cScaleNext.z+deltaS)
-                    //     }
-                    //     if(marker3.getAttribute('found')){
-                    //       objects3[cState+1].object3D.visible =true
-                    //       let cScaleNext = objects3[cState+1].object3D.scale
-                    //       objects3[cState+1].object3D.scale.set(cScaleNext.x+deltaS,cScaleNext.y+deltaS,cScaleNext.z+deltaS)
-                    //     }
-                    // }
 
                     if(window.currentObject.object3D.scale.x>zoomInThreshold && pinch == true && window.currentMarker.getAttribute('state')!='4'){
                       if(window.currentMarker!=null){
@@ -299,6 +274,18 @@
                       }
                     }
                   }
+                  if(marker4.getAttribute('found')){
+                    let cState = parseInt(marker4.getAttribute('state'))
+                    if(cState!=1)legendeNudel.style.visibility='hidden'
+                    if(cState<2)legendeDuroplast.style.visibility='hidden'
+                    for(var i=0; i<objects4.length; i++){
+                      if(i!=cState)objects4[i].object3D.visible =false
+                      if(i==cState){
+                        objects4[i].object3D.visible =true
+                        window.currentObjMarker4 = objects4[i]
+                      }
+                    }
+                  }
 
                 }
                 document.body.addEventListener('pointerdown',()=>{
@@ -369,72 +356,100 @@
               let marker1 = document.getElementById('Thermoplast')
               let marker2 = document.getElementById('Elastomer')
               let marker3 = document.getElementById('Duroplast')
+              let marker4 = document.getElementById('hiro')
               let name = document.getElementById('name')
               // console.log(window.pointerCount)
-              document.getElementById('loading').innerHTML = "Lade Modelle " + window.objectsLoaded + " / 15"
-              if(window.objectsLoaded == 15){
+              document.getElementById('loading').innerHTML = "Lade Modelle " + window.objectsLoaded + " / 20"
+              if(window.objectsLoaded == 20){
                 
                 document.getElementById('overlay').style.visibility = "hidden"
               }
 
               if(window.markers!=null){
               let result = null
+              let distances = []
+
               let distM1=999.0
               let distM2=999.0
               let distM3=999.0
+              let distM4=999.0
+
+              distances[0]=distM1
+              distances[1]=distM2
+              distances[2]=distM3
+              distances[3]=distM4
+
               for (var i = 0; i < window.markers.length; i++) {
                 if(window.markers[i].id=="Thermoplast" && window.markers[i].getAttribute('found')=='true'){
                   // result=marker1
                   distM1 =  this.distanceVector(marker1.object3D.getWorldPosition(new THREE.Vector3()),document.getElementById('cam').object3D.getWorldPosition(new THREE.Vector3()))
+                  distances[0]=distM1
                 }
                 if(window.markers[i].id=="Elastomer" && window.markers[i].getAttribute('found')=='true'){
                     distM2 =  this.distanceVector(marker2.object3D.getWorldPosition(new THREE.Vector3()),document.getElementById('cam').object3D.getWorldPosition(new THREE.Vector3()))
+                    distances[1]=distM2
                   }
                 if(window.markers[i].id=="Duroplast" && window.markers[i].getAttribute('found')=='true'){
                   distM3 =  this.distanceVector(marker3.object3D.getWorldPosition(new THREE.Vector3()),document.getElementById('cam').object3D.getWorldPosition(new THREE.Vector3()))
+                  distances[2]=distM3
+                }
+                if(window.markers[i].id=="hiro" && window.markers[i].getAttribute('found')=='true'){
+                  distM4 =  this.distanceVector(marker4.object3D.getWorldPosition(new THREE.Vector3()),document.getElementById('cam').object3D.getWorldPosition(new THREE.Vector3()))
+                 distances[3]=distM4
                 }
               }
               
-              if(distM2<distM1 && distM2<distM3){
+              let minDist =this.minimumArray(distances)
+
+              if(minDist == distM2){
                 result = marker2
                 name.innerHTML = marker2.id
                 name.style.opacity = 1.0
                 window.currentObject = window.currentObjMarker2
               }
-              if(distM3<distM1 && distM3<distM1){
+              if(minDist == distM3){
                 result = marker3
                 name.innerHTML = marker3.id
                 name.style.opacity = 1.0
                 window.currentObject = window.currentObjMarker3
               }
-              if(distM1<distM2 && distM1<distM3){
+              if(minDist == distM1){
                 result = marker1
                 name.innerHTML = marker1.id
                 name.style.opacity = 1.0
                 window.currentObject = window.currentObjMarker1
               }
-              if(distM3 == distM1 == distM2) result = null
+              if(minDist == distM4){
+                result = marker4
+                name.innerHTML = marker4.id
+                name.style.opacity = 1.0
+                window.currentObject = window.currentObjMarker4
+              }
+              if(distM3 == distM1 == distM2 == distM4) result = null
               window.currentMarker = result
               }
             },
             distanceVector: (function (v1,v2){
               // console.log(v1)
-              var dx = v1.x - v2.x;
-              var dy = v1.y - v2.y;
-              var dz = v1.z - v2.z;
+              var dx = v1.x - v2.x
+              var dy = v1.y - v2.y
+              var dz = v1.z - v2.z
 
-              return Math.sqrt( dx * dx + dy * dy + dz * dz );
-            })
+              return Math.sqrt( dx * dx + dy * dy + dz * dz )
+            }),
+            minimumArray: (function (array){
+              let min = 999.0
+              for (var i=0; i<array.length; i++){
+                if(array[i]<min)min=array[i]
+              }
+
+              return min
+            }),
           })
         </script>
       
-    <a-scene renderer="logarithmicDepthBuffer: true;" embedded arjs='debugUIEnabled: false;' vr-mode-ui='enabled: false' set-marker >
-<!--       <a-marker preset="hiro">
-        <a-box id="box" position='0 0.5 0' material='color: yellow;' clicking=""></a-box>
-        <a-box id="box2" position='0 0.5 0' height="0.5" width="1.5" material='color: pink;' clicking=""></a-box>
-      </a-marker> -->
-
-      <a-marker id = "Thermoplast" cursor-listener type="pattern" url="./assets/marker/pattern-bottle.patt">
+    <a-scene renderer="logarithmicDepthBuffer: true;" embedded arjs='debugUIEnabled: false; patternRatio: 0.5' vr-mode-ui='enabled: false' set-marker >
+       <a-marker id = "Thermoplast" cursor-listener type="pattern" url="./assets/marker/pattern-bottle.patt">
         <!-- <a-entity id="model11" obj-model="obj: url(./models/Duroplast.obj); mtl: url(./models/Duroplast.mtl)" ></a-entity> -->
         <a-gltf-model id="model11" src="assets/models/bottle.gltf"></a-gltf-model>
         <a-gltf-model id="model12" src="assets/models/Thermoplast_Nudel.glb"></a-gltf-model>
@@ -466,6 +481,17 @@
         <a-gltf-model id="model33" src="assets/models/Duroplast_Sphere_black.glb"></a-gltf-model>
         <a-gltf-model id="model34" src="assets/models/Duroplast_Ball_black.glb"></a-gltf-model>
         <a-gltf-model id="model35" src="assets/models/Duroplast_Stick_black.glb"></a-gltf-model>
+      </a-marker>
+
+      <a-marker id="hiro" preset="hiro">
+        <a-gltf-model id="model41" src="assets/models/socket2.gltf"></a-gltf-model>
+        <a-gltf-model id="model42" src="assets/models/Duroplast_Nudel.glb"></a-gltf-model>
+        <!-- <a-box id="model33" position='0 0.5 0' height="1.5" width="1.0" material='color: lime;' transparent= "true" opacity= "0.5" clicking=""></a-box>
+        <a-box id="model34" position='0 0.5 0' height="1.5" width="1.0" material='color: pink;' transparent= "true" opacity= "0.5"  clicking=""></a-box>
+        <a-box id="model35" position='0 0.5 0' height="1.5" width="1.0" material='color: red;' transparent= "true" opacity= "0.5"  clicking=""></a-box> -->
+        <a-gltf-model id="model43" src="assets/models/Duroplast_Sphere_black.glb"></a-gltf-model>
+        <a-gltf-model id="model44" src="assets/models/Duroplast_Ball_black.glb"></a-gltf-model>
+        <a-gltf-model id="model45" src="assets/models/Duroplast_Stick_black.glb"></a-gltf-model>
       </a-marker>
 
       <a-entity id="cam" camera >
@@ -527,8 +553,8 @@
           <div id="wasserstoffInfo"> = Wasserstoff</div>
       </div>
     </div>
-
     </div>
+
     <div id="legendeDuroplast" class="uiElement" marker="Duroplast" style="position: absolute; top: 10%; left: 5%; display: flex; flex-direction: column; opacity: 0.8; visibility: hidden;">
       <div id="kohlenstoff" style="display: flex; flex-direction: row; margin: 1vh;">
         <div style="width: 2vh; height: 2vh; background: darkgray; border-radius: 50%; margin: 5px;" ></div>
@@ -547,6 +573,26 @@
           <div id="wasserstoffInfo"> = Wasserstoff</div>
       </div>
     </div>
+
+    <div id="legendeHiro" class="uiElement" marker="Duroplast" style="position: absolute; top: 10%; left: 5%; display: flex; flex-direction: column; opacity: 0.8; visibility: hidden;">
+      <div id="kohlenstoff" style="display: flex; flex-direction: row; margin: 1vh;">
+        <div style="width: 2vh; height: 2vh; background: darkgray; border-radius: 50%; margin: 5px;" ></div>
+        <div id="kohlenstoffInfo"> = Kohlenstoff</div>
+      </div>
+      <div id="sauerstoff" style="display: flex; flex-direction: row; margin: 1vh;">
+          <div style="width: 2vh; height: 2vh; background: red; border-radius: 50%; margin: 5px;" ></div>
+          <div id="sauerstoffInfo"> = Sauerstoff</div>
+      </div>
+      <div id="stickstoff" style="display: flex; flex-direction: row; margin: 1vh;">
+          <div style="width: 2vh; height: 2vh; background: blue; border-radius: 50%; margin: 5px;" ></div>
+          <div id="stickstoffInfo"> = Stickstoff</div>
+      </div>
+      <div id="wasserstoff" style="display: flex; flex-direction: row; margin: 1vh;">
+          <div style="width: 2vh; height: 2vh; background: white; border-radius: 50%; margin: 5px;" ></div>
+          <div id="wasserstoffInfo"> = Wasserstoff</div>
+      </div>
+    </div>
+
     <div id = "overlay" style = "position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; background: rgb(255, 105, 0);">
       <div id = "loading" class = "uiElement" style="position: absolute; left: 5%; top: 50%; font-size: 8vw;"></div>
     </div>
