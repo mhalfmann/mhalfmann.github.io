@@ -101,9 +101,12 @@
                 window.currentMarker = null
                 window.currentObject = null
                       
-                let rot = 0.0
+                let rotX = 0.0
+                let rotY = 0.0
                 let oldX = 0.0
-                let diff = 0.0
+                let oldY = 0.0
+                let diffX = 0.0
+                let diffY = 0.0
                 let rotate = false
                 let allowZoom = false
                 let pinch = true
@@ -290,28 +293,34 @@
                 }
                 document.body.addEventListener('pointerdown',()=>{
                     oldX = 0.0
+                    oldY = 0.0
                     // rotate = true
                     window.pointerCount++
                     // cube.object3D.rotation.y += 1.0
                   })
                   document.body.addEventListener('pointerup',()=>{
                     oldX = 0.0
+                    oldY = 0.0
                     // rotate = false
                     window.pointerCount--
                   })
                 document.body.addEventListener('pointermove',(e)=>{
                     if(window.pointerCount<2){
-                      if(oldX!=0)diff = oldX-e.clientX
-                      rot+=diff*-1
-                      if(window.currentObject !=null && Math.abs(diff)<60){
+                      if(oldX!=0)diffX = oldX-e.clientX
+                      if(oldY!=0)diffY = oldY-e.clientY
+                      rotX+=diffX*-1
+                      rotY+=diffY*-1
+                      if(window.currentObject !=null && Math.abs(diffX)<60 && Math.abs(diffY)<60){
                         // console.log('rotation difference',diff)
                         window.currentObject.object3D.rotation.set(
                         THREE.Math.degToRad(0),
-                        THREE.Math.degToRad(window.currentObject.object3D.rotation._y+rot),
+                        // THREE.Math.degToRad(window.currentObject.object3D.rotation._x+rotY),
+                        THREE.Math.degToRad(window.currentObject.object3D.rotation._y+rotX),
                         THREE.Math.degToRad(0)
                         )
                       }
                       oldX = e.clientX
+                      oldY = e.clientY
                     }
                   })
 
@@ -420,6 +429,7 @@
                 window.currentObject = window.currentObjMarker1
               }
               if(minDist == distM4){
+                console.log('minDist = Marker4')
                 result = marker4
                 name.innerHTML = marker4.id
                 name.style.opacity = 1.0
@@ -438,7 +448,7 @@
               return Math.sqrt( dx * dx + dy * dy + dz * dz )
             }),
             minimumArray: (function (array){
-              let min = 999.0
+              let min = 666.0
               for (var i=0; i<array.length; i++){
                 if(array[i]<min)min=array[i]
               }
