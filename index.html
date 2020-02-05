@@ -306,8 +306,8 @@
                   })
                 document.body.addEventListener('pointermove',(e)=>{
                     if(window.pointerCount<2){
-                      if(oldX!=0)diffX = oldX-e.clientX
-                      if(oldY!=0)diffY = oldY-e.clientY
+                      if(oldX!=0)diffX = (oldX-e.clientX)*0.5
+                      if(oldY!=0)diffY = (oldY-e.clientY)*0.5
                       rotX+=diffX*-1
                       rotY+=diffY*-1
                       if(window.currentObject !=null && Math.abs(diffX)<60 && Math.abs(diffY)<60){
