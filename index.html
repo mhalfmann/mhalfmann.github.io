@@ -11,7 +11,6 @@
       <script>
           AFRAME.registerComponent('set-marker', {
             init: function () {
-              
               window.markers = document.querySelectorAll('a-marker')
 
                 let marker1 = document.getElementById('Thermoplast')
@@ -349,6 +348,8 @@
                   })
 
                   legendButton.addEventListener('click',(e)=>{
+                    
+              window.location.href = "test.html";
                     var legends = document.querySelectorAll(".uiElement")
                   // console.log(legends[0].getAttribute('marker'), currentMarker.id)
                     if(window.currentMarker!=null){
