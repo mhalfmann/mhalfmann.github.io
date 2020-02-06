@@ -304,7 +304,20 @@
                     // rotate = false
                     window.pointerCount--
                   })
+
+                  
                 document.body.addEventListener('pointermove',(e)=>{
+                                    
+                  var vector = new THREE.Vector3()
+                  vector.setFromMatrixPosition(window.currentObject.object3D.matrixWorld)
+                  vector.project(AFRAME.scenes[0].camera)
+
+                  var width = window.innerWidth, height = window.innerHeight
+                  var widthHalf = width / 2, heightHalf = height / 2
+
+                  vector.x = ( vector.x * widthHalf ) + widthHalf
+                  vector.y = -( vector.y * heightHalf ) + heightHalf
+
                     if(window.pointerCount<2){
                       if(oldX!=0)diffX = (oldX-e.clientX)*0.5
                       if(oldY!=0)diffY = (oldY-e.clientY)*0.5
@@ -325,8 +338,10 @@
 
                         // rotate the mesh 45 on this axis
                         // window.currentObject.rotateOnWorldAxis(this.myAxis, THREE.Math.degToRad(diffX*-1))
-                        window.currentObject.object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(diffX*-1) )
-                        window.currentObject.object3D.rotateOnWorldAxis ( xAxis, THREE.Math.degToRad(diffY*-1) )
+                        if(vector.y>e.clientY)window.currentObject.object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(diffX) )
+                        if(vector.y<=e.clientY)window.currentObject.object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(diffX*-1) )
+                        // window.currentObject.object3D.rotateOnWorldAxis ( xAxis, THREE.Math.degToRad(diffY*-1) )
+                        // window.currentObject.object3D.rotateX( diffY*0.01 )
                       }
                       oldX = e.clientX
                       oldY = e.clientY
@@ -400,19 +415,19 @@
               for (var i = 0; i < window.markers.length; i++) {
                 if(window.markers[i].id=="Thermoplast" && window.markers[i].getAttribute('found')=='true'){
                   // result=marker1
-                  distM1 =  this.distanceVector(marker1.object3D.getWorldPosition(new THREE.Vector3()),document.getElementById('cam').object3D.getWorldPosition(new THREE.Vector3()))
+                  distM1 =  this.distanceVector(marker1.object3D.getWorldPosition(new THREE.Vector3()),AFRAME.scenes[0].camera.getWorldPosition(new THREE.Vector3()))
                   distances[0]=distM1
                 }
                 if(window.markers[i].id=="Elastomer" && window.markers[i].getAttribute('found')=='true'){
-                    distM2 =  this.distanceVector(marker2.object3D.getWorldPosition(new THREE.Vector3()),document.getElementById('cam').object3D.getWorldPosition(new THREE.Vector3()))
+                    distM2 =  this.distanceVector(marker2.object3D.getWorldPosition(new THREE.Vector3()),AFRAME.scenes[0].camera.getWorldPosition(new THREE.Vector3()))
                     distances[1]=distM2
                   }
                 if(window.markers[i].id=="Duroplast" && window.markers[i].getAttribute('found')=='true'){
-                  distM3 =  this.distanceVector(marker3.object3D.getWorldPosition(new THREE.Vector3()),document.getElementById('cam').object3D.getWorldPosition(new THREE.Vector3()))
+                  distM3 =  this.distanceVector(marker3.object3D.getWorldPosition(new THREE.Vector3()),AFRAME.scenes[0].camera.getWorldPosition(new THREE.Vector3()))
                   distances[2]=distM3
                 }
                 if(window.markers[i].id=="hiro" && window.markers[i].getAttribute('found')=='true'){
-                  distM4 =  this.distanceVector(marker4.object3D.getWorldPosition(new THREE.Vector3()),document.getElementById('cam').object3D.getWorldPosition(new THREE.Vector3()))
+                  distM4 =  this.distanceVector(marker4.object3D.getWorldPosition(new THREE.Vector3()),AFRAME.scenes[0].camera.getWorldPosition(new THREE.Vector3()))
                  distances[3]=distM4
                 }
               }
