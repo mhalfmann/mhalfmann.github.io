@@ -308,7 +308,7 @@
                   
                 document.body.addEventListener('pointermove',(e)=>{
                                     
-                  var vector = new THREE.Vector3()
+                  /*var vector = new THREE.Vector3()
                   vector.setFromMatrixPosition(window.currentObject.object3D.matrixWorld)
                   vector.project(AFRAME.scenes[0].camera)
 
@@ -325,12 +325,13 @@
                       rotY+=diffY*-1
                       if(window.currentObject !=null && Math.abs(diffX)<60 && Math.abs(diffY)<60){
                         // console.log('rotation difference',diff)
-                       /*  window.currentObject.object3D.rotation.set(
-                        THREE.Math.degToRad(0),
-                        // THREE.Math.degToRad(window.currentObject.object3D.rotation._x+rotY),
-                        THREE.Math.degToRad(window.currentObject.object3D.rotation._y+rotX),
-                        THREE.Math.degToRad(0)
-                        ) */
+
+                      //  window.currentObject.object3D.rotation.set(
+                      //   THREE.Math.degToRad(0),
+                      //   // THREE.Math.degToRad(window.currentObject.object3D.rotation._x+rotY),
+                      //   THREE.Math.degToRad(window.currentObject.object3D.rotation._y+rotX),
+                      //   THREE.Math.degToRad(0)
+                      //   )
                         // select the Z world axis
                         var xAxis = new THREE.Vector3(1, 0, 0)
                         var yAxis = new THREE.Vector3(0, 1, 0)
@@ -338,14 +339,39 @@
 
                         // rotate the mesh 45 on this axis
                         // window.currentObject.rotateOnWorldAxis(this.myAxis, THREE.Math.degToRad(diffX*-1))
-                        if(vector.y>e.clientY)window.currentObject.object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(diffX) )
-                        if(vector.y<=e.clientY)window.currentObject.object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(diffX*-1) )
+                        // if(vector.y>e.clientY)window.currentObject.object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(diffX) )
+                        // if(vector.y<=e.clientY)window.currentObject.object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(diffX*-1) )
                         // window.currentObject.object3D.rotateOnWorldAxis ( xAxis, THREE.Math.degToRad(diffY*-1) )
                         // window.currentObject.object3D.rotateX( diffY*0.01 )
                       }
                       oldX = e.clientX
                       oldY = e.clientY
-                    }
+                    }*/
+                  })
+                  hammertime.on('pan', (e) => {
+                      if(oldX!=0)diffX = (oldX-e.center.x)*0.5
+                      if(oldY!=0)diffY = (oldY-e.center.y)*0.5
+                    var vector = new THREE.Vector3()
+                    vector.setFromMatrixPosition(window.currentObject.object3D.matrixWorld)
+                    vector.project(AFRAME.scenes[0].camera)
+
+                    var width = window.innerWidth, height = window.innerHeight
+                    var widthHalf = width / 2, heightHalf = height / 2
+
+                    vector.x = ( vector.x * widthHalf ) + widthHalf
+                    vector.y = -( vector.y * heightHalf ) + heightHalf
+                    if(window.currentObject !=null){
+                        var xAxis = new THREE.Vector3(1, 0, 0)
+                        var yAxis = new THREE.Vector3(0, 1, 0)
+                        var zAxis = new THREE.Vector3(0, 0, 1)
+                        let rotation = window.currentObject.getAttribute("rotation")
+                        
+                        if(vector.y>e.center.y)window.currentObject.object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(diffX) )
+                        if(vector.y<=e.center.y)window.currentObject.object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(-diffX) )                        
+                      }
+                      
+                      oldX = e.center.x
+                      oldY = e.center.y
                   })
 
                   legendButton.addEventListener('click',(e)=>{
