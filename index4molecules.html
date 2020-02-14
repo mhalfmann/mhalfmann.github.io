@@ -17,10 +17,12 @@
                 let marker1 = document.getElementById('Thermoplast')
                 let marker2 = document.getElementById('Elastomer')
                 let marker3 = document.getElementById('Duroplast')
+                let marker4 = document.getElementById('hiro')
 
                 let objects1 = []
                 let objects2 = []
                 let objects3 = []
+                let objects4 = []
 
                 window.objectsLoaded = 0
                 window.pointerCount = 0
@@ -43,6 +45,12 @@
                 objects3[3] = document.querySelector('#model34')
                 objects3[4] = document.querySelector('#model35')
 
+                objects4[0] = document.querySelector('#model41')
+                objects4[1] = document.querySelector('#model42')
+                objects4[2] = document.querySelector('#model43')
+                objects4[3] = document.querySelector('#model44')
+                objects4[4] = document.querySelector('#model45')
+
                 for(var i = 0; i<objects1.length; i++){
                   objects1[i].addEventListener('model-loaded',()=>{
                     window.objectsLoaded++
@@ -56,14 +64,19 @@
                     window.objectsLoaded++
                     // document.getElementById('version').innerHTML = window.objectsLoaded
                   })
-
+                  objects4[i].addEventListener('model-loaded',()=>{
+                    window.objectsLoaded++
+                    // document.getElementById('version').innerHTML = window.objectsLoaded
+                  })
                   objects1[i].setAttribute('marker','Thermoplast')
                   objects2[i].setAttribute('marker','Elastomer')
                   objects3[i].setAttribute('marker','Duroplast')
+                  objects4[i].setAttribute('marker','hiro')
 
                   if(i!=0) objects1[i].object3D.visible = false
                   if(i!=0) objects2[i].object3D.visible = false
                   if(i!=0) objects3[i].object3D.visible = false
+                  if(i!=0) objects4[i].object3D.visible = false
 
                   // if(i!=0) objects1[i].object3D.scale.set(0,0,0)
                   // if(i!=0) objects2[i].object3D.scale.set(0,0,0)
@@ -72,15 +85,18 @@
 
                 marker1.setAttribute('found','false')
                 marker2.setAttribute('found','false')
-                marker3.setAttribute('found','false') 
+                marker3.setAttribute('found','false')    
+                marker4.setAttribute('found','false')    
 
                 marker1.setAttribute('state','0')
                 marker2.setAttribute('state','0')
                 marker3.setAttribute('state','0')
+                marker4.setAttribute('state','0')
                 
                 window.currentObjMarker1 = objects1[0]
                 window.currentObjMarker2 = objects2[0]
                 window.currentObjMarker3 = objects3[0]
+                window.currentObjMarker4 = objects4[0]
 
                 window.currentMarker = null
                 window.currentObject = null
@@ -261,6 +277,19 @@
                       }
                     }
                   }
+                  if(marker4.getAttribute('found')){
+                    let cState = parseInt(marker4.getAttribute('state'))
+                    if(cState!=1)legendeNudel.style.visibility='hidden'
+                    if(cState<2)legendeDuroplast.style.visibility='hidden'
+                    for(var i=0; i<objects4.length; i++){
+                      if(i!=cState)objects4[i].object3D.visible =false
+                      if(i==cState){
+                        objects4[i].object3D.visible =true
+                        window.currentObjMarker4 = objects4[i]
+                      }
+                    }
+                  }
+
                 }
                 document.body.addEventListener('pointerdown',()=>{
                     oldX = 0.0
@@ -389,8 +418,8 @@
               let marker4 = document.getElementById('hiro')
               let name = document.getElementById('name')
               // console.log(window.pointerCount)
-              document.getElementById('loading').innerHTML = "Lade Modelle " + window.objectsLoaded + " / 15"
-              if(window.objectsLoaded == 15){
+              document.getElementById('loading').innerHTML = "Lade Modelle " + window.objectsLoaded + " / 20"
+              if(window.objectsLoaded == 20){
                 
                 document.getElementById('overlay').style.visibility = "hidden"
               }
@@ -514,6 +543,17 @@
          <a-gltf-model id="model35" src="assets/models/Duroplast_Stick_black.glb"></a-gltf-model>
        </a-marker>
  
+       <a-marker id="hiro" preset="hiro">
+         <a-gltf-model id="model41" src="assets/models/socket2.gltf"></a-gltf-model>
+         <a-gltf-model id="model42" src="assets/models/Duroplast_Nudel.glb"></a-gltf-model>
+         <!-- <a-box id="model33" position='0 0.5 0' height="1.5" width="1.0" material='color: lime;' transparent= "true" opacity= "0.5" clicking=""></a-box>
+         <a-box id="model34" position='0 0.5 0' height="1.5" width="1.0" material='color: pink;' transparent= "true" opacity= "0.5"  clicking=""></a-box>
+         <a-box id="model35" position='0 0.5 0' height="1.5" width="1.0" material='color: red;' transparent= "true" opacity= "0.5"  clicking=""></a-box> -->
+         <a-gltf-model id="model43" src="assets/models/Duroplast_Sphere_black.glb"></a-gltf-model>
+         <a-gltf-model id="model44" src="assets/models/Duroplast_Ball_black.glb"></a-gltf-model>
+         <a-gltf-model id="model45" src="assets/models/Duroplast_Stick_black.glb"></a-gltf-model>
+       </a-marker>
+ 
        <a-entity id="cam" camera >
        </a-entity>
      </a-scene>
@@ -576,6 +616,25 @@
     </div>
 
     <div id="legendeDuroplast" class="uiElement" marker="Duroplast" style="position: absolute; top: 10%; left: 5%; display: flex; flex-direction: column; opacity: 0.8; visibility: hidden;">
+      <div id="kohlenstoff" style="display: flex; flex-direction: row; margin: 1vh;">
+        <div style="width: 2vh; height: 2vh; background: darkgray; border-radius: 50%; margin: 5px;" ></div>
+        <div id="kohlenstoffInfo"> = Kohlenstoff</div>
+      </div>
+      <div id="sauerstoff" style="display: flex; flex-direction: row; margin: 1vh;">
+          <div style="width: 2vh; height: 2vh; background: red; border-radius: 50%; margin: 5px;" ></div>
+          <div id="sauerstoffInfo"> = Sauerstoff</div>
+      </div>
+      <div id="stickstoff" style="display: flex; flex-direction: row; margin: 1vh;">
+          <div style="width: 2vh; height: 2vh; background: blue; border-radius: 50%; margin: 5px;" ></div>
+          <div id="stickstoffInfo"> = Stickstoff</div>
+      </div>
+      <div id="wasserstoff" style="display: flex; flex-direction: row; margin: 1vh;">
+          <div style="width: 2vh; height: 2vh; background: white; border-radius: 50%; margin: 5px;" ></div>
+          <div id="wasserstoffInfo"> = Wasserstoff</div>
+      </div>
+    </div>
+
+    <div id="legendeHiro" class="uiElement" marker="Duroplast" style="position: absolute; top: 10%; left: 5%; display: flex; flex-direction: column; opacity: 0.8; visibility: hidden;">
       <div id="kohlenstoff" style="display: flex; flex-direction: row; margin: 1vh;">
         <div style="width: 2vh; height: 2vh; background: darkgray; border-radius: 50%; margin: 5px;" ></div>
         <div id="kohlenstoffInfo"> = Kohlenstoff</div>
