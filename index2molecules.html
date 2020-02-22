@@ -106,7 +106,8 @@
                 for (var i = 0; i < window.markers.length; i++) {
                   window.markers[i].addEventListener('markerFound', (e)=>{
                     // console.log('marker found',e.target.id)
-                    name.innerHTML=e.target.id
+                    if(e.target.id=="PolyurethanLinear")name.innerHTML="Polyurethan linear"
+                    if(e.target.id=="PolyurethanVernetzt")name.innerHTML="Polyurethan vernetzt"
                     name.style.opacity = 1.0
                     button.style.visibility ="hidden"
 
@@ -388,13 +389,13 @@
 
               if(minDist == distM2){
                 result = marker2
-                name.innerHTML = marker2.id
+                name.innerHTML = "Polyurethan vernetzt"
                 name.style.opacity = 1.0
                 window.currentObject = window.currentObjMarker2
               }
               if(minDist == distM1){
                 result = marker1
-                name.innerHTML = marker1.id
+                name.innerHTML = "Polyurethan linear"
                 name.style.opacity = 1.0
                 window.currentObject = window.currentObjMarker1
               }
