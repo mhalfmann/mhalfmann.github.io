@@ -1,0 +1,45 @@
+<!doctype HTML>
+<html>
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+<script src="./Javascript/aframe.min.js"></script>
+<script src="./Javascript/aframe-ar.js"></script>
+<script src="./Javascript/hammer.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/ui.css">
+<!-- <script src="./Javascript/jquery-3.4.0.min.js"></script> -->
+<!-- <script src="./Javascript/TweenMax.min.js"></script> -->
+  <body style='margin : 0px; overflow: hidden;'>
+    
+
+    <div id = "buttonThermoplast" style="position: absolute; top: 100px; left: 100px; background: darkgray;">
+      Thermoplast
+      </div>
+      <div id = "buttonElastomer" style="position: absolute; top: 200px; left: 100px; background: darkgray;">
+      Elastomer
+      </div>
+      <div id = "buttonDuroplast" style="position: absolute; top: 300px; left: 100px; background: darkgray;">
+      Duroplast
+      </div>
+      <div id = "output" style="position: absolute; top: 400px; left: 100px; background: darkgray;">
+      Duroplast
+      </div>
+
+
+  </body>
+    <script>
+
+          document.getElementById('output').innerHTML = "Hallo"
+          document.getElementById('buttonThermoplast').addEventListener('click',()=>{
+            location = "./indexThermoplast.html"
+            document.getElementById('output').innerHTML = "buttonThermoplast"
+          })
+
+          document.getElementById('buttonElastomer').addEventListener('click',()=>{
+            location = "./indexElastomer.html"
+          })
+
+          document.getElementById('buttonDuroplast').addEventListener('click',()=>{
+            location = "./indexDuroplast.html"
+          })
+      </script>
+  </script>
+</html>
