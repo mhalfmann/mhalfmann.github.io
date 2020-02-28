@@ -15,6 +15,7 @@
               window.markers = document.querySelectorAll('a-marker')
 
                 let marker = document.getElementById('Duroplast')
+                let legend = document.getElementById('legendeDuroplast')
 
                 let objects = []
 
@@ -251,18 +252,16 @@
                             break
                       }
                       }
-                      for(var i=0; i<legends.length; i++){
-                        if(legends[i].getAttribute('marker')==marker.id && parseInt(marker.getAttribute('state'))>1){
-                          switch(legends[i].style.visibility){
+                        if(parseInt(marker.getAttribute('state'))>1){
+                          switch(legend.style.visibility){
                           case 'visible':
-                            legends[i].style.visibility = 'hidden'
+                            legend.style.visibility = 'hidden'
                             break
                           case 'hidden':
-                            legends[i].style.visibility = 'visible'
+                            legend.style.visibility = 'visible'
                             break
                         }
                         }
-                      }
                     }
                   })
                   

@@ -14,8 +14,8 @@
               
               window.markers = document.querySelectorAll('a-marker')
 
-                let marker = document.getElementById('Elastomer')
-                let legend = document.getElementById('legendeElastomer')
+                let marker = document.getElementById('PolyLinear')
+                let legend = document.getElementById('legendePolyLinear')
 
                 let objects = []
 
@@ -179,7 +179,7 @@
                   if(marker.getAttribute('found')){
                     let cState = parseInt(marker.getAttribute('state'))
                     if(cState!=1)legendeNudel.style.visibility='hidden'
-                    if(cState<2)legendeElastomer.style.visibility='hidden'
+                    if(cState<2)legendePolyLinear.style.visibility='hidden'
                     for(var i=0; i<objects.length; i++){
                       if(i!=cState)objects[i].object3D.visible =false
                       if(i==cState){
@@ -235,7 +235,6 @@
                   })
 
                   legendButton.addEventListener('click',(e)=>{
-                    var legends = document.querySelectorAll(".uiElement")
                   // console.log(legends[0].getAttribute('marker'), currentMarker.id)
                     if(marker!=null){
                       if(parseInt(marker.getAttribute('state'))==1){
@@ -252,8 +251,7 @@
                             break
                       }
                       }
-                      
-                      if(parseInt(marker.getAttribute('state'))>1){
+                        if(parseInt(marker.getAttribute('state'))>1){
                           switch(legend.style.visibility){
                           case 'visible':
                             legend.style.visibility = 'hidden'
@@ -270,7 +268,7 @@
                     location.reload()
                   })
                   document.getElementById('homeButton').addEventListener('click',(e)=>{
-                    location = "./indexStart.html"
+                    location = "./indexStart2.html"
                   })
             },
             tick: function () {
@@ -284,12 +282,12 @@
         </script>
       
       <a-scene renderer="logarithmicDepthBuffer: true;" embedded arjs='debugUIEnabled: false; patternRatio: 0.5' vr-mode-ui='enabled: false' set-marker >
-        <a-marker id = "Elastomer" cursor-listener type="pattern" url="./assets/marker/pattern-rubber.patt">
-         <a-gltf-model id="model1" src="assets/models/rubber.gltf"></a-gltf-model>
-         <a-gltf-model id="model2" src="assets/models/Elastomer_Nudel.glb"></a-gltf-model>
-         <a-gltf-model id="model3" src="assets/models/Elastomer_Sphere_black.glb"></a-gltf-model>
-         <a-gltf-model id="model4" src="assets/models/Elastomer_Ball_black.glb"></a-gltf-model>
-         <a-gltf-model id="model5" src="assets/models/Elastomer_Stick_black.glb"></a-gltf-model>
+        <a-marker id = "PolyLinear" cursor-listener type="pattern" url="./assets/marker/pattern-schwamm.patt">
+          <a-gltf-model id="model1" src="assets/models/schwamm.gltf"></a-gltf-model>
+          <a-gltf-model id="model2" src="assets/models/Thermoplast_Nudel.glb"></a-gltf-model>
+          <a-gltf-model id="model3" src="assets/models/PolyurethanLinearSphere.glb"></a-gltf-model>
+          <a-gltf-model id="model4" src="assets/models/PolyurethanLinearBall.glb"></a-gltf-model>
+          <a-gltf-model id="model5" src="assets/models/PolyurethanLinearStick.glb"></a-gltf-model>
        </a-marker>
  
        <a-entity id="cam" camera >
@@ -321,20 +319,23 @@
       </div>
     </div>
     
-    <div id="legendeElastomer" class="uiElement" marker="Elastomer" style="position: absolute; top: 10%; left: 5%; display: flex; flex-direction: column; opacity: 0.8; visibility: hidden;">
+    <div id="legendePolyLinear" class="uiElement" marker="PolyurethanLinear" style="position: absolute; top: 10%; left: 5%; display: flex; flex-direction: column; opacity: 0.8; visibility: hidden;">
       <div id="kohlenstoff" style="display: flex; flex-direction: row; margin: 1vh;">
         <div style="width: 2vh; height: 2vh; background: darkgray; border-radius: 50%; margin: 5px;" ></div>
         <div id="kohlenstoffInfo"> = Kohlenstoff</div>
       </div>
-      <div id="schwefel" style="display: flex; flex-direction: row; margin: 1vh;">
-          <div style="width: 2vh; height: 2vh; background: yellow; border-radius: 50%; margin: 5px;" ></div>
-          <div id="schwefelInfo"> = Schwefel</div>
+      <div id="sauerstoff" style="display: flex; flex-direction: row; margin: 1vh;">
+          <div style="width: 2vh; height: 2vh; background: red; border-radius: 50%; margin: 5px;" ></div>
+          <div id="sauerstoffInfo"> = Sauerstoff</div>
+      </div>
+      <div id="stickstoff" style="display: flex; flex-direction: row; margin: 1vh;">
+          <div style="width: 2vh; height: 2vh; background: blue; border-radius: 50%; margin: 5px;" ></div>
+          <div id="stickstoffInfo"> = Stickstoff</div>
       </div>
       <div id="wasserstoff" style="display: flex; flex-direction: row; margin: 1vh;">
           <div style="width: 2vh; height: 2vh; background: white; border-radius: 50%; margin: 5px;" ></div>
           <div id="wasserstoffInfo"> = Wasserstoff</div>
       </div>
-    </div>
     </div>
 
     </div>
