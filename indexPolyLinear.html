@@ -281,7 +281,7 @@
           })
         </script>
       
-      <a-scene renderer="logarithmicDepthBuffer: true; precision: low;" embedded arjs='debugUIEnabled: false; patternRatio: 0.5' vr-mode-ui='enabled: false' set-marker >
+      <a-scene renderer="logarithmicDepthBuffer: true; precision: low; antialias: false;" embedded arjs='debugUIEnabled: false; patternRatio: 0.5' vr-mode-ui='enabled: false' set-marker >
         <a-marker id = "PolyLinear" cursor-listener type="pattern" url="./assets/marker/pattern-schwamm.patt">
           <a-gltf-model id="model1" src="assets/models/schwamm.gltf"></a-gltf-model>
           <a-gltf-model id="model2" src="assets/models/Thermoplast_Nudel.gltf"></a-gltf-model>
