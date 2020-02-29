@@ -436,24 +436,24 @@
       <a-scene renderer="logarithmicDepthBuffer: true;" embedded arjs='debugUIEnabled: false; patternRatio: 0.5' vr-mode-ui='enabled: false' set-marker >
       <a-marker id = "PolyurethanLinear" cursor-listener type="pattern" url="./assets/marker/pattern-schwamm.patt">
          <a-gltf-model id="model11" src="assets/models/schwamm.gltf"></a-gltf-model>
-         <a-gltf-model id="model12" src="assets/models/Thermoplast_Nudel.glb"></a-gltf-model>
+         <a-gltf-model id="model12" src="assets/models/Thermoplast_Nudel.gltf"></a-gltf-model>
          <!-- <a-box id="model23" position='0 0.5 0' height="1.5" width="1.0" material='color: lime;' transparent= "true" opacity= "0.5" clicking=""></a-box>
          <a-box id="model24" position='0 0.5 0' height="1.5" width="1.0" material='color: pink;' transparent= "true" opacity= "0.5"  clicking=""></a-box>
          <a-box id="model25" position='0 0.5 0' height="1.5" width="1.0" material='color: red;' transparent= "true" opacity= "0.5"  clicking=""></a-box> -->
-         <a-gltf-model id="model13" src="assets/models/PolyurethanLinearSphere.glb"></a-gltf-model>
-         <a-gltf-model id="model14" src="assets/models/PolyurethanLinearBall.glb"></a-gltf-model>
-         <a-gltf-model id="model15" src="assets/models/PolyurethanLinearStick.glb"></a-gltf-model>
+         <a-gltf-model id="model13" src="assets/models/PolyurethanLinearSphere.gltf"></a-gltf-model>
+         <a-gltf-model id="model14" src="assets/models/PolyurethanLinearBall.gltf"></a-gltf-model>
+         <a-gltf-model id="model15" src="assets/models/PolyurethanLinearStick.gltf"></a-gltf-model>
        </a-marker>
  
        <a-marker id = "PolyurethanNetz" cursor-listener type="pattern" url="./assets/marker/pattern-paint.patt">
          <a-gltf-model id="model21" src="assets/models/paint.gltf"></a-gltf-model>
-         <a-gltf-model id="model22" src="assets/models/Duroplast_Nudel.glb"></a-gltf-model>
+         <a-gltf-model id="model22" src="assets/models/Duroplast_Nudel.gltf"></a-gltf-model>
          <!-- <a-box id="model23" position='0 0.5 0' height="1.5" width="1.0" material='color: lime;' transparent= "true" opacity= "0.5" clicking=""></a-box>
          <a-box id="model24" position='0 0.5 0' height="1.5" width="1.0" material='color: pink;' transparent= "true" opacity= "0.5"  clicking=""></a-box>
          <a-box id="model25" position='0 0.5 0' height="1.5" width="1.0" material='color: red;' transparent= "true" opacity= "0.5"  clicking=""></a-box> -->
-         <a-gltf-model id="model23" src="assets/models/PolyurethanVernetztSphere.glb"></a-gltf-model>
-         <a-gltf-model id="model24" src="assets/models/PolyurethanVernetztBall.glb"></a-gltf-model>
-         <a-gltf-model id="model25" src="assets/models/PolyurethanVernetztStick.glb"></a-gltf-model>
+         <a-gltf-model id="model23" src="assets/models/PolyurethanVernetztSphere.gltf"></a-gltf-model>
+         <a-gltf-model id="model24" src="assets/models/PolyurethanVernetztBall.gltf"></a-gltf-model>
+         <a-gltf-model id="model25" src="assets/models/PolyurethanVernetztStick.gltf"></a-gltf-model>
        </a-marker>
  
        <a-entity id="cam" camera >
@@ -523,25 +523,6 @@
           <div id="wasserstoffInfo"> = Wasserstoff</div>
       </div>
     </div>
-    </div>
-
-    <div id="legendeDuroplast" class="uiElement" marker="Duroplast" style="position: absolute; top: 10%; left: 5%; display: flex; flex-direction: column; opacity: 0.8; visibility: hidden;">
-      <div id="kohlenstoff" style="display: flex; flex-direction: row; margin: 1vh;">
-        <div style="width: 2vh; height: 2vh; background: darkgray; border-radius: 50%; margin: 5px;" ></div>
-        <div id="kohlenstoffInfo"> = Kohlenstoff</div>
-      </div>
-      <div id="sauerstoff" style="display: flex; flex-direction: row; margin: 1vh;">
-          <div style="width: 2vh; height: 2vh; background: red; border-radius: 50%; margin: 5px;" ></div>
-          <div id="sauerstoffInfo"> = Sauerstoff</div>
-      </div>
-      <div id="stickstoff" style="display: flex; flex-direction: row; margin: 1vh;">
-          <div style="width: 2vh; height: 2vh; background: blue; border-radius: 50%; margin: 5px;" ></div>
-          <div id="stickstoffInfo"> = Stickstoff</div>
-      </div>
-      <div id="wasserstoff" style="display: flex; flex-direction: row; margin: 1vh;">
-          <div style="width: 2vh; height: 2vh; background: white; border-radius: 50%; margin: 5px;" ></div>
-          <div id="wasserstoffInfo"> = Wasserstoff</div>
-      </div>
     </div>
 
     <div id = "overlay" style = "position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; background: rgb(255, 105, 0);">
