@@ -4,6 +4,7 @@
 <script src="./Javascript/aframe.min.js"></script>
 <script src="./Javascript/aframe-ar.js"></script>
 <script src="./Javascript/hammer.js"></script>
+<script src="./Javascript/TweenMax.min.js"></script>
 <link rel="stylesheet" type="text/css" href="./css/ui.css">
 <!-- <script src="./Javascript/jquery-3.4.0.min.js"></script> -->
 <!-- <script src="./Javascript/TweenMax.min.js"></script> -->
@@ -20,12 +21,22 @@
             return false;
           }
 
-          document.getElementById('buttonPolyLinear').addEventListener('click',()=>{
-            location = "./indexPolyLinear.html"
+          document.getElementById('buttonPolyLinear').addEventListener('click',(e)=>{
+            
+            TweenMax.to(e.target, 0.1, {scale:1.1, onComplete:function(){
+              TweenMax.to(e.target, 0.1, {scale:1.0, onComplete:function(){
+                location = "./indexPolyLinear.html"
+              }})
+            }})
           })
 
-          document.getElementById('buttonPolyVernetzt').addEventListener('click',()=>{
-            location = "./indexPolyVernetzt.html"
+          document.getElementById('buttonPolyVernetzt').addEventListener('click',(e)=>{
+           
+            TweenMax.to(e.target, 0.1, {scale:1.1, onComplete:function(){
+              TweenMax.to(e.target, 0.1, {scale:1.0, onComplete:function(){
+                location = "./indexPolyVernetzt.html"
+              }})
+            }})
           })
       </script>
   </script>
