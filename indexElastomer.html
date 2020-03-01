@@ -58,7 +58,6 @@
                 let button = document.getElementById('button')
                 let name = document.getElementById('name')
                 let legendButton = document.getElementById('legendButton')
-                let reloadButton = document.getElementById('reloadButton')
 
                 let foundMarkers = new Map()
 
@@ -266,9 +265,6 @@
                     }
                   })
                   
-                  document.getElementById('reloadButton').addEventListener('click',(e)=>{
-                    location.reload()
-                  })
                   document.getElementById('homeButton').addEventListener('click',(e)=>{
                     location = "./indexStart.html"
                   })
@@ -300,10 +296,8 @@
     </div>
 
     <div id = "toolbar" style="position: absolute; bottom: 0px; left: 0px; display: flex;flex-direction: row;">
-      <div id="legendButton" class="button" style="margin: 5px; padding: 5px; opacity: 1;">Legende</div>
-      <div id="homeButton" class="button" style="margin: 5px; padding: 5px;">Startseite</div>
-      <img id="reloadButton" class="button" style="margin: 5px; padding: 5px; height: 5vh; width: 5vh; visibility: hidden;" src="./assets/icons/refresh.png">
-      <div id="version" class="button" style="margin: 5px; padding: 5px; visibility: hidden;">zoomable</div>
+      <div id="legendButton" class="uiButton" style="margin: 5px; padding: 5px; opacity: 1;">Legende</div>
+      <div id="homeButton" class="uiButton" style="margin: 5px; padding: 5px;">Startseite</div>
     </div>
 
     <div id="button" class="uiElement" style="position: absolute; top: 15%; left: 20%; visibility: visible;">
