@@ -26,7 +26,6 @@
                 objects[1] = document.getElementById('model2')
                 objects[2] = document.getElementById('model3')
                 objects[3] = document.getElementById('model4')
-                objects[4] = document.getElementById('model5')
 
                 for(var i = 0; i<objects.length; i++){
                   objects[i].addEventListener('model-loaded',()=>{
@@ -58,6 +57,8 @@
                 let button = document.getElementById('button')
                 let name = document.getElementById('name')
                 let legendButton = document.getElementById('legendButton')
+                let zoomInButton = document.getElementById('zoomInButton')
+                let zoomOutButton = document.getElementById('zoomOutButton')
 
                 let foundMarkers = new Map()
 
@@ -100,6 +101,27 @@
                     marker.setAttribute('found','false')
                   })
 
+                zoomInButton.addEventListener('click',(e)=>{
+                  if(marker!=null){
+                        let cState = parseInt(marker.getAttribute('state'))
+                        cState++
+                        if(cState>3)cState=3
+                        marker.setAttribute('state',cState.toString())
+                        switchObjectsState()
+                    }
+
+                })
+                zoomOutButton.addEventListener('click',(e)=>{
+                  if(marker!=null){
+                        let cState = parseInt(marker.getAttribute('state'))
+                        cState--
+                        if(cState<0)cState=0
+                        marker.setAttribute('state',cState.toString())
+                        switchObjectsState()
+                    }
+
+                })
+
                 hammertime.on('pinch', function(ev) {
                   if(allowZoom){
                     // rotate = false
@@ -108,31 +130,12 @@
                     let deltaS = ev.scale-oldScale
                     if(oldScale !=0.0){
                       if(currentObject!=null && pinch == true && cScale.x+deltaS>zoomOutThreshold-0.1 && cScale.x+deltaS < zoomInThreshold+0.1){
-                          currentObject.object3D.scale.set(cScale.x+deltaS, cScale.y+deltaS, cScale.z+deltaS)
-                      }
-                    }
-
-                    if(currentObject.object3D.scale.x>zoomInThreshold && pinch == true && marker.getAttribute('state')!='4'){
-                      if(marker!=null){
-                        pinch = false
-                        let cState = parseInt(marker.getAttribute('state'))
-                        cState++
-                        if(cState>4)cState=4
-                        marker.setAttribute('state',cState.toString())
-                        if(currentObject!=null)currentObject.object3D.scale.set(4,4,4)
-                        switchObjectsState()
-                      }
-
-                    }
-                    if(currentObject.object3D.scale.x<zoomOutThreshold && pinch == true &&marker.getAttribute('state')!='0'){
-                      if(marker!=null){
-                          pinch = false
-                        let cState = parseInt(marker.getAttribute('state'))
-                        cState--
-                        if(cState<0)cState=0
-                        marker.setAttribute('state',cState.toString())
-                        if(currentObject!=null )currentObject.object3D.scale.set(1,1,1)
-                        switchObjectsState()
+                          if(currentObject==objects[0])objects[0].object3D.scale.set(cScale.x+deltaS, cScale.y+deltaS, cScale.z+deltaS)
+                          if(currentObject!=objects[0]){
+                            objects[1].object3D.scale.set(cScale.x+deltaS, cScale.y+deltaS, cScale.z+deltaS)
+                            objects[2].object3D.scale.set(cScale.x+deltaS, cScale.y+deltaS, cScale.z+deltaS)
+                            objects[3].object3D.scale.set(cScale.x+deltaS, cScale.y+deltaS, cScale.z+deltaS)
+                          }
                       }
                     }
                     oldScale = ev.scale
@@ -225,8 +228,22 @@
                         var zAxis = new THREE.Vector3(0, 0, 1)
                         let rotation = currentObject.getAttribute("rotation")
                         
-                        if(vector.y>e.center.y)currentObject.object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(diffX) )
-                        if(vector.y<=e.center.y)currentObject.object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(-diffX) )                        
+                        if(vector.y>e.center.y){
+                          if(currentObject==objects[0])objects[0].object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(diffX) )
+                          if(currentObject!=objects[0]){
+                            objects[1].object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(diffX) )
+                            objects[2].object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(diffX) )
+                            objects[3].object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(diffX) )
+                          }
+                        }
+                        if(vector.y<=e.center.y){
+                          if(currentObject==objects[0])objects[0].object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(-diffX) )
+                          if(currentObject!=objects[0]){
+                            objects[1].object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(-diffX) )
+                            objects[2].object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(-diffX) )
+                            objects[3].object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(-diffX) )
+                          }
+                        }
                       }
                       
                       oldX = e.center.x
@@ -270,8 +287,8 @@
             },
             tick: function () {
 
-              document.getElementById('loading').innerHTML = "Lade Modelle " + window.objectsLoaded + " / 5"
-              if(window.objectsLoaded == 5){                
+              document.getElementById('loading').innerHTML = "Lade Modelle " + window.objectsLoaded + " / 4"
+              if(window.objectsLoaded == 4){                
                 document.getElementById('overlay').style.visibility = "hidden"
               }
             },
@@ -281,10 +298,9 @@
       <a-scene renderer="logarithmicDepthBuffer: true; precision: low; antialias: false;" embedded arjs='debugUIEnabled: false; patternRatio: 0.5' vr-mode-ui='enabled: false' set-marker >
         <a-marker id = "Thermoplast" cursor-listener type="pattern" url="./assets/marker/pattern-bottle.patt">
          <a-gltf-model id="model1" src="assets/models/bottle.gltf"></a-gltf-model>
-         <a-gltf-model id="model2" src="assets/models/Thermoplast_Nudel.gltf"></a-gltf-model>
+         <a-gltf-model id="model2" src="assets/models/Thermoplast_Stick_black_stacked_reduced.gltf"></a-gltf-model>
          <a-gltf-model id="model3" src="assets/models/Thermoplast_Sphere_black_stacked_reduced.gltf"></a-gltf-model>
          <a-gltf-model id="model4" src="assets/models/Thermoplast_Ball_black_stacked_reduced.gltf"></a-gltf-model>
-         <a-gltf-model id="model5" src="assets/models/Thermoplast_Stick_black_stacked_reduced.gltf"></a-gltf-model>
        </a-marker>
  
        <a-entity id="cam" camera >
@@ -297,6 +313,8 @@
     <div id = "toolbar" style="position: absolute; bottom: 0px; left: 0px; display: flex;flex-direction: row;">
       <div id="legendButton" class="uiButton" style="margin: 5px; padding: 5px;">Legende</div>
       <div id="homeButton" class="uiButton" style="margin: 5px; padding: 5px;">Startseite</div>
+      <div id="zoomInButton" class="uiButton" style="margin: 5px; padding: 5px;">ZoomIn</div>
+      <div id="zoomOutButton" class="uiButton" style="margin: 5px; padding: 5px;">ZoomOut</div>
     </div>
 
     <div id="button" class="uiElement" style="position: absolute; top: 15%; left: 20%; visibility: visible;">
