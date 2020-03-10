@@ -96,7 +96,7 @@
                       button.style.visibility = "visible"
                       name.style.opacity = 0.0
                       allowZoom = false
-                      legendeNudel.style.visibility = 'hidden'
+                      // legendeNudel.style.visibility = 'hidden'
                     }
                     marker.setAttribute('found','false')
                   })
@@ -180,7 +180,7 @@
                 function switchObjectsState(){
                   if(marker.getAttribute('found')){
                     let cState = parseInt(marker.getAttribute('state'))
-                    if(cState!=1)legendeNudel.style.visibility='hidden'
+                    // if(cState!=1)legendeNudel.style.visibility='hidden'
                     if(cState<2)legendeThermoplast.style.visibility='hidden'
                     for(var i=0; i<objects.length; i++){
                       if(i!=cState)objects[i].object3D.visible =false
@@ -254,7 +254,7 @@
                     var legends = document.querySelectorAll(".uiElement")
                   // console.log(legends[0].getAttribute('marker'), currentMarker.id)
                     if(marker!=null){
-                      if(parseInt(marker.getAttribute('state'))==1){
+                 /*      if(parseInt(marker.getAttribute('state'))==1){
                       switch(legendeNudel.style.visibility){
                           case 'visible':
                               // if(parseInt(window.currentMarker.getAttribute('state'))==1)legendeNudel.style.visibility = 'visible'
@@ -267,7 +267,7 @@
                               legendeNudel.style.visibility = 'visible'
                             break
                       }
-                      }
+                      } */
                         if(parseInt(marker.getAttribute('state'))>1){
                           switch(legend.style.visibility){
                           case 'visible':
