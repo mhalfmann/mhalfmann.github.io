@@ -59,6 +59,12 @@
                 let legendButton = document.getElementById('legendButton')
                 let zoomInButton = document.getElementById('zoomInButton')
                 let zoomOutButton = document.getElementById('zoomOutButton')
+                let layersButton = document.getElementById('layersButton')
+
+                let objectButton = document.getElementById('objectButton')
+                let spaghettiButton = document.getElementById('spaghettiButton')
+                let spacefillButton = document.getElementById('spacefillButton')
+                let ballstickButton = document.getElementById('ballstickButton')
 
                 let foundMarkers = new Map()
 
@@ -99,7 +105,43 @@
                       // legendeNudel.style.visibility = 'hidden'
                     }
                     marker.setAttribute('found','false')
-                  })
+                  })                  
+
+                layersButton.addEventListener('click',()=>{
+                  switch(document.getElementById('layers').style.visibility){
+                    case 'hidden':
+                          document.getElementById('layers').style.visibility="visible"
+                          break;
+                    case 'visible':
+                          document.getElementById('layers').style.visibility="hidden"
+                          break;
+                  }
+                })
+
+                objectButton.addEventListener('click',()=>{
+                  if(marker!=null){
+                        let cState = 0
+                        marker.setAttribute('state',cState.toString())
+                        document.getElementById('layers').style.visibility="hidden"
+                        switchObjectsState()
+                    }
+                })
+                spaghettiButton.addEventListener('click',()=>{
+                  if(marker!=null){
+                        let cState = 1
+                        marker.setAttribute('state',cState.toString())
+                        document.getElementById('layers').style.visibility="hidden"
+                        switchObjectsState()
+                    }
+                })
+                spacefillButton.addEventListener('click',()=>{
+                  if(marker!=null){
+                        let cState = 2
+                        marker.setAttribute('state',cState.toString())
+                        document.getElementById('layers').style.visibility="hidden"
+                        switchObjectsState()
+                    }
+                })
 
                   zoomInButton.addEventListener('click',(e)=>{
                     if(marker!=null){
@@ -314,8 +356,16 @@
     <div id = "toolbar" style="position: absolute; bottom: 0px; left: 0px; display: flex;flex-direction: row;">
       <div id="legendButton" class="uiButton" style="margin: 5px; padding: 5px;">Legende</div>
       <div id="homeButton" class="uiButton" style="margin: 5px; padding: 5px;">Startseite</div>
-      <img id="zoomInButton" src="./assets/icons/zoom_in.png" class="uiButton" style="margin: 5px; padding: 5px;">
-      <img id="zoomOutButton" src="./assets/icons/zoom_out.png"class="uiButton" style="margin: 5px; padding: 5px;">
+      <img id="zoomInButton" src="./assets/icons/zoom_in.png" class="uiButton" style="margin: 5px; padding: 5px; visibility: hidden;">
+      <img id="zoomOutButton" src="./assets/icons/zoom_out.png"class="uiButton" style="margin: 5px; padding: 5px; visibility: hidden;">
+      <img id="layersButton" src="./assets/icons/layers.png"class="uiButton" style="margin: 5px; padding: 5px;">
+    </div>
+
+    <div id="layers" class="uiElement" style="position: absolute; bottom: 15%; right: 20%; visibility: hidden;">
+      <div id="objectButton" class="uiButton" style="margin: 5px; padding: 5px;">Objekt</div>
+      <div id="spaghettiButton" class="uiButton" style="margin: 5px; padding: 5px;">Spaghetti</div>
+      <div id="spacefillButton" class="uiButton" style="margin: 5px; padding: 5px;">Spacefill</div>
+      <div id="ballstickButton" class="uiButton" style="margin: 5px; padding: 5px;">Ball and Stick</div>
     </div>
 
     <div id="button" class="uiElement" style="position: absolute; top: 15%; left: 20%; visibility: visible;">
