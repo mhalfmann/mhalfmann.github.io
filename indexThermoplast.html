@@ -119,7 +119,7 @@
                 })
 
                 objectButton.addEventListener('click',()=>{
-                  if(marker!=null){
+                  if(marker!=null && marker.getAttribute('found')=='true'){
                         let cState = 0
                         marker.setAttribute('state',cState.toString())
                         // document.getElementById('layers').style.visibility="hidden"
@@ -127,7 +127,7 @@
                     }
                 })
                 spaghettiButton.addEventListener('click',()=>{
-                  if(marker!=null){
+                  if(marker!=null && marker.getAttribute('found')=='true'){
                         let cState = 1
                         marker.setAttribute('state',cState.toString())
                         // document.getElementById('layers').style.visibility="hidden"
@@ -135,7 +135,7 @@
                     }
                 })
                 spacefillButton.addEventListener('click',()=>{
-                  if(marker!=null){
+                  if(marker!=null && marker.getAttribute('found')=='true'){
                         let cState = 2
                         marker.setAttribute('state',cState.toString())
                         // document.getElementById('layers').style.visibility="hidden"
@@ -143,7 +143,7 @@
                     }
                 })
                 ballstickButton.addEventListener('click',()=>{
-                  if(marker!=null){
+                  if(marker!=null && marker.getAttribute('found')=='true'){
                         let cState = 3
                         marker.setAttribute('state',cState.toString())
                         // document.getElementById('layers').style.visibility="hidden"
@@ -228,7 +228,7 @@
                 })
 
                 function switchObjectsState(){
-                  if(marker.getAttribute('found')){
+                  if(marker.getAttribute('found')=='true'){
                     let cState = parseInt(marker.getAttribute('state'))
                     // if(cState!=1)legendeNudel.style.visibility='hidden'
                     if(cState<2)legendeThermoplast.style.visibility='hidden'
