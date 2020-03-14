@@ -34,6 +34,7 @@
                   })
 
                   if(i!=0) objects[i].object3D.visible = false
+                  if(i!=0) objects[i].object3D.scale.set(5,5,5)
                 }
 
                 let currentObject = objects[0]
@@ -60,8 +61,10 @@
                 let zoomInButton = document.getElementById('zoomInButton')
                 let zoomOutButton = document.getElementById('zoomOutButton')
                 let layersButton = document.getElementById('layersButton')
+                let layers = document.getElementById('layers')
+                layers.style.visibility = "hidden"
 
-                let objectButton = document.getElementById('objectButton')
+                // let objectButton = document.getElementById('objectButton')
                 let spaghettiButton = document.getElementById('spaghettiButton')
                 let spacefillButton = document.getElementById('spacefillButton')
                 let ballstickButton = document.getElementById('ballstickButton')
@@ -118,16 +121,16 @@
                   }
                 })
 
-                objectButton.addEventListener('click',()=>{
+                /* objectButton.addEventListener('click',()=>{
                   if(marker!=null && marker.getAttribute('found')=='true'){
                         let cState = 0
                         marker.setAttribute('state',cState.toString())
                         // document.getElementById('layers').style.visibility="hidden"
                         switchObjectsState()
                     }
-                })
+                }) */
                 spaghettiButton.addEventListener('click',()=>{
-                  if(marker!=null && marker.getAttribute('found')=='true'){
+                  if(marker!=null && marker.getAttribute('found')=='true' && cState!=0){
                         let cState = 1
                         marker.setAttribute('state',cState.toString())
                         // document.getElementById('layers').style.visibility="hidden"
@@ -135,7 +138,7 @@
                     }
                 })
                 spacefillButton.addEventListener('click',()=>{
-                  if(marker!=null && marker.getAttribute('found')=='true'){
+                  if(marker!=null && marker.getAttribute('found')=='true' && cState!=0){
                         let cState = 2
                         marker.setAttribute('state',cState.toString())
                         // document.getElementById('layers').style.visibility="hidden"
@@ -143,7 +146,7 @@
                     }
                 })
                 ballstickButton.addEventListener('click',()=>{
-                  if(marker!=null && marker.getAttribute('found')=='true'){
+                  if(marker!=null && marker.getAttribute('found')=='true' && cState!=0){
                         let cState = 3
                         marker.setAttribute('state',cState.toString())
                         // document.getElementById('layers').style.visibility="hidden"
@@ -179,13 +182,31 @@
                     // document.getElementById('version').innerHTML = cScale.x
                     let deltaS = ev.scale-oldScale
                     if(oldScale !=0.0){
-                      if(currentObject!=null && pinch == true && cScale.x+deltaS>zoomOutThreshold-0.1 && cScale.x+deltaS < zoomInThreshold+0.1){
-                          if(currentObject==objects[0])objects[0].object3D.scale.set(cScale.x+deltaS, cScale.y+deltaS, cScale.z+deltaS)
-                          if(currentObject!=objects[0]){
+                      if(currentObject==objects[0]){
+                        if(currentObject!=null && pinch == true && cScale.x+deltaS>1 && cScale.x+deltaS < 5){
+                            objects[0].object3D.scale.set(cScale.x+deltaS, cScale.y+deltaS, cScale.z+deltaS)
+                            if(cScale.x+deltaS>5){
+                              cState=1
+                              layers.style.visibility = "visible"
+                              marker.setAttribute('state',cState.toString())
+                              // if(currentObject!=null)currentObject.object3D.scale.set(5,5,5)
+                              switchObjectsState()
+                            }
+                        }                        
+                      }
+                      if(currentObject!=objects[0]){
+                        if(currentObject!=null && pinch == true && cScale.x+deltaS>4 && cScale.x+deltaS < 20){
                             objects[1].object3D.scale.set(cScale.x+deltaS, cScale.y+deltaS, cScale.z+deltaS)
                             objects[2].object3D.scale.set(cScale.x+deltaS, cScale.y+deltaS, cScale.z+deltaS)
                             objects[3].object3D.scale.set(cScale.x+deltaS, cScale.y+deltaS, cScale.z+deltaS)
-                          }
+                            if(cScale.x+deltaS<4){
+                              cState=0
+                              layers.style.visibility = "hidden"
+                              marker.setAttribute('state',cState.toString())
+                              // if(currentObject!=null)currentObject.object3D.scale.set(5,5,5)
+                              switchObjectsState()
+                            }
+                        }
                       }
                     }
                     oldScale = ev.scale
@@ -367,7 +388,7 @@
       <!-- <div id="homeButton" class="uiButton" style="margin: 5px; padding: 5px;">Startseite</div> -->
       <img id="homeButton" src="./assets/icons/home.png" class="uiButton" style="width: 7vw; height: 7vw; margin: 5px; padding: 5px;">
       <div id="layers" class="uiElement" style="visibility: visible; display: flex;flex-direction: row;">
-        <img id="objectButton" src="./assets/images/img_bottle.png" style="width: 7vw; height: 7vw; margin: 5px; padding: 5px;">
+        <!-- <img id="objectButton" src="./assets/images/img_bottle.png" style="width: 7vw; height: 7vw; margin: 5px; padding: 5px;"> -->
         <img id="spaghettiButton" src="./assets/images/img_spaghetti.png" style="width: 7vw; height: 7vw; margin: 5px; padding: 5px;">
         <img id="spacefillButton" src="./assets/images/img_sphere.png" style="width: 7vw; height: 7vw; margin: 5px; padding: 5px;">
         <img id="ballstickButton" src="./assets/images/img_ball_stick.png" style="width: 7vw; height: 7vw; margin: 5px; padding: 5px;">
