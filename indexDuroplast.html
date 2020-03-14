@@ -188,6 +188,35 @@
                           }
                       }
                     }
+                    /*if(oldScale !=0.0){
+                      if(currentObject!=null && pinch == true && cScale.x+deltaS>zoomOutThreshold-0.1 && cScale.x+deltaS < zoomInThreshold+0.1){
+                          currentObject.object3D.scale.set(cScale.x+deltaS, cScale.y+deltaS, cScale.z+deltaS)
+                      }
+                    }
+
+                    if(currentObject.object3D.scale.x>zoomInThreshold && pinch == true && marker.getAttribute('state')!='4'){
+                      if(marker!=null){
+                        pinch = false
+                        let cState = parseInt(marker.getAttribute('state'))
+                        cState++
+                        if(cState>4)cState=4
+                        marker.setAttribute('state',cState.toString())
+                        if(currentObject!=null)currentObject.object3D.scale.set(4,4,4)
+                        switchObjectsState()
+                      }
+
+                    }
+                    if(currentObject.object3D.scale.x<zoomOutThreshold && pinch == true &&marker.getAttribute('state')!='0'){
+                      if(marker!=null){
+                          pinch = false
+                        let cState = parseInt(marker.getAttribute('state'))
+                        cState--
+                        if(cState<0)cState=0
+                        marker.setAttribute('state',cState.toString())
+                        if(currentObject!=null )currentObject.object3D.scale.set(1,1,1)
+                        switchObjectsState()
+                      }
+                    }*/
                     oldScale = ev.scale
                   }
                 })
@@ -349,7 +378,7 @@
       <a-scene renderer="logarithmicDepthBuffer: true; precision: low; antialias: false;" embedded arjs='debugUIEnabled: false; patternRatio: 0.5' vr-mode-ui='enabled: false' set-marker >
         <a-marker id = "Duroplast" cursor-listener type="pattern" url="./assets/marker/pattern-steckdose.patt">
          <a-gltf-model id="model1" src="assets/models/socket2.gltf"></a-gltf-model>
-         <a-gltf-model id="model2" src="assets/models/Duroplast_Nudel.gltf"></a-gltf-model>
+         <a-gltf-model id="model2" src="assets/models/Duroplast_Nudel_neu.gltf"></a-gltf-model>
          <a-gltf-model id="model3" src="assets/models/Duroplast_Sphere_black.gltf"></a-gltf-model>
          <a-gltf-model id="model4" src="assets/models/Duroplast_Ball_black.gltf"></a-gltf-model>
        </a-marker>
