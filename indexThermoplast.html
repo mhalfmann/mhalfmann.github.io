@@ -76,6 +76,7 @@
                 let test = false
                 let deltaS = 0.0
                 let oldScale = 0.0
+                let latestLayerState = 1
 
                 let blendInThreshold = 3.0
                 let blendOutThreshold = 0.8
@@ -132,6 +133,7 @@
                 spaghettiButton.addEventListener('click',()=>{
                   if(marker!=null && marker.getAttribute('found')=='true' && cState!=0){
                         let cState = 1
+                        latestLayerState = 1
                         marker.setAttribute('state',cState.toString())
                         // document.getElementById('layers').style.visibility="hidden"
                         switchObjectsState()
@@ -140,6 +142,7 @@
                 spacefillButton.addEventListener('click',()=>{
                   if(marker!=null && marker.getAttribute('found')=='true' && cState!=0){
                         let cState = 2
+                        latestLayerState = 1
                         marker.setAttribute('state',cState.toString())
                         // document.getElementById('layers').style.visibility="hidden"
                         switchObjectsState()
@@ -148,6 +151,7 @@
                 ballstickButton.addEventListener('click',()=>{
                   if(marker!=null && marker.getAttribute('found')=='true' && cState!=0){
                         let cState = 3
+                        latestLayerState = 1
                         marker.setAttribute('state',cState.toString())
                         // document.getElementById('layers').style.visibility="hidden"
                         switchObjectsState()
@@ -186,7 +190,7 @@
                         if(currentObject!=null && pinch == true && cScale.x+deltaS>1 && cScale.x+deltaS < 5){
                             objects[0].object3D.scale.set(cScale.x+deltaS, cScale.y+deltaS, cScale.z+deltaS)
                             if(cScale.x+deltaS>5){
-                              cState=1
+                              cState=latestLayerState
                               layers.style.visibility = "visible"
                               marker.setAttribute('state',cState.toString())
                               // if(currentObject!=null)currentObject.object3D.scale.set(5,5,5)
