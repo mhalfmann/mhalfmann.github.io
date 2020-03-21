@@ -69,6 +69,7 @@
                 let spaghettiButton = document.getElementById('spaghettiButton')
                 let spacefillButton = document.getElementById('spacefillButton')
                 let ballstickButton = document.getElementById('ballstickButton')
+                let invertButton = document.getElementById('invertRotButton')
 
                 let foundMarkers = new Map()
 
@@ -78,6 +79,7 @@
                 let deltaS = 0.0
                 let oldScale = 0.0
                 let latestLayerState = 1
+                let invert = 1
 
                 let blendInThreshold = 3.0
                 let blendOutThreshold = 0.8
@@ -110,7 +112,20 @@
                       // legendeNudel.style.visibility = 'hidden'
                     }
                     marker.setAttribute('found','false')
-                  })
+                  })                  
+
+                invertButton.addEventListener('click',()=>{
+                  switch(invert){
+                    case 1:
+                      invertButton.src="./assets/images/checked.png"
+                      invert = -1
+                      break
+                    case -1:
+                      invertButton.src="./assets/images/blank.png"
+                      invert = 1
+                      break
+                  }
+                })
 
                 layersButton.addEventListener('click',()=>{
                   switch(document.getElementById('layers').style.visibility){
@@ -334,8 +349,8 @@
                         marker.object3D.getWorldQuaternion(quaternion)
                         marker.object3D.getWorldDirection(vec)
 
-                        var xRot = diffY *(-vec.normalize().z*1.6)
-                        var zRot = diffY *-vec.normalize().x
+                        var xRot = diffY *(-vec.normalize().z*1.6)*invert
+                        var zRot = diffY *-vec.normalize().x*invert
                         if(currentObject==objects[0]){
                           objects[0].object3D.rotateOnWorldAxis ( xAxis, THREE.Math.degToRad(xRot) )
                           objects[0].object3D.rotateOnWorldAxis ( zAxis, THREE.Math.degToRad(zRot) )
@@ -465,6 +480,7 @@
         <img id="spacefillButton" src="./assets/images/img_sphere.png" style="width: 7vw; height: 7vw; margin: 5px; padding: 5px;">
         <img id="ballstickButton" src="./assets/images/img_ball_stick.png" style="width: 7vw; height: 7vw; margin: 5px; padding: 5px;">
       </div>
+      <img id="invertRotButton" src="./assets/images/blank.png" class="uiButton" style="width: 7vw; height: 7vw; margin: 5px; padding: 5px;">
       <img id="zoomInButton" src="./assets/icons/zoom_in.png" class="uiButton" style="margin: 5px; padding: 5px; display:none;">
       <img id="zoomOutButton" src="./assets/icons/zoom_out.png"class="uiButton" style="margin: 5px; padding: 5px; display:none;">
       <img id="layersButton" src="./assets/icons/layers.png"class="uiButton" style="margin: 5px; padding: 5px; display:none;">
