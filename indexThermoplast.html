@@ -301,7 +301,29 @@
                         var xAxis = new THREE.Vector3(1, 0, 0)
                         var yAxis = new THREE.Vector3(0, 1, 0)
                         var zAxis = new THREE.Vector3(0, 0, 1)
-                        let rotation = currentObject.getAttribute("rotation")
+                        
+                        var quaternion = new THREE.Quaternion()
+                        var vec = new THREE.Vector3()
+                        marker.object3D.getWorldQuaternion(quaternion)
+                        marker.object3D.getWorldDirection(vec)
+
+                        var xRot = diffY *-vec.normalize().z
+                        var zRot = diffY *-vec.normalize().x
+                        if(currentObject==objects[0]){
+                          objects[0].object3D.rotateOnWorldAxis ( xAxis, THREE.Math.degToRad(xRot) )
+                          objects[0].object3D.rotateOnWorldAxis ( zAxis, THREE.Math.degToRad(zRot) )
+                        }
+
+                        if(currentObject!=objects[0]){
+                            objects[1].object3D.rotateOnWorldAxis ( xAxis, THREE.Math.degToRad(xRot) )
+                            objects[1].object3D.rotateOnWorldAxis ( zAxis, THREE.Math.degToRad(zRot) )
+
+                            objects[2].object3D.rotateOnWorldAxis ( xAxis, THREE.Math.degToRad(xRot) )
+                            objects[2].object3D.rotateOnWorldAxis ( zAxis, THREE.Math.degToRad(zRot) )
+                            
+                            objects[3].object3D.rotateOnWorldAxis ( xAxis, THREE.Math.degToRad(xRot) )
+                            objects[3].object3D.rotateOnWorldAxis ( zAxis, THREE.Math.degToRad(zRot) )
+                        }
                         
                         if(vector.y>e.center.y){
                           if(currentObject==objects[0])objects[0].object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(diffX) )
@@ -320,6 +342,26 @@
                           }
                         }
                       }
+
+                        /*let rotation = currentObject.getAttribute("rotation")
+                        
+                        if(vector.y>e.center.y){
+                          if(currentObject==objects[0])objects[0].object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(diffX) )
+                          if(currentObject!=objects[0]){
+                            objects[1].object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(diffX) )
+                            objects[2].object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(diffX) )
+                            objects[3].object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(diffX) )
+                          }
+                        }
+                        if(vector.y<=e.center.y){
+                          if(currentObject==objects[0])objects[0].object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(-diffX) )
+                          if(currentObject!=objects[0]){
+                            objects[1].object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(-diffX) )
+                            objects[2].object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(-diffX) )
+                            objects[3].object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(-diffX) )
+                          }
+                        }                      
+                      }*/
                       
                       oldX = e.center.x
                       oldY = e.center.y
