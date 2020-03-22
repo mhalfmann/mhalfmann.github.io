@@ -324,7 +324,7 @@
 
                         var f = 1-Math.abs(vec.normalize().x)
 
-                        var xRot = diffY *(-vec.normalize().y)*invert
+                        var xRot = diffY *(vec.normalize().y)*invert
                         var zRot = diffY *-vec.normalize().x*invert
                         if(currentObject==objects[0]){
                           objects[0].object3D.rotateOnWorldAxis ( xAxis, THREE.Math.degToRad(xRot) )
