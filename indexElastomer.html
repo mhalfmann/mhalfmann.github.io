@@ -49,6 +49,8 @@
                 let oldY = 0.0
                 let diffX = 0.0
                 let diffY = 0.0
+                let oldRotation = 0.0
+                let rotating = false
                 let rotate = false
                 let allowZoom = false
                 let pinch = true
@@ -89,6 +91,7 @@
 
                 hammertime.get('pan').set({ threshold: 0 })
                 hammertime.get('pinch').set({ enable: true })
+                hammertime.get('rotate').set({ enable: true })
 
                 marker.addEventListener('markerFound', (e)=>{
                     // console.log('marker found',e.target.id)
@@ -296,10 +299,36 @@
                   })
 
                   
-                document.body.addEventListener('pointermove',(e)=>{
-                                    
-                
+                document.body.addEventListener('pointermove',(e)=>{                
                 })
+                
+                hammertime.on('rotatestart', (e) => {
+                    rotating = true
+                  })
+                  hammertime.on('rotateend', (e) => {
+                    oldRotation = 0.0
+                    rotating = false
+                  })
+                  hammertime.on('rotatecancel', (e) => {
+                    oldRotation = 0.0
+                    rotating = false
+                  })
+                  hammertime.on('rotate', (e) => {
+                    let diff = 0
+                    var yAxis = new THREE.Vector3(0, 1, 0)
+                    if(oldRotation!=0)diff = e.rotation-oldRotation
+
+                    console.log('rotating',diff)
+
+                    if(currentObject==objects[0])objects[0].object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(-diff) )
+                    if(currentObject!=objects[0]){
+                      objects[1].object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(-diff) )
+                      objects[2].object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(-diff) )
+                      objects[3].object3D.rotateOnWorldAxis ( yAxis, THREE.Math.degToRad(-diff) )
+                    }
+                    oldRotation = e.rotation
+                  })
+
                   hammertime.on('pan', (e) => {
                       if(oldX!=0)diffX = (oldX-e.center.x)*0.5
                       if(oldY!=0)diffY = (oldY-e.center.y)*0.5
