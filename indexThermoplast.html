@@ -59,9 +59,6 @@
                 let button = document.getElementById('button')
                 let name = document.getElementById('name')
                 let legendButton = document.getElementById('legendButton')
-                let zoomInButton = document.getElementById('zoomInButton')
-                let zoomOutButton = document.getElementById('zoomOutButton')
-                let layersButton = document.getElementById('layersButton')
                 let layers = document.getElementById('layers')
                 layers.style.visibility = "hidden"
 
@@ -69,7 +66,6 @@
                 let spaghettiButton = document.getElementById('spaghettiButton')
                 let spacefillButton = document.getElementById('spacefillButton')
                 let ballstickButton = document.getElementById('ballstickButton')
-                let invertButton = document.getElementById('invertRotButton')
 
                 let foundMarkers = new Map()
 
@@ -85,68 +81,7 @@
                 let blendOutThreshold = 0.8
                 let zoomInThreshold = 5.5
                 let zoomOutThreshold = 0.5
-
-                var hammertime = new Hammer(document.body)
-
-                hammertime.get('pan').set({ threshold: 0 })
-                hammertime.get('pinch').set({ enable: true })
-                hammertime.get('rotate').set({ enable: true })
-
-                marker.addEventListener('markerFound', (e)=>{
-                    // console.log('marker found',e.target.id)
-                    name.innerHTML=e.target.id
-                    name.style.opacity = 1.0
-                    button.style.visibility ="hidden"
-                    if(!foundMarkers.has(e.target.id))foundMarkers.set(e.target.id, document.getElementById(e.target.id))
-
-                    marker.setAttribute('found','true')
-                    allowZoom = true
-
-                  })
-                  marker.addEventListener('markerLost', (e)=>{
-                    // console.log('marker lost',e.target.id)
-                    if(foundMarkers.has(e.target.id))foundMarkers.delete(e.target.id)
-                    if(foundMarkers.size<1){
-                      button.style.visibility = "visible"
-                      name.style.opacity = 0.0
-                      allowZoom = false
-                      // legendeNudel.style.visibility = 'hidden'
-                    }
-                    marker.setAttribute('found','false')
-                  })
-
-                invertButton.addEventListener('click',()=>{
-                  switch(invert){
-                    case 1:
-                      invertButton.src="./assets/images/rotate_inv.png"
-                      invert = -1
-                      break
-                    case -1:
-                      invertButton.src="./assets/images/rotate.png"
-                      invert = 1
-                      break
-                  }
-                })
-
-                layersButton.addEventListener('click',()=>{
-                  switch(document.getElementById('layers').style.visibility){
-                    case 'hidden':
-                          document.getElementById('layers').style.visibility="visible"
-                          break;
-                    case 'visible':
-                          document.getElementById('layers').style.visibility="hidden"
-                          break;
-                  }
-                })
-
-                /* objectButton.addEventListener('click',()=>{
-                  if(marker!=null && marker.getAttribute('found')=='true'){
-                        let cState = 0
-                        marker.setAttribute('state',cState.toString())
-                        // document.getElementById('layers').style.visibility="hidden"
-                        switchObjectsState()
-                    }
-                }) */
+                  
                 spaghettiButton.addEventListener('click',()=>{
                   if(marker!=null && marker.getAttribute('found')=='true' && cState!=0){
                         let cState = 1
@@ -174,28 +109,80 @@
                         switchObjectsState()
                     }
                 })
+                legendButton.addEventListener('click',(e)=>{
+                    var legends = document.querySelectorAll(".uiElement")
+                  // console.log(legends[0].getAttribute('marker'), currentMarker.id)
+                    if(marker!=null){
+                  /*      if(parseInt(marker.getAttribute('state'))==1){
+                      switch(legendeNudel.style.visibility){
+                          case 'visible':
+                              // if(parseInt(window.currentMarker.getAttribute('state'))==1)legendeNudel.style.visibility = 'visible'
+                              // if(parseInt(window.currentMarker.getAttribute('state'))!=1)legendeNudel.style.visibility = 'hidden'
+                              legendeNudel.style.visibility = 'hidden'
+                            break
+                          case 'hidden':
+                              // if(parseInt(window.currentMarker.getAttribute('state'))==1)legendeNudel.style.visibility = 'visible'
+                              // if(parseInt(window.currentMarker.getAttribute('state'))!=1)legendeNudel.style.visibility = 'hidden'
+                              legendeNudel.style.visibility = 'visible'
+                            break
+                      }
+                      } */
+                        if(parseInt(marker.getAttribute('state'))>1){
+                          switch(legend.style.visibility){
+                          case 'visible':
+                            legend.style.visibility = 'hidden'
+                            break
+                          case 'hidden':
+                            legend.style.visibility = 'visible'
+                            break
+                        }
+                        }
+                    }
+                  })                
+                  document.getElementById('homeButton').addEventListener('click',(e)=>{
+                    // window.history.back();
+                    location = "./indexStart.html"
+                  })
 
-                zoomInButton.addEventListener('click',(e)=>{
-                  if(marker!=null){
-                        let cState = parseInt(marker.getAttribute('state'))
+                  var hammertime = new Hammer(document.body)
+
+                  hammertime.get('pan').set({ threshold: 0 })
+                  hammertime.get('pinch').set({ enable: true })
+                  hammertime.get('rotate').set({ enable: true })
+
+                  hammertime.on('pinchstart', function(ev) {
+                    console.log('PINCH START')
+                  //   if(window.currentObject!=null)window.currentObject.object3D.scale.set(1,1,1)
+                    // rotate = false
+                  })
+                  hammertime.on('pinchend', function(ev) {
+                      oldScale = 0.0
+                      pinch = true
+                  /*         if(window.currentObject!=null)window.currentObject.object3D.scale.set(1,1,1)
+                    
+                      // console.log('pinch END detected',ev.additionalEvent)
+                    if(ev.additionalEvent=='pinchout'){
+                      // console.log('pinch OUT detected')
+                      if(window.currentMarker!=null){
+                        let cState = parseInt(window.currentMarker.getAttribute('state'))
                         cState++
-                        if(cState>3)cState=3
-                        marker.setAttribute('state',cState.toString())
-                        switchObjectsState()
+                        if(cState>4)cState=4
+                        window.currentMarker.setAttribute('state',cState.toString())
+                      }
                     }
 
-                })
-                zoomOutButton.addEventListener('click',(e)=>{
-                  if(marker!=null){
-                        let cState = parseInt(marker.getAttribute('state'))
+                    if(ev.additionalEvent=='pinchin'){
+                      if(window.currentMarker!=null){
+                        let cState = parseInt(window.currentMarker.getAttribute('state'))
                         cState--
                         if(cState<0)cState=0
-                        marker.setAttribute('state',cState.toString())
-                        switchObjectsState()
+                        window.currentMarker.setAttribute('state',cState.toString())
+                      }
                     }
+                    switchObjectsState() */
 
-                })
-
+                  //   switchObjectsState()
+                  })
                 hammertime.on('pinchmove', function(ev) {
                   if(allowZoom){
                     // rotate = false
@@ -234,67 +221,6 @@
                   }
                 })
 
-                hammertime.on('pinchstart', function(ev) {
-                  console.log('PINCH START')
-                //   if(window.currentObject!=null)window.currentObject.object3D.scale.set(1,1,1)
-                  // rotate = false
-                })
-
-                hammertime.on('pinchend', function(ev) {
-                    oldScale = 0.0
-                    pinch = true
-          /*         if(window.currentObject!=null)window.currentObject.object3D.scale.set(1,1,1)
-                  
-                    // console.log('pinch END detected',ev.additionalEvent)
-                  if(ev.additionalEvent=='pinchout'){
-                    // console.log('pinch OUT detected')
-                    if(window.currentMarker!=null){
-                      let cState = parseInt(window.currentMarker.getAttribute('state'))
-                      cState++
-                      if(cState>4)cState=4
-                      window.currentMarker.setAttribute('state',cState.toString())
-                    }
-                  }
-
-                  if(ev.additionalEvent=='pinchin'){
-                    if(window.currentMarker!=null){
-                      let cState = parseInt(window.currentMarker.getAttribute('state'))
-                      cState--
-                      if(cState<0)cState=0
-                      window.currentMarker.setAttribute('state',cState.toString())
-                    }
-                  }
-                  switchObjectsState() */
-
-                //   switchObjectsState()
-                })
-
-                function switchObjectsState(){
-                  if(marker.getAttribute('found')=='true'){
-                    let cState = parseInt(marker.getAttribute('state'))
-                    // if(cState!=1)legendeNudel.style.visibility='hidden'
-                    if(cState<2)legendeThermoplast.style.visibility='hidden'
-                    for(var i=0; i<objects.length; i++){
-                      if(i!=cState)objects[i].object3D.visible =false
-                      if(i==cState){
-                        objects[i].object3D.visible =true
-                        currentObject = objects[i]
-                      }
-                    }
-                  } 
-                }
-                document.body.addEventListener('pointerdown',()=>{
-                    // rotate = true
-                    window.pointerCount++
-                    // cube.object3D.rotation.y += 1.0
-                  })
-                  document.body.addEventListener('pointerup',()=>{
-                    // rotate = false
-                    window.pointerCount--
-                  })
-
-                document.body.addEventListener('pointermove',(e)=>{                
-                })
                   hammertime.on('rotatestart', (e) => {
                   })
                   hammertime.on('rotateend', (e) => {
@@ -423,41 +349,56 @@
                       oldY = e.center.y
                   })
 
-                  legendButton.addEventListener('click',(e)=>{
-                    var legends = document.querySelectorAll(".uiElement")
-                  // console.log(legends[0].getAttribute('marker'), currentMarker.id)
-                    if(marker!=null){
-                 /*      if(parseInt(marker.getAttribute('state'))==1){
-                      switch(legendeNudel.style.visibility){
-                          case 'visible':
-                              // if(parseInt(window.currentMarker.getAttribute('state'))==1)legendeNudel.style.visibility = 'visible'
-                              // if(parseInt(window.currentMarker.getAttribute('state'))!=1)legendeNudel.style.visibility = 'hidden'
-                              legendeNudel.style.visibility = 'hidden'
-                            break
-                          case 'hidden':
-                              // if(parseInt(window.currentMarker.getAttribute('state'))==1)legendeNudel.style.visibility = 'visible'
-                              // if(parseInt(window.currentMarker.getAttribute('state'))!=1)legendeNudel.style.visibility = 'hidden'
-                              legendeNudel.style.visibility = 'visible'
-                            break
+                marker.addEventListener('markerFound', (e)=>{
+                    // console.log('marker found',e.target.id)
+                  name.innerHTML=e.target.id
+                  name.style.opacity = 1.0
+                  button.style.visibility ="hidden"
+                  if(!foundMarkers.has(e.target.id))foundMarkers.set(e.target.id, document.getElementById(e.target.id))
+
+                  marker.setAttribute('found','true')
+                  allowZoom = true
+
+                })
+                marker.addEventListener('markerLost', (e)=>{
+                  // console.log('marker lost',e.target.id)
+                  if(foundMarkers.has(e.target.id))foundMarkers.delete(e.target.id)
+                  if(foundMarkers.size<1){
+                    button.style.visibility = "visible"
+                    name.style.opacity = 0.0
+                    allowZoom = false
+                    // legendeNudel.style.visibility = 'hidden'
+                  }
+                  marker.setAttribute('found','false')
+                })
+
+                function switchObjectsState(){
+                  if(marker.getAttribute('found')=='true'){
+                    let cState = parseInt(marker.getAttribute('state'))
+                    // if(cState!=1)legendeNudel.style.visibility='hidden'
+                    if(cState<2)legendeThermoplast.style.visibility='hidden'
+                    for(var i=0; i<objects.length; i++){
+                      if(i!=cState)objects[i].object3D.visible =false
+                      if(i==cState){
+                        objects[i].object3D.visible =true
+                        currentObject = objects[i]
                       }
-                      } */
-                        if(parseInt(marker.getAttribute('state'))>1){
-                          switch(legend.style.visibility){
-                          case 'visible':
-                            legend.style.visibility = 'hidden'
-                            break
-                          case 'hidden':
-                            legend.style.visibility = 'visible'
-                            break
-                        }
-                        }
                     }
+                  } 
+                }
+                
+                document.body.addEventListener('pointerdown',()=>{
+                    // rotate = true
+                    window.pointerCount++
+                    // cube.object3D.rotation.y += 1.0
                   })
-                  
-                  document.getElementById('homeButton').addEventListener('click',(e)=>{
-                    // window.history.back();
-                    location = "./indexStart.html"
+                  document.body.addEventListener('pointerup',()=>{
+                    // rotate = false
+                    window.pointerCount--
                   })
+
+                document.body.addEventListener('pointermove',(e)=>{                
+                })
             },
             tick: function () {
 
@@ -495,10 +436,6 @@
         <img id="spacefillButton" src="./assets/images/img_sphere.png" style="width: 7vw; height: 7vw; margin: 5px; padding: 5px;">
         <img id="ballstickButton" src="./assets/images/img_ball_stick.png" style="width: 7vw; height: 7vw; margin: 5px; padding: 5px;">
       </div>
-      <img id="invertRotButton" src="./assets/images/rotate.png" class="uiButton" style="width: 7vw; height: 7vw; margin: 5px; padding: 5px; display:none;">
-      <img id="zoomInButton" src="./assets/icons/zoom_in.png" class="uiButton" style="margin: 5px; padding: 5px; display:none;">
-      <img id="zoomOutButton" src="./assets/icons/zoom_out.png"class="uiButton" style="margin: 5px; padding: 5px; display:none;">
-      <img id="layersButton" src="./assets/icons/layers.png"class="uiButton" style="margin: 5px; padding: 5px; display:none;">
     </div>  
 
 
