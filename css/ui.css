@@ -9,6 +9,14 @@ body {
     color: white;
     font-size: 3vh;
 }
+.uiButtonBackground{
+    background-color: rgb(58, 57, 57);
+    border: 1px solid white;
+    border-radius: 5px;
+    opacity: 1.0;
+    color: white;
+    font-size: 3vh;
+}
 .uiButton:hover {
     background-color: rgb(58, 57, 57);
 }
