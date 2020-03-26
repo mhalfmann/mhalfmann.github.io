@@ -20,6 +20,10 @@
       <img id = "buttonMolekuele" class="uiButtonBackground" src="./images/molekuel.png" style="height: 70%; padding: 5px;">
       <div style="color: white; text-align: center;">Molekuele</div>
     </div>
+    <div style="width: 25vh; height: 25vh; font-size: 5vh; display: block; margin-bottom: 50px; text-align: center;" >
+      <img id = "buttonLogging" class="uiButtonBackground" src="./images/molekuel.png" style="height: 70%; padding: 5px;">
+      <div style="color: white; text-align: center;">Logging</div>
+    </div>
   </div>    
 
    </body>
@@ -39,6 +43,14 @@
         TweenMax.to(e.target, 0.1, {scale:1.1, onComplete:function(){
           TweenMax.to(e.target, 0.1, {scale:1.0, onComplete:function(){
             location = "./indexStart.html"
+          }})
+        }})
+      })
+
+      document.getElementById('buttonLogging').addEventListener('click',(e)=>{
+        TweenMax.to(e.target, 0.1, {scale:1.1, onComplete:function(){
+          TweenMax.to(e.target, 0.1, {scale:1.0, onComplete:function(){
+            location = "./Apps/Test/logging.html"
           }})
         }})
       })
