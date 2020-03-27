@@ -7,8 +7,7 @@
 <script src="./Javascript/TweenMax.min.js"></script>
 <link rel="stylesheet" type="text/css" href="./css/ui.css">
   <body onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(0, 118.9, 194);'>
-    <div id="info">Hallo Welt</div>
-    <div id="frame" style="display: flex; flex-direction: column;"></div>
+    <div id="frame" style="position: absolute; left: 37%; top: 10%; display: flex; flex-direction: column;"></div>
     <!-- <img id = "buttonThermoplast" src="./assets/images/wasserflasche.jpg" class="uiButton" style="height: 25%; position: absolute; top: 10%; left: 37%; padding: 5px; font-size: 5vh; "> -->
   
     <!-- <img id = "buttonElastomer" src="./assets/images/radiergummi.jpg" class="uiButton" style="height: 25%; position: absolute; top: 40%; left: 37%; padding: 5px; font-size: 5vh;"> -->
@@ -33,9 +32,9 @@
           let img = document.createElement('img')
           img.src = data.Stoffe[i].Bild
           img.className = "uiButton"
-          img.style.width = "25%"
+          img.style.width = "25vh"
           img.style.padding = "5px"
-          img.style.margin = "5px"
+          img.style.margin = "1vh"
           img.setAttribute('data',JSON.stringify(data.Stoffe[i]))
           document.getElementById('frame').appendChild(img)
 
