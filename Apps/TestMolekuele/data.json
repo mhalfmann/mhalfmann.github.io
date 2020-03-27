@@ -1,0 +1,55 @@
+{"Stoffe":[
+    {"Name": "Duroplast",
+    "Bild": "./assets/images/steckdose.jpg",
+    "Marker": "./assets/marker/pattern-steckdose.patt",
+    "Modelle":
+        {"Objekt":"assets/models/socket2.gltf",
+        "Spaghetti":"assets/models/Duroplast_Nudel_neu.gltf",
+        "Spacefill":"assets/models/Duroplast_Sphere_black.gltf",
+        "BallStick":"assets/models/Duroplast_Ball_black.gltf"},
+    "Legende":[ 
+            {"Atom":"C",
+            "Farbe":"darkgrey"},
+            {"Atom":"O",
+            "Farbe":"red"},
+            {"Atom":"N",
+            "Farbe":"blue"},
+            {"Atom":"H",
+            "Farbe":"white"}
+            ]    
+    },
+    {"Name": "Thermoplast",
+    "Bild": "./assets/images/wasserflasche.jpg",
+    "Marker": "./assets/marker/pattern-bottle.patt",
+    "Modelle":
+        {"Objekt":"assets/models/bottle.gltf",
+        "Spaghetti":"assets/models/Thermoplast_Nudel_neu.gltf",
+        "Spacefill":"assets/models/Thermoplast_Sphere_black_stacked_reduced.gltf",
+        "BallStick":"assets/models/Thermoplast_Ball_black_stacked_reduced.gltf"},
+    "Legende":[ 
+            {"Atom":"C",
+            "Farbe":"darkgrey"},
+            {"Atom":"O",
+            "Farbe":"red"},
+            {"Atom":"H",
+            "Farbe":"white"}
+            ]    
+    },
+    {"Name": "Elastomer",
+    "Bild": "./assets/images/radiergummi.jpg",
+    "Marker": "./assets/marker/pattern-rubber.patt",
+    "Modelle":
+        {"Objekt":"assets/models/rubber.gltf",
+        "Spaghetti":"assets/models/Elastomer_Nudel_neu.gltf",
+        "Spacefill":"assets/models/Elastomer_Sphere_black.gltf",
+        "BallStick":"assets/models/Elastomer_Ball_black.gltf"},
+    "Legende":[ 
+            {"Atom":"C",
+            "Farbe":"darkgrey"},
+            {"Atom":"S",
+            "Farbe":"yellow"},
+            {"Atom":"H",
+            "Farbe":"white"}
+            ]    
+    }
+]}
