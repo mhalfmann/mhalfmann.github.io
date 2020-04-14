@@ -1,0 +1,25 @@
+<!doctype HTML>
+<html>
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+<script src="./webgazer.js"></script>
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+<style>
+</style>
+<!-- <script src="./Javascript/jquery-3.4.0.min.js"></script> -->
+<!-- <script src="./Javascript/TweenMax.min.js"></script> -->
+  <body onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(255, 105, 0); font-family: "Open Sans";'>    
+  <div style="text-align: center; color: white; font-size: 5vw; margin-bottom: 50px;">WebGazer</div>
+
+
+   </body>
+    <script>
+      webgazer.setGazeListener(function(data, elapsedTime) {
+          if (data == null) {
+              return;
+          }
+          var xprediction = data.x; //these x coordinates are relative to the viewport
+          var yprediction = data.y; //these y coordinates are relative to the viewport
+          console.log(elapsedTime); //elapsed time is based on time since begin was called
+      }).begin();
+    </script>
+</html>
