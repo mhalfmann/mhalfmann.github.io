@@ -24,6 +24,12 @@
       <div style="color: white; text-align: center;">Unwetter</div>
     </div>
   </a>
+  <a href="./Apps/Fische/index.html">
+    <div id = "buttonFische" style="width: 25vh; height: 25vh; font-size: 5vh; display: block; margin-bottom: 50px; text-align: center; cursor: pointer;">
+      <img class="uiButtonBackground" src="./Assets//Images/fisch.png" style="height: 70%; padding: 5px;">
+      <div style="color: white; text-align: center;">Fische</div>
+    </div>
+  </a>
   <a href="./Apps/TestMolekuele/indexStart.html">
     <div id = "buttonMolekuele" style="width: 25vh; height: 25vh; font-size: 5vh; display: block; margin-bottom: 50px; text-align: center; cursor: pointer;" >
       <img class="uiButtonBackground" src="./Assets//Images/molekuel.png" style="height: 70%; padding: 5px;">
@@ -50,21 +56,30 @@
         }})
       })
 
-      document.getElementById('buttonMolekuele').addEventListener('click',(e)=>{
+     document.getElementById('buttonFische').addEventListener('click',(e)=>{
         TweenMax.to(e.target, 0.1, {scale:1.1, onComplete:function(){
           TweenMax.to(e.target, 0.1, {scale:1.0, onComplete:function(){
-            // location = "./Apps/TestMolekuele/indexStart.html"
+            // location = "./Apps/Unwetter/index.html"
           }})
         }})
       })
-      document.getElementById('pdf').addEventListener('click',(e)=>{
-        e.stopPropagation()
-        TweenMax.to(e.target, 0.1, {scale:1.1, onComplete:function(){
-          TweenMax.to(e.target, 0.1, {scale:1.0, onComplete:function(){
-            // location = "./Apps/TestMolekuele/assets/marker/Marker.pdf?target=_blank"
-          }})
+
+    document.getElementById('buttonMolekuele').addEventListener('click',(e)=>{
+      TweenMax.to(e.target, 0.1, {scale:1.1, onComplete:function(){
+        TweenMax.to(e.target, 0.1, {scale:1.0, onComplete:function(){
+          // location = "./Apps/TestMolekuele/indexStart.html"
         }})
-      })
+      }})
+    })
+
+    document.getElementById('pdf').addEventListener('click',(e)=>{
+      e.stopPropagation()
+      TweenMax.to(e.target, 0.1, {scale:1.1, onComplete:function(){
+        TweenMax.to(e.target, 0.1, {scale:1.0, onComplete:function(){
+          // location = "./Apps/TestMolekuele/assets/marker/Marker.pdf?target=_blank"
+        }})
+      }})
+    })
       </script>
   </script>
 </html>
