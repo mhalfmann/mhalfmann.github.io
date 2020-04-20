@@ -1,4 +1,5 @@
 <?php
+    echo ("SAVING DATA");
     if(!isset($_POST["action"])) 
     {
         echo ("NO DATA RECIEVED");
