@@ -15,7 +15,7 @@
 </style>
 <!-- <script src="./Javascript/jquery-3.4.0.min.js"></script> -->
 <!-- <script src="./Javascript/TweenMax.min.js"></script> -->
-  <body onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(255, 105, 0); font-family: "Open Sans";'>    
+  <body onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(255, 105, 0); font-family: "Open Sans"; overflow: auto;'>    
   <div style="text-align: center; color: white; font-size: 5vw; margin-bottom: 50px;">Applikationen</div>
   <div style="position: absolute; left: 40%; display: flex; flex-direction: column;">      
   <a href="./Apps/Unwetter/index.html">
@@ -28,6 +28,12 @@
     <div id = "buttonFische" style="width: 25vh; height: 25vh; font-size: 5vh; display: block; margin-bottom: 50px; text-align: center; cursor: pointer;">
       <img class="uiButtonBackground" src="./Assets//Images/fisch.png" style="height: 70%; padding: 5px;">
       <div style="color: white; text-align: center;">Fische</div>
+    </div>
+  </a>
+  <a href="./Apps/Tanzen/index.html">
+    <div id = "buttonTanzen" style="width: 25vh; height: 25vh; font-size: 5vh; display: block; margin-bottom: 50px; text-align: center; cursor: pointer;">
+      <img class="uiButtonBackground" src="./Assets//Images/tanz.png" style="height: 70%; padding: 5px;">
+      <div style="color: white; text-align: center;">Tanzen</div>
     </div>
   </a>
   <a href="./Apps/TestMolekuele/indexStart.html">
@@ -57,6 +63,14 @@
       })
 
      document.getElementById('buttonFische').addEventListener('click',(e)=>{
+        TweenMax.to(e.target, 0.1, {scale:1.1, onComplete:function(){
+          TweenMax.to(e.target, 0.1, {scale:1.0, onComplete:function(){
+            // location = "./Apps/Unwetter/index.html"
+          }})
+        }})
+      })
+
+     document.getElementById('buttonTanzen').addEventListener('click',(e)=>{
         TweenMax.to(e.target, 0.1, {scale:1.1, onComplete:function(){
           TweenMax.to(e.target, 0.1, {scale:1.0, onComplete:function(){
             // location = "./Apps/Unwetter/index.html"
