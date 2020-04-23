@@ -23,14 +23,13 @@
     <div id="gameContainer" style="width: 100%; height: 100%; position: absolute; margin: auto">
     </div>
   </div>
-  <div id="button" style="position: absolute; top:10px; left: 10px; width: 100px; height: 100px; background: purple;">
-  </div>
   <script>
-    document.getElementById("button").addEventListener('click',(e)=>{
-      console.log("####################### TEST ############")
-      unityInstance.SendMessage('control', 'setName','VP01')
-      unityInstance.SendMessage('control', 'setSzene','1')
-    })
+    
+    function OnAppReady(){
+        console.log("### application is loaded")
+        unityInstance.SendMessage('control', 'setName', 'MyName');
+        unityInstance.SendMessage('control', 'setSzene', '0');
+    }
   </script>
 </body>
   
