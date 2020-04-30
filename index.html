@@ -24,6 +24,12 @@
       <div style="color: white; text-align: center;">Unwetter</div>
     </div>
   </a>
+  <a href="./Apps/Insel/index.html">
+    <div id = "buttonInsel" style="width: 25vh; height: 25vh; font-size: 5vh; display: block; margin-bottom: 50px; text-align: center; cursor: pointer;">
+      <img class="uiButtonBackground" src="./Assets//Images/insel.jpg" style="height: 70%; padding: 5px;">
+      <div style="color: white; text-align: center;">Insel</div>
+    </div>
+  </a>
   <a href="./Apps/Fische/index.html">
     <div id = "buttonFische" style="width: 25vh; height: 25vh; font-size: 5vh; display: block; margin-bottom: 50px; text-align: center; cursor: pointer;">
       <img class="uiButtonBackground" src="./Assets//Images/fisch.png" style="height: 70%; padding: 5px;">
@@ -55,6 +61,14 @@
         return false;
       }
      document.getElementById('buttonUnwetter').addEventListener('click',(e)=>{
+        TweenMax.to(e.target, 0.1, {scale:1.1, onComplete:function(){
+          TweenMax.to(e.target, 0.1, {scale:1.0, onComplete:function(){
+            // location = "./Apps/Unwetter/index.html"
+          }})
+        }})
+      })
+
+     document.getElementById('buttonInsel').addEventListener('click',(e)=>{
         TweenMax.to(e.target, 0.1, {scale:1.1, onComplete:function(){
           TweenMax.to(e.target, 0.1, {scale:1.0, onComplete:function(){
             // location = "./Apps/Unwetter/index.html"
