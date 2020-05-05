@@ -133,21 +133,21 @@
                 "hinten":"04b",
                 "rechts":"04c",
                 "links":"04d",
-                "unten":"04a"
+                "oben":"04a"
             },
             {
                 "vorn":"05a",
                 "hinten":"05b",
                 "rechts":"05c",
                 "links":"05d",
-                "unten":"05a"
+                "oben":"05a"
             },
             {
                 "vorn":"06a",
                 "hinten":"06b",
                 "rechts":"06c",
                 "links":"06d",
-                "unten":"06a"
+                "oben":"06a"
             }
         ],
         "learn":[
@@ -156,35 +156,35 @@
                 "hinten":"04b",
                 "rechts":"04c",
                 "links":"04d",
-                "unten":"04a"
+                "oben":"04a"
             },
             {
                 "vorn":"05a",
                 "hinten":"05b",
                 "rechts":"05c",
                 "links":"05d",
-                "unten":"05a"
+                "oben":"05a"
             },
             {
                 "vorn":"06a",
                 "hinten":"06b",
                 "rechts":"06c",
                 "links":"06d",
-                "unten":"06a"
+                "oben":"06a"
             },
             {
                 "vorn":"08a",
                 "hinten":"08b",
                 "rechts":"08c",
                 "links":"08d",
-                "unten":"08a"
+                "oben":"08a"
             },
             {
                 "vorn":"09a",
                 "hinten":"09b",
                 "rechts":"09c",
                 "links":"09d",
-                "unten":"09a"
+                "oben":"09a"
             }            
         ]
     },
