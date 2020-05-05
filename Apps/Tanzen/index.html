@@ -23,6 +23,17 @@
     <div id="gameContainer" style="width: 100%; height: 100%; position: absolute; margin: auto">
     </div>
   </div>
+  <script>
+    
+    function OnAppReady(){
+        console.log("### application is loaded")
+        unityInstance.SendMessage('control', 'setName', 'MyName');
+        unityInstance.SendMessage('control', 'setMode', 1);
+    }
+    function OnAppEnd(){
+        console.log("### application has finished")
+    }
+  </script>
 </body>
   
 </html>
