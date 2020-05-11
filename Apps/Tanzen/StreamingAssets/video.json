@@ -66,61 +66,61 @@
     {
         "practice":[
             {
-                "vorn":"train_01_front",
-                "hinten":"train_01_back",
-                "rechts":"train_01_left",
-                "links":"train_01_right",
+                "vorn":"train_01_back",
+                "hinten":"train_01_front",
+                "rechts":"train_01_right",
+                "links":"train_01_left",
                 "unten":"train_01_above"
             },
             {
-                "vorn":"train_02_front",
-                "hinten":"train_02_back",
-                "rechts":"train_02_left",
-                "links":"train_02_right",
+                "vorn":"train_02_back",
+                "hinten":"train_02_front",
+                "rechts":"train_02_right",
+                "links":"train_02_left",
                 "unten":"train_02_above"
             },
             {
-                "vorn":"train_03_front",
-                "hinten":"train_03_back",
-                "rechts":"train_03_left",
-                "links":"train_03_right",
+                "vorn":"train_03_back",
+                "hinten":"train_03_front",
+                "rechts":"train_03_right",
+                "links":"train_03_left",
                 "unten":"train_03_above"
             }
         ],
         "learn":[
             {
-                "vorn":"01_grundschritt_front",
-                "hinten":"01_grundschritt_back",
-                "rechts":"01_grundschritt_left",
-                "links":"01_grundschritt_right",
+                "vorn":"01_grundschritt_back",
+                "hinten":"01_grundschritt_front",
+                "rechts":"01_grundschritt_right",
+                "links":"01_grundschritt_left",
                 "unten":"01_grundschritt_above"
             },
             {
-                "vorn":"02_holzbein_front",
-                "hinten":"02_holzbein_back",
-                "rechts":"02_holzbein_left",
-                "links":"02_holzbein_right",
+                "vorn":"02_holzbein_back",
+                "hinten":"02_holzbein_front",
+                "rechts":"02_holzbein_right",
+                "links":"02_holzbein_left",
                 "unten":"02_holzbein_above"
             },
             {
-                "vorn":"03_grapevine_front",
-                "hinten":"03_grapevine_back",
-                "rechts":"03_grapevine_left",
-                "links":"03_grapevine_right",
+                "vorn":"03_grapevine_back",
+                "hinten":"03_grapevine_front",
+                "rechts":"03_grapevine_right",
+                "links":"03_grapevine_left",
                 "unten":"03_grapevine_above"
             },
             {
-                "vorn":"04_schaukel_front",
-                "hinten":"04_schaukel_back",
-                "rechts":"04_schaukel_left",
-                "links":"04_schaukel_right",
+                "vorn":"04_schaukel_back",
+                "hinten":"04_schaukel_front",
+                "rechts":"04_schaukel_right",
+                "links":"04_schaukel_left",
                 "unten":"04_schaukel_above"
             },
             {
-                "vorn":"05_singlesingledouble_front",
-                "hinten":"05_singlesingledouble_back",
-                "rechts":"05_singlesingledouble_left",
-                "links":"05_singlesingledouble_right",
+                "vorn":"05_singlesingledouble_back",
+                "hinten":"05_singlesingledouble_front",
+                "rechts":"05_singlesingledouble_right",
+                "links":"05_singlesingledouble_left",
                 "unten":"05_singlesingledouble_above"
             }            
         ]
