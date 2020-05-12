@@ -188,7 +188,69 @@
             }            
         ]
     },
-    "control": 
+    "objectiveOne": 
+    {
+        "practice":[
+            {
+                "vorn":"train_01_back"
+            },
+            {
+                "vorn":"train_02_back"
+            },
+            {
+                "vorn":"train_03_back"
+            }
+        ],
+        "learn":[
+            {
+                "vorn":"01_grundschritt_back"
+            },
+            {
+                "vorn":"02_holzbein_back"
+            },
+            {
+                "vorn":"03_grapevine_back"
+            },
+            {
+                "vorn":"04_schaukel_back"
+            },
+            {
+                "vorn":"05_singlesingledouble_back"
+            }            
+        ]
+    },
+    "subjectiveOne": 
+    {
+        "practice":[
+            {
+                "vorn":"train_01_back"
+            },
+            {
+                "vorn":"train_02_back"
+            },
+            {
+                "vorn":"train_03_back"
+            }
+        ],
+        "learn":[
+            {
+                "vorn":"01_grundschritt_back"
+            },
+            {
+                "vorn":"02_holzbein_back"
+            },
+            {
+                "vorn":"03_grapevine_back"
+            },
+            {
+                "vorn":"04_schaukel_back"
+            },
+            {
+                "vorn":"05_singlesingledouble_back"
+            }            
+        ]
+    },
+    "mirrorOne": 
     {
         "practice":[
             {
