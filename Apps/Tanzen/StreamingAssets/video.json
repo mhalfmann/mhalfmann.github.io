@@ -192,30 +192,30 @@
     {
         "practice":[
             {
-                "vorn":"train_01_back"
+                "vorn":"train_01_front"
             },
             {
-                "vorn":"train_02_back"
+                "vorn":"train_02_front"
             },
             {
-                "vorn":"train_03_back"
+                "vorn":"train_03_front"
             }
         ],
         "learn":[
             {
-                "vorn":"01_grundschritt_back"
+                "vorn":"01_grundschritt_front"
             },
             {
-                "vorn":"02_holzbein_back"
+                "vorn":"02_holzbein_front"
             },
             {
-                "vorn":"03_grapevine_back"
+                "vorn":"03_grapevine_front"
             },
             {
-                "vorn":"04_schaukel_back"
+                "vorn":"04_schaukel_front"
             },
             {
-                "vorn":"05_singlesingledouble_back"
+                "vorn":"05_singlesingledouble_front"
             }            
         ]
     },
@@ -254,30 +254,30 @@
     {
         "practice":[
             {
-                "vorn":"train_01_back"
+                "vorn":"train_01_front"
             },
             {
-                "vorn":"train_02_back"
+                "vorn":"train_02_front"
             },
             {
-                "vorn":"train_03_back"
+                "vorn":"train_03_front"
             }
         ],
         "learn":[
             {
-                "vorn":"01_grundschritt_back"
+                "vorn":"01_grundschritt_front"
             },
             {
-                "vorn":"02_holzbein_back"
+                "vorn":"02_holzbein_front"
             },
             {
-                "vorn":"03_grapevine_back"
+                "vorn":"03_grapevine_front"
             },
             {
-                "vorn":"04_schaukel_back"
+                "vorn":"04_schaukel_front"
             },
             {
-                "vorn":"05_singlesingledouble_back"
+                "vorn":"05_singlesingledouble_front"
             }            
         ]
     }
