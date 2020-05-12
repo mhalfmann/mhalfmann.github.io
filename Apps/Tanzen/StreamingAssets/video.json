@@ -7,21 +7,21 @@
                 "hinten":"train_01_back",
                 "rechts":"train_01_left",
                 "links":"train_01_right",
-                "unten":"train_01_above"
+                "oben":"train_01_above"
             },
             {
                 "vorn":"train_02_front",
                 "hinten":"train_02_back",
                 "rechts":"train_02_left",
                 "links":"train_02_right",
-                "unten":"train_02_above"
+                "oben":"train_02_above"
             },
             {
                 "vorn":"train_03_front",
                 "hinten":"train_03_back",
                 "rechts":"train_03_left",
                 "links":"train_03_right",
-                "unten":"train_03_above"
+                "oben":"train_03_above"
             }
         ],
         "learn":[
@@ -30,35 +30,35 @@
                 "hinten":"01_grundschritt_back",
                 "rechts":"01_grundschritt_left",
                 "links":"01_grundschritt_right",
-                "unten":"01_grundschritt_above"
+                "oben":"01_grundschritt_above"
             },
             {
                 "vorn":"02_holzbein_front",
                 "hinten":"02_holzbein_back",
                 "rechts":"02_holzbein_left",
                 "links":"02_holzbein_right",
-                "unten":"02_holzbein_above"
+                "oben":"02_holzbein_above"
             },
             {
                 "vorn":"03_grapevine_front",
                 "hinten":"03_grapevine_back",
                 "rechts":"03_grapevine_left",
                 "links":"03_grapevine_right",
-                "unten":"03_grapevine_above"
+                "oben":"03_grapevine_above"
             },
             {
                 "vorn":"04_schaukel_front",
                 "hinten":"04_schaukel_back",
                 "rechts":"04_schaukel_left",
                 "links":"04_schaukel_right",
-                "unten":"04_schaukel_above"
+                "oben":"04_schaukel_above"
             },
             {
                 "vorn":"05_singlesingledouble_front",
                 "hinten":"05_singlesingledouble_back",
                 "rechts":"05_singlesingledouble_left",
                 "links":"05_singlesingledouble_right",
-                "unten":"05_singlesingledouble_above"
+                "oben":"05_singlesingledouble_above"
             }            
         ]
     },
