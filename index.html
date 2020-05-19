@@ -19,31 +19,37 @@
   <div style="text-align: center; color: white; font-size: 5vw; margin-bottom: 50px;">Applikationen</div>
   <div style="position: absolute; left: 40%; display: flex; flex-direction: column;">      
   <a href="./Apps/Unwetter/index.html?Test#0">
-    <div id = "buttonUnwetter" style="width: 25vh; height: 25vh; font-size: 5vh; display: block; margin-bottom: 50px; text-align: center; cursor: pointer;">
+    <div id = "buttonUnwetter" onclick = "clicked(this)" style="width: 25vh; height: 25vh; font-size: 5vh; display: block; margin-bottom: 50px; text-align: center; cursor: pointer;">
       <img class="uiButtonBackground" src="./Assets//Images/blitz.jpg" style="height: 70%; padding: 5px;">
       <div style="color: white; text-align: center;">Unwetter</div>
     </div>
   </a>
   <a href="./Apps/Insel/index.html?Test#0">
-    <div id = "buttonInsel" style="width: 25vh; height: 25vh; font-size: 5vh; display: block; margin-bottom: 50px; text-align: center; cursor: pointer;">
+    <div id = "buttonInsel" onclick = "clicked(this)" style="width: 25vh; height: 25vh; font-size: 5vh; display: block; margin-bottom: 50px; text-align: center; cursor: pointer;">
       <img class="uiButtonBackground" src="./Assets//Images/insel.jpg" style="height: 70%; padding: 5px;">
       <div style="color: white; text-align: center;">Insel</div>
     </div>
   </a>
   <a href="./Apps/Fische/index.html">
-    <div id = "buttonFische" style="width: 25vh; height: 25vh; font-size: 5vh; display: block; margin-bottom: 50px; text-align: center; cursor: pointer;">
+    <div id = "buttonFische" onclick = "clicked(this)" style="width: 25vh; height: 25vh; font-size: 5vh; display: block; margin-bottom: 50px; text-align: center; cursor: pointer;">
       <img class="uiButtonBackground" src="./Assets//Images/fisch.png" style="height: 70%; padding: 5px;">
       <div style="color: white; text-align: center;">Fische</div>
     </div>
   </a>
   <a href="./Apps/Tanzen/index.html">
-    <div id = "buttonTanzen" style="width: 25vh; height: 25vh; font-size: 5vh; display: block; margin-bottom: 50px; text-align: center; cursor: pointer;">
+    <div id = "buttonTanzen" onclick = "clicked(this)" style="width: 25vh; height: 25vh; font-size: 5vh; display: block; margin-bottom: 50px; text-align: center; cursor: pointer;">
       <img class="uiButtonBackground" src="./Assets//Images/tanz.png" style="height: 70%; padding: 5px;">
       <div style="color: white; text-align: center;">Tanzen</div>
     </div>
   </a>
+  <a href="./Apps/Sessel/index.html">
+    <div id = "buttonSessel" onclick = "clicked(this)" style="width: 25vh; height: 25vh; font-size: 5vh; display: block; margin-bottom: 50px; text-align: center; cursor: pointer;">
+      <img class="uiButtonBackground" src="./Assets//Images/sessel.jpg" style="height: 70%; padding: 5px;">
+      <div style="color: white; text-align: center;">Sessel</div>
+    </div>
+  </a>
   <a href="./Apps/TestMolekuele/indexStart.html">
-    <div id = "buttonMolekuele" style="width: 25vh; height: 25vh; font-size: 5vh; display: block; margin-bottom: 50px; text-align: center; cursor: pointer;" >
+    <div id = "buttonMolekuele" onclick = "clicked(this)" style="width: 25vh; height: 25vh; font-size: 5vh; display: block; margin-bottom: 50px; text-align: center; cursor: pointer;" >
       <img class="uiButtonBackground" src="./Assets//Images/molekuel.png" style="height: 70%; padding: 5px;">
       <div style="display: flex; flex-direction: row;">
         <div style="color: white; text-align: center;">Molekuele</div>
@@ -60,45 +66,14 @@
       document.oncontextmenu = function() {
         return false;
       }
-     document.getElementById('buttonUnwetter').addEventListener('click',(e)=>{
-        TweenMax.to(e.target, 0.1, {scale:1.1, onComplete:function(){
-          TweenMax.to(e.target, 0.1, {scale:1.0, onComplete:function(){
+
+      function clicked(element){
+        TweenMax.to(element, 0.1, {scale:1.1, onComplete:function(){
+          TweenMax.to(element, 0.1, {scale:1.0, onComplete:function(){
             // location = "./Apps/Unwetter/index.html"
           }})
         }})
-      })
-
-     document.getElementById('buttonInsel').addEventListener('click',(e)=>{
-        TweenMax.to(e.target, 0.1, {scale:1.1, onComplete:function(){
-          TweenMax.to(e.target, 0.1, {scale:1.0, onComplete:function(){
-            // location = "./Apps/Unwetter/index.html"
-          }})
-        }})
-      })
-
-     document.getElementById('buttonFische').addEventListener('click',(e)=>{
-        TweenMax.to(e.target, 0.1, {scale:1.1, onComplete:function(){
-          TweenMax.to(e.target, 0.1, {scale:1.0, onComplete:function(){
-            // location = "./Apps/Unwetter/index.html"
-          }})
-        }})
-      })
-
-     document.getElementById('buttonTanzen').addEventListener('click',(e)=>{
-        TweenMax.to(e.target, 0.1, {scale:1.1, onComplete:function(){
-          TweenMax.to(e.target, 0.1, {scale:1.0, onComplete:function(){
-            // location = "./Apps/Unwetter/index.html"
-          }})
-        }})
-      })
-
-    document.getElementById('buttonMolekuele').addEventListener('click',(e)=>{
-      TweenMax.to(e.target, 0.1, {scale:1.1, onComplete:function(){
-        TweenMax.to(e.target, 0.1, {scale:1.0, onComplete:function(){
-          // location = "./Apps/TestMolekuele/indexStart.html"
-        }})
-      }})
-    })
+      }
 
     document.getElementById('pdf').addEventListener('click',(e)=>{
       e.stopPropagation()
