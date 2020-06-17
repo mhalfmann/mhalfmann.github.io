@@ -45,68 +45,68 @@
   <div href="./Apps/Unwetter/index.html?Test#">
     <div id = "buttonUnwetter" n = "5" class="uiButtonFrame" onclick = "openDialogue(this)">
       <img class="uiButtonBackground" src="./Assets//Images/blitz.jpg" style="height: 70%; padding: 5px;">
-      <div style="color: white; text-align: center;">Unwetter</div>
+      <div class="uiText" style="color: white; text-align: center;" onclick = "openDialogue(this)">Unwetter</div>
     </div>
   </div>
   <div href="./Apps/Insel/index.html?Test#">
     <div id = "buttonInsel" n = "2" class="uiButtonFrame" onclick = "openDialogue(this)">
       <img class="uiButtonBackground" src="./Assets//Images/insel.jpg" style="height: 70%; padding: 5px;">
-      <div style="color: white; text-align: center;">Insel</div>
+      <div class="uiText" style="color: white; text-align: center;" onclick = "openDialogue(this)">Insel</div>
     </div>
   </div>
   <div href="./Apps/Fische/index.html">
     <div id = "buttonFische" n = "2" class="uiButtonFrame" onclick = "openDialogue(this)" >
       <img class="uiButtonBackground" src="./Assets//Images/fisch.png" style="height: 70%; padding: 5px;">
-      <div style="color: white; text-align: center;">Fische</div>
+      <div class="uiText" style="color: white; text-align: center;" onclick = "openDialogue(this)">Fische</div>
     </div>
   </div>
   <div href="./Apps/FischeTest/index.html">
     <div id = "buttonFischeTest" n = "2" class="uiButtonFrame" onclick = "openDialogue(this)" >
       <img class="uiButtonBackground" src="./Assets//Images/fisch.png" style="height: 70%; padding: 5px;">
-      <div style="color: white; text-align: center;">FischeTest</div>
+      <div class="uiText" style="color: white; text-align: center;" onclick = "openDialogue(this)">FischeTest</div>
     </div>
   </div>
   <div href="./Apps/Tanzen/index.html">
     <div id = "buttonTanzen" n = "5" class="uiButtonFrame" onclick = "openDialogue(this)" >
       <img class="uiButtonBackground" src="./Assets//Images/tanz.png" style="height: 70%; padding: 5px;">
-      <div style="color: white; text-align: center;">Tanzen</div>
+      <div class="uiText" style="color: white; text-align: center;" onclick = "openDialogue(this)">Tanzen</div>
     </div>
   </div>
   <div href="./Apps/TanzenTest/index.html">
     <div id = "buttonTanzenTest" n = "5" class="uiButtonFrame" onclick = "openDialogue(this)" >
       <img class="uiButtonBackground" src="./Assets//Images/tanz.png" style="height: 70%; padding: 5px;">
-      <div style="color: white; text-align: center;">TanzenTest</div>
+      <div class="uiText" style="color: white; text-align: center;" onclick = "openDialogue(this)">TanzenTest</div>
     </div>
   </div>
   <a href="./Apps/VideoCube/index.html">
     <div id = "buttonTanzenCube" class="uiButtonFrame" onclick = "clicked(this)" >
       <img class="uiButtonBackground" src="./Assets//Images/tanz.png" style="height: 70%; padding: 5px;">
-      <div style="color: white; text-align: center;">VideoWuerfel</div>
+      <div class="uiText" style="color: white; text-align: center;">VideoWuerfel</div>
     </div>
   </a>
   <div href="./Apps/Sessel/index.html">
     <div id = "buttonSessel" n = "3" class="uiButtonFrame" onclick = "openDialogue(this)" >
       <img class="uiButtonBackground" src="./Assets//Images/sessel.jpg" style="height: 70%; padding: 5px;">
-      <div style="color: white; text-align: center;">Sessel</div>
+      <div class="uiText" style="color: white; text-align: center;" onclick = "openDialogue(this)">Sessel</div>
     </div>
   </div>
   <div href="./Apps/SesselTest/index.html">
     <div id = "buttonSesselTest" n = "3" class="uiButtonFrame" onclick = "openDialogue(this)" >
       <img class="uiButtonBackground" src="./Assets//Images/sessel.jpg" style="height: 70%; padding: 5px;">
-      <div style="color: white; text-align: center;">SesselTest</div>
+      <div class="uiText" style="color: white; text-align: center;" onclick = "openDialogue(this)">SesselTest</div>
     </div>
   </div>
   <a href="./Apps/Multiplayer/index.html">
     <div id = "buttonMultiplayer" class="uiButtonFrame" onclick = "clicked(this)" >
       <img class="uiButtonBackground" src="./Assets//Images/Multiplayer.png" style="height: 70%; padding: 5px;">
-      <div style="color: white; text-align: center;">Multiplayer</div>
+      <div class="uiText" style="color: white; text-align: center;">Multiplayer</div>
     </div>
   </a>
   <a href="./Apps/TestMolekuele/indexStart.html">
     <div id = "buttonMolekuele" class="uiButtonFrame" onclick = "clicked(this)" >
       <img class="uiButtonBackground" src="./Assets//Images/molekuel.png" style="height: 70%; padding: 5px;">
       <div style="display: flex; flex-direction: row;">
-        <div style="color: white; text-align: center;">Molekuele</div>
+        <div class="uiText" style="color: white; text-align: center;">Molekuele</div>
         <a href = "./Apps/TestMolekuele/assets/marker/Marker.pdf" style = "margin-left: 10px;" target = "_blank">
           <img id="pdf" src="./Assets/Icons/pdf.png" style = "width: 4vw">
         </a>        
@@ -114,9 +114,11 @@
     </div>
   </a>
   <div id = "select" class="uiDialogue" style = "top: 40%; left: 20%; visibility: hidden;">
-    <div class="uiDialogueElement" style ="padding: 5px; background: beige;">Modus:</div>
-    <input id="szene" class="uiDialogueElement" type="number" value="0" min="0" max="2">
-    <div id="link" class="uiDialogueElement" onclick = "openLink(this)" style ="padding: 5px; background: beige; cursor: pointer;">
+    <div style="display: flex; flex-direction: row;">
+      <div class="uiDialogueElement" style ="padding: 5px;">Modus:</div>
+      <input id="szene" class="uiDialogueElement" type="number" value="0" min="0" max="2">
+    </div>
+    <div id="link" class="uiDialogueElement" onclick = "openLink(this)" style ="border: solid 1px rgb(252, 211, 165); padding: 5px; background: beige; cursor: pointer;">
       Start
     </div>
   </div>
@@ -130,6 +132,10 @@
       document.oncontextmenu = function() {
         return false;
       }
+      document.body.addEventListener('click',()=>{
+        console.log(event.target.className)
+        if(!event.target.className.includes("ui"))document.getElementById("select").style.visibility = "hidden"
+      })
 
       function clicked(element){
         TweenMax.to(element, 0.1, {scale:1.1, onComplete:function(){
@@ -141,9 +147,11 @@
 
       function openDialogue(element){
         console.log(event.clientX,event.clientY)
-        document.getElementById("select").style.visibility = "visible"
-        document.getElementById("select").style.top = event.clientY+"px"
-        document.getElementById("select").style.left = event.clientX+"px"
+        // if(document.getElementById("select").style.visibility == "hidden"){
+          document.getElementById("select").style.visibility = "visible"
+          document.getElementById("select").style.top = event.clientY+"px"
+          document.getElementById("select").style.left = event.clientX+"px"
+        // }
 
         currentLink =element.parentElement.getAttribute("href")
         document.getElementById("szene").setAttribute("max",element.getAttribute("n"))
