@@ -24,6 +24,11 @@
     </div>
   </div>
   <script>    
+    
+    function OnAppRunning(){
+      console.log("Szene wurde geladen")
+    }
+    
     function OnAppReady(){
         console.log("### application is loaded")
         var scene = 0;
@@ -34,6 +39,7 @@
         console.log("### loading scene ",scene)
         unityInstance.SendMessage('control', 'setName', 'MyName');
         unityInstance.SendMessage('control', 'setSzene', scene);
+        unityInstance.SendMessage('control', 'setDauer', 5);
     }
     function OnAppEnd(){
         console.log("### application has finished")
