@@ -38,7 +38,7 @@
         }
         console.log("### loading scene ",scene)
         unityInstance.SendMessage('control', 'setName', 'MyName');
-        unityInstance.SendMessage('control', 'setSzene', scene);
+        unityInstance.SendMessage('control', 'setMode', scene);
     }
     function OnAppEnd(){
         console.log("### application has finished")
