@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | Unwetter</title>
+    <script src="TemplateData/UnityProgress.js"></script>
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <script src="Build/UnityLoader.js"></script>
+    <script>
+    var unityInstance = UnityLoader.instantiate("gameContainer", "Build/Unwetter.json", {onProgress: UnityProgress});
+    </script>
+    </script>
+         <style>
+           canvas {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            }
+         </style>
+  </head>
+  <div class="webgl-content"style="width: 100%; height: 100%; position: absolute; margin: auto">
+    <div id="gameContainer" style="width: 100%; height: 100%; position: absolute; margin: auto">
+    </div>
+  </div>
+  <div id="back" style="position: absolute; top: 100px; left: 100px; width: 200px; height: 100px; background: red;">Back</div>
+  <div id="end" style="position: absolute; top: 100px; left: 300px; width: 200px; height: 100px; background: blueviolet;">End</div>
+  <div id="next" style="position: absolute; top: 100px; left: 500px; width: 200px; height: 100px; background: palegoldenrod;">Next</div>
+  <script>
+    var running = false;
+    var count = 0;
+    document.body.addEventListener('click',(e)=>{
+      console.log(e)
+    })
+
+    document.getElementById("next").addEventListener("click",(e)=>{
+        console.log("Next wurde geklickt",e)
+        unityInstance.SendMessage('GameObject', 'clickNext');
+        e.stopPropagation()
+    })
+    document.getElementById("back").addEventListener("click",(e)=>{
+        console.log("Back wurde geklickt",e)
+        unityInstance.SendMessage('GameObject', 'clickBack');
+        e.stopPropagation()
+    })
+    document.getElementById("end").addEventListener("click",(e)=>{
+        console.log("End wurde geklickt",e)
+        unityInstance.SendMessage('GameObject', 'clickEnd');
+        e.stopPropagation()
+    })
+
+    function OnAppRunning(){
+        console.log("App Running")
+        running = true;
+    }
+    
+    setInterval(function(){ 
+        if(running){
+            if(count < 17)click(550,150);
+            if(count>17 && count <34)click(150,150);
+            if(count == 34)click(350,150);
+            count++
+        }
+    }, 3000);
+
+    function OnAppLoaded(){
+        console.log("App Loaded")
+        unityInstance.SendMessage('GameObject', 'TaskOnClick');
+    }
+
+    function click(x,y){
+        var ev = document.createEvent("MouseEvent")
+        var el = document.elementFromPoint(x,y)
+        ev.initMouseEvent(
+            "click",
+            true /* bubble */, true /* cancelable */,
+            window, null,
+            x, y, x, y, /* coordinates */
+            false, false, false, false, /* modifier keys */
+            0 /*left*/, null
+        )
+        el.dispatchEvent(ev)
+    }
+
+    function OnAppEnd(){
+      var str = location.toString().split('?')
+      var str2 = str[1].split('#')
+      var id = str2[0].split('_')
+      var name = id[0]
+      var count = parseInt(id[1])
+      count++
+      console.log(name,count)
+      var newUrl = str[0]+"?"+name+"_"+count+"#"+1
+      console.log(newUrl)
+      location = newUrl
+      console.log("### application has finished")
+    }
+
+    function wait(ms){
+    var start = new Date().getTime();
+    var end = start;
+    while(end < start + ms) {
+        end = new Date().getTime();
+    }
+    }
+  </script>
+</body>
+  
+</html>
