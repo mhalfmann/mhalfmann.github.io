@@ -29,6 +29,8 @@
   <script>
     var running = false;
     var count = 0;
+    var d = new Date();
+    var t = 0
     document.body.addEventListener('click',(e)=>{
       console.log(e)
     })
@@ -54,14 +56,26 @@
         running = true;
     }
     
-    setInterval(function(){ 
+    /*setInterval(function(){ 
         if(running){
             if(count < 17)click(550,150);
             if(count>17 && count <34)click(150,150);
             if(count == 34)click(350,150);
             count++
         }
-    }, 3000);
+    },Math.floor(Math.random() * 5000));*/
+    (function loop() {
+        var rand = Math.round(Math.random() * (3000 - 500)) + 500;
+        setTimeout(function() {
+            if(running){
+                if(count < 17)click(550,150);
+                if(count>17 && count <34)click(150,150);
+                if(count == 34)click(350,150);
+                count++
+            }
+            loop();  
+        }, rand);
+    }());
 
     function OnAppLoaded(){
         console.log("App Loaded")
@@ -85,12 +99,13 @@
     function OnAppEnd(){
       var str = location.toString().split('?')
       var str2 = str[1].split('#')
+      var mode = str2[1]
       var id = str2[0].split('_')
       var name = id[0]
       var count = parseInt(id[1])
       count++
       console.log(name,count)
-      var newUrl = str[0]+"?"+name+"_"+count+"#"+1
+      var newUrl = str[0]+"?"+name+"_"+count+"#"+mode
       console.log(newUrl)
       location = newUrl
       console.log("### application has finished")
