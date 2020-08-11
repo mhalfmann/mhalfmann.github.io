@@ -1,3 +1,6 @@
+body { 
+    /* -webkit-touch-callout: none !important;  */
+}
 .uiButton{
     background-color: rgb(58, 57, 57);
     border: 1px solid white;
@@ -8,7 +11,7 @@
 }
 .uiButtonBackground{
     background-color: rgb(58, 57, 57);
-    border: 11px solid green;
+    border: 1px solid white;
     border-radius: 5px;
     opacity: 1.0;
     color: white;
