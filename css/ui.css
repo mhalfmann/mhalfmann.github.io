@@ -11,12 +11,15 @@ body {
 }
 .uiButtonBackground{
     background-color: rgb(58, 57, 57);
-    border: 1px solid white;
+    /* border: 1px solid white; */
     border-radius: 5px;
     opacity: 1.0;
     color: white;
     font-size: 3vh;
-    box-shadow: 5px 5px 5px rgba(2, 2, 2, 0.308);
+    box-shadow: 7px 7px 5px rgba(2, 2, 2, 0.308);
+}
+.uiButtonFrame{
+    text-shadow: 5px 5px 5px rgba(2, 2, 2, 0.308);
 }
 .uiButton:hover {
     background-color: rgb(58, 57, 57);
