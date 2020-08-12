@@ -1,6 +1,9 @@
 body { 
     /* -webkit-touch-callout: none !important;  */
 }
+* {
+    box-sizing: border-box;
+}
 .uiButton{
     background-color: rgb(58, 57, 57);
     border: 1px solid white;
@@ -23,6 +26,13 @@ body {
 }
 .uiButton:hover {
     background-color: rgb(58, 57, 57);
+}
+.uiListItem:hover {
+    background-color: rgb(58, 57, 57);
+}
+.uiButtonBackground:hover {
+    /* box-shadow: 17px 17px 5px rgba(2, 2, 2, 0.308);
+    transform: scale(1.1, 1.1); */
 }
 
 .uiButton:active {
