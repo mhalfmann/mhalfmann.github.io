@@ -4,6 +4,10 @@ body {
 * {
     box-sizing: border-box;
 }
+.uiButton2{
+    border-radius: 5px;
+    padding: 5px; cursor: pointer;
+}
 .uiButton{
     background-color: rgb(58, 57, 57);
     border: 1px solid white;
@@ -21,11 +25,18 @@ body {
     font-size: 3vh;
     box-shadow: 7px 7px 5px rgba(2, 2, 2, 0.308);
 }
+.uiIcon{
+    color: white;
+    background: rgb(24, 24, 24);
+}
 .uiButtonFrame{
     text-shadow: 5px 5px 5px rgba(2, 2, 2, 0.308);
 }
-.uiButton:hover {
-    background-color: rgb(58, 57, 57);
+.uiButton2:hover {
+    background-color: rgb(57, 58, 57);
+}
+.uiIcon:hover {
+    background-color: rgb(57, 58, 57);
 }
 .uiListItem:hover {
     background-color: rgb(58, 57, 57);
@@ -47,6 +58,16 @@ body {
     opacity: 0.8;
     color: white;
     font-size: 3vh;
+}
+.uiDialogue{
+  position: absolute;
+  /* width: 60%; */
+  padding: 10px;
+  background: rgb(24, 24, 24);
+  box-shadow: 10px 10px 10px rgb(39, 39, 39);
+  color: white;
+  display: flex;
+  flex-direction: row;
 }
 .legende{
     background-color: rgb(58, 57, 57);
