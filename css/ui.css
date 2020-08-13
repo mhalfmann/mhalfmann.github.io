@@ -30,6 +30,15 @@ body {
     background: rgb(24, 24, 24);
 }
 .uiButtonFrame{
+    width: 25vh;
+    height: 25vh;
+    min-width: 150px;
+    min-height: 150px;
+    font-size:calc(15px + 0.5vh);
+    display: block;
+    margin-bottom: 50px;
+    text-align: center;
+    cursor: pointer;
     text-shadow: 5px 5px 5px rgba(2, 2, 2, 0.308);
 }
 .uiButton2:hover {

@@ -59,20 +59,21 @@
       </div>
     </a>
 
-   <!--  <div style ="position: absolute; left: 0px; top: 50px;height: 93vh; width:100%; overflow: auto; padding-top: 5vh;">
-        <a href="./indexApps.html">
-            <div id = "buttonApps" class="uiButtonFrame" onclick = "clicked(this)" >
-            <img class="uiButtonBackground" src="./Assets//Images/Multiplayer.png" style="height: 70%; padding: 5px;">
-            <div class="uiText" style="color: white; text-align: center;">Apps</div>
-            </div>
-        </a>
-    </div> -->
+    <div style ="position: absolute; left: 0px; top: 50px;height: 100%; width:100%; overflow: auto; padding-top: 5vh;">
+        
+    </div>
 </body>
 <script>
     $( "#list" ).toggle();
 
     document.getElementById("listButton").addEventListener("click",()=>{
         $( "#list" ).toggle();
+    })
+
+    document.body.addEventListener('click',(event)=>{
+      console.log("clicked body",event.target.id)
+      if(event.target.id!="listIcon")$( "#list" ).hide()
+      //if(!event.target.className.includes("ui"))document.getElementById("select").style.visibility = "hidden"
     })
 
     function gotoPage(element){
