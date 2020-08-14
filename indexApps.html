@@ -53,7 +53,7 @@
     
   <div href="./Apps/Unwetter/index.html?Test#">
     <div id = "buttonUnwetter" n = "5" class="uiButtonFrame" onclick = "openDialogue(this)">
-      <img class="uiButtonBackground" src="./Assets//Images/blitz.jpg" style="height: 70%; padding: 0px;">
+      <img class="uiButtonBackground" src="./Assets//Images/blitz.jpg" style="height: 70%; padding: 0px; opacity: 1;">
       <div class="uiText" style="color: white; text-align: center;" >Unwetter</div>
     </div>
   </div>
@@ -193,14 +193,18 @@
       $( ".uiButtonFrame" ).on( "pointerenter", function() {
         // console.log( this)
         $( this ).find(".uiButtonBackground").css("box-shadow", "15px 15px 5px rgba(2, 2, 2, 0.308)")
-        $( this ).find(".uiButtonBackground").css("transform", "scale(1.1)")
+        $( this ).css("transform", "scale(1.1)")
+        // $( this ).find(".uiButtonBackground").css("transform", "scale(1.1)")
+        // $( this ).find(".uiText").css("transform", "scale(1.1)")
         $( this ).css("text-shadow"," 8px 8px 5px rgba(2, 2, 2, 0.308)")
       })
 
       $( ".uiButtonFrame" ).on( "pointerleave", function() {
         // console.log( this)
         $( this ).find(".uiButtonBackground").css("box-shadow", "10px 10px 5px rgba(2, 2, 2, 0.308)")
-        $( this ).find(".uiButtonBackground").css("transform", "scale(1.0)")
+        $( this ).css("transform", "scale(1.0)")
+        // $( this ).find(".uiButtonBackground").css("transform", "scale(1.0)")
+        // $( this ).find(".uiText").css("transform", "scale(1.0)")
         $( this ).css("text-shadow"," 5px 5px 5px rgba(2, 2, 2, 0.308)")
       })
 
