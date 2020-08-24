@@ -36,6 +36,7 @@ div.gallery {
   }
   
   .responsive {
+    position: relative;
     padding: 0 6px;
     margin: 50px;
     float: left;

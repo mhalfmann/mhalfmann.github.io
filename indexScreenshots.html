@@ -164,16 +164,31 @@
     function openImage(element){
       document.getElementById("image").setAttribute("src",element.getAttribute("src"))
       document.getElementById("imageLink").setAttribute("href",element.getAttribute("src"))
-      $( "#imageFrame" ).show();
+      $( "#imageFrame" ).show();      
+      element.style.zIndex = 1
+      document.getElementById("imageFrame").style.zIndex = 100
+      document.getElementById("imageFrame").style.opacity = 1
     }
 
     function gotoPage(element){
         location = element.getAttribute("href")
     }
 
-   /*  $( ".gallery" ).on( "pointerenter", function() {
+    $( ".responsive" ).on( "pointerenter", function() {
         console.log( this)
-        $( this ).css('zIndex', '60')
-    }) */
+        this.style.zIndex = 100
+        document.getElementById("imageFrame").style.zIndex = 1
+        document.getElementById("imageFrame").style.opacity = 0.5
+        // // $( this ).css('zIndex', '60')
+        // console.log( this.style.zIndex)
+    })
+    $( ".responsive" ).on( "pointerleave", function() {
+        console.log( this)
+        this.style.zIndex = 1
+        document.getElementById("imageFrame").style.zIndex = 100
+        document.getElementById("imageFrame").style.opacity = 1
+        // // $( this ).css('zIndex', '60')
+        // console.log( this.style.zIndex)
+    })
 </script>
 </html>
