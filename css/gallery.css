@@ -1,5 +1,5 @@
 div.gallery {
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
   }
   
   div.gallery:hover {
@@ -9,12 +9,15 @@ div.gallery {
   
   div.gallery img {
     width: 100%;
+    box-shadow: 7px 7px 5px rgba(2, 2, 2, 0.308);
     height: auto;
   }
   
   div.desc {
     padding: 15px;
+    color: white;
     text-align: center;
+    text-shadow: 5px 5px 5px rgba(2, 2, 2, 0.308);
   }
   
   * {
