@@ -64,57 +64,90 @@
       
       <div class="responsive">
         <div class="gallery">
-          <a target="_blank" href="./Assets/Screenshots/FlightSimulator/iwm.png">
-            <img src="./Assets/Screenshots/FlightSimulator/iwm.png" alt="IWM" width="600" height="400">
-          </a>
+          <!-- <a target="_blank" href="./Assets/Screenshots/FlightSimulator/iwm.png"> -->
+            <img class = "thumbnail" src="./Assets/Screenshots/FlightSimulator/iwm.png" onclick = "openImage(this)" alt="IWM" width="600" height="400">
+          <!-- </a> -->
           <div class="desc">IWM</div>
         </div>      
       </div>
 
       <div class="responsive">
         <div class="gallery">
-          <a target="_blank" href="./Assets/Screenshots/FlightSimulator/iwm2.png">
-            <img src="./Assets/Screenshots/FlightSimulator/iwm2.png" alt="IWM" width="600" height="400">
-          </a>
+          <!-- <a target="_blank" href="./Assets/Screenshots/FlightSimulator/iwm2.png"> -->
+            <img class = "thumbnail" src="./Assets/Screenshots/FlightSimulator/iwm2.png" onclick = "openImage(this)" alt="IWM" width="600" height="400">
+          <!-- </a> -->
           <div class="desc">IWM 2</div>
         </div>      
       </div>
 
       <div class="responsive">
         <div class="gallery">
-          <a target="_blank" href="./Assets/Screenshots/FlightSimulator/tuebingen.png">
-            <img src="./Assets/Screenshots/FlightSimulator/tuebingen.png" alt="IWM" width="600" height="400">
-          </a>
+          <!-- <a target="_blank" href="./Assets/Screenshots/FlightSimulator/tuebingen.png"> -->
+            <img class = "thumbnail" src="./Assets/Screenshots/FlightSimulator/tuebingen.png" onclick = "openImage(this)" alt="IWM" width="600" height="400">
+          <!-- </a> -->
           <div class="desc">Altstadt</div>
         </div>      
       </div>
 
       <div class="responsive">
         <div class="gallery">
-          <a target="_blank" href="./Assets/Screenshots/FlightSimulator/tuebingen2.png">
-            <img src="./Assets/Screenshots/FlightSimulator/tuebingen2.png" alt="IWM" width="600" height="400">
-          </a>
+          <!-- <a target="_blank" href="./Assets/Screenshots/FlightSimulator/tuebingen2.png"> -->
+            <img class = "thumbnail" src="./Assets/Screenshots/FlightSimulator/tuebingen2.png" onclick = "openImage(this)" alt="IWM" width="600" height="400">
+          <!-- </a> -->
           <div class="desc">Neckarbruecke</div>
         </div>      
+      </div>
+
+      <div id="imageFrame" style ="position: absolute; top: 15%; left: 15%; width: 70%; height: 70%;">
+        <div id = "back" class="imageButton" style ="position: absolute; top: 45%; left: 1%; width: 10%; height: 10%; background: peachpuff;">zurueck</div>
+        <div id = "next" class="imageButton" style ="position: absolute; top: 45%; right: 1%; width: 10%; height: 10%; background: peachpuff;">weiter</div>
+        <div id = "close" class="imageButton" style ="position: absolute; bottom: 1%; right: 1%; width: 10%; height: 10%; background: peachpuff;">schliessen</div>
+        <a id = "imageLink" target="_blank" href="" >
+          <img id = "image" src="" style ="width: 100%; height: 100%;">
+        </a>
       </div>
 
     </div>
 </body>
 <script>
     $( "#list" ).toggle();
+    $( "#imageFrame" ).toggle();
 
     document.getElementById("listButton").addEventListener("click",()=>{
         $( "#list" ).toggle();
     })
 
+    document.getElementById("next").addEventListener("click",(e)=>{
+      e.stopPropagation();
+    })
+    document.getElementById("back").addEventListener("click",(e)=>{
+      e.stopPropagation();
+    })
+    document.getElementById("close").addEventListener("click",(e)=>{
+      e.stopPropagation();
+      $( "#imageFrame" ).hide()
+    })
+
     document.body.addEventListener('click',(event)=>{
-      console.log("clicked body",event.target.id)
+      console.log("clicked",event.target.className)
       if(event.target.id!="listIcon")$( "#list" ).hide()
+      if(event.target.id!="image" && event.target.className!="thumbnail" )$( "#imageFrame" ).hide()
       //if(!event.target.className.includes("ui"))document.getElementById("select").style.visibility = "hidden"
     })
+
+    function openImage(element){
+      document.getElementById("image").setAttribute("src",element.getAttribute("src"))
+      document.getElementById("imageLink").setAttribute("href",element.getAttribute("src"))
+      $( "#imageFrame" ).show();
+    }
 
     function gotoPage(element){
         location = element.getAttribute("href")
     }
+
+   /*  $( ".gallery" ).on( "pointerenter", function() {
+        console.log( this)
+        $( this ).css('zIndex', '60')
+    }) */
 </script>
 </html>
