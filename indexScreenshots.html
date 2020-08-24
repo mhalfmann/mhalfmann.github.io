@@ -1,0 +1,120 @@
+<!doctype HTML>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1"> -->
+<script src="./Javascript/hammer.js"></script>
+<script src="./Javascript/TweenMax.min.js"></script>
+<script src="./Javascript/jquery-3.4.0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/ui.css">
+<link rel="stylesheet" type="text/css" href="./css/gallery.css">
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+<style>
+  a, a:visited { 
+      text-decoration: none; 
+      color: white;
+      }
+    
+  .uiButtonFrame{
+    width: 25vh;
+    height: 25vh;
+    font-size: 3vh;
+    display: block;
+    margin-bottom: 50px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .uiDialogue{
+    position: absolute;
+    /* width: 60%; */
+    padding: 10px;
+    background: bisque;
+    box-shadow: 10px 10px 10px rgb(39, 39, 39);
+    display: flex;
+    flex-direction: row;
+  }
+  .uiDialogueElement{
+    margin: 10px;
+  }
+  input[type=number]::-webkit-inner-spin-button {
+    opacity: 1
+  }
+</style>                                                            
+<body onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
+    <div style="position: absolute; left: 0px; top: 0%;height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px;">
+        Screenshots
+    </div>
+
+    <div id = "listButton" class ="uiIcon" style="position: absolute; top: 5px; left: 5px; cursor: pointer; border-radius: 5px;">
+      <img id="listIcon" src="./Assets/Icons/menu.png" style = "width: 35px">
+    </div>
+  
+    <div id = "list" style ="position: absolute; top: 50px; background: rgb(24, 24, 24); z-index: 10000; color: white; box-shadow: 5px 5px 5px rgba(2, 2, 2, 0.637);"> 
+        <div id="linkApps" class="uiListItem" href="./indexApps.html" onclick = "gotoPage(this)" style="padding: 10px; cursor: pointer;">Applikationen</div>
+        <div id="link1" class="uiListItem" href="./index2.html" onclick = "gotoPage(this)"  style="padding: 10px;">tba</div>
+        <div id="link2" class="uiListItem" href="./index3.html" onclick = "gotoPage(this)"  style="padding: 10px;">tba</div>
+    </div>
+  
+    <a href="./index.html" style = "position: absolute; top: 5px; right: 5px;">
+      <div id = "buttonHome" class = "uiIcon" style="border-radius: 5px;">      
+        <img id="home" src="./Assets/Icons/home.png" style = "width: 35px">
+      </div>
+    </a>
+
+    <div style ="position: absolute; left: 0px; top: 50px;height: 100%; width:100%; overflow: auto; padding-top: 5vh;">
+      
+      <div class="responsive">
+        <div class="gallery">
+          <a target="_blank" href="./Assets/Screenshots/FlightSimulator/iwm.png">
+            <img src="./Assets/Screenshots/FlightSimulator/iwm.png" alt="IWM" width="600" height="400">
+          </a>
+          <div class="desc">IWM</div>
+        </div>      
+      </div>
+
+      <div class="responsive">
+        <div class="gallery">
+          <a target="_blank" href="./Assets/Screenshots/FlightSimulator/iwm2.png">
+            <img src="./Assets/Screenshots/FlightSimulator/iwm2.png" alt="IWM" width="600" height="400">
+          </a>
+          <div class="desc">IWM 2</div>
+        </div>      
+      </div>
+
+      <div class="responsive">
+        <div class="gallery">
+          <a target="_blank" href="./Assets/Screenshots/FlightSimulator/tuebingen.png">
+            <img src="./Assets/Screenshots/FlightSimulator/tuebingen.png" alt="IWM" width="600" height="400">
+          </a>
+          <div class="desc">Altstadt</div>
+        </div>      
+      </div>
+
+      <div class="responsive">
+        <div class="gallery">
+          <a target="_blank" href="./Assets/Screenshots/FlightSimulator/tuebingen2.png">
+            <img src="./Assets/Screenshots/FlightSimulator/tuebingen2.png" alt="IWM" width="600" height="400">
+          </a>
+          <div class="desc">Neckarbruecke</div>
+        </div>      
+      </div>
+
+    </div>
+</body>
+<script>
+    $( "#list" ).toggle();
+
+    document.getElementById("listButton").addEventListener("click",()=>{
+        $( "#list" ).toggle();
+    })
+
+    document.body.addEventListener('click',(event)=>{
+      console.log("clicked body",event.target.id)
+      if(event.target.id!="listIcon")$( "#list" ).hide()
+      //if(!event.target.className.includes("ui"))document.getElementById("select").style.visibility = "hidden"
+    })
+
+    function gotoPage(element){
+        location = element.getAttribute("href")
+    }
+</script>
+</html>
