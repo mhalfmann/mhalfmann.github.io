@@ -128,7 +128,11 @@
     document.getElementById("next").addEventListener("click",(e)=>{
       e.stopPropagation()
       count++
-      if(count>4)count = 4
+      $( "#back" ).show()
+      if(count>4){
+        count = 4
+        // $( "#next" ).hide()
+      }
       document.getElementById("imageLink").setAttribute("href","./Assets/Screenshots/FlightSimulator/"+count.toString()+".png")
       document.getElementById("image").setAttribute("src","./Assets/Screenshots/FlightSimulator/"+count.toString()+".png")
       console.log(count)
@@ -136,7 +140,11 @@
     document.getElementById("back").addEventListener("click",(e)=>{
       e.stopPropagation()
       count--
-      if(count<1)count = 1
+      $( "#next" ).show()
+      if(count<1){
+        // $( "#back" ).hide()
+        count = 1
+      }
       document.getElementById("imageLink").setAttribute("href","./Assets/Screenshots/FlightSimulator/"+count.toString()+".png")
       document.getElementById("image").setAttribute("src","./Assets/Screenshots/FlightSimulator/"+count.toString()+".png")
       console.log(count)
