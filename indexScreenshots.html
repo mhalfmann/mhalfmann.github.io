@@ -38,34 +38,51 @@
   input[type=number]::-webkit-inner-spin-button {
     opacity: 1
   }
-</style>                                                            
+</style>
+<script>
+  function imgLoaded(element){
+    var w = element.naturalWidth
+    var h = element.naturalHeight
+    var h_vh = parseInt(element.parentElement.parentElement.style.height.split('vh')[0])
+    var w_ = w/h * h_vh
+    element.parentElement.parentElement.style.width = w_+"vh"
+  }
+
+  function thumbnailLoaded(element){
+    var w = element.width
+    var w_p = element.parentElement.getBoundingClientRect().width
+    var diff = w_p - w
+    element.style.marginLeft = diff/2+"px"
+  }
+
+</script>
 <body onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
-    <div style="position: absolute; left: 0px; top: 0%;height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px;">
+    <div id ="header" style="position: absolute; left: 0px; top: 0%;height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px;">
         Screenshots
-    </div>
 
-    <div id = "listButton" class ="uiIcon" style="position: absolute; top: 5px; left: 5px; cursor: pointer; border-radius: 5px;">
-      <img id="listIcon" src="./Assets/Icons/menu.png" style = "width: 35px">
-    </div>
-  
-    <div id = "list" style ="position: absolute; top: 50px; background: rgb(24, 24, 24); z-index: 10000; color: white; box-shadow: 5px 5px 5px rgba(2, 2, 2, 0.637);"> 
-        <div id="linkApps" class="uiListItem" href="./indexApps.html" onclick = "gotoPage(this)" style="padding: 10px; cursor: pointer;">Applikationen</div>
-        <div id="link1" class="uiListItem" href="./indexScreenshots.html" onclick = "gotoPage(this)"  style="padding: 10px;">Screenshots</div>
-        <div id="link2" class="uiListItem" href="./index3.html" onclick = "gotoPage(this)"  style="padding: 10px;">tba</div>
-    </div>
-  
-    <a href="./index.html" style = "position: absolute; top: 5px; right: 5px;">
-      <div id = "buttonHome" class = "uiIcon" style="border-radius: 5px;">      
-        <img id="home" src="./Assets/Icons/home.png" style = "width: 35px">
+      <div id = "listButton" class ="uiIcon" style="position: absolute; top: 0px; left: 5px; cursor: pointer; border-radius: 5px;">
+        <img id="listIcon" src="./Assets/Icons/menu.png" style = "width: 35px">
       </div>
-    </a>
+    
+      <div id = "list" style ="position: absolute; top: 50px; background: rgb(24, 24, 24); z-index: 10000; color: white; box-shadow: 5px 5px 5px rgba(2, 2, 2, 0.637);"> 
+          <div id="linkApps" class="uiListItem" href="./indexApps.html" onclick = "gotoPage(this)" style="padding: 10px; cursor: pointer;">Applikationen</div>
+          <div id="link1" class="uiListItem" href="./indexScreenshots.html" onclick = "gotoPage(this)"  style="padding: 10px;">Screenshots</div>
+          <div id="link2" class="uiListItem" href="./index3.html" onclick = "gotoPage(this)"  style="padding: 10px;">tba</div>
+      </div>
+    
+      <a href="./index.html" style = "position: absolute; top: 0px; right: 5px;">
+        <div id = "buttonHome" class = "uiIcon" style="border-radius: 5px;">      
+          <img id="home" src="./Assets/Icons/home.png" style = "width: 35px">
+        </div>
+      </a>
+    </div>
 
-    <div style ="position: absolute; left: 0px; top: 50px;height: 100%; width:100%; overflow: auto; padding-top: 5vh;">
+    <div id="main" style ="position: absolute; left: 0px; top: 50px;height: 100%; width:100%; overflow: auto; padding-top: 5vh; display: flex; flex-direction: column;">
       
       <div class="responsive">
         <div class="gallery">
           <!-- <a target="_blank" href="./Assets/Screenshots/FlightSimulator/iwm.png"> -->
-            <img class = "thumbnail" src="./Assets/Screenshots/FlightSimulator/1.png" onclick = "openImage(this)" alt="IWM" width="600" height="400">
+            <img class = "thumbnail" src="./Assets/Screenshots/FlightSimulator/1.png" onload = "thumbnailLoaded(this)" onclick = "openImage(this)" alt="IWM">
           <!-- </a> -->
           <div class="desc">IWM</div>
         </div>      
@@ -74,7 +91,7 @@
       <div class="responsive">
         <div class="gallery">
           <!-- <a target="_blank" href="./Assets/Screenshots/FlightSimulator/iwm2.png"> -->
-            <img class = "thumbnail" src="./Assets/Screenshots/FlightSimulator/2.png" onclick = "openImage(this)" alt="IWM" width="600" height="400">
+            <img class = "thumbnail" src="./Assets/Screenshots/FlightSimulator/2.png" onload = "thumbnailLoaded(this)"  onclick = "openImage(this)" alt="IWM">
           <!-- </a> -->
           <div class="desc">IWM 2</div>
         </div>      
@@ -83,7 +100,7 @@
       <div class="responsive">
         <div class="gallery">
           <!-- <a target="_blank" href="./Assets/Screenshots/FlightSimulator/tuebingen.png"> -->
-            <img class = "thumbnail" src="./Assets/Screenshots/FlightSimulator/3.png" onclick = "openImage(this)" alt="IWM" width="600" height="400">
+            <img class = "thumbnail" src="./Assets/Screenshots/FlightSimulator/3.png" onload = "thumbnailLoaded(this)"  onclick = "openImage(this)" alt="IWM">
           <!-- </a> -->
           <div class="desc">Altstadt</div>
         </div>      
@@ -92,24 +109,24 @@
       <div class="responsive">
         <div class="gallery">
           <!-- <a target="_blank" href="./Assets/Screenshots/FlightSimulator/tuebingen2.png"> -->
-            <img class = "thumbnail" src="./Assets/Screenshots/FlightSimulator/4.png" onclick = "openImage(this)" alt="IWM" width="600" height="400">
+            <img class = "thumbnail" src="./Assets/Screenshots/FlightSimulator/4.png" onload = "thumbnailLoaded(this)"  onclick = "openImage(this)" alt="IWM">
           <!-- </a> -->
           <div class="desc">Neckarbruecke</div>
         </div>      
       </div>
 
-      <div id="imageFrame" style ="position: absolute; top: 15%; left: 15%; width: 70%; height: 70%;">
-        <div id = "back" class="imageButton" style ="position: absolute; top: 45%; left: 1%; width: 5%; height: 7%; background: rgb(44, 44, 44);">
-          <img src = "./Assets/Icons/arrow-back.png" style="width: 100%; height: 100%;">
+      <div id="imageFrame" style ="position:fixed; top: 5vh; right: 5%; width: 66%; height: 80vh;">
+        <div id = "back" class="imageButton" style ="position: absolute; top: 45%; left: 1vh; width: 3vh; height: 7%; background: rgb(255, 255, 255);">
+          <img src = "./Assets/Icons/arrow-back-black.png" style="width: 100%; height: 100%;">
         </div>
-        <div id = "next" class="imageButton" style ="position: absolute; top: 45%; right: 1%; width: 5%; height: 7%; background: rgb(44, 44, 44);">
-          <img src = "./Assets/Icons/arrow-forward.png" style="width: 100%; height: 100%;">
+        <div id = "next" class="imageButton" style ="position: absolute; top: 45%; right: 1vh; width: 3vh; height: 7%; background: rgb(255, 255, 255);">
+          <img src = "./Assets/Icons/arrow-forward-black.png" style="width: 100%; height: 100%;">
         </div>
-        <div id = "close" class="imageButton" style ="position: absolute; bottom: 1%; right: 1%; width: 5%; height: 5%; background: rgb(44, 44, 44);">
-          <img src = "./Assets/Icons/close.png" style="width: 100%; height: 100%;">
+        <div id = "close" class="imageButton" style ="position: absolute; bottom: 1%; right: 1%; width: 3vh; height: 3vh; background: rgb(255, 255, 255);">
+          <img src = "./Assets/Icons/close-black.png" style="width: 100%; height: 100%;">
         </div>
         <a id = "imageLink" target="_blank" href="" >
-          <img class = "screenshot" id = "image" src="" style ="width: 100%; height: 100%; box-shadow: 2, 2, 2, 0.3080;">
+          <img class = "screenshot" id = "image" src="" onload = "imgLoaded(this)" style ="width: 100%; height: 100%; box-shadow: 2, 2, 2, 0.3080;">
         </a>
       </div>
 
@@ -135,7 +152,7 @@
       }
       document.getElementById("imageLink").setAttribute("href","./Assets/Screenshots/FlightSimulator/"+count.toString()+".png")
       document.getElementById("image").setAttribute("src","./Assets/Screenshots/FlightSimulator/"+count.toString()+".png")
-      console.log(count)
+      // console.log(count)
     })
     document.getElementById("back").addEventListener("click",(e)=>{
       e.stopPropagation()
@@ -147,7 +164,7 @@
       }
       document.getElementById("imageLink").setAttribute("href","./Assets/Screenshots/FlightSimulator/"+count.toString()+".png")
       document.getElementById("image").setAttribute("src","./Assets/Screenshots/FlightSimulator/"+count.toString()+".png")
-      console.log(count)
+      // console.log(count)
     })
     document.getElementById("close").addEventListener("click",(e)=>{
       e.stopPropagation()
@@ -155,7 +172,7 @@
     })
 
     document.body.addEventListener('click',(event)=>{
-      console.log("clicked",event.target.className)
+      // console.log("clicked",event.target.className)
       if(event.target.id!="listIcon")$( "#list" ).hide()
       if(event.target.id!="image" && event.target.className!="thumbnail" )$( "#imageFrame" ).hide()
       //if(!event.target.className.includes("ui"))document.getElementById("select").style.visibility = "hidden"
@@ -175,7 +192,7 @@
     }
 
     $( ".responsive" ).on( "pointerenter", function() {
-        console.log( this)
+        // console.log( this)
         this.style.zIndex = 100
         document.getElementById("imageFrame").style.zIndex = 1
         document.getElementById("imageFrame").style.opacity = 0.5
@@ -183,7 +200,7 @@
         // console.log( this.style.zIndex)
     })
     $( ".responsive" ).on( "pointerleave", function() {
-        console.log( this)
+        // console.log( this)
         this.style.zIndex = 1
         document.getElementById("imageFrame").style.zIndex = 100
         document.getElementById("imageFrame").style.opacity = 1

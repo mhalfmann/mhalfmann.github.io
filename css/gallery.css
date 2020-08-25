@@ -1,7 +1,9 @@
 div.gallery {
+  margin: auto;
     /* border: 1px solid #ccc; */
   }
-  div.thumbnail{
+  .thumbnail{
+    margin: auto;
     border-radius: 5px;
   }
   .imageButton{
@@ -12,16 +14,17 @@ div.gallery {
     border-radius: 5px;
     box-shadow: 7px 7px 5px rgba(2, 2, 2, 0.308);
   }
-  div.gallery:hover {
+  div.gallery img:hover {
     transform: scale(1.5);
-    transform-origin: center;
+    transform-origin: bottom left;
   }
   
-  div.gallery img {
-    width: 100%;
+  .gallery img {
+    height: 20vh;
+    width: auto;
+    margin: auto;
     border-radius: 5px;
     box-shadow: 7px 7px 5px rgba(2, 2, 2, 0.308);
-    height: auto;
   }
   
   div.desc {
@@ -36,6 +39,7 @@ div.gallery {
   }
   
   .responsive {
+    /* background: red; */
     position: relative;
     padding: 0 6px;
     margin: 50px;
