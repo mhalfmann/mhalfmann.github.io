@@ -1,0 +1,84 @@
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<body onload="iwmstudy_access.addInitFunction(init)">
+	<script src="../../../../app/iwm_studyaddon.js"></script>
+	<div id="iwmstudy_masterbox"><div id="iwmstudy_centerbox">	
+	
+		<!-- Überschrift -->
+		<div id="iwmstudy_headlinebox">Material: Zugriff auf zentrale Variablen und Funktionen</div>		
+			
+		<!-- Inhalt -->
+		<div id="iwmstudy_contentbox">
+			<div class="iwmstudy_text">
+                Über window.iwmstudy_access können verschiedene Variablen und Funktionen verwendet werden.
+                <br/><br/>
+                Variablen:
+            </div>
+
+			<figure class="iwmstudy_table">				
+				<table>
+					<tr>
+						<th style="width:35%">Variablenname</th>
+						<th>Beschreibung</th>
+					</tr>
+					<tr>
+						<td>additionallogdata = {}</td>
+						<td>zusätzliche Logdaten können hier als Schlüssel/Wert abgelegt werden</td>
+					</tr>
+					<tr>
+						<td>nextbutton_targetpage = null</td>
+						<td>manuelle Änderungen der nächsten Seite im Ablauf</td>
+					</tr>
+				</table>
+				<figcaption></figcaption>
+			</figure>
+            
+			<div class="iwmstudy_text">
+				Funktionen:
+            </div>
+
+			<figure class="iwmstudy_table">				
+				<table>
+					<tr>
+						<th style="width:35%">Funktionsname</th>
+						<th>Beschreibung</th>
+					</tr>
+					<tr>
+						<td>linkto(target=null)</td>
+						<td>Seitenwechsel zur angegebenen Seite</td>
+					</tr>
+					<tr>
+						<td>linkback()</td>
+						<td>Seitenwechsel zur vorgeordneten Seite</td>
+					</tr>
+					<tr>
+						<td>getPageinfo()</td>
+						<td>Informationen zur aktuellen Seite, z.B. Page-ID, Parameter, Timing, Visits.</td>
+					</tr>
+					<tr>
+						<td>getStudyinfo()</td>
+						<td>Informationen zur Studie, z.B. Bedingung, User, Run-ID.</td>
+					</tr>
+					<tr>
+						<td>getRuntimeData()</td>
+						<td>Objekt zur Speicherung von Daten zur Laufzeit zwischen Seiten</td>
+					</tr>
+					<tr>
+						<td>logAction(action, data = {})</td>
+						<td>Loggt sofort eine action mit einem Objekt, das beliebige Schlüssel/Werte enthält</td>
+					</tr>
+					<tr>
+						<td>weitere Funktionen</td>
+						<td>im Handbuch dokumentiert</td>
+					</tr>			
+				</table>
+				<figcaption></figcaption>
+			</figure>
+		</div>
+	
+    </div></div>
+    <script>
+        function init(){
+            console.log("init function called by iwmstudy_access")            
+        }
+    </script>
+</body>

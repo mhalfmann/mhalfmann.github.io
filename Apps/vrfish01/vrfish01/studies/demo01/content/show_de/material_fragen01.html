@@ -1,0 +1,68 @@
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<body>
+	<script src="../../../../app/iwm_studyaddon.js"></script>
+	<div id="iwmstudy_masterbox"><div id="iwmstudy_centerbox">
+	
+		<!-- Überschrift -->
+		<div id="iwmstudy_headlinebox">Fragetypen</div>
+	
+		<!-- Inhalt -->
+		<div id="iwmstudy_contentbox">
+
+            <div class="iwmstudy_question_singlelinetext">
+                <span>Studienfach (Beispiel einzeiliges Eingabefeld, Pflichtfeld)</span><br/>
+                <input id="store_studienfach" data-description="Studienfach" type="text" style="width:70%;" />            
+            </div>
+
+            <div class="iwmstudy_question_number">
+                <span>Semester (Beispiel einzeiliges Eingabefeld für Zahlen, Pflichtfeld)</span><br/>
+                <input id="store_semester" type="number" style="width:10%;" />
+            </div>
+
+            <div class="iwmstudy_question_dropdown">
+                <span>In welchem Land wohnen Sie? (Beispiel Dropdown, Pflichtfeld)</span><br/>                    
+                <select id="store_land">
+                    <option value="" disabled="disabled" selected="selected">bitte auswählen</option>
+                    <option value="deutschland">Deutschland</option>
+                    <option value="frankreich">Frankreich</option>
+                    <option value="spanien">Spanien</option>
+                    <option value="italien">Italien</option>
+                </select>
+            </div>
+
+            <div class="iwmstudy_question_multilinetext">
+                <span>Ihre Meinung zur Studie (Beispiel mehrzeiliges Eingabefeld, optional)</span><br/>
+                <textarea id="storeopt_meinung"></textarea>
+            </div>           
+
+            <div class="iwmstudy_question_slider">
+                <span>In welcher Stimmung sind Sie momentan? (Beispiel Slider)</span><br/>
+                <div>
+                    <datalist id="ticks">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                    </datalist>
+                    <input id="store_valence" type="range" min="1" max="9" value="5" step="1" list="ticks"/><br/>                    
+                    <span>sehr positiv</span>
+                    <span>neutral</span>
+                    <span>sehr negativ</span>                    
+                </div>
+            </div>   
+            
+            <div class="iwmstudy_question_multiplechoice">
+                <span>Ich kenne folgende Tänze (Beispiel Mehrfachauswahl, optional)</span><br/>                
+                <label><input type="checkbox" id="storeopt_rumba" value="1"/>Rumba</label><br/>
+                <label><input type="checkbox" id="storeopt_chachacha" value="1"/>Cha Cha Cha</label>                			
+            </div>
+
+		</div>
+	
+	</div></div>
+</body>

@@ -1,0 +1,80 @@
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<body>
+    <script src="../../../../app/iwm_studyaddon.js"></script>    
+	<div id="iwmstudy_masterbox"><div id="iwmstudy_centerbox">	
+	
+		<!-- Überschrift -->
+		<div id="iwmstudy_headlinebox">Konfiguration der Bedingungen (Ablaufsteuerung)</div>		
+		
+		<!-- Inhalt -->
+		<div id="iwmstudy_contentbox">		
+
+            <figure class="iwmstudy_code">
+				<!-- vorformatierter Bereich -->
+<pre>
+{
+    "conditionid": "detailed",
+    "title": "detailed",
+    "description": "Eine demo01-Bedingung.",
+    "language": "DE",
+    "progressmaxpagecount": null,
+    "pages":
+        [
+            { "pageid": "start", "src": "start.html", "nextid": "ueberblick", "first": true, "layout": "iwmgrey_flex"  },
+            { "pageid": "ueberblick", "src": "ueberblick.html", "nextid": "dateien", "layout": "iwmgrey_flex" },            
+            { "pageid": "dateien", "src": "dateien.html", "nextid": "konfiguration_global", "layout": "iwmgrey_flex", "keyboardnextkeycode": 32 },
+            { "pageid": "konfiguration_global", "src": "konfiguration_global.html", "nextid": "konfiguration_studie", "layout": "iwmgrey_flex" },
+            { "pageid": "konfiguration_studie", "src": "konfiguration_studie.html", "nextid": "konfiguration_bedingung", "layout": "iwmgrey_flex", "mintime": 10 },
+            { "pageid": "konfiguration_bedingung", "src": "konfiguration_bedingung.html", "nextid": "material_textbild", "layout": "iwmgrey_flex", "maxtime": 1800 },            
+            { "pageid": "material_textbild", "pagegroup": "phase1", "src": "material_textbild.html", "nextid": "material_minimal", "layout": "iwmgrey_flex" },
+            { "pageid": "material_minimal", "pagegroup": "phase1", "src": "material_minimal.html", "nextid": "ende", "layout": "iwmgrey_flex" },            
+            { "pageid": "ende", "src": "ende.html", "nextallowed": false, "layout": "iwmgrey_flex" }
+        ],
+    "pagegroups":
+        [
+            { "pagegroupid": "phase1", "maxtime": 120 }
+        ]
+}
+</pre>
+                <!-- Ende vorformatierter Bereich -->
+                <figcaption></figcaption>
+            </figure>            
+
+            <figure class="iwmstudy_code">
+				<!-- vorformatierter Bereich -->
+<pre>
+var IWM = IWM || {};
+IWM.conditionconfig =
+    {
+        "conditionid": "examples",
+        "title": "examples",
+        "description": "Eine demo01-Bedingung.",
+        "language": "DE",
+        "progressmaxpagecount": null,
+        "pages":
+            [
+                { "pageid": "start", "src": "start.html", "nextid": "example01", "first": true, "layout": "iwmgrey_flex" },
+                { "pageid": "example01", "src": "material_fragen_radio.html", "nextid": "example02*example03", "layout": "iwmgrey_flex", "parameter": 5829 },
+                { "pageid": "example02", "src": "material_textbild.html", "nextid": "example04|example05|example06", "layout": "iwmgrey_flex" },
+                { "pageid": "example03", "src": "material_fragen_text.html", "nextid": "example04", "layout": "iwmgrey_flex", "maxvisits": 5 },
+                { "pageid": "example04", "src": "material_fragen_slider.html", "nextid": "example05|example06", "layout": "iwmgrey_flex", "onlyuser": 1 },
+                { "pageid": "example05", "src": "material_audio.html", "nextid": "example06", "layout": "iwmgrey_flex", "onlydata": "self.example01.geschlecht==s" },
+                { "pageid": "example06", "src": "material_video.html", "nextid": "example07", "layout": "iwmgrey_flex", "pagegroup": "phase1" },
+                { "pageid": "example07", "src": "interaktiv_zeichnen.html", "nextid": "ende", "layout": "iwmgrey_flex", "pagegroup": "phase2" },
+                { "pageid": "ende", "src": "ende.html", "nextallowed": false, "layout": "iwmgrey_flex" }
+            ],
+        "pagegroups":
+            [
+                { "pagegroupid": "phase1", "mintime": 60 },
+                { "pagegroupid": "phase2", "maxvisits": 20 }
+            ]
+    }
+</pre>
+                <!-- Ende vorformatierter Bereich -->
+                <figcaption>Ausschnitte Quellcode Konfigurationsdatei /studies/studienid/config/conditionid.js</figcaption>
+            </figure>               
+            
+		</div>
+
+	</div></div>
+</body>

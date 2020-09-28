@@ -1,0 +1,45 @@
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<body>
+	<script src="../../../../app/iwm_studyaddon.js"></script>
+	<div id="iwmstudy_masterbox"><div id="iwmstudy_centerbox">	
+	
+		<!-- Überschrift -->
+		<div id="iwmstudy_headlinebox">Konfiguration der Versuchsumgebung</div>		
+		
+		<!-- Inhalt -->
+		<div id="iwmstudy_contentbox">
+			<div class="iwmstudy_text">
+				Die Konfiguration der Versuchsumgebung wird in der Datei globalconfig.js vorgenommen.
+            </div>
+			<ul class="iwmstudy_list">				
+				<li>Festlegung der Standardstudie</li>
+				<li>Festlegung der Standardbedingung</li>
+				<li>Sichtbarkeit Einstellungsseite (Alternative URL-Parameter)</li>
+				<li>Logging lokal / Server</li>				
+			</ul>
+
+			<figure class="iwmstudy_code">
+				<!-- vorformatierter Bereich -->
+<pre>
+var IWM = IWM || {};
+IWM.globalconfig =
+    {
+        "defaultstudyid": "demo01",
+        "defaultloggingmode": "local", // local, server
+        "defaultserverurl": "http://localhost",
+        "defaultconditionid": "showlang",
+        "setupviewvisible": true,
+        "appversion": 2.027,
+        "headerimg": "app/styles/header_iwm01.jpg", // header_iwm01.jpg, header_lightgrey.jpg
+        "logoimg": "app/styles/logo_iwm.png", // logo_iwm.png, logo_empty.png
+        "logotext": "Study"
+    }
+</pre>
+				<!-- Ende vorformatierter Bereich -->
+				<figcaption>Quellcode Konfigurationsdatei /studies/globalconfig.js</figcaption>
+			</figure>
+            
+		</div>
+
+	</div></div>
+</body>

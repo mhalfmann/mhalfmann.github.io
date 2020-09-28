@@ -1,0 +1,67 @@
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<body>
+	<script src="../../../../app/iwm_studyaddon.js"></script>
+	<div id="iwmstudy_masterbox"><div id="iwmstudy_centerbox">	
+	
+		<!-- Überschrift -->
+		<div id="iwmstudy_headlinebox">Konfiguration der Studie</div>		
+		
+		<!-- Inhalt -->
+		<div id="iwmstudy_contentbox">
+			<div class="iwmstudy_text">
+				Die Konfiguration jeder Studie wird in der Datei studyconfig.js vorgenommen.
+            </div>
+			<ul class="iwmstudy_list">				
+				<li>Registrierung der Bedingungen</li>
+				<li>Festlegung des Loginmodus (register/anonymous)</li>				
+				<li>Festlegung der entsprechenden Textinhalte</li>								
+            </ul>
+            
+            <figure class="iwmstudy_code">
+				<!-- vorformatierter Bereich -->
+<pre>
+var IWM = IWM || {};
+IWM.studyconfig =
+    {
+        "title": "demo01",
+        "version": 1.01,
+        "min_appversion": 2.027,        
+        "conditions":
+            [
+                {
+                    "conditionid": "detailed",
+                    "active": true,
+                    "neededuser": 1
+                },
+                {
+                    "conditionid": "overview",
+                    "active": true,
+                    "neededuser": 1
+                }
+            ],
+        "welcomepage": {
+            "loginmode": "register", // register or anonym            
+            "register_emailvisible": false,
+            "register_passwordvisible": false,
+            "login_visible": true,
+            ...
+            "welcometext":
+                {
+                    "DE":
+                        {                           
+                            "registertext": "Danke für das Interesse an unserer Studie. Um an der Studie teilzunehmen...",
+                            ...
+                        }
+                }
+        }
+
+    }
+</pre>
+                <!-- Ende vorformatierter Bereich -->
+                <figcaption>Quellcode Konfigurationsdatei /studies/studienid/config/studyconfig.js</figcaption>
+            </figure>
+            
+		</div>
+
+	</div></div>
+</body>

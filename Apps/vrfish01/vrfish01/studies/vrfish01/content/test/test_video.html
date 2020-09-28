@@ -1,0 +1,98 @@
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<style>
+		div.iwmstudy_question_singlechoice
+		{
+			font-size: calc(0.5vw + 1.0vh) !important;
+			margin-top:1vh !important; 
+			width: 30vw !important;
+			text-align: left;
+			display: inline-block;
+		}
+
+		div.iwmstudy_question_singlechoice > label > input[type=radio]
+		{    
+			width: calc(0.6vw + 1.2vh) !important;
+			height: calc(0.6vw + 1.2vh) !important;
+			margin-top: 0.5vh !important; 
+			margin-right: 0.5vw !important;
+			vertical-align: sub !important;
+		}
+
+		#playbutton{
+			width: 12vh;
+			height: 4vh;
+			font-size: calc(0.4vw + 0.8vh);
+			font-weight: 600;
+			color:#606060 !important;    
+			padding: 0px;
+			border: 2px solid #bbbbbb;
+			-webkit-border-radius: 0px;
+			-moz-border-radius: 0px;
+			border-radius: 0px;
+			background-color: #cccccc;
+			cursor: hand;
+		}
+
+		#playbutton:disabled
+		{	    
+			color:#bbbbbb !important;
+			border:2px solid #cccccc;
+			background-color:#dddddd;			
+		}
+	</style>
+</head>
+<body onload="iwmstudy_access.addInitFunction(init)">
+	<script src="../../../../app/iwm_studyaddon.js"></script>
+	<div id="iwmstudy_masterbox"><div id="iwmstudy_centerbox">		
+		
+		<!-- Überschrift -->	
+		<div id="iwmstudy_headlinebox"></div>	
+
+		<!-- Inhalt -->
+		<div id="iwmstudy_contentbox" style="text-align: center; height: 100%; width: 100%; margin: 0px;">			
+			<figure class="iwmstudy_video">
+				<video id="video" src="" style="height: 50vh;"></video>
+				<figcaption> </figcaption>
+			</figure>
+			<button id="playbutton">abspielen</button><br/>
+			<div class="iwmstudy_question_singlechoice">
+				<span></span>
+				<label><input type="radio" name="store_quest" value="tetraodontiform"/>Tetraodontiform</label><br/>
+				<label><input type="radio" name="store_quest" value="subcarangiform"/>Subcarangiform</label><br/>				
+				<label><input type="radio" name="store_quest" value="labriform"/>Labriform</label><br/>
+				<label><input type="radio" name="store_quest" value="balistiform"/>Balistiform</label><br/>
+				<label><input type="radio" name="store_quest" value="keines"/>keines der zuvor gelernten Bewegungsmuster</label><br/>
+
+			</div>
+		</div>
+
+	</div></div>
+	<script>
+		var iterations = 1		
+
+		function init(){			
+			let file = "../media/fish" + iwmstudy_access.getPageinfo().pageid.split("_")[1] + ".mp4"			
+			video.src = file
+			playbutton.addEventListener("click", playVideo)
+			video.addEventListener('ended', repeatVideo)  
+		}
+
+		function playVideo(){			
+			playbutton.removeEventListener("click", playVideo)
+			playbutton.setAttribute("disabled", "disabled")
+			playbutton.style.cursor = "inherit"			
+			document.getElementById('playbutton').innerText = iterations
+			video.play()
+		}
+
+		function repeatVideo(){
+			if (iterations < 2) { 
+				video.currentTime = 0
+				video.play()
+				iterations ++
+				document.getElementById('playbutton').innerText = iterations
+			}
+		}
+	</script>
+</body>
