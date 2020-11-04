@@ -23,6 +23,11 @@
   input[type=number]::-webkit-inner-spin-button {
     opacity: 1
   }
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
 </style>
 <!-- <script src="./Javascript/jquery-3.4.0.min.js"></script> -->
 <!-- <script src="./Javascript/TweenMax.min.js"></script> -->
@@ -50,15 +55,24 @@
     </div>
 
   <div id="main" style ="position: absolute; left: 0px; top: 50px; z-index: 1; height: 93vh; width:100%; background: lightcyan; overflow: auto; padding-top: 5vh;">
-    <div id="visite" style="position: absolute; left: 0px; top: 0px; z-index: 2; height: 100%; width:100%; background: lightgoldenrodyellow; overflow: auto; padding-top: 5vh;"></div>
-    <div id="patient" style="position: absolute; left: 0px; top: 0px; z-index: 2; height: 100%; width:100%; background: palegreen; overflow: auto; padding-top: 5vh;"></div>
-    <div id="tumor" style="position: absolute; left: 0px; top: 0px; z-index: 2; height: 100%; width:100%; background: darkolivegreen; overflow: auto; padding-top: 5vh;"></div>
+    
+    <div id="visite" style="position: absolute; left: 0px; top: 0px; z-index: 2; height: 100%; width:100%; background: lightgoldenrodyellow; overflow: auto;">
+      <img id="imgVisite" src="../Assets/Images/Visite.PNG" style="width: 100%; height: 100%;">
+    </div>
+    
+    <div id="tumor" style="position: absolute; left: 0px; top: 0px; z-index: 2; height: 100%; width:100%; background: darkolivegreen; overflow: auto;">
+      <img src="../Assets/Images/Tumor.PNG" style="width: 100%; height: 100%;">
+    </div>
+    
+    <div id="patient" style="position: absolute; left: 0px; top: 0px; z-index: 2; height: 100%; width:100%; background: palegreen; overflow: auto;">
+    </div>
+    
     <div id="modeSelectButton" style = "position: absolute; bottom: 10px; right: 10px; z-index: 10; width: 50px; height: 50px; border-radius: 50%; background: darkred;"></div>
+    
     <div id="modeMenu" style = "position: absolute; bottom: 70px; right: 10px;z-index: 10; background: lightgray; visibility: hidden;">
       <div id="modeTumor" style = "z-index: 10; width: 50px; height: 50px; border-radius: 50%; background: darkred; text-align: center; color: white;">T</div>
       <div id="modeVisite" style = "z-index: 10; width: 50px; height: 50px; border-radius: 50%; background: darkred; text-align: center; color: white;">V</div>
       <div id="modePatient" style = "z-index: 10; width: 50px; height: 50px; border-radius: 50%; background: darkred; text-align: center; color: white;">P</div>
-
     </div>
   </div>
 
