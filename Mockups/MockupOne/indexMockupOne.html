@@ -38,35 +38,50 @@
     
 
   <!-- <div id="main" style ="position: absolute; left: 0px; top: 50px; z-index: 1; height: 93vh; width:100%; background: red; overflow: auto; padding-top: 5vh;"> -->
-  <div id="main" style ="position: absolute; top: 0px; left: 0px; z-index: 1; height: 100%; width:100%; background: red; overflow: auto;">
+  <div id="main" style ="position: absolute; top: 0px; left: 0px; z-index: 1; height: 100%; width:100%; background: rgb(247, 228, 204); overflow: auto;">
     
     <div id ="header" style="position: absolute; left: 0px; top:0px; height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px;">
       Patient 0815  
     </div>
     
-    <div id="visite" style="position: absolute; left: 0px; top: 50px; z-index: 2; height: 100%; width:100%; background: lightgray; overflow: hidden;">
+    <div id="visite" onclick = "layerClicked(this)" style="position: absolute; left: 0px; top: 50px; z-index: 2; height: 100%; width:100%; background: lightgray; overflow: hidden;" fullscreen="on">
       <img id="imgVisite" src="../Assets/Images/Visite.png" style="width: 100%; height: 100%;">
+      
+      <div id="fullscreenButton" onclick = "fullscreenClicked(this)" style="position: absolute; top:10px; right: 100px; width: 50px; background: darkcyan; border-radius: 50%; box-shadow: 5px 5px 5px rgb(58, 58, 58);">
+        <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
+      </div>
+
     </div>
     
-    <div id="tumor" style="position: absolute; left: 0px; top: 50px; z-index: 2; height: 100%; width:100%; background: lightgray; overflow: hidden;">
+    <div id="tumor" onclick = "layerClicked(this)" style="position: absolute; left: 0px; top: 50px; z-index: 2; height: 100%; width:100%; background: lightgray; overflow: hidden;" fullscreen="on">
       <img id="imgTumor" src="../Assets/Images/Tumor.PNG" style="width: 100%; height: 100%;">
+      
+      <div id="fullscreenButton" onclick = "fullscreenClicked(this)" style="position: absolute; top:10px; right: 100px; width: 50px; background: darkcyan; border-radius: 50%; box-shadow: 5px 5px 5px rgb(58, 58, 58);">
+        <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
+      </div>
+
     </div>
     
-    <div id="patient" style="position: absolute; left: 0px; top: 50px; z-index: 2; height: 100%; width:100%; background: lightgray; overflow: hidden;">
+    <div id="patient" onclick = "layerClicked(this)" style="position: absolute; left: 0px; top: 50px; z-index: 2; height: 100%; width:100%; background: lightgray; overflow: hidden;" fullscreen="on">
+
+      <div id="fullscreenButton" onclick = "fullscreenClicked(this)" style="position: absolute; top:10px; right: 100px; width: 50px; background: darkcyan; border-radius: 50%; box-shadow: 5px 5px 5px rgb(58, 58, 58);">
+        <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
+      </div>
+
     </div>
     
-    <div id="modeSelectButton" style = "position: absolute; bottom: 10px; right: 10px; z-index: 10; width: 50px; height: 50px; border-radius: 50%; background: darkcyan; box-shadow: 5px 5px 5px darkgrey; margin: 10px">
+    <div id="modeSelectButton" style = "position: absolute; bottom: 10px; right: 10px; z-index: 10; width: 50px; height: 50px; border-radius: 50%; background: darkcyan; box-shadow: 5px 5px 5px  rgb(58, 58, 58); margin: 10px">
       <img src="../../Assets/Icons/layers.png"> 
     </div>
     
     <div id="modeMenu" style = "position: absolute; bottom: 70px; right: 10px;z-index: 10; background: none;">
-      <div id="modeTumor" style = "z-index: 10; width: 50px; height: 50px; border-radius: 50%; background: lightskyblue; text-align: center; color: white; box-shadow: 5px 5px 5px darkgrey; margin: 10px;">
+      <div id="modeTumor" style = "z-index: 10; width: 50px; height: 50px; border-radius: 50%; background: lightskyblue; text-align: center; color: white; box-shadow: 5px 5px 5px  rgb(58, 58, 58); margin: 10px;">
         <img src="../../Assets/Icons/gene.png"> 
       </div>
-      <div id="modeVisite" style = "z-index: 10; width: 50px; height: 50px; border-radius: 50%; background: lightskyblue; text-align: center; color: white; box-shadow: 5px 5px 5px darkgrey; margin: 10px;">
+      <div id="modeVisite" style = "z-index: 10; width: 50px; height: 50px; border-radius: 50%; background: lightskyblue; text-align: center; color: white; box-shadow: 5px 5px 5px  rgb(58, 58, 58); margin: 10px;">
         <img src="../../Assets/Icons/visite.png" style="width: 90%; height: 90%;"> 
       </div>
-      <div id="modePatient" style = "z-index: 10; width: 50px; height: 50px; border-radius: 50%; background: lightskyblue; text-align: center; color: white; box-shadow: 5px 5px 5px darkgrey; margin: 10px;">
+      <div id="modePatient" style = "z-index: 10; width: 50px; height: 50px; border-radius: 50%; background: lightskyblue; text-align: center; color: white; box-shadow: 5px 5px 5px  rgb(58, 58, 58); margin: 10px;">
         <img src="../../Assets/Icons/info.png"> 
       </div>
     </div>
@@ -100,34 +115,65 @@
 
       document.getElementById("modeTumor").addEventListener("click",()=>{
         console.log("selecting Tumor")
-        topLayerIndex++
-        document.getElementById("tumor").style.zIndex =topLayerIndex
-        document.getElementById("modeSelectButton").style.zIndex =topLayerIndex+1
-        document.getElementById("modeMenu").style.zIndex =topLayerIndex+1
+        bringToFront(document.getElementById("tumor"))
         $( "#modeMenu" ).hide()
       })
 
       document.getElementById("modeVisite").addEventListener("click",()=>{
         console.log("selecting Visite")
-        topLayerIndex++
-        document.getElementById("visite").style.zIndex =topLayerIndex
-        document.getElementById("modeSelectButton").style.zIndex =topLayerIndex+1
-        document.getElementById("modeMenu").style.zIndex =topLayerIndex+1
+        bringToFront(document.getElementById("visite"))
         $( "#modeMenu" ).hide()
       })
 
       document.getElementById("modePatient").addEventListener("click",()=>{
         console.log("selecting Patient")
-        topLayerIndex++
-        document.getElementById("patient").style.zIndex =topLayerIndex
-        document.getElementById("modeSelectButton").style.zIndex =topLayerIndex+1
-        document.getElementById("modeMenu").style.zIndex =topLayerIndex+1
+        bringToFront(document.getElementById("patient"))
         $( "#modeMenu" ).hide()
       })
 
-      /*document.getElementById("listButton").addEventListener("click",()=>{
-          $( "#list" ).toggle();
-      })*/
+      function layerClicked(element){
+        console.log(element.getAttribute("fullscreen"))
+        bringToFront(element)
+      }
+
+      function bringToFront(element){
+        topLayerIndex++
+        element.style.zIndex =topLayerIndex
+        document.getElementById("modeSelectButton").style.zIndex =topLayerIndex+1
+        document.getElementById("modeMenu").style.zIndex =topLayerIndex+1
+
+      }
+
+      function fullscreenClicked(element){
+        console.log(element.parentNode)
+        switch(element.childNodes[1].src.toString().indexOf("exit")>0){
+          case false: //layer mimized, bring to fullscreen
+            element.childNodes[1].src = "../../Assets/Icons/fullscreen_exit.png"
+            element.parentNode.setAttribute("fullscreen","on")
+            bringToFront(element.parentNode)
+            TweenMax.to(element.parentNode, 0.1, {scale:1})
+            TweenMax.to(element.parentNode, 0.1, {css: {top: 50, left: 0}})
+            break
+          case true: //layer maximized, exit fullscreen
+            element.childNodes[1].src = "../../Assets/Icons/fullscreen.png"
+            element.parentNode.setAttribute("fullscreen","off")
+            element.parentNode.style.boxShadow = "5px 5px 5px  rgb(58, 58, 58)";
+            TweenMax.to(element.parentNode, 0.1, {scale:0.7, onComplete:function(){
+            }})
+            break
+
+        }
+        // console.log( element.childNodes[1].src.toString().indexOf("exit"))
+          
+      }
+      
+      dragElement(document.getElementById("visite"))
+      dragElement(document.getElementById("tumor"))
+      dragElement(document.getElementById("patient"))
+
+            /*document.getElementById("listButton").addEventListener("click",()=>{
+                $( "#list" ).toggle();
+            })*/
 
       document.body.addEventListener('click',(event)=>{
         console.log("clicked body",event.target.id)
@@ -141,6 +187,50 @@
             // location = "./Apps/Unwetter/index.html"
           }})
         }})
+      }
+
+      function dragElement(elmnt) {
+        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+        if (document.getElementById(elmnt.id + "header")) {
+          // if present, the header is where you move the DIV from:
+          document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+        } else {
+          // otherwise, move the DIV from anywhere inside the DIV:
+          elmnt.onmousedown = dragMouseDown;
+        }
+
+        function dragMouseDown(e) {
+          e = e || window.event;
+          e.preventDefault();
+          // get the mouse cursor position at startup:
+          pos3 = e.clientX;
+          pos4 = e.clientY;
+          document.onmouseup = closeDragElement;
+          // call a function whenever the cursor moves:
+          document.onmousemove = elementDrag;
+          bringToFront(elmnt)
+        }
+
+        function elementDrag(e) {
+          if(elmnt.getAttribute("fullscreen")=="off"){
+            e = e || window.event;
+            e.preventDefault();
+            // calculate the new cursor position:
+            pos1 = pos3 - e.clientX;
+            pos2 = pos4 - e.clientY;
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            // set the element's new position:
+            elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+          }
+        }
+
+        function closeDragElement() {
+          // stop moving when mouse button is released:
+          document.onmouseup = null;
+          document.onmousemove = null;
+        }
       }
       
       $( ".uiButtonFrame" ).on( "pointerenter", function() {
