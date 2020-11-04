@@ -40,23 +40,8 @@
 </style>                                                            
 <body onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
   <div id ="header" style="position: absolute; left: 0px; top: 0%;height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px;">
-    Homepage
+    Mockup One
 
-    <div id = "listButton" class ="uiIcon" style="position: absolute; top: 0px; left: 5px; cursor: pointer; border-radius: 5px;">
-      <img id="listIcon" src="./Assets/Icons/menu.png" style = "width: 35px">
-    </div>
-
-    <div id = "list" style ="position: absolute; top: 50px; background: rgb(24, 24, 24); z-index: 10000; color: white; box-shadow: 5px 5px 5px rgba(2, 2, 2, 0.637);"> 
-        <div id="linkApps" class="uiListItem" href="./indexApps.html" onclick = "gotoPage(this)" style="padding: 10px; cursor: pointer;">Applikationen</div>
-        <div id="link1" class="uiListItem" href="./indexScreenshots.html" onclick = "gotoPage(this)"  style="padding: 10px;">Screenshots</div>
-        <div id="link2" class="uiListItem" href="./indexMockup.html" onclick = "gotoPage(this)"  style="padding: 10px;">Mockups</div>
-    </div>
-
-    <a href="./index.html" style = "position: absolute; top: 0px; right: 5px;">
-      <div id = "buttonHome" class = "uiIcon" style="border-radius: 5px;">      
-        <img id="home" src="./Assets/Icons/home.png" style = "width: 35px">
-      </div>
-    </a>
   </div>
 
   <div id="main" style ="position: absolute; left: 0px; top: 50px;height: 100%; width:100%; overflow: auto; padding-top: 50px;">
@@ -64,20 +49,5 @@
   </div>
 </body>
 <script>
-    $( "#list" ).toggle();
-
-    document.getElementById("listButton").addEventListener("click",()=>{
-        $( "#list" ).toggle();
-    })
-
-    document.body.addEventListener('click',(event)=>{
-      console.log("clicked body",event.target.id)
-      if(event.target.id!="listIcon")$( "#list" ).hide()
-      //if(!event.target.className.includes("ui"))document.getElementById("select").style.visibility = "hidden"
-    })
-
-    function gotoPage(element){
-        location = element.getAttribute("href")
-    }
 </script>
 </html>
