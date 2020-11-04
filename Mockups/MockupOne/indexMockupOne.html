@@ -44,25 +44,39 @@
       Patient 0815  
     </div>
     
-    <div id="visite" onclick = "layerClicked(this)" style="position: absolute; left: 0px; top: 50px; z-index: 2; height: 100%; width:100%; background: lightgray; overflow: hidden;" fullscreen="on">
+    <div id="visite" onclick = "layerClicked(this)" style="position: absolute; left: 0px; top: 50px; z-index: 2; height: 100%; width:100%; background: lightgray; overflow: hidden;" fullscreen="on" position="center">
       <img id="imgVisite" src="../Assets/Images/Visite.png" style="width: 100%; height: 100%;">
       
-      <div id="fullscreenButton" onclick = "fullscreenClicked(this)" style="position: absolute; top:10px; right: 100px; width: 50px; background: darkcyan; border-radius: 50%; box-shadow: 5px 5px 5px rgb(58, 58, 58);">
+      <div id="fullscreenButtonVisite" onclick = "fullscreenClicked(this)" style="position: absolute; top:10px; right: 100px; width: 50px; background: darkcyan; border-radius: 50%; box-shadow: 5px 5px 5px rgb(58, 58, 58);">
         <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
+      </div>
+
+      <div id="leftButtonVisite" onclick = "moveLeftClicked(this)" style="position: absolute; left: 0px; top:50%; width: 50px; height: 50px; background: darkcyan;">
+        <img src="../../Assets/Icons/arrow-back.png">
+      </div>
+      <div id="rightButtonVisite" onclick = "moveRightClicked(this)" style="position: absolute; right: 0px; top:50%; width: 50px; height: 50px; background: darkcyan;">
+        <img src="../../Assets/Icons/arrow-forward.png">
       </div>
 
     </div>
     
-    <div id="tumor" onclick = "layerClicked(this)" style="position: absolute; left: 0px; top: 50px; z-index: 2; height: 100%; width:100%; background: lightgray; overflow: hidden;" fullscreen="on">
+    <div id="tumor" onclick = "layerClicked(this)" style="position: absolute; left: 0px; top: 50px; z-index: 2; height: 100%; width:100%; background: lightgray; overflow: hidden;" fullscreen="on" position="center">
       <img id="imgTumor" src="../Assets/Images/Tumor.PNG" style="width: 100%; height: 100%;">
       
-      <div id="fullscreenButton" onclick = "fullscreenClicked(this)" style="position: absolute; top:10px; right: 100px; width: 50px; background: darkcyan; border-radius: 50%; box-shadow: 5px 5px 5px rgb(58, 58, 58);">
+      <div id="fullscreenButtonTumor" onclick = "fullscreenClicked(this)" style="position: absolute; top:10px; right: 100px; width: 50px; background: darkcyan; border-radius: 50%; box-shadow: 5px 5px 5px rgb(58, 58, 58);">
         <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
+      </div>
+
+      <div id="leftButtonTumor" onclick = "moveLeftClicked(this)" style="position: absolute; left: 0px; top:50%; width: 50px; height: 50px; background: darkcyan;">
+        <img src="../../Assets/Icons/arrow-back.png">
+      </div>
+      <div id="rightButtonTumor" onclick = "moveRightClicked(this)" style="position: absolute; right: 0px; top:50%; width: 50px; height: 50px; background: darkcyan;">
+        <img src="../../Assets/Icons/arrow-forward.png">
       </div>
 
     </div>
     
-    <div id="patient" onclick = "layerClicked(this)" style="position: absolute; left: 0px; top: 50px; z-index: 2; height: 100%; width:100%; background: lightgray; overflow: hidden;" fullscreen="on">
+    <div id="patient" onclick = "layerClicked(this)" style="position: absolute; left: 0px; top: 50px; z-index: 2; height: 100%; width:100%; background: lightgray; overflow: hidden;" fullscreen="on" position="center">
       <!-- <img id="imgTumor" src="../Assets/Images/bericht.png" style="height: 90%;"> -->
       <div style="position: absolute; left: 20%; top: 10%; width: 50%; background: lightslategrey; padding: 5%;">
         <p>Vorname: Rainer</p>
@@ -70,8 +84,16 @@
         <p>Alter: 61</p>
         <p>Geschlecht: männlich</p>
       </div>
-      <div id="fullscreenButton" onclick = "fullscreenClicked(this)" style="position: absolute; top:10px; right: 100px; width: 50px; background: darkcyan; border-radius: 50%; box-shadow: 5px 5px 5px rgb(58, 58, 58);">
+
+      <div id="fullscreenButtonPatient" onclick = "fullscreenClicked(this)" style="position: absolute; top:10px; right: 100px; width: 50px; background: darkcyan; border-radius: 50%; box-shadow: 5px 5px 5px rgb(58, 58, 58);">
         <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
+      </div>
+
+      <div id="leftButtonPatient" onclick = "moveLeftClicked(this)" style="position: absolute; left: 0px; top:50%; width: 50px; height: 50px; background: darkcyan;">
+        <img src="../../Assets/Icons/arrow-back.png">
+      </div>
+      <div id="rightButtonPatient" onclick = "moveRightClicked(this)" style="position: absolute; right: 0px; top:50%; width: 50px; height: 50px; background: darkcyan;">
+        <img src="../../Assets/Icons/arrow-forward.png">
       </div>
 
     </div>
@@ -150,22 +172,59 @@
 
       }
 
+      function moveLeftClicked(element){
+        var h = (window.innerHeight-50)
+        var w = window.innerWidth
+        console.log(element.parentNode.getAttribute("position"))
+        // if(element.parentNode.getAttribute("position").toString().indexOf("left")<0){
+          element.parentNode.setAttribute("position","left")
+          element.parentNode.setAttribute("fullscreen","off")
+          if(element.id.toString().indexOf("Patient")>0)document.getElementById("fullscreenButtonPatient").childNodes[1].src = "../../Assets/Icons/fullscreen.png"
+          if(element.id.toString().indexOf("Tumor")>0)document.getElementById("fullscreenButtonTumor").childNodes[1].src = "../../Assets/Icons/fullscreen.png"
+          if(element.id.toString().indexOf("Visite")>0)document.getElementById("fullscreenButtonVisite").childNodes[1].src = "../../Assets/Icons/fullscreen.png"
+        
+          TweenMax.to(element.parentNode, 0.1, {css: {top: 50, left: 0, height: h, width:w/2}})
+        // }
+      }
+
+      function moveRightClicked(element){
+        var h = (window.innerHeight-50)
+        var w = window.innerWidth
+        console.log(element.parentNode.getAttribute("position"))
+        // if(element.parentNode.getAttribute("position").toString().indexOf("left")<0){
+          element.parentNode.setAttribute("position","right")
+          element.parentNode.setAttribute("fullscreen","off")
+          // console.log(element.id.toString().indexOf("Patient",document.getElementById("fullscreenButtonPatient").src))
+          if(element.id.toString().indexOf("Patient")>0)document.getElementById("fullscreenButtonPatient").childNodes[1].src = "../../Assets/Icons/fullscreen.png"
+          if(element.id.toString().indexOf("Tumor")>0)document.getElementById("fullscreenButtonTumor").childNodes[1].src = "../../Assets/Icons/fullscreen.png"
+          if(element.id.toString().indexOf("Visite")>0)document.getElementById("fullscreenButtonVisite").childNodes[1].src = "../../Assets/Icons/fullscreen.png"
+
+          TweenMax.to(element.parentNode, 0.1, {css: {top: 50, left: w/2, height: h, width:w/2}})
+        // }
+      }
+
       function fullscreenClicked(element){
         console.log(element.parentNode)
+        var h = (window.innerHeight-50)
+        var w = window.innerWidth
         switch(element.childNodes[1].src.toString().indexOf("exit")>0){
           case false: //layer mimized, bring to fullscreen
             element.childNodes[1].src = "../../Assets/Icons/fullscreen_exit.png"
             element.parentNode.setAttribute("fullscreen","on")
+            element.parentNode.setAttribute("position","center")
             bringToFront(element.parentNode)
-            TweenMax.to(element.parentNode, 0.1, {scale:1})
-            TweenMax.to(element.parentNode, 0.1, {css: {top: 50, left: 0}})
+            // TweenMax.to(element.parentNode, 0.1, {scale:1})
+            // TweenMax.to(element.parentNode, 0.1, {css: {top: 50, left: 0}})
+            
+            TweenMax.to(element.parentNode, 0.1, {css: {top: 50, left: 0, height: h, width:w}})
             break
           case true: //layer maximized, exit fullscreen
             element.childNodes[1].src = "../../Assets/Icons/fullscreen.png"
             element.parentNode.setAttribute("fullscreen","off")
             element.parentNode.style.boxShadow = "5px 5px 5px  rgb(58, 58, 58)";
-            TweenMax.to(element.parentNode, 0.1, {scale:0.7, onComplete:function(){
-            }})
+            // TweenMax.to(element.parentNode, 0.1, {scale:0.7, onComplete:function(){
+            // }})            
+            TweenMax.to(element.parentNode, 0.1, {css: {top: 150, left: 100, height: h/2, width:w/2}})
             break
 
         }
