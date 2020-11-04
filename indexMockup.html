@@ -60,12 +60,12 @@
         </div>
       </a>
 
-      <a href="./Apps/Museum/">
+      <!-- <a href="./Apps/Museum/">
         <div id = "buttonMuseum" class="uiButtonFrame" onclick = "clicked(this)" >
           <img class="uiButtonBackground" src="./Assets//Images/Museum2.png" style="height: 70%; padding: 0px;">
           <div class="uiText" style="color: white; text-align: center;">Museum</div>
         </div>
-      </a>
+      </a> -->
 
       <!-- <a href="./Apps/Museum/index.html">
         <div id = "buttonMultiplayer" class="uiButtonFrame" onclick = "clicked(this)" >
@@ -175,14 +175,6 @@
       console.log("Hovering",element)
     }
 
-    document.getElementById('pdf').addEventListener('click',(e)=>{
-      e.stopPropagation()
-      TweenMax.to(e.target, 0.1, {scale:1.1, onComplete:function(){
-        TweenMax.to(e.target, 0.1, {scale:1.0, onComplete:function(){
-          // location = "./Apps/TestMolekuele/assets/marker/Marker.pdf?target=_blank"
-        }})
-      }})
-    })
       </script>
   </script>
 </html>
