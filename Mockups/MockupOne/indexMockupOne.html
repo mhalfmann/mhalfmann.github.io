@@ -33,46 +33,42 @@
 <!-- <script src="./Javascript/TweenMax.min.js"></script> -->
   <!-- <body onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(255, 134, 48); font-family: "Open Sans";'>    
   <div style="position: absolute; left: 0px; top: 0%;height: 7vh; width:100%; background: rgb(255, 105, 0); text-align: center; color: white; font-size: 5vh; margin-bottom: 50px;">Applikationen</div> -->
-  <body onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
-    <div id ="header" style="position: absolute; left: 0px; top: 0%;height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px;">
-      Mockup One
-  
-      <div id = "listButton" class ="uiIcon" style="position: absolute; top: 0px; left: 5px; cursor: pointer; border-radius: 5px;">
-        <img id="listIcon" src="../../Assets/Icons/menu.png" style = "width: 35px">
-      </div>
-  
-      <div id = "list" style ="position: absolute; top: 50px; background: rgb(24, 24, 24); z-index: 10000; color: white; box-shadow: 5px 5px 5px rgba(2, 2, 2, 0.637);"> 
-          <div id="linkApps" class="uiListItem" href="../../indexApps.html" onclick = "gotoPage(this)" style="padding: 10px; cursor: pointer;">Applikationen</div>
-          <div id="link1" class="uiListItem" href="../../indexScreenshots.html" onclick = "gotoPage(this)"  style="padding: 10px;">Screenshots</div>
-          <div id="link2" class="uiListItem" href="../../indexMockup.html" onclick = "gotoPage(this)"  style="padding: 10px;">Mockups</div>
-      </div>
-  
-      <a href="../../index.html" style = "position: absolute; top: 0px; right: 5px;">
-        <div id = "buttonHome" class = "uiIcon" style="border-radius: 5px;">      
-          <img id="home" src="../../Assets/Icons/home.png" style = "width: 35px">
-        </div>
-      </a>
-    </div>
-
-  <div id="main" style ="position: absolute; left: 0px; top: 50px; z-index: 1; height: 93vh; width:100%; background: lightcyan; overflow: auto; padding-top: 5vh;">
+  <body onresize="resizeWin()" onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
+    <!-- <div id ="header" style="position: absolute; left: 0px; top: 0%;height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px;"> -->
     
-    <div id="visite" style="position: absolute; left: 0px; top: 0px; z-index: 2; height: 100%; width:100%; background: lightgoldenrodyellow; overflow: auto;">
+
+  <!-- <div id="main" style ="position: absolute; left: 0px; top: 50px; z-index: 1; height: 93vh; width:100%; background: red; overflow: auto; padding-top: 5vh;"> -->
+  <div id="main" style ="position: absolute; top: 0px; left: 0px; z-index: 1; height: 100%; width:100%; background: red; overflow: auto;">
+    
+    <div id ="header" style="position: absolute; left: 0px; top:0px; height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px;">
+      Patient 0815  
+    </div>
+    
+    <div id="visite" style="position: absolute; left: 0px; top: 50px; z-index: 2; height: 100%; width:100%; background: lightgray; overflow: hidden;">
       <img id="imgVisite" src="../Assets/Images/Visite.png" style="width: 100%; height: 100%;">
     </div>
     
-    <div id="tumor" style="position: absolute; left: 0px; top: 0px; z-index: 2; height: 100%; width:100%; background: darkolivegreen; overflow: auto;">
-      <img src="../Assets/Images/Tumor.PNG" style="width: 100%; height: 100%;">
+    <div id="tumor" style="position: absolute; left: 0px; top: 50px; z-index: 2; height: 100%; width:100%; background: lightgray; overflow: hidden;">
+      <img id="imgTumor" src="../Assets/Images/Tumor.PNG" style="width: 100%; height: 100%;">
     </div>
     
-    <div id="patient" style="position: absolute; left: 0px; top: 0px; z-index: 2; height: 100%; width:100%; background: palegreen; overflow: auto;">
+    <div id="patient" style="position: absolute; left: 0px; top: 50px; z-index: 2; height: 100%; width:100%; background: lightgray; overflow: hidden;">
     </div>
     
-    <div id="modeSelectButton" style = "position: absolute; bottom: 10px; right: 10px; z-index: 10; width: 50px; height: 50px; border-radius: 50%; background: darkred; box-shadow: 5px 5px 5px grey;"></div>
+    <div id="modeSelectButton" style = "position: absolute; bottom: 10px; right: 10px; z-index: 10; width: 50px; height: 50px; border-radius: 50%; background: darkcyan; box-shadow: 5px 5px 5px darkgrey; margin: 10px">
+      <img src="../../Assets/Icons/layers.png"> 
+    </div>
     
-    <div id="modeMenu" style = "position: absolute; bottom: 70px; right: 10px;z-index: 10; visibility: hidden;">
-      <div id="modeTumor" style = "z-index: 10; width: 50px; height: 50px; border-radius: 50%; background: lightcoral; text-align: center; color: white; box-shadow: 5px 5px 5px grey;">T</div>
-      <div id="modeVisite" style = "z-index: 10; width: 50px; height: 50px; border-radius: 50%; background: lightcoral; text-align: center; color: white; box-shadow: 5px 5px 5px grey;">V</div>
-      <div id="modePatient" style = "z-index: 10; width: 50px; height: 50px; border-radius: 50%; background: lightcoral; text-align: center; color: white; box-shadow: 5px 5px 5px grey;">P</div>
+    <div id="modeMenu" style = "position: absolute; bottom: 70px; right: 10px;z-index: 10; background: none;">
+      <div id="modeTumor" style = "z-index: 10; width: 50px; height: 50px; border-radius: 50%; background: lightskyblue; text-align: center; color: white; box-shadow: 5px 5px 5px darkgrey; margin: 10px;">
+        <img src="../../Assets/Icons/gene.png"> 
+      </div>
+      <div id="modeVisite" style = "z-index: 10; width: 50px; height: 50px; border-radius: 50%; background: lightskyblue; text-align: center; color: white; box-shadow: 5px 5px 5px darkgrey; margin: 10px;">
+        <img src="../../Assets/Icons/visite.png" style="width: 90%; height: 90%;"> 
+      </div>
+      <div id="modePatient" style = "z-index: 10; width: 50px; height: 50px; border-radius: 50%; background: lightskyblue; text-align: center; color: white; box-shadow: 5px 5px 5px darkgrey; margin: 10px;">
+        <img src="../../Assets/Icons/info.png"> 
+      </div>
     </div>
   </div>
 
@@ -83,11 +79,23 @@
         return false;
       }
       var topLayerIndex = 2;
-      $( "#list" ).toggle();
+      
+      document.getElementById("tumor").style.height = (window.innerHeight-50)+"px"
+      document.getElementById("patient").style.height = (window.innerHeight-50)+"px"
+      document.getElementById("visite").style.height = (window.innerHeight-50)+"px"
+      $( "#modeMenu" ).hide()
+
+      function resizeWin(){
+        /*console.log(window.innerHeight)
+        document.getElementById("tumor").style.height = (window.innerHeight-50)+"px"
+        document.getElementById("patient").style.height = (window.innerHeight-50)+"px"
+        document.getElementById("visite").style.height = (window.innerHeight-50)+"px"*/
+      }
 
       document.getElementById("modeSelectButton").addEventListener("click",()=>{
         console.log("selecting mode")
-        document.getElementById("modeMenu").style.visibility ="visible"
+        // document.getElementById("modeMenu").style.visibility ="visible"
+        $( "#modeMenu" ).toggle()
       })
 
       document.getElementById("modeTumor").addEventListener("click",()=>{
@@ -96,7 +104,7 @@
         document.getElementById("tumor").style.zIndex =topLayerIndex
         document.getElementById("modeSelectButton").style.zIndex =topLayerIndex+1
         document.getElementById("modeMenu").style.zIndex =topLayerIndex+1
-        document.getElementById("modeMenu").style.visibility ="hidden"
+        $( "#modeMenu" ).hide()
       })
 
       document.getElementById("modeVisite").addEventListener("click",()=>{
@@ -105,7 +113,7 @@
         document.getElementById("visite").style.zIndex =topLayerIndex
         document.getElementById("modeSelectButton").style.zIndex =topLayerIndex+1
         document.getElementById("modeMenu").style.zIndex =topLayerIndex+1
-        document.getElementById("modeMenu").style.visibility ="hidden"
+        $( "#modeMenu" ).hide()
       })
 
       document.getElementById("modePatient").addEventListener("click",()=>{
@@ -114,16 +122,12 @@
         document.getElementById("patient").style.zIndex =topLayerIndex
         document.getElementById("modeSelectButton").style.zIndex =topLayerIndex+1
         document.getElementById("modeMenu").style.zIndex =topLayerIndex+1
-        document.getElementById("modeMenu").style.visibility ="hidden"
+        $( "#modeMenu" ).hide()
       })
 
-      document.getElementById("listButton").addEventListener("click",()=>{
+      /*document.getElementById("listButton").addEventListener("click",()=>{
           $( "#list" ).toggle();
-      })
-      /* var x = document.getElementsByClassName("uiButtonFrame")
-      for (var i = 0; i < x.length; i++) {
-        x[i].style.textShadow = "5px 5px 5px rgba(2, 2, 2, 0.308)"
-      } */
+      })*/
 
       document.body.addEventListener('click',(event)=>{
         console.log("clicked body",event.target.id)
