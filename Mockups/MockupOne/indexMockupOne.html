@@ -117,7 +117,7 @@
       Patient 0815  
     </div>
     
-    <div id="visite" class="layer" onclick = "layerClicked(this)" style="z-index: 3;" fullscreen="on" allowDrag="off" position="center">
+    <div id="visite" class="layer" onclick = "layerClicked(this)" style="" fullscreen="on" allowDrag="off" position="center">
       <img id="imgVisite" src="../Assets/Images/Visite2.png" style="width: 100%; height: 100%;">
       
       <div id="fullscreenButtonVisite" class="button" onclick = "fullscreenClicked(this)" style="top:10px; right: 100px;">
@@ -288,21 +288,17 @@
         var doc_t = document.getElementById("document_text")
         var doc_i = document.getElementById("document_img")
 
-        var x = element.getBoundingClientRect().x
-        var y = element.getBoundingClientRect().y
-
-        console.log("X:",element.getBoundingClientRect().x)
         if(element.id=="document_text_button"){
           $( "#document_text" ).toggle()
           bringToFront(doc_t)
-          doc_t.style.left = "10%;"//(x-doc_t.getBoundingClientRect().width/2)+"px"
-          doc_t.style.top = "10%;"//(y-doc_t.getBoundingClientRect().height-100)+"px"
+          doc_t.style.left = "20%"
+          doc_t.style.top = "25%"
         }
         if(element.id=="document_img_button"){
           $( "#document_img" ).toggle()
           bringToFront(doc_i)
-          doc_i.style.left = "60%";// (x-doc_i.getBoundingClientRect().width/2)+"px"
-          doc_i.style.top = "10%";//(y-doc_i.getBoundingClientRect().height-100)+"px"
+          doc_i.style.left = "50%"
+          doc_i.style.top = "20%"
         }
       }
       
