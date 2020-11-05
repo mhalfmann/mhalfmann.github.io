@@ -156,9 +156,7 @@
       </div>
       <div id="zdhhc13_button" class="gene_button" onclick = "openGeneSources(this)" active="false" style="right: 0%; bottom: 19%;">
         <img src="../Assets/Images/zdhhc13_button.png" alt="" style="width: 100%; height: 100%;">
-      </div>
-      
-      
+      </div>      
 
     </div>
     
@@ -204,16 +202,21 @@
    </body>
     <script>
       var currentLink = "";
+
       document.oncontextmenu = function() {
         return false;
       }
+
       var topLayerIndex = 2;
+
       $( "#arid1b_sources" ).hide()
       $( "#srms_sources" ).hide()
       $( "#zdhhc13_sources" ).hide()
+
       document.getElementById("tumor").style.height = (window.innerHeight-50)+"px"
       document.getElementById("patient").style.height = (window.innerHeight-50)+"px"
       document.getElementById("visite").style.height = (window.innerHeight-50)+"px"
+      
       $( "#modeMenu" ).hide()
 
       function resizeWin(){
@@ -268,6 +271,7 @@
             TweenMax.to(element, 0.1, {x:10})
             break
         }
+
         if(element.id=="arid1b_button"){
           $( "#arid1b_sources" ).toggle()
           bringToFront(document.getElementById("arid1b_sources"))
@@ -392,7 +396,8 @@
           document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
         } else {
           // otherwise, move the DIV from anywhere inside the DIV:
-          elmnt.onmousedown = dragMouseDown;
+          // elmnt.onmousedown = dragMouseDown;
+          elmnt.onpointerdown = dragMouseDown;
         }
 
         function dragMouseDown(e) {
@@ -402,9 +407,11 @@
           // get the mouse cursor position at startup:
           pos3 = e.clientX;
           pos4 = e.clientY;
-          document.onmouseup = closeDragElement;
+          // document.onmouseup = closeDragElement;
+          document.onpointerup = closeDragElement;
           // call a function whenever the cursor moves:
-          document.onmousemove = elementDrag;
+          // document.onmousemove = elementDrag;
+          document.onpointermove = elementDrag;
           bringToFront(elmnt)
         }
 
@@ -425,8 +432,10 @@
 
         function closeDragElement() {
           // stop moving when mouse button is released:
-          document.onmouseup = null;
-          document.onmousemove = null;
+          // document.onmouseup = null;
+          document.onpointerup = null;
+          // document.onmousemove = null;
+          document.onpointermove = null;
         }
       }
       
