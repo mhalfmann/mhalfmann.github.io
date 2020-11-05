@@ -131,11 +131,11 @@
         <img src="../../Assets/Icons/arrow-forward.png">
       </div>
 
-      <div id="document_text" class="source" allowDrag="on">
-        <img src="../Assets/Images/document.png" alt="">
+      <div id="document_text" class="source" allowDrag="on" scale="1">
+        <img src="../Assets/Images/document.png" alt="" style="pointer-events: none;">
       </div>
-      <div id="document_img" class="source" allowDrag="on">
-        <img src="../Assets/Images/document2.png" alt="">
+      <div id="document_img" class="source" allowDrag="on" scale="1">
+        <img src="../Assets/Images/document2.png" alt="" style="pointer-events: none;">
       </div>
 
       <div id="document_text_button" class="document_button" onclick = "openDocument(this)"  active="false" style="right: 63.5%; bottom: 13%;">
@@ -159,14 +159,14 @@
         <img src="../../Assets/Icons/arrow-forward.png">
       </div>
       
-      <div id="arid1b_sources" class="source" style="" allowDrag="on">
-        <img src="../Assets/Images/arid1b.png" alt="" style="height: 100%;">
+      <div id="arid1b_sources" class="source" style="" allowDrag="on" scale="1">
+        <img src="../Assets/Images/arid1b.png" alt="" style="height: 100%; pointer-events: none;">
       </div>
-      <div id="srms_sources" class="source" style="" allowDrag="on">
-        <img src="../Assets/Images/srms.png" alt="" style="height: 100%;">
+      <div id="srms_sources" class="source" style="" allowDrag="on" scale="1">
+        <img src="../Assets/Images/srms.png" alt="" style="height: 100%; pointer-events: none;">
       </div>
-      <div id="zdhhc13_sources" class="source" style="" allowDrag="on">
-        <img src="../Assets/Images/zdhhc13.png" alt="" style="height: 100%;">
+      <div id="zdhhc13_sources" class="source" style="" allowDrag="on" scale="1">
+        <img src="../Assets/Images/zdhhc13.png" alt="" style="height: 100%; pointer-events: none;">
       </div>
       
       <div id="genefake" style="position: absolute; right: 0%; bottom: 18%; height: 30%; width: 10%; background: rgb(79, 79, 79);"></div>
@@ -184,7 +184,7 @@
     </div>
     
     <div id="patient" class="layer" onclick = "layerClicked(this)" style="" fullscreen="on" allowDrag="off" position="center">
-      <!-- <img id="imgTumor" src="../Assets/Images/bericht.png" style="height: 90%;"> -->
+
       <div style="position: absolute; left: 20%; top: 10%; width: 50%; background: lightslategrey; padding: 5%;">
         <p>Vorname: Rainer</p>
         <p>Nachname: Zufall</p>
@@ -220,6 +220,7 @@
         <img src="../../Assets/Icons/gene.png"> 
       </div>
     </div>
+
   </div>
 
    </body>
@@ -258,6 +259,16 @@
         // if(!event.target.className.includes("ui"))document.getElementById("select").style.visibility = "hidden"
       })
 
+      document.body.addEventListener('wheel',(event)=>{
+        console.log("Mouse Wheel",event.target.style.transform)
+        if(event.target.className=="source"){
+          var scale = parseFloat(event.target.getAttribute("scale"))
+          scale+=event.deltaY*-0.001
+          TweenMax.to(event.target, 0.1, {css: {scale: scale}})    
+          event.target.setAttribute("scale",scale.toString())
+        }
+      })
+
       document.getElementById("modeSelectButton").addEventListener("click",(e)=>{
         e.stopPropagation()
         console.log("selecting mode")
@@ -287,6 +298,9 @@
 
         var doc_t = document.getElementById("document_text")
         var doc_i = document.getElementById("document_img")
+        
+        TweenMax.to(element, 0.1, {css: {scale: 1}})    
+        element.setAttribute("scale","1")
 
         if(element.id=="document_text_button"){
           $( "#document_text" ).toggle()
@@ -318,15 +332,27 @@
 
         if(element.id=="arid1b_button"){
           $( "#arid1b_sources" ).toggle()
-          bringToFront(document.getElementById("arid1b_sources"))
+          var d = document.getElementById("arid1b_sources")
+          bringToFront(d)
+        
+          TweenMax.to(d, 0.1, {css: {scale: 1}})    
+          d.setAttribute("scale","1")
         }
         if(element.id=="srms_button"){
           $( "#srms_sources" ).toggle()
-          bringToFront(document.getElementById("srms_sources"))
+          var d = document.getElementById("srms_sources")
+          bringToFront(d)
+        
+          TweenMax.to(d, 0.1, {css: {scale: 1}})    
+          d.setAttribute("scale","1")
         }
         if(element.id=="zdhhc13_button"){
           $( "#zdhhc13_sources" ).toggle()
-          bringToFront(document.getElementById("zdhhc13_sources"))
+          var d = document.getElementById("zdhhc13_sources")
+          bringToFront(d)
+        
+          TweenMax.to(d, 0.1, {css: {scale: 1}})    
+          d.setAttribute("scale","1")
         }
       }
       
