@@ -44,12 +44,33 @@
     overflow: hidden;
   }
 
+  .source{
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    z-index: 2;
+    height: 50%;
+    /* width:80%; */
+    border: solid 1px white;
+    background: darkolivegreen;
+    overflow: hidden;
+  }
+
+  .gene_button{
+    position: absolute;
+    height: 5%;
+    width:10%;
+    z-index: 2;
+    background: darkolivegreen;
+    overflow: hidden;
+  }
+
   .button{
     position: absolute;
     width: 50px;
     z-index: 3;
     background: darkcyan;
-    opacity: 0.5;
+    opacity: 0.7;
     border-radius: 50%;
     box-shadow: 5px 5px 5px rgb(58, 58, 58);
   }
@@ -59,7 +80,7 @@
     width: 50px;
     z-index: 3;
     background: lightskyblue;
-    opacity: 0.5;
+    opacity: 0.7;
     border-radius: 50%;
     box-shadow: 5px 5px 5px rgb(58, 58, 58);
   }
@@ -84,7 +105,7 @@
       Patient 0815  
     </div>
     
-    <div id="visite" class="layer" onclick = "layerClicked(this)" style="" fullscreen="on" position="center">
+    <div id="visite" class="layer" onclick = "layerClicked(this)" style="" fullscreen="on" allowDrag="off" position="center">
       <img id="imgVisite" src="../Assets/Images/Visite.png" style="width: 100%; height: 100%;">
       
       <div id="fullscreenButtonVisite" class="button" onclick = "fullscreenClicked(this)" style="top:10px; right: 100px;">
@@ -100,7 +121,7 @@
 
     </div>
     
-    <div id="tumor" class="layer" onclick = "layerClicked(this)" style="" fullscreen="on" position="center">
+    <div id="tumor" class="layer" onclick = "layerClicked(this)" style="z-index: 5;" fullscreen="on" allowDrag="off" position="center">
       <img id="imgTumor" src="../Assets/Images/Tumor.PNG" style="width: 100%; height: 100%;">
       
       <div id="fullscreenButtonTumor" class="button" onclick = "fullscreenClicked(this)" style="top:10px; right: 100px;">
@@ -114,9 +135,21 @@
         <img src="../../Assets/Icons/arrow-forward.png">
       </div>
 
+      <div id="arid1b_sources" class="source" style="" allowDrag="on">
+        <img src="../Assets/Images/arid1b.png" alt="" style="height: 100%;">
+      </div>
+      <div id="srms_sources" class="source" style="" allowDrag="on">
+        <img src="../Assets/Images/srms.png" alt="" style="height: 100%;">
+      </div>
+      <div id="zdhhc13_sources" class="source" style="" allowDrag="on">
+        <img src="../Assets/Images/zdhhc13.png" alt="" style="height: 100%;">
+      </div>
+
+      <div id="arid1b_button" class="gene_button" onclick = "openGeneSources(this)" style="right: 0%; bottom: 30%;"></div>
+
     </div>
     
-    <div id="patient" class="layer" onclick = "layerClicked(this)" style="" fullscreen="on" position="center">
+    <div id="patient" class="layer" onclick = "layerClicked(this)" style="" fullscreen="on" allowDrag="off" position="center">
       <!-- <img id="imgTumor" src="../Assets/Images/bericht.png" style="height: 90%;"> -->
       <div style="position: absolute; left: 20%; top: 10%; width: 50%; background: lightslategrey; padding: 5%;">
         <p>Vorname: Rainer</p>
@@ -162,7 +195,9 @@
         return false;
       }
       var topLayerIndex = 2;
-      
+      $( "#arid1b_sources" ).hide()
+      $( "#srms_sources" ).hide()
+      $( "#zdhhc13_sources" ).hide()
       document.getElementById("tumor").style.height = (window.innerHeight-50)+"px"
       document.getElementById("patient").style.height = (window.innerHeight-50)+"px"
       document.getElementById("visite").style.height = (window.innerHeight-50)+"px"
@@ -207,6 +242,11 @@
         $( "#modeMenu" ).hide()
       })*/
 
+      function openGeneSources(element){
+        console.log("open gene",element.id)
+        if(element.id=="arid1b_button")$( "#arid1b_sources" ).toggle()
+      }
+      
       function layerSwitch(element){
         console.log("selecting",element.id)
         if(element.id=="modePatient")bringToFront(document.getElementById("patient"))
@@ -234,6 +274,7 @@
         // if(element.parentNode.getAttribute("position").toString().indexOf("left")<0){
           element.parentNode.setAttribute("position","left")
           element.parentNode.setAttribute("fullscreen","off")
+          element.parentNode.setAttribute("allowDrag","on")
           if(element.id.toString().indexOf("Patient")>0)document.getElementById("fullscreenButtonPatient").childNodes[1].src = "../../Assets/Icons/fullscreen.png"
           if(element.id.toString().indexOf("Tumor")>0)document.getElementById("fullscreenButtonTumor").childNodes[1].src = "../../Assets/Icons/fullscreen.png"
           if(element.id.toString().indexOf("Visite")>0)document.getElementById("fullscreenButtonVisite").childNodes[1].src = "../../Assets/Icons/fullscreen.png"
@@ -249,6 +290,7 @@
         // if(element.parentNode.getAttribute("position").toString().indexOf("left")<0){
           element.parentNode.setAttribute("position","right")
           element.parentNode.setAttribute("fullscreen","off")
+          element.parentNode.setAttribute("allowDrag","on")
           // console.log(element.id.toString().indexOf("Patient",document.getElementById("fullscreenButtonPatient").src))
           if(element.id.toString().indexOf("Patient")>0)document.getElementById("fullscreenButtonPatient").childNodes[1].src = "../../Assets/Icons/fullscreen.png"
           if(element.id.toString().indexOf("Tumor")>0)document.getElementById("fullscreenButtonTumor").childNodes[1].src = "../../Assets/Icons/fullscreen.png"
@@ -266,6 +308,7 @@
           case false: //layer mimized, bring to fullscreen
             element.childNodes[1].src = "../../Assets/Icons/fullscreen_exit.png"
             element.parentNode.setAttribute("fullscreen","on")
+            element.parentNode.setAttribute("allowDrag","off")
             element.parentNode.setAttribute("position","center")
             bringToFront(element.parentNode)
             // TweenMax.to(element.parentNode, 0.1, {scale:1})
@@ -276,6 +319,7 @@
           case true: //layer maximized, exit fullscreen
             element.childNodes[1].src = "../../Assets/Icons/fullscreen.png"
             element.parentNode.setAttribute("fullscreen","off")
+            element.parentNode.setAttribute("allowDrag","on")
             element.parentNode.style.boxShadow = "5px 5px 5px  rgb(58, 58, 58)";
             // TweenMax.to(element.parentNode, 0.1, {scale:0.7, onComplete:function(){
             // }})            
@@ -290,6 +334,9 @@
       dragElement(document.getElementById("visite"))
       dragElement(document.getElementById("tumor"))
       dragElement(document.getElementById("patient"))
+      dragElement(document.getElementById("arid1b_sources"))
+      dragElement(document.getElementById("srms_sources"))
+      dragElement(document.getElementById("zdhhc13_sources"))
 
             /*document.getElementById("listButton").addEventListener("click",()=>{
                 $( "#list" ).toggle();
@@ -314,6 +361,7 @@
         }
 
         function dragMouseDown(e) {
+          e.stopPropagation()
           e = e || window.event;
           e.preventDefault();
           // get the mouse cursor position at startup:
@@ -326,7 +374,7 @@
         }
 
         function elementDrag(e) {
-          if(elmnt.getAttribute("fullscreen")=="off"){
+          if(elmnt.getAttribute("allowDrag")=="on"){
             e = e || window.event;
             e.preventDefault();
             // calculate the new cursor position:
