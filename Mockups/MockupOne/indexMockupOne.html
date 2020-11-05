@@ -54,6 +54,7 @@
     border: solid 1px white;
     background: darkolivegreen;
     overflow: hidden;
+    box-shadow: 5px 5px 5px rgb(58, 58, 58);
   }
 
   .gene_button{
@@ -62,7 +63,17 @@
     width:10%;
     z-index: 2;
     opacity: 1;
-    background: darkolivegreen;
+    background: none;
+    overflow: hidden;
+  }
+
+  .document_button{
+    position: absolute;
+    height: 7%;
+    width:5%;
+    z-index: 2;
+    opacity: 1;
+    background: none;
     overflow: hidden;
   }
 
@@ -106,8 +117,8 @@
       Patient 0815  
     </div>
     
-    <div id="visite" class="layer" onclick = "layerClicked(this)" style="" fullscreen="on" allowDrag="off" position="center">
-      <img id="imgVisite" src="../Assets/Images/Visite.png" style="width: 100%; height: 100%;">
+    <div id="visite" class="layer" onclick = "layerClicked(this)" style="z-index: 3;" fullscreen="on" allowDrag="off" position="center">
+      <img id="imgVisite" src="../Assets/Images/Visite2.png" style="width: 100%; height: 100%;">
       
       <div id="fullscreenButtonVisite" class="button" onclick = "fullscreenClicked(this)" style="top:10px; right: 100px;">
         <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
@@ -118,6 +129,18 @@
       </div>
       <div id="rightButtonVisite" class="button" onclick = "moveRightClicked(this)" style="right: 5px; top:50%;">
         <img src="../../Assets/Icons/arrow-forward.png">
+      </div>
+
+      <div id="document_text" class="source" allowDrag="on">
+        <img src="../Assets/Images/document.png" alt="">
+      </div>
+      <div id="document_img" class="source" allowDrag="on">
+        <img src="../Assets/Images/document2.png" alt="">
+      </div>
+
+      <div id="document_text_button" class="document_button" onclick = "openDocument(this)"  active="false" style="right: 63.5%; bottom: 13%;">
+      </div>
+      <div id="document_img_button" class="document_button" onclick = "openDocument(this)"  active="false" style="right: 22.5%; bottom: 18%;">
       </div>
 
     </div>
@@ -212,6 +235,8 @@
       $( "#arid1b_sources" ).hide()
       $( "#srms_sources" ).hide()
       $( "#zdhhc13_sources" ).hide()
+      $( "#document_img" ).hide()
+      $( "#document_text" ).hide()
 
       document.getElementById("tumor").style.height = (window.innerHeight-50)+"px"
       document.getElementById("patient").style.height = (window.innerHeight-50)+"px"
@@ -258,6 +283,29 @@
         $( "#modeMenu" ).hide()
       })*/
 
+      function openDocument(element){
+
+        var doc_t = document.getElementById("document_text")
+        var doc_i = document.getElementById("document_img")
+
+        var x = element.getBoundingClientRect().x
+        var y = element.getBoundingClientRect().y
+
+        console.log("X:",element.getBoundingClientRect().x)
+        if(element.id=="document_text_button"){
+          $( "#document_text" ).toggle()
+          bringToFront(doc_t)
+          doc_t.style.left = "10%;"//(x-doc_t.getBoundingClientRect().width/2)+"px"
+          doc_t.style.top = "10%;"//(y-doc_t.getBoundingClientRect().height-100)+"px"
+        }
+        if(element.id=="document_img_button"){
+          $( "#document_img" ).toggle()
+          bringToFront(doc_i)
+          doc_i.style.left = "60%";// (x-doc_i.getBoundingClientRect().width/2)+"px"
+          doc_i.style.top = "10%";//(y-doc_i.getBoundingClientRect().height-100)+"px"
+        }
+      }
+      
       function openGeneSources(element){
         console.log("open gene",element.id,element.getAttribute("active"))
         
@@ -376,6 +424,8 @@
       dragElement(document.getElementById("arid1b_sources"))
       dragElement(document.getElementById("srms_sources"))
       dragElement(document.getElementById("zdhhc13_sources"))
+      dragElement(document.getElementById("document_text"))
+      dragElement(document.getElementById("document_img"))
 
             /*document.getElementById("listButton").addEventListener("click",()=>{
                 $( "#list" ).toggle();
