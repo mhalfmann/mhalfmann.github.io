@@ -58,10 +58,10 @@
 
   .gene_button{
     position: absolute;
-    height: 5%;
+    height: 4.5%;
     width:10%;
     z-index: 2;
-    opacity: 0;
+    opacity: 1;
     background: darkolivegreen;
     overflow: hidden;
   }
@@ -122,7 +122,7 @@
 
     </div>
     
-    <div id="tumor" class="layer" onclick = "layerClicked(this)" style="z-index: 5;" fullscreen="on" allowDrag="off" position="center">
+    <div id="tumor" class="layer" onclick = "layerClicked(this)" style="" fullscreen="on" allowDrag="off" position="center">
       <img id="imgTumor" src="../Assets/Images/Tumor.PNG" style="width: 100%; height: 100%;">
       
       <div id="fullscreenButtonTumor" class="button" onclick = "fullscreenClicked(this)" style="top:10px; right: 100px;">
@@ -135,7 +135,7 @@
       <div id="rightButtonTumor" class="button" onclick = "moveRightClicked(this)" style="right: 5px; top:50%;">
         <img src="../../Assets/Icons/arrow-forward.png">
       </div>
-
+      
       <div id="arid1b_sources" class="source" style="" allowDrag="on">
         <img src="../Assets/Images/arid1b.png" alt="" style="height: 100%;">
       </div>
@@ -145,8 +145,20 @@
       <div id="zdhhc13_sources" class="source" style="" allowDrag="on">
         <img src="../Assets/Images/zdhhc13.png" alt="" style="height: 100%;">
       </div>
-
-      <div id="arid1b_button" class="gene_button" onclick = "openGeneSources(this)" style="right: 0%; bottom: 30%;"></div>
+      
+      <div id="genefake" style="position: absolute; right: 0%; bottom: 18%; height: 30%; width: 10%; background: rgb(79, 79, 79);"></div>
+      
+      <div id="arid1b_button" class="gene_button" onclick = "openGeneSources(this)"  active="false"style="right: 0%; bottom: 30.5%;">
+        <img src="../Assets/Images/arid1b_button.png" alt="" style="width: 100%">
+      </div>
+      <div id="srms_button" class="gene_button" onclick = "openGeneSources(this)" active="false" style="right: 0%; bottom: 25%;">
+        <img src="../Assets/Images/srms_button.png" alt="" style="width: 100%">
+      </div>
+      <div id="zdhhc13_button" class="gene_button" onclick = "openGeneSources(this)" active="false" style="right: 0%; bottom: 19%;">
+        <img src="../Assets/Images/zdhhc13_button.png" alt="" style="width: 100%">
+      </div>
+      
+      
 
     </div>
     
@@ -244,8 +256,30 @@
       })*/
 
       function openGeneSources(element){
-        console.log("open gene",element.id)
-        if(element.id=="arid1b_button")$( "#arid1b_sources" ).toggle()
+        console.log("open gene",element.id,element.getAttribute("active"))
+        
+        switch(element.getAttribute("active")){
+          case "false":
+            element.setAttribute("active","true")
+            TweenMax.to(element, 0.1, {x:-10})
+            break
+          case "true":
+            element.setAttribute("active","false")
+            TweenMax.to(element, 0.1, {x:10})
+            break
+        }
+        if(element.id=="arid1b_button"){
+          $( "#arid1b_sources" ).toggle()
+          bringToFront(document.getElementById("arid1b_sources"))
+        }
+        if(element.id=="srms_button"){
+          $( "#srms_sources" ).toggle()
+          bringToFront(document.getElementById("srms_sources"))
+        }
+        if(element.id=="zdhhc13_button"){
+          $( "#zdhhc13_sources" ).toggle()
+          bringToFront(document.getElementById("zdhhc13_sources"))
+        }
       }
       
       function layerSwitch(element){
