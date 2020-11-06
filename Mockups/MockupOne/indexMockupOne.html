@@ -50,7 +50,7 @@
     top: 100px;
     z-index: 2;
     height: 50%;
-    /* width:80%; */
+    /* width:50%; */
     border: solid 1px white;
     background: darkolivegreen;
     overflow: hidden;
@@ -131,10 +131,10 @@
         <img src="../../Assets/Icons/arrow-forward.png">
       </div>
 
-      <div id="document_text" class="source" allowDrag="on" scale="1">
-        <img src="../Assets/Images/document.png" alt="" style="pointer-events: none;">
+      <div id="document_text" class="source" allowDrag="on" scale="1" style="width: 21%;">
+        <img src="../Assets/Images/document.png" alt="" style="pointer-events: none;"style="height: 100%;">
       </div>
-      <div id="document_img" class="source" allowDrag="on" scale="1">
+      <div id="document_img" class="source" allowDrag="on" scale="1" style="width: 30%;">
         <img src="../Assets/Images/document2.png" alt="" style="pointer-events: none;">
       </div>
 
@@ -159,13 +159,13 @@
         <img src="../../Assets/Icons/arrow-forward.png">
       </div>
       
-      <div id="arid1b_sources" class="source" style="" allowDrag="on" scale="1">
+      <div id="arid1b_sources" class="source" allowDrag="on" scale="1" style="width: 50%;">
         <img src="../Assets/Images/arid1b.png" alt="" style="height: 100%; pointer-events: none;">
       </div>
-      <div id="srms_sources" class="source" style="" allowDrag="on" scale="1">
+      <div id="srms_sources" class="source" llowDrag="on" scale="1" style="width: 50%;">
         <img src="../Assets/Images/srms.png" alt="" style="height: 100%; pointer-events: none;">
       </div>
-      <div id="zdhhc13_sources" class="source" style="" allowDrag="on" scale="1">
+      <div id="zdhhc13_sources" class="source" allowDrag="on" scale="1" style="width: 50%;">
         <img src="../Assets/Images/zdhhc13.png" alt="" style="height: 100%; pointer-events: none;">
       </div>
       
@@ -497,8 +497,31 @@
             pos3 = e.clientX;
             pos4 = e.clientY;
             // set the element's new position:
+            var r = elmnt.getBoundingClientRect().right
+            var l = elmnt.getBoundingClientRect().left
+            var w = elmnt.getBoundingClientRect().width
+            var h = elmnt.getBoundingClientRect().height
+
+            var ww = window.innerWidth
+            var wh = window.innerHeight
+
+            var lPos = 0
+            if((ww-r>10))lPos = elmnt.offsetLeft - pos1
+            if((ww-r<=10))lPos = ww-11-w
+
+            console.log(r)
+
+         /*    TweenMax.to(elmnt, 0, {css: {top: (elmnt.offsetTop - pos2), left:lPos},onComplete:function(){                
+              // TweenMax.to(elmnt, 0, {css: {top: (elmnt.offsetTop + pos2), right:(w-15)}})
+              // TweenMax.to(elmnt, 0, {scale:1.9})
+            }}) */
+            // TweenMax.to(elmnt, 0.1, {x: e.clientX, transformOrigin:"0% 0%"}, 0)
+            
             elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
             elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+
+            // elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+            // elmnt.style.left = (lPos) + "px";
           }
         }
 
