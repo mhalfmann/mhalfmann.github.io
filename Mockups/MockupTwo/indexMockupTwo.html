@@ -86,6 +86,16 @@
     border-radius: 50%;
     box-shadow: 5px 5px 5px rgb(58, 58, 58);
   }
+  .buttonFlat{
+    position: absolute;
+    width: 50px;
+    z-index: 300000;
+    background: darkgray;
+    opacity: 0.2;
+    /* border-radius: 50%; */
+    border: 1px solid white;
+    /* box-shadow: 5px 5px 5px rgb(58, 58, 58); */
+  }
 
   .buttonSubmenu{
     position: absolute;
@@ -97,7 +107,7 @@
     box-shadow: 5px 5px 5px rgb(58, 58, 58);
   }
 
-  .button:hover,.buttonSubmenu:hover{
+  .button:hover,.buttonFlat:hover,.buttonSubmenu:hover{
     opacity: 1;
   }
 
@@ -120,20 +130,20 @@
     <div id="visite" class="layer" onclick = "layerClicked(this)" style="" fullscreen="on" allowDrag="off" position="center">
       <img id="imgVisite" src="../Assets/Images/Visite2.png" style="width: 100%; height: 100%;">
       
-      <div id="fullscreenButtonVisite" class="button" onclick = "fullscreenClicked(this)" style="top:10px; right: 100px;">
+      <div id="fullscreenButtonVisite" class="buttonFlat" onclick = "fullscreenClicked(this)" style="top:10px; right: 100px;">
         <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
       </div>
 
-      <div id="leftButtonVisite" class="button" onclick = "moveLayer(this)" style="left: 5px; top:50%;">
+      <div id="leftButtonVisite" class="buttonFlat" onclick = "moveLayer(this)" style="left: 5px; top:50%;">
         <img src="../../Assets/Icons/arrow-back.png">
       </div>
-      <div id="rightButtonVisite" class="button" onclick = "moveLayer(this)" style="right: 5px; top:50%;">
+      <div id="rightButtonVisite" class="buttonFlat" onclick = "moveLayer(this)" style="right: 5px; top:50%;">
         <img src="../../Assets/Icons/arrow-forward.png">
       </div>      
-      <div id="uptButtonVisite" class="button" onclick = "moveLayer(this)" style="left: 50%; top:5px;">
+      <div id="uptButtonVisite" class="buttonFlat" onclick = "moveLayer(this)" style="left: 50%; top:5px;">
         <img src="../../Assets/Icons/arrow-up.png">
       </div>
-      <div id="downButtonVisite" class="button" onclick = "moveLayer(this)"style="left: 50%; bottom:5px;">
+      <div id="downButtonVisite" class="buttonFlat" onclick = "moveLayer(this)"style="left: 50%; bottom:5px;">
         <img src="../../Assets/Icons/arrow-down.png">
       </div>
 
@@ -154,20 +164,20 @@
     <div id="tumor" class="layer" onclick = "layerClicked(this)" style="" fullscreen="on" allowDrag="off" position="center">
       <img id="imgTumor" src="../Assets/Images/Tumor.PNG" style="width: 100%; height: 100%;">
       
-      <div id="fullscreenButtonTumor" class="button" onclick = "fullscreenClicked(this)" style="top:10px; right: 100px;">
+      <div id="fullscreenButtonTumor" class="buttonFlat" onclick = "fullscreenClicked(this)" style="top:10px; right: 100px;">
         <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
       </div>
 
-      <div id="leftButtonTumor" class="button" onclick = "moveLayer(this)" style="left: 5px; top:50%;">
+      <div id="leftButtonTumor" class="buttonFlat" onclick = "moveLayer(this)" style="left: 5px; top:50%;">
         <img src="../../Assets/Icons/arrow-back.png">
       </div>
-      <div id="rightButtonTumor" class="button" onclick = "moveLayer(this)" style="right: 5px; top:50%;">
+      <div id="rightButtonTumor" class="buttonFlat" onclick = "moveLayer(this)" style="right: 5px; top:50%;">
         <img src="../../Assets/Icons/arrow-forward.png">
       </div>
-      <div id="uptButtonTumor" class="button" onclick = "moveLayer(this)" style="left: 50%; top:5px;">
+      <div id="uptButtonTumor" class="buttonFlat" onclick = "moveLayer(this)" style="left: 50%; top:5px;">
         <img src="../../Assets/Icons/arrow-up.png">
       </div>
-      <div id="downButtonTumor" class="button" onclick = "moveLayer(this)"style="left: 50%; bottom:5px;">
+      <div id="downButtonTumor" class="buttonFlat" onclick = "moveLayer(this)"style="left: 50%; bottom:5px;">
         <img src="../../Assets/Icons/arrow-down.png">
       </div>
       
@@ -204,20 +214,20 @@
         <p>Geschlecht: m&aumlnnlich</p>
       </div>
 
-      <div id="fullscreenButtonPatient" class="button" onclick = "fullscreenClicked(this)" style="top:10px; right: 100px;">
+      <div id="fullscreenButtonPatient" class="buttonFlat" onclick = "fullscreenClicked(this)" style="top:10px; right: 100px;">
         <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
       </div>
 
-      <div id="leftButtonPatient" class="button" onclick = "moveLayer(this)" style="left: 5px; top:50%;">
+      <div id="leftButtonPatient" class="buttonFlat" onclick = "moveLayer(this)" style="left: 5px; top:50%;">
         <img src="../../Assets/Icons/arrow-back.png">
       </div>
-      <div id="rightButtonPatient" class="button" onclick = "moveLayer(this)"style="right: 5px; top:50%;">
+      <div id="rightButtonPatient" class="buttonFlat" onclick = "moveLayer(this)"style="right: 5px; top:50%;">
         <img src="../../Assets/Icons/arrow-forward.png">
       </div>
-      <div id="uptButtonPatient" class="button" onclick = "moveLayer(this)" style="left: 50%; top:5px;">
+      <div id="uptButtonPatient" class="buttonFlat" onclick = "moveLayer(this)" style="left: 50%; top:5px;">
         <img src="../../Assets/Icons/arrow-up.png">
       </div>
-      <div id="downButtonPatient" class="button" onclick = "moveLayer(this)"style="left: 50%; bottom:5px;">
+      <div id="downButtonPatient" class="buttonFlat" onclick = "moveLayer(this)"style="left: 50%; bottom:5px;">
         <img src="../../Assets/Icons/arrow-down.png">
       </div>
 
