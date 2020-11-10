@@ -274,13 +274,13 @@
     </div>
     
     <div id="modeMenu" style = "position: absolute; bottom: 70px; right: 10px;z-index: 10; background: none; display: flex; flex-direction: column-reverse;">
-      <div id="modePatient" class="buttonSubmenu" onclick = "layerSwitch(this)" style = "right: 100px; bottom: 10px">
+      <div id="modePatient" class="buttonSubmenu" onpointerenter="enterModeButton(this)" onpointerleave="leaveModeButton(this)" onclick = "layerSwitch(this)" style = "right: 100px; bottom: 10px" layer="patient">
         <img src="../../Assets/Icons/info.png"> 
       </div>
-      <div id="modeVisite" class="buttonSubmenu" onclick = "layerSwitch(this)" style = "right: 100px; bottom: 80px;">
+      <div id="modeVisite" class="buttonSubmenu" onpointerenter="enterModeButton(this)" onpointerleave="leaveModeButton(this)" onclick = "layerSwitch(this)" style = "right: 100px; bottom: 80px;" layer="visite">
         <img src="../../Assets/Icons/visite.png" style="width: 90%; height: 90%;"> 
       </div>
-      <div id="modeTumor" class="buttonSubmenu" onclick = "layerSwitch(this)" style = "right: 100px; bottom: 150px">
+      <div id="modeTumor" class="buttonSubmenu" onpointerenter="enterModeButton(this)" onpointerleave="leaveModeButton(this)" onclick = "layerSwitch(this)" style = "right: 100px; bottom: 150px" layer="tumor">
         <img src="../../Assets/Icons/gene.png"> 
       </div>
     </div>
@@ -294,6 +294,10 @@
       let rightArea = document.getElementById("rightArea")
       let topArea = document.getElementById("topArea")
       let bottomArea = document.getElementById("bottomArea")
+      
+      modeMenu.setAttribute("active","false")
+
+      let currentLayer = document.getElementById("patient")
 
       document.oncontextmenu = function() {
         return false;
@@ -340,8 +344,13 @@
       document.getElementById("modeSelectButton").addEventListener("click",(e)=>{
         e.stopPropagation()
         console.log("selecting mode")
+        // visite.style.opacity=0.9
+        // tumor.style.opacity=0.9
+        // patient.style.opacity=0.9
         // document.getElementById("modeMenu").style.visibility ="visible"
         $( "#modeMenu" ).toggle()
+        
+        modeMenu.setAttribute("active","true")
       })
 
       /*document.getElementById("modeTumor").addEventListener("click",()=>{
@@ -361,6 +370,31 @@
         bringToFront(document.getElementById("patient"))
         $( "#modeMenu" ).hide()
       })*/
+
+      function leaveModeButton(button){
+        let layer = document.getElementById(button.getAttribute('layer'))
+        bringToFront(currentLayer)
+                
+        // if(modeMenu.getAttribute("active")=="true")layer.style.opacity = 0.9
+      }
+
+      function enterModeButton(button){
+        let layer = document.getElementById(button.getAttribute('layer'))
+        bringToFront(layer)
+        layer.style.opacity = 1    
+        /*if(button.id.indexOf('Patient')>-1){
+          bringToFront(patient)
+          patient.style.opacity = 0.7
+        }
+        if(button.id.indexOf('Tumor')>-1){
+          bringToFront(tumor)
+          tumor.style.opacity = 0.7
+        }
+        if(button.id.indexOf('Visite')>-1){
+          bringToFront(visite)
+          visite.style.opacity = 0.7
+        }*/
+      }
 
       function openDocument(element){
 
@@ -426,15 +460,24 @@
       
       function layerSwitch(element){
         console.log("selecting",element.id)
-        if(element.id=="modePatient")bringToFront(document.getElementById("patient"))
-        if(element.id=="modeVisite")bringToFront(document.getElementById("visite"))
-        if(element.id=="modeTumor")bringToFront(document.getElementById("tumor"))
+        let layer = document.getElementById(element.getAttribute("layer"))
+        // if(element.id=="modePatient")bringToFront(document.getElementById("patient"))
+        // if(element.id=="modeVisite")bringToFront(document.getElementById("visite"))
+        // if(element.id=="modeTumor")bringToFront(document.getElementById("tumor"))
+        bringToFront(layer)
+        visite.style.opacity=1
+        tumor.style.opacity=1
+        patient.style.opacity=1
+        currentLayer = layer
+        modeMenu.setAttribute("active","false")
+
         $( "#modeMenu" ).hide()
       }
 
       function layerClicked(element){
         console.log(element.getAttribute("fullscreen"))
         bringToFront(element)
+        currentLayer = element
       }
 
       function bringToFront(element){
@@ -449,6 +492,7 @@
         // console.log("positionTest",element.getAttribute('positionTest'))
         if(pos!="none")moveLayer(element,pos)
         element.setAttribute('positionTest','none')
+        element.style.opacity = 1
       }
 
       function clickMove(button,position){
@@ -478,7 +522,7 @@
         if(position.toString().indexOf("bottom")>-1){
           element.setAttribute("position","bottom")
           TweenMax.to(element, 0.1, {css: {top:  h/2+50, left: 0, height: h/2, width:w}})
-        }        
+        }
         element.style.opacity = 1
       }
 
