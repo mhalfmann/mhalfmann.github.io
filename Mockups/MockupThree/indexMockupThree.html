@@ -711,10 +711,11 @@
         function closeDragElement() {
           // stop moving when mouse button is released:
           // document.onmouseup = null;
-          document.onpointerup = null;
+          document.onpointerup = null
           // document.onmousemove = null;
-          document.onpointermove = null;
+          document.onpointermove = null
           elmnt.setAttribute('dragging','false')
+          elmnt.style.opacity = 1
         }
       }
 
