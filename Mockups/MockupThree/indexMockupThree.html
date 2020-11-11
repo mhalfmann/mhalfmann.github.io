@@ -117,13 +117,30 @@
   }
 
   .buttonSubmenu{
-    position: absolute;
+    /* position: absolute; */
     width: 50px;
+    height: 50px;
     z-index: 3;
+    margin: 10px;
     background: lightskyblue;
     opacity: 0.7;
     border-radius: 50%;
     box-shadow: 5px 5px 5px rgb(58, 58, 58);
+  }
+
+  .buttonResize{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    bottom: 0px;
+    right: 0px;
+    z-index: 3;
+    margin: 10px;
+    background: darkgray;
+    opacity: 0.7;
+    border: 1px solid white;
+    /* border-radius: 50%; */
+    /* box-shadow: 5px 5px 5px rgb(58, 58, 58); */
   }
 
   .buttonFlat2:hover,.button:hover,.buttonSubmenu:hover{
@@ -188,6 +205,10 @@
       </div>
       <div id="document_img_button" class="document_button" onclick = "openDocument(this)"  active="false" style="right: 22.5%; bottom: 18%;">
       </div>
+      
+      <div id="resizeButtonVisite" class="buttonResize">
+        <img src="../../Assets/Icons/resize.png" alt="">
+      </div>
 
     </div>
     
@@ -234,7 +255,11 @@
       </div>
       <div id="zdhhc13_button" class="gene_button" onclick = "openGeneSources(this)" active="false" style="right: 0%; bottom: 19%;">
         <img src="../Assets/Images/zdhhc13_button.png" alt="" style="width: 100%; height: 100%;">
-      </div>      
+      </div>
+      
+      <div id="resizeButtonTumor" class="buttonResize">
+        <img src="../../Assets/Icons/resize.png" alt="">
+      </div>
 
     </div>
     
@@ -267,20 +292,25 @@
         <img src="../../Assets/Icons/arrow-down.png" style="position: absolute; left: 50%;">
       </div>
 
+      <!-- <div id="resizeButtonPatient" class="buttonResize" onpointerdown = "resizePointerdown(event,this)" onpointermove = "resize(event,this)" onpointerup = "resizePointerup(event,this)" onpointerleave = "resizePointerleave(event,this)"></div> -->
+      <div id="resizeButtonPatient" class="buttonResize">
+        <img src="../../Assets/Icons/resize.png" alt="">
+      </div>
+
     </div>
     
     <div id="modeSelectButton" class="button" style = "right: 100px; bottom: 10px;">
       <img src="../../Assets/Icons/layers.png"> 
     </div>
     
-    <div id="modeMenu" style = "position: absolute; bottom: 70px; right: 10px;z-index: 10; background: none; display: flex; flex-direction: column-reverse;">
-      <div id="modePatient" class="buttonSubmenu" onpointerenter="enterModeButton(this)" onpointerleave="leaveModeButton(this)" onclick = "layerSwitch(this)" style = "right: 100px; bottom: 10px" layer="patient">
+      <div id="modeMenu" style = "position: absolute; bottom: 70px; right: 100px;z-index: 10; background: none; display: flex; flex-direction: column-reverse;">
+      <div id="modePatient" class="buttonSubmenu" onpointerenter="enterModeButton(this)" onpointerleave="leaveModeButton(this)" onclick = "layerSwitch(this)" style = "" layer="patient">
         <img src="../../Assets/Icons/info.png"> 
       </div>
-      <div id="modeVisite" class="buttonSubmenu" onpointerenter="enterModeButton(this)" onpointerleave="leaveModeButton(this)" onclick = "layerSwitch(this)" style = "right: 100px; bottom: 80px;" layer="visite">
+      <div id="modeVisite" class="buttonSubmenu" onpointerenter="enterModeButton(this)" onpointerleave="leaveModeButton(this)" onclick = "layerSwitch(this)" style = "" layer="visite">
         <img src="../../Assets/Icons/visite.png" style="width: 90%; height: 90%;"> 
       </div>
-      <div id="modeTumor" class="buttonSubmenu" onpointerenter="enterModeButton(this)" onpointerleave="leaveModeButton(this)" onclick = "layerSwitch(this)" style = "right: 100px; bottom: 150px" layer="tumor">
+      <div id="modeTumor" class="buttonSubmenu" onpointerenter="enterModeButton(this)" onpointerleave="leaveModeButton(this)" onclick = "layerSwitch(this)" style = "" layer="tumor">
         <img src="../../Assets/Icons/gene.png"> 
       </div>
     </div>
@@ -298,6 +328,10 @@
       modeMenu.setAttribute("active","false")
 
       let currentLayer = document.getElementById("patient")
+      let resizeTarget = null
+      let oldX = 0
+      let oldY = 0
+      let resizeable = false
 
       document.oncontextmenu = function() {
         return false;
@@ -348,7 +382,7 @@
         // tumor.style.opacity=0.9
         // patient.style.opacity=0.9
         // document.getElementById("modeMenu").style.visibility ="visible"
-        $( "#modeMenu" ).toggle()
+        $( "#modeMenu" ).slideToggle(100)
         
         modeMenu.setAttribute("active","true")
       })
@@ -490,7 +524,7 @@
       function placeLayer(element){
         let pos = element.getAttribute('positionTest')
         // console.log("positionTest",element.getAttribute('positionTest'))
-        if(pos!="none")moveLayer(element,pos)
+        // if(pos!="none")moveLayer(element,pos)
         element.setAttribute('positionTest','none')
         element.style.opacity = 1
       }
@@ -683,6 +717,124 @@
           elmnt.setAttribute('dragging','false')
         }
       }
+
+      
+      resizeElement(document.getElementById("resizeButtonPatient"))
+      resizeElement(document.getElementById("resizeButtonVisite"))
+      resizeElement(document.getElementById("resizeButtonTumor"))
+
+      function resizeElement(button) {
+        let elmnt = button.parentNode
+        button.onpointerdown = resizeMouseDown;
+
+        function resizeMouseDown(e) {
+          e.stopPropagation()
+          e = e || window.event
+          e.preventDefault()
+          oldX = 0
+          oldY = 0
+          document.onpointerup = closeResizeElement
+          document.onpointermove = elementResize
+          bringToFront(elmnt)
+        }
+
+        function elementResize(e) {
+            e = e || window.event
+            e.preventDefault()
+            
+            if(elmnt.getAttribute("allowDrag")=="off")elmnt.setAttribute("allowDrag","on")
+              let deltaX = 0
+              let deltaY = 0
+              if(oldX!=0) deltaX = e.clientX - oldX
+              if(oldY!=0) deltaY = e.clientY - oldY
+
+              oldX = e.clientX
+              oldY = e.clientY
+              
+              let h = elmnt.getBoundingClientRect().height
+              let w = elmnt.getBoundingClientRect().width
+              h = h + deltaY
+              w = w + deltaX
+              elmnt.style.width = w + "px"
+              elmnt.style.height = h + "px"
+        }
+
+        function closeResizeElement() {
+          document.onpointerup = null;
+          document.onpointermove = null;
+        }
+      }
+
+      /*function resizePointerdown(e,element){
+        e.stopPropagation()
+        e.preventDefault()
+        console.log("start resize", element)
+        resizeable = true
+        // resizeTarget = element.parentNode
+      }
+      
+      function resize(e,element){
+        e.stopPropagation()
+        e.preventDefault()
+        let target = element.parentNode
+        if(target.getAttribute("allowDrag")=="off")target.setAttribute("allowDrag","on")
+        // console.log("resizing", element.parentNode)
+        if(resizeable){
+          let deltaX = 0
+          let deltaY = 0
+          if(oldX!=0) deltaX = e.clientX - oldX
+          if(oldY!=0) deltaY = e.clientY - oldY
+
+          oldX = e.clientX
+          oldY = e.clientY
+          console.log('resize',deltaX,deltaY)
+          let h = target.getBoundingClientRect().height
+          let w = target.getBoundingClientRect().width
+          h = h + deltaY
+          w = w + deltaX
+          target.style.width = w + "px"
+          target.style.height = h + "px"
+        }
+      }
+
+      function resizePointerup(e,element){
+        e.stopPropagation()
+        e.preventDefault()
+        console.log("end resize", element) 
+        resizeable = false
+        oldX = 0
+        oldY = 0
+        // resizeTarget = null       
+      }
+
+      function resizePointerleave(e,element){
+        e.stopPropagation()
+        e.preventDefault()
+        console.log("end resize", element) 
+        resizeable = false
+        oldX = 0
+        oldY = 0
+        // resizeTarget = null       
+      }*/
+      
+     /*  document.body.addEventListener('pointermove',(e)=>{
+        if(resizeTarget!=null){
+          let deltaX = 0
+          let deltaY = 0
+          if(oldX!=0) deltaX = e.clientX - oldX
+          if(oldY!=0) deltaY = e.clientY - oldY
+
+          oldX = e.clientX
+          oldY = e.clientY
+          console.log('resize',deltaX,deltaY)
+          let h = resizeTarget.getBoundingClientRect().height
+          let w = resizeTarget.getBoundingClientRect().width
+          h = h + deltaY
+          w = w + deltaX
+          resizeTarget.style.width = w + "px"
+          resizeTarget.style.height = h + "px"
+        }
+      }) */
 
       function collision(div1) {
         let test = false

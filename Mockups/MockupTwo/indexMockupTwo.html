@@ -117,13 +117,28 @@
   }
 
   .buttonSubmenu{
-    position: absolute;
+    /* position: absolute; */
     width: 50px;
+    margin: 10px;
     z-index: 3;
     background: lightskyblue;
     opacity: 0.7;
     border-radius: 50%;
     box-shadow: 5px 5px 5px rgb(58, 58, 58);
+  }
+
+  .buttonResize{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    bottom: 0px;
+    right: 0px;
+    z-index: 3;
+    margin: 10px;
+    background: lightskyblue;
+    opacity: 0.7;
+    /* border-radius: 50%; */
+    /* box-shadow: 5px 5px 5px rgb(58, 58, 58); */
   }
 
   .buttonFlat2:hover,.button:hover,.buttonSubmenu:hover{
@@ -267,20 +282,22 @@
         <img src="../../Assets/Icons/arrow-down.png" style="position: absolute; left: 50%;">
       </div>
 
+      <div id="resizeButtonPatient" class="buttonResize"></div>
+
     </div>
     
     <div id="modeSelectButton" class="button" style = "right: 100px; bottom: 10px;">
       <img src="../../Assets/Icons/layers.png"> 
     </div>
     
-    <div id="modeMenu" style = "position: absolute; bottom: 70px; right: 10px;z-index: 10; background: none; display: flex; flex-direction: column-reverse;">
-      <div id="modePatient" class="buttonSubmenu" onclick = "layerSwitch(this)" style = "right: 100px; bottom: 10px">
+    <div id="modeMenu" style = "position: absolute; bottom: 70px; right: 100px;z-index: 10; background: none; display: flex; flex-direction: column-reverse;">
+      <div id="modePatient" class="buttonSubmenu" onclick = "layerSwitch(this)" style = "">
         <img src="../../Assets/Icons/info.png"> 
       </div>
-      <div id="modeVisite" class="buttonSubmenu" onclick = "layerSwitch(this)" style = "right: 100px; bottom: 80px;">
+      <div id="modeVisite" class="buttonSubmenu" onclick = "layerSwitch(this)" style = "">
         <img src="../../Assets/Icons/visite.png" style="width: 90%; height: 90%;"> 
       </div>
-      <div id="modeTumor" class="buttonSubmenu" onclick = "layerSwitch(this)" style = "right: 100px; bottom: 150px">
+      <div id="modeTumor" class="buttonSubmenu" onclick = "layerSwitch(this)" style = "">
         <img src="../../Assets/Icons/gene.png"> 
       </div>
     </div>
@@ -341,7 +358,7 @@
         e.stopPropagation()
         console.log("selecting mode")
         // document.getElementById("modeMenu").style.visibility ="visible"
-        $( "#modeMenu" ).toggle()
+        $( "#modeMenu" ).slideToggle(100)
       })
 
       /*document.getElementById("modeTumor").addEventListener("click",()=>{
@@ -447,7 +464,7 @@
       function placeLayer(element){
         let pos = element.getAttribute('positionTest')
         // console.log("positionTest",element.getAttribute('positionTest'))
-        if(pos!="none")moveLayer(element,pos)
+        // if(pos!="none")moveLayer(element,pos)
         element.setAttribute('positionTest','none')
       }
 
@@ -637,6 +654,49 @@
           // document.onmousemove = null;
           document.onpointermove = null;
           elmnt.setAttribute('dragging','false')
+        }
+      }
+      resizeElement(document.getElementById("resizeButtonPatient"))
+
+      function resizeElement(button) {
+        let elmnt = button.parentNode
+        button.onpointerdown = resizeMouseDown;
+
+        function resizeMouseDown(e) {
+          e.stopPropagation()
+          e = e || window.event
+          e.preventDefault()
+          oldX = 0
+          oldY = 0
+          document.onpointerup = closeResizeElement
+          document.onpointermove = elementResize
+          bringToFront(elmnt)
+        }
+
+        function elementResize(e) {
+            e = e || window.event
+            e.preventDefault()
+            
+            if(elmnt.getAttribute("allowDrag")=="off")elmnt.setAttribute("allowDrag","on")
+              let deltaX = 0
+              let deltaY = 0
+              if(oldX!=0) deltaX = e.clientX - oldX
+              if(oldY!=0) deltaY = e.clientY - oldY
+
+              oldX = e.clientX
+              oldY = e.clientY
+              
+              let h = elmnt.getBoundingClientRect().height
+              let w = elmnt.getBoundingClientRect().width
+              h = h + deltaY
+              w = w + deltaX
+              elmnt.style.width = w + "px"
+              elmnt.style.height = h + "px"
+        }
+
+        function closeResizeElement() {
+          document.onpointerup = null;
+          document.onpointermove = null;
         }
       }
 
