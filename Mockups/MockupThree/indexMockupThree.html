@@ -48,6 +48,7 @@
     border: solid 1px white;
     background: lightgray;
     overflow: hidden;
+    box-shadow: 0px 0px 15px 5px  rgb(58, 58, 58);
   }
 
   .source{
@@ -60,7 +61,7 @@
     border: solid 1px white;
     background: darkolivegreen;
     overflow: hidden;
-    box-shadow: 5px 5px 5px rgb(58, 58, 58);
+    box-shadow: 0px 0px 15px 5px rgb(58, 58, 58);
   }
 
   .gene_button{
@@ -94,8 +95,8 @@
   }
   .buttonFlat{
     position: absolute;
-    width: 50px;
-    height: 50px;
+    width: 5%;
+    height: 5%;
     z-index: 300000;
     background: darkgray;
     opacity: 0.1;
@@ -135,9 +136,9 @@
     bottom: 0px;
     right: 0px;
     z-index: 3000000;
-    margin: 10px;
+    /* margin: 10px; */
     background: darkgray;
-    opacity: 0.9;
+    opacity: 0.1;
     border: 1px solid white;
     /* border-radius: 50%; */
     /* box-shadow: 5px 5px 5px rgb(58, 58, 58); */
@@ -162,7 +163,7 @@
   <!-- <div id="main" style ="position: absolute; left: 0px; top: 50px; z-index: 1; height: 93vh; width:100%; background: red; overflow: auto; padding-top: 5vh;"> -->
   <div id="main" style ="position: absolute; top: 0px; left: 0px; z-index: 1; height: 100%; width:100%; background: rgb(179, 244, 247); overflow: hidden;">
     
-    <div id ="header" style="position: absolute; left: 0px; top:0px; height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px;">
+    <div id ="header" style="position: absolute; left: 0px; top:0px; height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px; z-index: 999999;">
       Patient 0815  
     </div>
 
@@ -195,15 +196,15 @@
       </div>
 
       <div id="document_text" class="source" allowDrag="on" scale="1" style="width: 21%;">
-        <img src="../Assets/Images/document.png" alt="" style="pointer-events: none;"style="height: 100%;">
+        <img src="../Assets/Images/document.png" alt="" style="pointer-events: none; height: 100%; width: 100%;">
         <div id="resizeButtonDocument" class="buttonResize">
-          <img src="../../Assets/Icons/resize.png" alt="">
+          <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
         </div>
       </div>
       <div id="document_img" class="source" allowDrag="on" scale="1" style="width: 30%;">
-        <img src="../Assets/Images/document2.png" alt="" style="pointer-events: none;">
+        <img src="../Assets/Images/document2.png" alt="" style="pointer-events: none; height: 100%; width: 100%;">
         <div id="resizeButtonImg" class="buttonResize">
-          <img src="../../Assets/Icons/resize.png" alt="">
+          <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
         </div>
       </div>
 
@@ -213,7 +214,7 @@
       </div>
       
       <div id="resizeButtonVisite" class="buttonResize">
-        <img src="../../Assets/Icons/resize.png" alt="">
+        <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
       </div>
 
     </div>
@@ -242,21 +243,21 @@
       </div>
       
       <div id="arid1b_sources" class="source" allowDrag="on" scale="1" style="width: 50%;">
-        <img src="../Assets/Images/arid1b.png" alt="" style="height: 100%; pointer-events: none;">
+        <img src="../Assets/Images/arid1b.png" alt="" style="height: 100%; width: 100%; pointer-events: none;">
         <div id="resizeButtonArid" class="buttonResize">
-          <img src="../../Assets/Icons/resize.png" alt="">
+          <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
         </div>
       </div>
       <div id="srms_sources" class="source" allowDrag="on" scale="1" style="width: 50%;">
-        <img src="../Assets/Images/srms.png" alt="" style="height: 100%; pointer-events: none;">
+        <img src="../Assets/Images/srms.png" alt="" style="height: 100%; width: 100%; pointer-events: none;">
         <div id="resizeButtonSrms" class="buttonResize">
-          <img src="../../Assets/Icons/resize.png" alt="">
+          <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
         </div>
       </div>
       <div id="zdhhc13_sources" class="source" allowDrag="on" scale="1" style="width: 50%;">
-        <img src="../Assets/Images/zdhhc13.png" alt="" style="height: 100%; pointer-events: none;">
+        <img src="../Assets/Images/zdhhc13.png" alt="" style="height: 100%; width: 100%; pointer-events: none;">
         <div id="resizeButtonZdhh" class="buttonResize">
-          <img src="../../Assets/Icons/resize.png" alt="">
+          <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
         </div>
       </div>
       
@@ -273,7 +274,7 @@
       </div>
       
       <div id="resizeButtonTumor" class="buttonResize">
-        <img src="../../Assets/Icons/resize.png" alt="">
+        <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
       </div>
 
     </div>
@@ -309,7 +310,7 @@
 
       <!-- <div id="resizeButtonPatient" class="buttonResize" onpointerdown = "resizePointerdown(event,this)" onpointermove = "resize(event,this)" onpointerup = "resizePointerup(event,this)" onpointerleave = "resizePointerleave(event,this)"></div> -->
       <div id="resizeButtonPatient" class="buttonResize">
-        <img src="../../Assets/Icons/resize.png" alt="">
+        <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
       </div>
 
     </div>
@@ -599,7 +600,7 @@
 
         element.parentNode.setAttribute("fullscreen","off")
         element.parentNode.setAttribute("allowDrag","on")
-        element.parentNode.style.boxShadow = "5px 5px 5px  rgb(58, 58, 58)";
+        // element.parentNode.style.boxShadow = "0px 0px 15px 5px  rgb(58, 58, 58)";
         // TweenMax.to(element.parentNode, 0.1, {scale:0.7, onComplete:function(){
         // }})            
         TweenMax.to(element.parentNode, 0.1, {css: {top: 150, left: 100, height: h/2, width:w/2}})
@@ -614,6 +615,7 @@
         element.parentNode.setAttribute("fullscreen","on")
         element.parentNode.setAttribute("allowDrag","off")
         element.parentNode.setAttribute("position","center")
+        // element.parentNode.style.boxShadow = "none";
         bringToFront(element.parentNode)
             // TweenMax.to(element.parentNode, 0.1, {scale:1})
             // TweenMax.to(element.parentNode, 0.1, {css: {top: 50, left: 0}})
@@ -654,7 +656,7 @@
         var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
         if (document.getElementById(elmnt.id + "header")) {
           // if present, the header is where you move the DIV from:
-          document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+          document.getElementById(elmnt.id + "header").onpointerdown = dragMouseDown;
         } else {
           // otherwise, move the DIV from anywhere inside the DIV:
           // elmnt.onmousedown = dragMouseDown;
