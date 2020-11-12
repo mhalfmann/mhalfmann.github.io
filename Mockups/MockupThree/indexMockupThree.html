@@ -134,16 +134,16 @@
     height: 50px;
     bottom: 0px;
     right: 0px;
-    z-index: 3;
+    z-index: 3000000;
     margin: 10px;
     background: darkgray;
-    opacity: 0.7;
+    opacity: 0.9;
     border: 1px solid white;
     /* border-radius: 50%; */
     /* box-shadow: 5px 5px 5px rgb(58, 58, 58); */
   }
 
-  .buttonFlat2:hover,.button:hover,.buttonSubmenu:hover{
+  .buttonFlat2:hover,.button:hover,.buttonSubmenu:hover,.buttonResize:hover{
     opacity: 1;
   }
   .buttonFlat:hover{
@@ -196,9 +196,15 @@
 
       <div id="document_text" class="source" allowDrag="on" scale="1" style="width: 21%;">
         <img src="../Assets/Images/document.png" alt="" style="pointer-events: none;"style="height: 100%;">
+        <div id="resizeButtonDocument" class="buttonResize">
+          <img src="../../Assets/Icons/resize.png" alt="">
+        </div>
       </div>
       <div id="document_img" class="source" allowDrag="on" scale="1" style="width: 30%;">
         <img src="../Assets/Images/document2.png" alt="" style="pointer-events: none;">
+        <div id="resizeButtonImg" class="buttonResize">
+          <img src="../../Assets/Icons/resize.png" alt="">
+        </div>
       </div>
 
       <div id="document_text_button" class="document_button" onclick = "openDocument(this)"  active="false" style="right: 63.5%; bottom: 13%;">
@@ -237,12 +243,21 @@
       
       <div id="arid1b_sources" class="source" allowDrag="on" scale="1" style="width: 50%;">
         <img src="../Assets/Images/arid1b.png" alt="" style="height: 100%; pointer-events: none;">
+        <div id="resizeButtonArid" class="buttonResize">
+          <img src="../../Assets/Icons/resize.png" alt="">
+        </div>
       </div>
       <div id="srms_sources" class="source" allowDrag="on" scale="1" style="width: 50%;">
         <img src="../Assets/Images/srms.png" alt="" style="height: 100%; pointer-events: none;">
+        <div id="resizeButtonSrms" class="buttonResize">
+          <img src="../../Assets/Icons/resize.png" alt="">
+        </div>
       </div>
       <div id="zdhhc13_sources" class="source" allowDrag="on" scale="1" style="width: 50%;">
         <img src="../Assets/Images/zdhhc13.png" alt="" style="height: 100%; pointer-events: none;">
+        <div id="resizeButtonZdhh" class="buttonResize">
+          <img src="../../Assets/Icons/resize.png" alt="">
+        </div>
       </div>
       
       <div id="genefake" style="position: absolute; right: 0%; bottom: 18%; height: 30%; width: 10%; background: rgb(79, 79, 79);"></div>
@@ -723,6 +738,13 @@
       resizeElement(document.getElementById("resizeButtonPatient"))
       resizeElement(document.getElementById("resizeButtonVisite"))
       resizeElement(document.getElementById("resizeButtonTumor"))
+
+      resizeElement(document.getElementById("resizeButtonArid"))
+      resizeElement(document.getElementById("resizeButtonSrms"))
+      resizeElement(document.getElementById("resizeButtonZdhh"))
+
+      resizeElement(document.getElementById("resizeButtonDocument"))
+      resizeElement(document.getElementById("resizeButtonImg"))
 
       function resizeElement(button) {
         let elmnt = button.parentNode
