@@ -106,8 +106,8 @@
 
   .buttonFlat2{
     position: absolute;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     z-index: 300000;
     background: darkgray;
     opacity: 0.7;
@@ -130,8 +130,8 @@
 
   .buttonResize{
     position: absolute;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     bottom: 0px;
     right: 0px;
     z-index: 3000000;
@@ -160,7 +160,7 @@
     
 
   <!-- <div id="main" style ="position: absolute; left: 0px; top: 50px; z-index: 1; height: 93vh; width:100%; background: red; overflow: auto; padding-top: 5vh;"> -->
-  <div id="main" style ="position: absolute; top: 0px; left: 0px; z-index: 1; height: 100%; width:100%; background: rgb(247, 228, 204); overflow: hidden;">
+  <div id="main" style ="position: absolute; top: 0px; left: 0px; z-index: 1; height: 100%; width:100%; background: rgb(179, 244, 247); overflow: hidden;">
     
     <div id ="header" style="position: absolute; left: 0px; top:0px; height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px;">
       Patient 0815  
@@ -168,7 +168,7 @@
 
     <div id="leftArea" class="moveArea" style="left:0px; top: 0px; height: 100%; width: 10%;"></div>
     <div id="rightArea" class="moveArea" style="right:0px; top: 0px; height: 100%; width: 10%; background: chocolate;"></div>
-    <div id="topArea" class="moveArea" style="left:10%; top: 0px; height: 10%; width: 80%; background: cornflowerblue;"></div>
+    <div id="topArea" class="moveArea" style="left:10%; top: 0px; height: 10%; width: 70%; background: cornflowerblue;"></div>
     <div id="bottomArea" class="moveArea" style="left:10%; bottom: 0px; height: 10%; width: 80%; background: darkgreen;" ></div>
     
     <div id="visite" class="layer" onpointerup="placeLayer(this)" onclick = "layerClicked(this)" style="" fullscreen="on" allowDrag="off" positionTest="none" position="center">
@@ -181,16 +181,16 @@
         <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
       </div>
 
-      <div id="leftButtonVisite" class="buttonFlat" onclick = "clickMove(this,'left')" style="left: 5px; top:10%; height: 80%;">
+      <div id="leftButtonVisite" class="buttonFlat" onclick = "clickMove(this,'left')" style="left: 5px; top:15%; height: 70%;">
         <img src="../../Assets/Icons/arrow-back.png" style="position: absolute; top: 50%;">
       </div>
-      <div id="rightButtonVisite" class="buttonFlat" onclick = "clickMove(this,'right')"style="right: 5px; top:10%; height: 80%;">
+      <div id="rightButtonVisite" class="buttonFlat" onclick = "clickMove(this,'right')"style="right: 5px; top:15%; height: 70%;">
         <img src="../../Assets/Icons/arrow-forward.png" style="position: absolute; top: 50%;">
       </div>
-      <div id="uptButtonVisite" class="buttonFlat" onclick = "clickMove(this,'top')" style="left: 10%; top:5px; width: 80%;">
+      <div id="uptButtonVisite" class="buttonFlat" onclick = "clickMove(this,'top')" style="left: 15%; top:5px; width: 70%;">
         <img src="../../Assets/Icons/arrow-up.png" style="position: absolute; left: 50%;">
       </div>
-      <div id="downButtonVisite" class="buttonFlat" onclick = "clickMove(this,'bottom')"style="left: 10%; bottom:5px; width: 80%;">
+      <div id="downButtonVisite" class="buttonFlat" onclick = "clickMove(this,'bottom')"style="left: 15%; bottom:5px; width: 70%;">
         <img src="../../Assets/Icons/arrow-down.png" style="position: absolute; left: 50%;">
       </div>
 
@@ -228,16 +228,16 @@
         <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
       </div>
 
-      <div id="leftButtonTumor" class="buttonFlat" onclick = "clickMove(this,'left')" style="left: 5px; top:10%; height: 80%;">
+      <div id="leftButtonTumor" class="buttonFlat" onclick = "clickMove(this,'left')" style="left: 5px; top:15%; height: 70%;">
         <img src="../../Assets/Icons/arrow-back.png" style="position: absolute; top: 50%;">
       </div>
-      <div id="rightButtonTumor" class="buttonFlat" onclick = "clickMove(this,'right')"style="right: 5px; top:10%; height: 80%;">
+      <div id="rightButtonTumor" class="buttonFlat" onclick = "clickMove(this,'right')"style="right: 5px; top:15%; height: 70%;">
         <img src="../../Assets/Icons/arrow-forward.png" style="position: absolute; top: 50%;">
       </div>
-      <div id="uptButtonTumor" class="buttonFlat" onclick = "clickMove(this,'top')" style="left: 10%; top:5px; width: 80%;">
+      <div id="uptButtonTumor" class="buttonFlat" onclick = "clickMove(this,'top')" style="left: 15%; top:5px; width: 70%;">
         <img src="../../Assets/Icons/arrow-up.png" style="position: absolute; left: 50%;">
       </div>
-      <div id="downButtonTumor" class="buttonFlat" onclick = "clickMove(this,'bottom')"style="left: 10%; bottom:5px; width: 80%;">
+      <div id="downButtonTumor" class="buttonFlat" onclick = "clickMove(this,'bottom')"style="left: 15%; bottom:5px; width: 70%;">
         <img src="../../Assets/Icons/arrow-down.png" style="position: absolute; left: 50%;">
       </div>
       
@@ -294,16 +294,16 @@
         <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
       </div>
 
-      <div id="leftButtonPatient" class="buttonFlat" onclick = "clickMove(this,'left')" style="left: 5px; top:10%; height: 80%;">
+      <div id="leftButtonPatient" class="buttonFlat" onclick = "clickMove(this,'left')" style="left: 5px; top:15%; height: 70%;">
         <img src="../../Assets/Icons/arrow-back.png" style="position: absolute; top: 50%;">
       </div>
-      <div id="rightButtonPatient" class="buttonFlat" onclick = "clickMove(this,'right')"style="right: 5px; top:10%; height: 80%;">
+      <div id="rightButtonPatient" class="buttonFlat" onclick = "clickMove(this,'right')"style="right: 5px; top:15%; height: 70%;">
         <img src="../../Assets/Icons/arrow-forward.png" style="position: absolute; top: 50%;">
       </div>
-      <div id="uptButtonPatient" class="buttonFlat" onclick = "clickMove(this,'top')" style="left: 10%; top:5px; width: 80%;">
+      <div id="uptButtonPatient" class="buttonFlat" onclick = "clickMove(this,'top')" style="left: 15%; top:5px; width: 70%;">
         <img src="../../Assets/Icons/arrow-up.png" style="position: absolute; left: 50%;">
       </div>
-      <div id="downButtonPatient" class="buttonFlat" onclick = "clickMove(this,'bottom')"style="left: 10%; bottom:5px; width: 80%;">
+      <div id="downButtonPatient" class="buttonFlat" onclick = "clickMove(this,'bottom')"style="left: 15%; bottom:5px; width: 70%;">
         <img src="../../Assets/Icons/arrow-down.png" style="position: absolute; left: 50%;">
       </div>
 
