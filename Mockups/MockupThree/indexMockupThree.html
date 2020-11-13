@@ -41,7 +41,7 @@
   .layer{
     position: absolute;
     left: 0px;
-    top: 50px;
+    top: 0px;
     z-index: 2;
     height: 100%;
     width:100%;
@@ -166,188 +166,191 @@
     <div id ="header" style="position: absolute; left: 0px; top:0px; height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px; z-index: 999999;">
       Patient 0815  
     </div>
+    <div id ="explorationArea" style="position: absolute; left: 0px; top:50px; height: 100%; width:100%; background: rgb(73, 182, 82);z-index: 1;">
+   
 
-    <div id="leftArea" class="moveArea" style="left:0px; top: 0px; height: 100%; width: 10%;"></div>
-    <div id="rightArea" class="moveArea" style="right:0px; top: 0px; height: 100%; width: 10%; background: chocolate;"></div>
-    <div id="topArea" class="moveArea" style="left:10%; top: 0px; height: 10%; width: 70%; background: cornflowerblue;"></div>
-    <div id="bottomArea" class="moveArea" style="left:10%; bottom: 0px; height: 10%; width: 80%; background: darkgreen;" ></div>
-    
-    <div id="visite" class="layer" onpointerup="placeLayer(this)" onclick = "layerClicked(this)" style="" fullscreen="on" allowDrag="off" positionTest="none" position="center">
-      <img id="imgVisite" src="../Assets/Images/Visite2.png" style="width: 100%; height: 100%;">
+      <div id="leftArea" class="moveArea" style="left:0px; top: 0px; height: 100%; width: 10%;"></div>
+      <div id="rightArea" class="moveArea" style="right:0px; top: 0px; height: 100%; width: 10%; background: chocolate;"></div>
+      <div id="topArea" class="moveArea" style="left:10%; top: 0px; height: 10%; width: 70%; background: cornflowerblue;"></div>
+      <div id="bottomArea" class="moveArea" style="left:10%; bottom: 0px; height: 10%; width: 80%; background: darkgreen;" ></div>
       
-      <div id="fullscreenButtonVisite" class="buttonFlat2" onclick = "fullscreenClicked(event,this)" style="top:5px; right: 5px;">
-        <img id="imgVisite" src="../../Assets/Icons/fullscreen.png" style="width: 100%; height: 100%;">
-      </div>
-      <div id="minimizeButtonVisite" class="buttonFlat2" onclick = "minimizedClicked(event,this)" style="top:5px; right: 60px;">
-        <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
-      </div>
-
-      <div id="leftButtonVisite" class="buttonFlat" onclick = "clickMove(this,'left')" style="left: 5px; top:15%; height: 70%;">
-        <img src="../../Assets/Icons/arrow-back.png" style="position: absolute; top: 50%;">
-      </div>
-      <div id="rightButtonVisite" class="buttonFlat" onclick = "clickMove(this,'right')"style="right: 5px; top:15%; height: 70%;">
-        <img src="../../Assets/Icons/arrow-forward.png" style="position: absolute; top: 50%;">
-      </div>
-      <div id="uptButtonVisite" class="buttonFlat" onclick = "clickMove(this,'top')" style="left: 15%; top:5px; width: 70%;">
-        <img src="../../Assets/Icons/arrow-up.png" style="position: absolute; left: 50%;">
-      </div>
-      <div id="downButtonVisite" class="buttonFlat" onclick = "clickMove(this,'bottom')"style="left: 15%; bottom:5px; width: 70%;">
-        <img src="../../Assets/Icons/arrow-down.png" style="position: absolute; left: 50%;">
-      </div>
-
-      <div id="document_text" class="source" allowDrag="on" scale="1" style="width: 21%;">
-        <img src="../Assets/Images/document.png" alt="" style="pointer-events: none; height: 100%; width: 100%;">
-        <div id="resizeButtonDocument" class="buttonResize">
-          <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
-        </div>
-        <div id="fullscreenButtonDoc" class="buttonFlat2" onclick = "fullscreenClicked(event,this)" style="top:5px; right: 5px;">
+      <div id="visite" class="layer" onpointerup="placeLayer(this)" onclick = "layerClicked(this)" style="" fullscreen="on" allowDrag="off" positionTest="none" position="center">
+        <img id="imgVisite" src="../Assets/Images/Visite2.png" style="width: 100%; height: 100%;">
+        
+        <div id="fullscreenButtonVisite" class="buttonFlat2" onclick = "fullscreenClicked(event,this)" style="top:5px; right: 5px;">
           <img id="imgVisite" src="../../Assets/Icons/fullscreen.png" style="width: 100%; height: 100%;">
         </div>
-        <div id="minimizeButtonDoc" class="buttonFlat2" onclick = "minimizedClicked(event,this)" style="top:5px; right: 60px;">
+        <div id="minimizeButtonVisite" class="buttonFlat2" onclick = "minimizedClicked(event,this)" style="top:5px; right: 60px;">
           <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
         </div>
-      </div>
 
-      <div id="document_img" class="source" allowDrag="on" scale="1" style="width: 30%;">
-        <img src="../Assets/Images/document2.png" alt="" style="pointer-events: none; height: 100%; width: 100%;">
-        <div id="resizeButtonImg" class="buttonResize">
+        <div id="leftButtonVisite" class="buttonFlat" onclick = "clickMove(this,'left')" style="left: 5px; top:15%; height: 70%;">
+          <img src="../../Assets/Icons/arrow-back.png" style="position: absolute; top: 50%;">
+        </div>
+        <div id="rightButtonVisite" class="buttonFlat" onclick = "clickMove(this,'right')"style="right: 5px; top:15%; height: 70%;">
+          <img src="../../Assets/Icons/arrow-forward.png" style="position: absolute; top: 50%;">
+        </div>
+        <div id="uptButtonVisite" class="buttonFlat" onclick = "clickMove(this,'top')" style="left: 15%; top:5px; width: 70%;">
+          <img src="../../Assets/Icons/arrow-up.png" style="position: absolute; left: 50%;">
+        </div>
+        <div id="downButtonVisite" class="buttonFlat" onclick = "clickMove(this,'bottom')"style="left: 15%; bottom:5px; width: 70%;">
+          <img src="../../Assets/Icons/arrow-down.png" style="position: absolute; left: 50%;">
+        </div>
+
+        <div id="document_text" class="source" allowDrag="on" scale="1" style="width: 21%;">
+          <img src="../Assets/Images/document.png" alt="" style="pointer-events: none; height: 100%; width: 100%;">
+          <div id="resizeButtonDocument" class="buttonResize">
+            <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
+          </div>
+          <div id="fullscreenButtonDoc" class="buttonFlat2" onclick = "fullscreenClicked(event,this)" style="top:5px; right: 5px;">
+            <img id="imgVisite" src="../../Assets/Icons/fullscreen.png" style="width: 100%; height: 100%;">
+          </div>
+          <div id="minimizeButtonDoc" class="buttonFlat2" onclick = "minimizedClicked(event,this)" style="top:5px; right: 60px;">
+            <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
+          </div>
+        </div>
+
+        <div id="document_img" class="source" allowDrag="on" scale="1" style="width: 30%;">
+          <img src="../Assets/Images/document2.png" alt="" style="pointer-events: none; height: 100%; width: 100%;">
+          <div id="resizeButtonImg" class="buttonResize">
+            <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
+          </div>
+          <div id="fullscreenButtonImg" class="buttonFlat2" onclick = "fullscreenClicked(event,this)" style="top:5px; right: 5px;">
+            <img id="imgVisite" src="../../Assets/Icons/fullscreen.png" style="width: 100%; height: 100%;">
+          </div>
+          <div id="minimizeButtonImg" class="buttonFlat2" onclick = "minimizedClicked(event,this)" style="top:5px; right: 60px;">
+            <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
+          </div>
+        </div>
+
+        <div id="document_text_button" class="document_button" onclick = "openDocument(this)"  active="false" style="right: 63.5%; bottom: 13%;">
+        </div>
+        <div id="document_img_button" class="document_button" onclick = "openDocument(this)"  active="false" style="right: 22.5%; bottom: 18%;">
+        </div>
+        
+        <div id="resizeButtonVisite" class="buttonResize">
           <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
         </div>
-        <div id="fullscreenButtonImg" class="buttonFlat2" onclick = "fullscreenClicked(event,this)" style="top:5px; right: 5px;">
-          <img id="imgVisite" src="../../Assets/Icons/fullscreen.png" style="width: 100%; height: 100%;">
-        </div>
-        <div id="minimizeButtonImg" class="buttonFlat2" onclick = "minimizedClicked(event,this)" style="top:5px; right: 60px;">
-          <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
-        </div>
-      </div>
 
-      <div id="document_text_button" class="document_button" onclick = "openDocument(this)"  active="false" style="right: 63.5%; bottom: 13%;">
-      </div>
-      <div id="document_img_button" class="document_button" onclick = "openDocument(this)"  active="false" style="right: 22.5%; bottom: 18%;">
       </div>
       
-      <div id="resizeButtonVisite" class="buttonResize">
-        <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
-      </div>
+      <div id="tumor" class="layer" onpointerup="placeLayer(this)" onclick = "layerClicked(this)" style="" fullscreen="on" allowDrag="off" positionTest="none" position="center">
+        <img id="imgTumor" src="../Assets/Images/Tumor.PNG" style="width: 100%; height: 100%;">
+        
+        <div id="fullscreenButtonTumor" class="buttonFlat2" onclick = "fullscreenClicked(event,this)" style="top:5px; right: 5px;">
+          <img id="imgVisite" src="../../Assets/Icons/fullscreen.png" style="width: 100%; height: 100%;">
+        </div>
+        <div id="minimizeButtonTumor" class="buttonFlat2" onclick = "minimizedClicked(event,this)" style="top:5px; right: 60px;">
+          <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
+        </div>
 
+        <div id="leftButtonTumor" class="buttonFlat" onclick = "clickMove(this,'left')" style="left: 5px; top:15%; height: 70%;">
+          <img src="../../Assets/Icons/arrow-back.png" style="position: absolute; top: 50%;">
+        </div>
+        <div id="rightButtonTumor" class="buttonFlat" onclick = "clickMove(this,'right')"style="right: 5px; top:15%; height: 70%;">
+          <img src="../../Assets/Icons/arrow-forward.png" style="position: absolute; top: 50%;">
+        </div>
+        <div id="uptButtonTumor" class="buttonFlat" onclick = "clickMove(this,'top')" style="left: 15%; top:5px; width: 70%;">
+          <img src="../../Assets/Icons/arrow-up.png" style="position: absolute; left: 50%;">
+        </div>
+        <div id="downButtonTumor" class="buttonFlat" onclick = "clickMove(this,'bottom')"style="left: 15%; bottom:5px; width: 70%;">
+          <img src="../../Assets/Icons/arrow-down.png" style="position: absolute; left: 50%;">
+        </div>
+        
+        <div id="arid1b_sources" class="source" allowDrag="on" scale="1" style="width: 50%;">
+          <img src="../Assets/Images/arid1b.png" alt="" style="height: 100%; width: 100%; pointer-events: none;">
+          <div id="resizeButtonArid" class="buttonResize">
+            <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
+          </div>
+          <div id="fullscreenButtonArid" class="buttonFlat2" onclick = "fullscreenClicked(event,this)" style="top:5px; right: 5px;">
+            <img id="imgVisite" src="../../Assets/Icons/fullscreen.png" style="width: 100%; height: 100%;">
+          </div>
+          <div id="minimizeButtonArid" class="buttonFlat2" onclick = "minimizedClicked(event,this)" style="top:5px; right: 60px;">
+            <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
+          </div>
+        </div>
+
+        <div id="srms_sources" class="source" allowDrag="on" scale="1" style="width: 50%;">
+          <img src="../Assets/Images/srms.png" alt="" style="height: 100%; width: 100%; pointer-events: none;">
+          <div id="resizeButtonSrms" class="buttonResize">
+            <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
+          </div>
+          <div id="fullscreenButtonSrms" class="buttonFlat2" onclick = "fullscreenClicked(event,this)" style="top:5px; right: 5px;">
+            <img id="imgVisite" src="../../Assets/Icons/fullscreen.png" style="width: 100%; height: 100%;">
+          </div>
+          <div id="minimizeButtonSrms" class="buttonFlat2" onclick = "minimizedClicked(event,this)" style="top:5px; right: 60px;">
+            <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
+          </div>
+        </div>
+
+        <div id="zdhhc13_sources" class="source" allowDrag="on" scale="1" style="width: 50%;">
+          <img src="../Assets/Images/zdhhc13.png" alt="" style="height: 100%; width: 100%; pointer-events: none;">
+          <div id="resizeButtonZdhh" class="buttonResize">
+            <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
+          </div>
+          <div id="fullscreenButtonZdhh" class="buttonFlat2" onclick = "fullscreenClicked(event,this)" style="top:5px; right: 5px;">
+            <img id="imgVisite" src="../../Assets/Icons/fullscreen.png" style="width: 100%; height: 100%;">
+          </div>
+          <div id="minimizeButtonZdhh" class="buttonFlat2" onclick = "minimizedClicked(event,this)" style="top:5px; right: 60px;">
+            <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
+          </div>
+        </div>
+        
+        <div id="genefake" style="position: absolute; right: 0%; bottom: 18%; height: 30%; width: 10%; background: rgb(79, 79, 79);"></div>
+        
+        <div id="arid1b_button" class="gene_button" onclick = "openGeneSources(this)"  active="false"style="right: 0%; bottom: 30.5%;">
+          <img src="../Assets/Images/arid1b_button.png" alt="" style="width: 100%; height: 100%;">
+        </div>
+        <div id="srms_button" class="gene_button" onclick = "openGeneSources(this)" active="false" style="right: 0%; bottom: 25%;">
+          <img src="../Assets/Images/srms_button.png" alt="" style="width: 100%; height: 100%;">
+        </div>
+        <div id="zdhhc13_button" class="gene_button" onclick = "openGeneSources(this)" active="false" style="right: 0%; bottom: 19%;">
+          <img src="../Assets/Images/zdhhc13_button.png" alt="" style="width: 100%; height: 100%;">
+        </div>
+        
+        <div id="resizeButtonTumor" class="buttonResize">
+          <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
+        </div>
+
+      </div>
+      
+      <div id="patient" class="layer" onpointerup="placeLayer(this)" onclick = "layerClicked(this)" style="" fullscreen="on" allowDrag="off" positionTest="none" position="center">
+
+        <div style="position: absolute; left: 20%; top: 10%; width: 50%; background: lightslategrey; padding: 5%;">
+          <p>Vorname: Rainer</p>
+          <p>Nachname: Zufall</p>
+          <p>Alter: 61</p>
+          <p>Geschlecht: m&aumlnnlich</p>
+        </div>
+
+        <div id="fullscreenButtonPatient" class="buttonFlat2" onclick = "fullscreenClicked(event,this)" style="top:5px; right: 5px;">
+          <img id="imgVisite" src="../../Assets/Icons/fullscreen.png" style="width: 100%; height: 100%;">
+        </div>
+        <div id="minimizeButtonPatient" class="buttonFlat2" onclick = "minimizedClicked(event,this)" style="top:5px; right: 60px;">
+          <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
+        </div>
+
+        <div id="leftButtonPatient" class="buttonFlat" onclick = "clickMove(this,'left')" style="left: 5px; top:15%; height: 70%;">
+          <img src="../../Assets/Icons/arrow-back.png" style="position: absolute; top: 50%;">
+        </div>
+        <div id="rightButtonPatient" class="buttonFlat" onclick = "clickMove(this,'right')"style="right: 5px; top:15%; height: 70%;">
+          <img src="../../Assets/Icons/arrow-forward.png" style="position: absolute; top: 50%;">
+        </div>
+        <div id="uptButtonPatient" class="buttonFlat" onclick = "clickMove(this,'top')" style="left: 15%; top:5px; width: 70%;">
+          <img src="../../Assets/Icons/arrow-up.png" style="position: absolute; left: 50%;">
+        </div>
+        <div id="downButtonPatient" class="buttonFlat" onclick = "clickMove(this,'bottom')"style="left: 15%; bottom:5px; width: 70%;">
+          <img src="../../Assets/Icons/arrow-down.png" style="position: absolute; left: 50%;">
+        </div>
+
+        <!-- <div id="resizeButtonPatient" class="buttonResize" onpointerdown = "resizePointerdown(event,this)" onpointermove = "resize(event,this)" onpointerup = "resizePointerup(event,this)" onpointerleave = "resizePointerleave(event,this)"></div> -->
+        <div id="resizeButtonPatient" class="buttonResize">
+          <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
+        </div>
+
+      </div>
     </div>
-    
-    <div id="tumor" class="layer" onpointerup="placeLayer(this)" onclick = "layerClicked(this)" style="" fullscreen="on" allowDrag="off" positionTest="none" position="center">
-      <img id="imgTumor" src="../Assets/Images/Tumor.PNG" style="width: 100%; height: 100%;">
       
-      <div id="fullscreenButtonTumor" class="buttonFlat2" onclick = "fullscreenClicked(event,this)" style="top:5px; right: 5px;">
-        <img id="imgVisite" src="../../Assets/Icons/fullscreen.png" style="width: 100%; height: 100%;">
-      </div>
-      <div id="minimizeButtonTumor" class="buttonFlat2" onclick = "minimizedClicked(event,this)" style="top:5px; right: 60px;">
-        <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
-      </div>
-
-      <div id="leftButtonTumor" class="buttonFlat" onclick = "clickMove(this,'left')" style="left: 5px; top:15%; height: 70%;">
-        <img src="../../Assets/Icons/arrow-back.png" style="position: absolute; top: 50%;">
-      </div>
-      <div id="rightButtonTumor" class="buttonFlat" onclick = "clickMove(this,'right')"style="right: 5px; top:15%; height: 70%;">
-        <img src="../../Assets/Icons/arrow-forward.png" style="position: absolute; top: 50%;">
-      </div>
-      <div id="uptButtonTumor" class="buttonFlat" onclick = "clickMove(this,'top')" style="left: 15%; top:5px; width: 70%;">
-        <img src="../../Assets/Icons/arrow-up.png" style="position: absolute; left: 50%;">
-      </div>
-      <div id="downButtonTumor" class="buttonFlat" onclick = "clickMove(this,'bottom')"style="left: 15%; bottom:5px; width: 70%;">
-        <img src="../../Assets/Icons/arrow-down.png" style="position: absolute; left: 50%;">
-      </div>
-      
-      <div id="arid1b_sources" class="source" allowDrag="on" scale="1" style="width: 50%;">
-        <img src="../Assets/Images/arid1b.png" alt="" style="height: 100%; width: 100%; pointer-events: none;">
-        <div id="resizeButtonArid" class="buttonResize">
-          <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
-        </div>
-        <div id="fullscreenButtonArid" class="buttonFlat2" onclick = "fullscreenClicked(event,this)" style="top:5px; right: 5px;">
-          <img id="imgVisite" src="../../Assets/Icons/fullscreen.png" style="width: 100%; height: 100%;">
-        </div>
-        <div id="minimizeButtonArid" class="buttonFlat2" onclick = "minimizedClicked(event,this)" style="top:5px; right: 60px;">
-          <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
-        </div>
-      </div>
-
-      <div id="srms_sources" class="source" allowDrag="on" scale="1" style="width: 50%;">
-        <img src="../Assets/Images/srms.png" alt="" style="height: 100%; width: 100%; pointer-events: none;">
-        <div id="resizeButtonSrms" class="buttonResize">
-          <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
-        </div>
-        <div id="fullscreenButtonSrms" class="buttonFlat2" onclick = "fullscreenClicked(event,this)" style="top:5px; right: 5px;">
-          <img id="imgVisite" src="../../Assets/Icons/fullscreen.png" style="width: 100%; height: 100%;">
-        </div>
-        <div id="minimizeButtonSrms" class="buttonFlat2" onclick = "minimizedClicked(event,this)" style="top:5px; right: 60px;">
-          <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
-        </div>
-      </div>
-
-      <div id="zdhhc13_sources" class="source" allowDrag="on" scale="1" style="width: 50%;">
-        <img src="../Assets/Images/zdhhc13.png" alt="" style="height: 100%; width: 100%; pointer-events: none;">
-        <div id="resizeButtonZdhh" class="buttonResize">
-          <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
-        </div>
-        <div id="fullscreenButtonZdhh" class="buttonFlat2" onclick = "fullscreenClicked(event,this)" style="top:5px; right: 5px;">
-          <img id="imgVisite" src="../../Assets/Icons/fullscreen.png" style="width: 100%; height: 100%;">
-        </div>
-        <div id="minimizeButtonZdhh" class="buttonFlat2" onclick = "minimizedClicked(event,this)" style="top:5px; right: 60px;">
-          <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
-        </div>
-      </div>
-      
-      <div id="genefake" style="position: absolute; right: 0%; bottom: 18%; height: 30%; width: 10%; background: rgb(79, 79, 79);"></div>
-      
-      <div id="arid1b_button" class="gene_button" onclick = "openGeneSources(this)"  active="false"style="right: 0%; bottom: 30.5%;">
-        <img src="../Assets/Images/arid1b_button.png" alt="" style="width: 100%; height: 100%;">
-      </div>
-      <div id="srms_button" class="gene_button" onclick = "openGeneSources(this)" active="false" style="right: 0%; bottom: 25%;">
-        <img src="../Assets/Images/srms_button.png" alt="" style="width: 100%; height: 100%;">
-      </div>
-      <div id="zdhhc13_button" class="gene_button" onclick = "openGeneSources(this)" active="false" style="right: 0%; bottom: 19%;">
-        <img src="../Assets/Images/zdhhc13_button.png" alt="" style="width: 100%; height: 100%;">
-      </div>
-      
-      <div id="resizeButtonTumor" class="buttonResize">
-        <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
-      </div>
-
-    </div>
-    
-    <div id="patient" class="layer" onpointerup="placeLayer(this)" onclick = "layerClicked(this)" style="" fullscreen="on" allowDrag="off" positionTest="none" position="center">
-
-      <div style="position: absolute; left: 20%; top: 10%; width: 50%; background: lightslategrey; padding: 5%;">
-        <p>Vorname: Rainer</p>
-        <p>Nachname: Zufall</p>
-        <p>Alter: 61</p>
-        <p>Geschlecht: m&aumlnnlich</p>
-      </div>
-
-      <div id="fullscreenButtonPatient" class="buttonFlat2" onclick = "fullscreenClicked(event,this)" style="top:5px; right: 5px;">
-        <img id="imgVisite" src="../../Assets/Icons/fullscreen.png" style="width: 100%; height: 100%;">
-      </div>
-      <div id="minimizeButtonPatient" class="buttonFlat2" onclick = "minimizedClicked(event,this)" style="top:5px; right: 60px;">
-        <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
-      </div>
-
-      <div id="leftButtonPatient" class="buttonFlat" onclick = "clickMove(this,'left')" style="left: 5px; top:15%; height: 70%;">
-        <img src="../../Assets/Icons/arrow-back.png" style="position: absolute; top: 50%;">
-      </div>
-      <div id="rightButtonPatient" class="buttonFlat" onclick = "clickMove(this,'right')"style="right: 5px; top:15%; height: 70%;">
-        <img src="../../Assets/Icons/arrow-forward.png" style="position: absolute; top: 50%;">
-      </div>
-      <div id="uptButtonPatient" class="buttonFlat" onclick = "clickMove(this,'top')" style="left: 15%; top:5px; width: 70%;">
-        <img src="../../Assets/Icons/arrow-up.png" style="position: absolute; left: 50%;">
-      </div>
-      <div id="downButtonPatient" class="buttonFlat" onclick = "clickMove(this,'bottom')"style="left: 15%; bottom:5px; width: 70%;">
-        <img src="../../Assets/Icons/arrow-down.png" style="position: absolute; left: 50%;">
-      </div>
-
-      <!-- <div id="resizeButtonPatient" class="buttonResize" onpointerdown = "resizePointerdown(event,this)" onpointermove = "resize(event,this)" onpointerup = "resizePointerup(event,this)" onpointerleave = "resizePointerleave(event,this)"></div> -->
-      <div id="resizeButtonPatient" class="buttonResize">
-        <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
-      </div>
-
-    </div>
-    
     <div id="modeSelectButton" class="button" style = "right: 100px; bottom: 10px;">
       <img src="../../Assets/Icons/layers.png"> 
     </div>
@@ -363,7 +366,6 @@
         <img src="../../Assets/Icons/gene.png"> 
       </div>
     </div>
-
   </div>
 
    </body>
@@ -373,6 +375,16 @@
       let rightArea = document.getElementById("rightArea")
       let topArea = document.getElementById("topArea")
       let bottomArea = document.getElementById("bottomArea")
+      let explorationArea = document.getElementById("explorationArea")
+
+      let windowWidth = window.innerWidth
+      let windowHeight = window.innerHeight
+      let explorationAreaWidth = window.innerWidth
+      let explorationAreaHeight = window.innerHeight-50
+
+      explorationArea.style.height = explorationAreaHeight+"px"
+      explorationArea.style.width = explorationAreaWidth+"px"
+
       
       modeMenu.setAttribute("active","false")
 
@@ -584,32 +596,32 @@
       }
 
       function moveLayer(element,position){
-        var h = window.innerHeight-50
-        var w = window.innerWidth
+        var h = explorationAreaHeight
+        var w = explorationAreaWidth
 
         element.setAttribute("fullscreen","off")
         element.setAttribute("allowDrag","on")
 
         if(position.indexOf("left")>-1){
           element.setAttribute("position","left")
-          TweenMax.to(element, 0.1, {css: {top: 50, left: 0, height: h, width:w/2}})
+          TweenMax.to(element, 0.1, {css: {top: 0, left: 0, height: h, width:w/2}})
         }
         if(position.toString().indexOf("right")>-1){
           element.setAttribute("position","right")
-          TweenMax.to(element, 0.1, {css: {top: 50, left: w/2, height: h, width:w/2}})
+          TweenMax.to(element, 0.1, {css: {top: 0, left: w/2, height: h, width:w/2}})
         }
         if(position.toString().indexOf("top")>-1){
           element.setAttribute("position","top")
-          TweenMax.to(element, 0.1, {css: {top: 50, left: 0, height: h/2, width:w}})
+          TweenMax.to(element, 0.1, {css: {top: 0, left: 0, height: h/2, width:w}})
         }
         if(position.toString().indexOf("bottom")>-1){
           element.setAttribute("position","bottom")
-          TweenMax.to(element, 0.1, {css: {top:  h/2+50, left: 0, height: h/2, width:w}})
+          TweenMax.to(element, 0.1, {css: {top:  h/2, left: 0, height: h/2, width:w}})
         }
         element.style.opacity = 1
       }
 
-      function moveRightClicked(element){
+      /* function moveRightClicked(element){
         var h = (window.innerHeight-50)
         var w = window.innerWidth
         console.log(element.parentNode.getAttribute("position"))
@@ -624,7 +636,7 @@
 
           TweenMax.to(element.parentNode, 0.1, {css: {top: 50, left: w/2, height: h, width:w/2}})
         // }
-      }
+      } */
 
       function minimizedClicked(e,element){
         e.stopPropagation()
@@ -637,15 +649,18 @@
         // TweenMax.to(element.parentNode, 0.1, {scale:0.7, onComplete:function(){
         // }})            
         TweenMax.to(element.parentNode, 0.1, {css: {top: 150, left: 100, height: h/2, width:w/2}})
-  }
+      }
       function fullscreenClicked(e,element){
         e.stopPropagation()
         let layer = element.parentNode
         let parentLayer = layer.parentNode
         // var h = (window.innerHeight-50)
         // var w = window.innerWidth
-        var h = parentLayer.getBoundingClientRect().height
-        var w = parentLayer.getBoundingClientRect().width
+        let h = parentLayer.getBoundingClientRect().height
+        let w = parentLayer.getBoundingClientRect().width
+        let top = parentLayer.getBoundingClientRect().top
+        console.log(parentLayer,h,w)
+
         // switch(element.childNodes[1].src.toString().indexOf("exit")>0){
         //   case false: 
         //     element.childNodes[1].src = "../../Assets/Icons/fullscreen_exit.png"
@@ -656,8 +671,9 @@
         bringToFront(element.parentNode)
             // TweenMax.to(element.parentNode, 0.1, {scale:1})
             // TweenMax.to(element.parentNode, 0.1, {css: {top: 50, left: 0}})
+          
             
-        TweenMax.to(layer, 0.1, {css: {top: 50, left: 0, height: h, width:w}})
+        TweenMax.to(layer, 0.1, {css: {top: 0, left: 0, height: h, width:w}})
             // break
           // case true: 
           //   element.childNodes[1].src = "../../Assets/Icons/fullscreen.png"
