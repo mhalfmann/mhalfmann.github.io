@@ -166,7 +166,7 @@
     <div id ="header" style="position: absolute; left: 0px; top:0px; height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px; z-index: 999999;">
       Patient 0815  
     </div>
-    <div id ="explorationArea" style="position: absolute; left: 0px; top:50px; height: 100%; width:100%; background: rgb(73, 182, 82);z-index: 1;">
+    <div id ="explorationArea" style="position: absolute; left: 0px; top:50px; height: 100%; width:100%; background: rgb(238, 235, 204);z-index: 1;">
    
 
       <div id="leftArea" class="moveArea" style="left:0px; top: 0px; height: 100%; width: 10%;"></div>
@@ -469,6 +469,7 @@
       function leaveModeButton(button){
         let layer = document.getElementById(button.getAttribute('layer'))
         bringToFront(currentLayer)
+        TweenMax.to(layer, 0.1, {scale:1})
                 
         // if(modeMenu.getAttribute("active")=="true")layer.style.opacity = 0.9
       }
@@ -476,7 +477,9 @@
       function enterModeButton(button){
         let layer = document.getElementById(button.getAttribute('layer'))
         bringToFront(layer)
-        layer.style.opacity = 1    
+        layer.style.opacity = 1
+        
+        if(layer.getAttribute("fullscreen")!="on")TweenMax.to(layer, 0.1, {scale:1.1})
         /*if(button.id.indexOf('Patient')>-1){
           bringToFront(patient)
           patient.style.opacity = 0.7
