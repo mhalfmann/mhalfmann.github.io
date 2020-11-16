@@ -36,6 +36,7 @@
     position: absolute;
     background: chartreuse;
     opacity: 0;
+    pointer-events: none;
   }
   .area{
     position: absolute;
@@ -81,11 +82,11 @@
 
   .document_button{
     position: absolute;
-    height: 50%;
+    height: 35%;
     width:5%;
     z-index: 2;
     opacity: 1;
-    background: purple;
+    /* background: purple; */
     overflow: hidden;
   }
 
@@ -123,10 +124,10 @@
   }
 
   .buttonSubmenu{
-    /* position: absolute; */
+    position: absolute;
     width: 50px;
     height: 50px;
-    z-index: 3;
+    z-index: 300000;
     margin: 10px;
     background: lightskyblue;
     opacity: 0.7;
@@ -171,15 +172,16 @@
     <div id ="header" style="position: absolute; left: 0px; top:0px; height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px; z-index: 999999;">
       Patient 0815  
     </div>
-    <div id ="explorationArea" style="position: absolute; left: 0px; top:50px; height: 100%; width:100%; background: rgb(238, 235, 204);z-index: 1;">
+    <div id ="explorationArea" style="position: absolute; left: 0px; top:50px; height: 100%; width:100%; background: rgb(128, 128, 128);z-index: 1;">
    
 
-      <!-- <div id="leftArea" class="moveArea" style="left:0px; top: 0px; height: 100%; width: 10%;"></div>
+      <div id="leftArea" class="moveArea" style="left:0px; top: 0px; height: 100%; width: 10%;"></div>
       <div id="rightArea" class="moveArea" style="right:0px; top: 0px; height: 100%; width: 10%; background: chocolate;"></div>
       <div id="topArea" class="moveArea" style="left:10%; top: 0px; height: 10%; width: 70%; background: cornflowerblue;"></div>
       <div id="bottomArea" class="moveArea" style="left:10%; bottom: 0px; height: 10%; width: 80%; background: darkgreen;" ></div>
-       -->
+      
       <div id = "geneArea" class = "area" style="top: 0px; right: 0%; height: 100%; width: 10%;">
+        <img src="../Assets/Images/geneList.png" alt="">
         <div id="genefake" style="position: absolute; right: 0%; bottom: 18%; height: 30%; width: 100%; background: rgb(79, 79, 79);"></div>
       
         <div id="arid1b_button" class="gene_button" onclick = "openGeneSources(this)"  active="false"style="right: 0%; bottom: 30.5%;">
@@ -190,13 +192,23 @@
         </div>
         <div id="zdhhc13_button" class="gene_button" onclick = "openGeneSources(this)" active="false" style="right: 0%; bottom: 19%;">
           <img src="../Assets/Images/zdhhc13_button.png" alt="" style="width: 100%; height: 100%;">
-        </div>  
+        </div>
+
+        <div id="modeTumor" class="buttonSubmenu" onclick = "toggleArea(event,this)" style = "bottom: 15%; left: -60px;" area="geneArea">
+          <img id="tumorIcon" src="../../Assets/Icons/gene.png"> 
+        </div>
+
       </div>
 
-      <div id = "visiteArea" class = "area" style="bottom: 0px; left: 0%; height: 15%; width: 100%;">
-        <div id="document_text_button" class="document_button" onclick = "openDocument(this)"  active="false" style="right: 63.5%; bottom: 13%;">
+      <div id = "visiteArea" class = "area" style="bottom: 0px; left: 0%; height: 15%; width: 90%; background: rgb(197, 84, 84);">
+        <img src="../Assets/Images/Timeline.png" width="100%" alt="">
+        <div id="document_text_button" class="document_button" onclick = "openDocument(this)"  active="false" style="left: 32%; bottom: 40%;">
         </div>
-        <div id="document_img_button" class="document_button" onclick = "openDocument(this)"  active="false" style="right: 22.5%; bottom: 18%;">
+        <div id="document_img_button" class="document_button" onclick = "openDocument(this)"  active="false" style="right: 21.7%; bottom: 55%;">
+        </div>
+       
+        <div id="modeVisite" class="buttonSubmenu" onclick = "toggleArea(event,this)" style = "left: 0px; top:-60px;" area="visiteArea">
+          <img id="visiteIcon" src="../../Assets/Icons/visite.png" style="width: 90%; height: 90%;"> 
         </div>
       </div>
 
@@ -264,13 +276,6 @@
           <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
         </div>
       </div>
-
-      <div id="modeVisite" class="buttonSubmenu" onclick = "toggleArea(event,this)" style = "" area="visiteArea">
-        <img src="../../Assets/Icons/visite.png" style="width: 90%; height: 90%;"> 
-      </div>
-      <div id="modeTumor" class="buttonSubmenu" onclick = "toggleArea(event,this)" style = "" area="geneArea">
-        <img src="../../Assets/Icons/gene.png"> 
-      </div>
       
           
       <!-- <div id="patient" class="layer" onpointerup="placeLayer(this)" onclick = "layerClicked(this)" style="" fullscreen="on" allowDrag="off" positionTest="none" position="center">
@@ -330,6 +335,9 @@
       let bottomArea = document.getElementById("bottomArea")
       let explorationArea = document.getElementById("explorationArea")
 
+      let visiteArea = document.getElementById("visiteArea")
+      let geneArea = document.getElementById("geneArea")
+
       let windowWidth = window.innerWidth
       let windowHeight = window.innerHeight
       let explorationAreaWidth = window.innerWidth
@@ -353,8 +361,15 @@
 
       var topLayerIndex = 2
 
-      $( "#geneArea" ).hide()
-      $( "#visiteArea" ).hide()
+      // $( "#geneArea" ).slideUp()
+      // $( "#visiteArea" ).slideUp()
+      let hv = visiteArea.getBoundingClientRect().height
+      let wg = geneArea.getBoundingClientRect().width
+
+      TweenMax.to(visiteArea, 0.1, {y:hv})
+      visiteArea.setAttribute("active","false")
+      TweenMax.to(geneArea, 0.1, {x:wg})
+      geneArea.setAttribute("active","false")
 
       $( "#arid1b_sources" ).hide()
       $( "#srms_sources" ).hide()
@@ -387,7 +402,7 @@
         if(event.target.className=="source"){
           var scale = parseFloat(event.target.getAttribute("scale"))
           scale+=event.deltaY*-0.001
-          TweenMax.to(event.target, 0.1, {css: {scale: scale}})    
+          TweenMax.to(event.target, 0.1, {css: {scale: scale}})
           event.target.setAttribute("scale",scale.toString())
         }
       })
@@ -427,7 +442,24 @@
         e.preventDefault()
         let area = document.getElementById( button.getAttribute("area"))
         console.log(button.getAttribute("area"))
-        $(area).toggle()
+        let x=0
+        let y=0
+        
+        switch(area.getAttribute("active")){
+          case "false":
+            x=0
+            y=0
+            area.setAttribute("active","true")
+            break
+          case "true":
+            if(area.id=="geneArea")x=wg
+            if(area.id=="visiteArea")y=hv
+            area.setAttribute("active","false")
+            break          
+        }
+
+        TweenMax.to(area, 0.1, {y:y,x:x})
+        // $(area).slideDown(500)
       }
 
       function leaveModeButton(button){
@@ -543,10 +575,11 @@
       }
 
       function bringToFront(element){
+        console.log("BringToFront")
         topLayerIndex++
         element.style.zIndex =topLayerIndex
-        // document.getElementById("modeSelectButton").style.zIndex =topLayerIndex+1
-        // document.getElementById("modeMenu").style.zIndex =topLayerIndex+1
+        document.getElementById("modeVisite").style.zIndex = topLayerIndex+1
+        document.getElementById("modeTumor").style.zIndex = topLayerIndex+1
       }
 
       function placeLayer(element){
