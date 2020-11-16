@@ -450,10 +450,18 @@
             x=0
             y=0
             area.setAttribute("active","true")
+            console.log(button.childNodes[1])
+            button.childNodes[1].src ="../../Assets/Icons/close.png"
             break
           case "true":
-            if(area.id=="geneArea")x=wg
-            if(area.id=="visiteArea")y=hv
+            if(area.id=="geneArea"){
+              x=wg
+              button.childNodes[1].src ="../../Assets/Icons/gene.png"
+            }
+            if(area.id=="visiteArea"){
+              y=hv
+              button.childNodes[1].src ="../../Assets/Icons/visite.png"
+            }
             area.setAttribute("active","false")
             break          
         }
