@@ -644,6 +644,7 @@
 
       function minimizedClicked(e,element){
         e.stopPropagation()
+        let layer = element.parentNode
         var h = (window.innerHeight-50)
         var w = window.innerWidth
 
@@ -652,18 +653,24 @@
         // element.parentNode.style.boxShadow = "0px 0px 15px 5px  rgb(58, 58, 58)";
         // TweenMax.to(element.parentNode, 0.1, {scale:0.7, onComplete:function(){
         // }})            
-        TweenMax.to(element.parentNode, 0.1, {css: {top: 150, left: 100, height: h/2, width:w/2}})
+        // TweenMax.to(element.parentNode, 0.1, {css: {top: 150, left: 100, height: h/2, width:w/2}})
+        TweenMax.to(layer, 0.1, {css: {height: h/2, width:w/2}})
+        TweenMax.to(layer, 0.1, {css:{top:100,left:100}})
       }
       function fullscreenClicked(e,element){
         e.stopPropagation()
         let layer = element.parentNode
+        let scale = parseFloat( layer.getAttribute("scale"))
         let parentLayer = layer.parentNode
         // var h = (window.innerHeight-50)
         // var w = window.innerWidth
         let h = parentLayer.getBoundingClientRect().height
         let w = parentLayer.getBoundingClientRect().width
+        let x = layer.getBoundingClientRect().x
+        let y = layer.getBoundingClientRect().y
+        let xP = parentLayer.getBoundingClientRect().x
+        let yP = parentLayer.getBoundingClientRect().y
         let top = parentLayer.getBoundingClientRect().top
-        console.log(parentLayer,h,w)
 
         // switch(element.childNodes[1].src.toString().indexOf("exit")>0){
         //   case false: 
@@ -676,8 +683,13 @@
             // TweenMax.to(element.parentNode, 0.1, {scale:1})
             // TweenMax.to(element.parentNode, 0.1, {css: {top: 50, left: 0}})
           
-            
-        TweenMax.to(layer, 0.1, {css: {top: 0, left: 0, height: h, width:w}})
+        let xPos = xP - x
+        let yPos = yP - y
+        
+        console.log("FULLSCREEN",parentLayer,x,xP,xPos)
+        // TweenMax.to(layer, 0.1, {css: {top: 0, left: 0, height: h, width:w}})
+        TweenMax.to(layer, 0.1, {css: {height: h, width:w}})
+        TweenMax.to(layer, 0.1, {css:{top:0, left:0}})
             // break
           // case true: 
           //   element.childNodes[1].src = "../../Assets/Icons/fullscreen.png"
@@ -807,7 +819,8 @@
 
       function resizeElement(button) {
         let elmnt = button.parentNode
-        button.onpointerdown = resizeMouseDown;
+        button.onpointerdown = resizeMouseDown
+        let scale = 1.0
 
         function resizeMouseDown(e) {
           e.stopPropagation()
@@ -815,6 +828,7 @@
           e.preventDefault()
           oldX = 0
           oldY = 0
+          scale = parseFloat(elmnt.getAttribute("scale"))
           document.onpointerup = closeResizeElement
           document.onpointermove = elementResize
           bringToFront(elmnt)
@@ -835,8 +849,8 @@
               
               let h = elmnt.getBoundingClientRect().height
               let w = elmnt.getBoundingClientRect().width
-              h = h + deltaY
-              w = w + deltaX
+              h = (h + deltaY)/scale
+              w = (w + deltaX)/scale
               elmnt.style.width = w + "px"
               elmnt.style.height = h + "px"
         }
