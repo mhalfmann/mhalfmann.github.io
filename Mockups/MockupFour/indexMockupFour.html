@@ -185,24 +185,28 @@
       <div id = "geneArea" class = "area" style="top: 0px; right: 0%; height: 100%; width: 10%;">
         <img src="../Assets/Images/geneList.png" alt="">
         <div id="genefake" style="position: absolute; right: 0%; bottom: 18%; height: 30%; width: 100%; background: rgb(79, 79, 79);"></div>
-        <div id="genefake" style="position: absolute; right: 0%; bottom: 4.5%; height: 6%; width: 100%; background: rgb(79, 79, 79);"></div>
+        <div id="genefake" style="position: absolute; right: 0%; bottom: 4.5%; height: 13.5%; width: 100%; background: rgba(79, 79, 79);"></div>
       
-        <div id="arid1b_button" class="gene_button" onclick = "openGeneSources(this)" active="false" af="10" style="right: 0%; bottom: 30.5%;">
+        <div id="arid1b_button" class="gene_button" onclick = "openGeneSources(this)" active="false" af="10" style="right: 0%; bottom: 35.5%;">
           <img src="../Assets/Images/arid1b_button.png" alt="" style="width: 100%; height: 100%;">
         </div>
-        <div id="srms_button" class="gene_button" onclick = "openGeneSources(this)" active="false" af="20" style="right: 0%; bottom: 25%;">
+        <div id="srms_button" class="gene_button" onclick = "openGeneSources(this)" active="false" af="20" style="right: 0%; bottom: 30%;">
           <img src="../Assets/Images/srms_button.png" alt="" style="width: 100%; height: 100%;">
         </div>
-        <div id="zdhhc13_button" class="gene_button" onclick = "openGeneSources(this)" active="false" af="30" style="right: 0%; bottom: 19%;">
+        <div id="zdhhc13_button" class="gene_button" onclick = "openGeneSources(this)" active="false" af="30" style="right: 0%; bottom: 24%;">
           <img src="../Assets/Images/zdhhc13_button.png" alt="" style="width: 100%; height: 100%;">
         </div>
 
         <div id="modeTumor" class="buttonSubmenu" onclick = "toggleArea(event,this)" style = "bottom: 15%; left: -60px;" area="geneArea">
           <img id="tumorIcon" src="../../Assets/Icons/gene.png"> 
         </div>
-        <div class="slidecontainer" style="position: absolute; bottom: 4.5%; right: 0px;">
+
+        <img src="../Assets/Images/sorting.png" alt="" style="position: absolute; left: 0%; bottom: 20%; width: 100%; ">
+        <img src="../Assets/Images/filtering.png" alt="" style="position: absolute; left: 0%; bottom: 15%; width: 100%;">
+        
+        <div class="slidecontainer" style="position: absolute; bottom: 4.5%; right: 0px; background: none;">
           <input type="range" min="1" max="100" value="50" class="slider" id="allelSlider">
-          <p id ="sliderLabel" style="color: white; font-size: 12px;">Allelfrequenz:</p>
+          <p id ="sliderLabel" style="color: white; font-size: 12px; margin: 10px;">Allelfrequenz:</p>
         </div>
 
       </div>
