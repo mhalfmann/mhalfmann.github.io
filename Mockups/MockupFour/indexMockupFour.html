@@ -234,6 +234,9 @@
         <div id="minimizeButtonDoc" class="buttonFlat2" onclick = "minimizedClicked(event,this)" style="top:5px; right: 60px;">
           <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
         </div>
+        <div id="closeButtonDoc" class="buttonFlat2" onclick = "closeClicked(event,this)" type = "doc" style="top:5px; right: 115px;">
+          <img src="../../Assets/Icons/close.png" style="width: 100%; height: 100%;">
+        </div>
       </div>
 
       <div id="document_img" class="source" allowDrag="on" scale="1" style="width: 30%;">
@@ -247,6 +250,9 @@
         <div id="minimizeButtonImg" class="buttonFlat2" onclick = "minimizedClicked(event,this)" style="top:5px; right: 60px;">
           <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
         </div>
+        <div id="closeButtonImg" class="buttonFlat2" onclick = "closeClicked(event,this)" type = "doc" style="top:5px; right: 115px;">
+          <img src="../../Assets/Icons/close.png" style="width: 100%; height: 100%;">
+        </div>
       </div>
       
       <div id="arid1b_sources" class="source" allowDrag="on" scale="1" style="width: 50%;">
@@ -255,10 +261,13 @@
           <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
         </div>
         <div id="fullscreenButtonArid" class="buttonFlat2" onclick = "fullscreenClicked(event,this)" style="top:5px; right: 5px;">
-          <img id="imgVisite" src="../../Assets/Icons/fullscreen.png" style="width: 100%; height: 100%;">
+          <img src="../../Assets/Icons/fullscreen.png" style="width: 100%; height: 100%;">
         </div>
         <div id="minimizeButtonArid" class="buttonFlat2" onclick = "minimizedClicked(event,this)" style="top:5px; right: 60px;">
-          <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
+          <img src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
+        </div>
+        <div id="closeButtonArid" class="buttonFlat2" onclick = "closeClicked(event,this)" type = "gene" button="arid1b_button" style="top:5px; right: 115px;">
+          <img src="../../Assets/Icons/close.png" style="width: 100%; height: 100%;">
         </div>
       </div>
 
@@ -268,10 +277,13 @@
           <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
         </div>
         <div id="fullscreenButtonSrms" class="buttonFlat2" onclick = "fullscreenClicked(event,this)" style="top:5px; right: 5px;">
-          <img id="imgVisite" src="../../Assets/Icons/fullscreen.png" style="width: 100%; height: 100%;">
+          <img src="../../Assets/Icons/fullscreen.png" style="width: 100%; height: 100%;">
         </div>
         <div id="minimizeButtonSrms" class="buttonFlat2" onclick = "minimizedClicked(event,this)" style="top:5px; right: 60px;">
-          <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
+          <img src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
+        </div>
+        <div id="closeButtonSrms" class="buttonFlat2" onclick = "closeClicked(event,this)" type = "gene" button="srms_button" style="top:5px; right: 115px;">
+          <img src="../../Assets/Icons/close.png" style="width: 100%; height: 100%;">
         </div>
       </div>
 
@@ -281,10 +293,13 @@
           <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
         </div>
         <div id="fullscreenButtonZdhh" class="buttonFlat2" onclick = "fullscreenClicked(event,this)" style="top:5px; right: 5px;">
-          <img id="imgVisite" src="../../Assets/Icons/fullscreen.png" style="width: 100%; height: 100%;">
+          <img src="../../Assets/Icons/fullscreen.png" style="width: 100%; height: 100%;">
         </div>
         <div id="minimizeButtonZdhh" class="buttonFlat2" onclick = "minimizedClicked(event,this)" style="top:5px; right: 60px;">
-          <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
+          <img src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
+        </div>
+        <div id="closeButtonZdhh" class="buttonFlat2" onclick = "closeClicked(event,this)" type = "gene" button="zdhhc13_button" style="top:5px; right: 115px;">
+          <img src="../../Assets/Icons/close.png" style="width: 100%; height: 100%;">
         </div>
       </div>
       
@@ -686,6 +701,17 @@
         // }
       } */
 
+      function closeClicked(e,element){
+        let target = element.parentNode
+        if(element.getAttribute("type")=="gene"){
+          console.log("closing",element.getAttribute("button"))
+          let button = document.getElementById(element.getAttribute("button"))          
+          button.setAttribute("active","false")
+          TweenMax.to(button, 0.1, {x:0})
+        }
+        $(target).toggle()
+      }
+      
       function minimizedClicked(e,element){
         e.stopPropagation()
         let layer = element.parentNode
