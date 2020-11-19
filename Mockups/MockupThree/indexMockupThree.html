@@ -8,6 +8,7 @@
 <script src="../../Javascript/TweenMax.min.js"></script>
 <script src="../../Javascript/jquery-3.4.0.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../../css/ui.css">
+<link rel="stylesheet" type="text/css" href="../../css/slider.css">
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
 <style>
 
@@ -174,7 +175,7 @@
       <div id="topArea" class="moveArea" style="left:10%; top: 0px; height: 10%; width: 70%; background: cornflowerblue;"></div>
       <div id="bottomArea" class="moveArea" style="left:10%; bottom: 0px; height: 10%; width: 80%; background: darkgreen;" ></div>
       
-      <div id="visite" class="layer" onpointerup="placeLayer(this)" onclick = "layerClicked(this)" style="" fullscreen="on" allowDrag="off" positionTest="none" position="center">
+      <div id="visite" class="layer" onpointerup="placeLayer(this)" onclick = "layerClicked(this)" style="" fullscreen="on" allowDrag="off" positionTest="none" position="center" scale="1.0">
         <img id="imgVisite" src="../Assets/Images/Visite2.png" style="width: 100%; height: 100%;">
         
         <div id="fullscreenButtonVisite" class="buttonFlat2" onclick = "fullscreenClicked(event,this)" style="top:5px; right: 5px;">
@@ -234,7 +235,7 @@
 
       </div>
       
-      <div id="tumor" class="layer" onpointerup="placeLayer(this)" onclick = "layerClicked(this)" style="" fullscreen="on" allowDrag="off" positionTest="none" position="center">
+      <div id="tumor" class="layer" onpointerup="placeLayer(this)" onclick = "layerClicked(this)" style="" fullscreen="on" allowDrag="off" positionTest="none" position="center" scale="1.0">
         <img id="imgTumor" src="../Assets/Images/Tumor.PNG" style="width: 100%; height: 100%;">
         
         <div id="fullscreenButtonTumor" class="buttonFlat2" onclick = "fullscreenClicked(event,this)" style="top:5px; right: 5px;">
@@ -297,15 +298,24 @@
         </div>
         
         <div id="genefake" style="position: absolute; right: 0%; bottom: 18%; height: 30%; width: 10%; background: rgb(79, 79, 79);"></div>
+        <div id="genefake" style="position: absolute; right: 0%; bottom: 1%; height: 30%; width: 10%; background: rgb(79, 79, 79);"></div>
         
-        <div id="arid1b_button" class="gene_button" onclick = "openGeneSources(this)"  active="false"style="right: 0%; bottom: 30.5%;">
+        <div id="arid1b_button" class="gene_button" onclick = "openGeneSources(this)" af="10" active="false"style="right: 0%; bottom: 36%;">
           <img src="../Assets/Images/arid1b_button.png" alt="" style="width: 100%; height: 100%;">
         </div>
-        <div id="srms_button" class="gene_button" onclick = "openGeneSources(this)" active="false" style="right: 0%; bottom: 25%;">
+        <div id="srms_button" class="gene_button" onclick = "openGeneSources(this)" af="20" active="false" style="right: 0%; bottom: 30%;">
           <img src="../Assets/Images/srms_button.png" alt="" style="width: 100%; height: 100%;">
         </div>
-        <div id="zdhhc13_button" class="gene_button" onclick = "openGeneSources(this)" active="false" style="right: 0%; bottom: 19%;">
+        <div id="zdhhc13_button" class="gene_button" onclick = "openGeneSources(this)" af="30" active="false" style="right: 0%; bottom: 24%;">
           <img src="../Assets/Images/zdhhc13_button.png" alt="" style="width: 100%; height: 100%;">
+        </div>
+
+        <img src="../Assets/Images/sorting.png" alt="" style="position: absolute; right: 0%; bottom: 20%; width: 10%; height: 2%;">
+        <img src="../Assets/Images/filtering.png" alt="" style="position: absolute; right: 0%; bottom: 15%; width: 10%; height: 4%;">
+        
+        <div class="slidecontainer" style="position: absolute; bottom: 4.5%; right: 0px; width: 10%; height: 5%; background: none;">
+          <input type="range" min="1" max="100" value="50" class="slider" id="allelSlider">
+          <p id ="sliderLabel" style="color: white; font-size: 12px; margin: 10px;">Allelfrequenz:</p>
         </div>
         
         <div id="resizeButtonTumor" class="buttonResize">
@@ -314,7 +324,7 @@
 
       </div>
       
-      <div id="patient" class="layer" onpointerup="placeLayer(this)" onclick = "layerClicked(this)" style="" fullscreen="on" allowDrag="off" positionTest="none" position="center">
+      <div id="patient" class="layer" onpointerup="placeLayer(this)" onclick = "layerClicked(this)" style="" fullscreen="on" allowDrag="off" positionTest="none" position="center" scale="1.0">
 
         <div style="position: absolute; left: 20%; top: 10%; width: 50%; background: lightslategrey; padding: 5%;">
           <p>Vorname: Rainer</p>
@@ -406,6 +416,33 @@
       $( "#zdhhc13_sources" ).hide()
       $( "#document_img" ).hide()
       $( "#document_text" ).hide()
+
+      allelSlider.value = 95
+      let currentAF = 100-allelSlider.value
+
+      $(".gene_button").filter(function() {
+          return  $(this).attr("af") < currentAF
+        }).slideUp()
+
+        $(".gene_button").filter(function() {
+            return  $(this).attr("af") > currentAF
+        }).slideDown()
+
+      sliderLabel.innerHTML = "Allelfrequenz: "+(currentAF).toString()+"%"
+
+      allelSlider.oninput = function() {
+        currentAF = 100-allelSlider.value
+        console.log(currentAF)
+        sliderLabel.innerHTML = "Allelfrequenz: "+(currentAF).toString()+"%"
+
+        $(".gene_button").filter(function() {
+          return  $(this).attr("af") < currentAF
+        }).slideUp()
+
+        $(".gene_button").filter(function() {
+            return  $(this).attr("af") > currentAF
+        }).slideDown()
+      }
 
       document.getElementById("tumor").style.height = (window.innerHeight-50)+"px"
       document.getElementById("patient").style.height = (window.innerHeight-50)+"px"
@@ -645,8 +682,9 @@
       function minimizedClicked(e,element){
         e.stopPropagation()
         let layer = element.parentNode
-        var h = (window.innerHeight-50)
-        var w = window.innerWidth
+        let scale = parseFloat( layer.getAttribute("scale"))
+        var h = (window.innerHeight-50)/scale
+        var w = window.innerWidth/scale
 
         element.parentNode.setAttribute("fullscreen","off")
         element.parentNode.setAttribute("allowDrag","on")
@@ -657,9 +695,11 @@
         TweenMax.to(layer, 0.1, {css: {height: h/2, width:w/2}})
         TweenMax.to(layer, 0.1, {css:{top:100,left:100}})
       }
+      
       function fullscreenClicked(e,element){
         e.stopPropagation()
         let layer = element.parentNode
+        console.log("fullscreen", layer.className)
         let scale = parseFloat( layer.getAttribute("scale"))
         let parentLayer = layer.parentNode
         // var h = (window.innerHeight-50)
@@ -686,10 +726,19 @@
         let xPos = xP - x
         let yPos = yP - y
         
+        
         console.log("FULLSCREEN",parentLayer,x,xP,xPos)
         // TweenMax.to(layer, 0.1, {css: {top: 0, left: 0, height: h, width:w}})
-        TweenMax.to(layer, 0.1, {css: {height: h, width:w}})
-        TweenMax.to(layer, 0.1, {css:{top:0, left:0}})
+
+        if(layer.className=="source"){
+          TweenMax.to(layer, 0.1, {css: {height: h*0.9, width:w*0.95}})
+          TweenMax.to(layer, 0.1, {css:{top:50, left:0}})
+        }
+
+        if(layer.className!="source"){
+          TweenMax.to(layer, 0.1, {css: {height: h, width:w}})
+          TweenMax.to(layer, 0.1, {css:{top:0, left:0}})
+        }
             // break
           // case true: 
           //   element.childNodes[1].src = "../../Assets/Icons/fullscreen.png"
@@ -733,18 +782,21 @@
         }
 
         function dragMouseDown(e) {
-          e.stopPropagation()
-          e = e || window.event
-          e.preventDefault()
-          // get the mouse cursor position at startup:
-          pos3 = e.clientX;
-          pos4 = e.clientY
-          // document.onmouseup = closeDragElement;
-          document.onpointerup = closeDragElement
-          // call a function whenever the cursor moves:
-          // document.onmousemove = elementDrag;
-          document.onpointermove = elementDrag
-          bringToFront(elmnt)
+          console.log(e.target)
+          if(e.target.className!="slider"){
+            e.stopPropagation()
+            e = e || window.event
+            e.preventDefault()
+            // get the mouse cursor position at startup:
+            pos3 = e.clientX;
+            pos4 = e.clientY
+            // document.onmouseup = closeDragElement;
+            document.onpointerup = closeDragElement
+            // call a function whenever the cursor moves:
+            // document.onmousemove = elementDrag;
+            document.onpointermove = elementDrag
+            bringToFront(elmnt)
+          }
         }
 
         function elementDrag(e) {
