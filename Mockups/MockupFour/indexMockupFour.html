@@ -774,11 +774,12 @@
       // dragElement(document.getElementById("visite"))
       // dragElement(document.getElementById("tumor"))
       // dragElement(document.getElementById("patient"))
-      dragElement(document.getElementById("arid1b_sources"))
-      dragElement(document.getElementById("srms_sources"))
-      dragElement(document.getElementById("zdhhc13_sources"))
-      dragElement(document.getElementById("document_text"))
-      dragElement(document.getElementById("document_img"))
+
+      // dragElement(document.getElementById("arid1b_sources"))
+      // dragElement(document.getElementById("srms_sources"))
+      // dragElement(document.getElementById("zdhhc13_sources"))
+      // dragElement(document.getElementById("document_text"))
+      // dragElement(document.getElementById("document_img"))
 
             /*document.getElementById("listButton").addEventListener("click",()=>{
                 $( "#list" ).toggle();
@@ -932,7 +933,83 @@
           document.onpointermove = null;
         }
       }
+      var dragItem =null
 
+    var active = false
+    var currentX
+    var currentY
+    var initialX
+    var initialY
+    var xOffset = 0
+    var yOffset = 0
+
+    var sources = document.getElementsByClassName("source")
+
+    console.log("SOURCES: ",sources.length)
+    for (var i = 0; i < sources.length; i++) {
+      sources[i].setAttribute("offsetX","0")
+      sources[i].setAttribute("offsetY","0")
+    }
+
+    explorationArea.addEventListener("touchstart", dragStart, false)
+    explorationArea.addEventListener("touchend", dragEnd, false)
+    explorationArea.addEventListener("touchmove", drag, false)
+
+    explorationArea.addEventListener("mousedown", dragStart, false)
+    explorationArea.addEventListener("mouseup", dragEnd, false)
+    explorationArea.addEventListener("mousemove", drag, false)
+
+    function dragStart(e) {
+      xOffset = parseFloat(e.target.getAttribute("offsetX"))
+      yOffset = parseFloat(e.target.getAttribute("offsetY"))
+      console.log("DRAG START",xOffset,yOffset)
+      if (e.type === "touchstart") {
+        initialX = e.touches[0].clientX - xOffset;
+        initialY = e.touches[0].clientY - yOffset;
+      } else {
+        initialX = e.clientX - xOffset;
+        initialY = e.clientY - yOffset;
+      }
+
+      if (e.target.className == "source") {
+        active = true;
+        dragItem = e.target
+        bringToFront(dragItem)
+      }
+    }
+
+    function dragEnd(e) {
+      initialX = currentX;
+      initialY = currentY;
+
+      active = false;
+    }
+
+    function drag(e) {
+      if (active) {
+      
+        e.preventDefault();
+      
+        if (e.type === "touchmove") {
+          currentX = e.touches[0].clientX - initialX;
+          currentY = e.touches[0].clientY - initialY;
+        } else {
+          currentX = e.clientX - initialX;
+          currentY = e.clientY - initialY;
+        }
+
+        xOffset = currentX;
+        yOffset = currentY;
+        dragItem.setAttribute("offsetX",currentX)
+        dragItem.setAttribute("offsetY",currentY)
+
+        setTranslate(currentX, currentY, dragItem);
+      }
+    }
+
+    function setTranslate(xPos, yPos, el) {
+      el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+    }
       /*function resizePointerdown(e,element){
         e.stopPropagation()
         e.preventDefault()
