@@ -1,0 +1,868 @@
+<!doctype HTML>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1"> -->
+<!-- <script src="./Javascript/aframe.min.js"></script> -->
+<!-- <script src="./Javascript/aframe-ar.js"></script> -->
+<script src="../../Javascript/hammer.js"></script>
+<script src="../../Javascript/TweenMax.min.js"></script>
+<script src="../../Javascript/jquery-3.4.0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../css/ui.css">
+<link rel="stylesheet" type="text/css" href="../../css/slider.css">
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+<style>
+
+  a, a:visited { 
+    text-decoration: none; 
+    color: white;
+  }
+    
+  .uiButtonFrame{
+  }
+
+  .uiDialogueElement{
+    margin: 10px;
+  }
+
+  input[type=number]::-webkit-inner-spin-button {
+    opacity: 1
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .moveArea{
+    position: absolute;
+    background: chartreuse;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .area{
+    position: absolute;
+    background: rgb(79, 79, 79);
+    opacity: 1;
+  }
+
+  .layer{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 2;
+    height: 100%;
+    width:100%;
+    border: solid 1px white;
+    background: lightgray;
+    overflow: hidden;
+    box-shadow: 0px 0px 15px 5px  rgb(58, 58, 58);
+  }
+
+  .source{
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    z-index: 2;
+    height: 50%;
+    /* width:50%; */
+    border: solid 1px white;
+    background: darkolivegreen;
+    overflow: hidden;
+    box-shadow: 0px 0px 15px 5px rgb(58, 58, 58);
+  }
+
+  .gene_button{
+    position: absolute;
+    height: 4.5%;
+    width:100%;
+    z-index: 2;
+    opacity: 1;
+    background: none;
+    overflow: hidden;
+  }
+
+  .document_button{
+    position: absolute;
+    height: 35%;
+    width:5%;
+    z-index: 2;
+    opacity: 1;
+    /* background: purple; */
+    overflow: hidden;
+  }
+
+  .button{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    z-index: 300000;
+    background: darkcyan;
+    opacity: 0.7;
+    border-radius: 50%;
+    box-shadow: 5px 5px 5px rgb(58, 58, 58);
+  }
+  .buttonFlat{
+    position: absolute;
+    width: 5%;
+    height: 5%;
+    z-index: 300000;
+    background: darkgray;
+    opacity: 0.1;
+    /* border-radius: 50%; */
+    border: 1px solid white;
+    /* box-shadow: 5px 5px 5px rgb(58, 58, 58); */
+  }
+
+  .buttonFlat2{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    z-index: 300000;
+    background: darkgray;
+    opacity: 0.7;
+    /* border-radius: 50%; */
+    border: 1px solid white;
+    /* box-shadow: 5px 5px 5px rgb(58, 58, 58); */
+  }
+
+  .buttonSubmenu{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    z-index: 300000;
+    margin: 10px;
+    padding: 5px;
+    background: lightskyblue;
+    opacity: 0.7;
+    border-radius: 50%;
+    box-shadow: 5px 5px 5px rgb(58, 58, 58);
+  }
+
+  .buttonResize{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    bottom: 0px;
+    right: 0px;
+    z-index: 3000000;
+    /* margin: 10px; */
+    background: darkgray;
+    opacity: 0.1;
+    border: 1px solid white;
+    /* border-radius: 50%; */
+    /* box-shadow: 5px 5px 5px rgb(58, 58, 58); */
+  }
+
+  .buttonFlat2:hover,.button:hover,.buttonSubmenu:hover,.buttonResize:hover{
+    opacity: 1;
+  }
+  .buttonFlat:hover{
+    opacity: 0.9;
+  }
+
+</style>
+<!-- <script src="./Javascript/jquery-3.4.0.min.js"></script> -->
+<!-- <script src="./Javascript/TweenMax.min.js"></script> -->
+  <!-- <body onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(255, 134, 48); font-family: "Open Sans";'>    
+  <div style="position: absolute; left: 0px; top: 0%;height: 7vh; width:100%; background: rgb(255, 105, 0); text-align: center; color: white; font-size: 5vh; margin-bottom: 50px;">Applikationen</div> -->
+  <body onresize="resizeWin()" onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
+    <!-- <div id ="header" style="position: absolute; left: 0px; top: 0%;height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px;"> -->
+    
+
+  <!-- <div id="main" style ="position: absolute; left: 0px; top: 50px; z-index: 1; height: 93vh; width:100%; background: red; overflow: auto; padding-top: 5vh;"> -->
+  <div id="main" style ="position: absolute; top: 0px; left: 0px; z-index: 1; height: 100%; width:100%; background: rgb(179, 244, 247); overflow: hidden;">
+    
+    <div id ="header" style="position: absolute; left: 0px; top:0px; height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px; z-index: 999999;">
+      Patient 0815  
+    </div>
+    <div id ="explorationArea" style="position: absolute; left: 0px; top:50px; height: 100%; width:100%; background: rgb(128, 128, 128);z-index: 1;">
+      <div id="document_text" class="source" allowDrag="on" scale="1" style="width: 21%;">
+        <img src="../Assets/Images/document.png" alt="" style="pointer-events: none; height: 100%; width: 100%;">
+        <div id="resizeButtonDocument" class="buttonResize">
+          <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
+        </div>
+        <div id="fullscreenButtonDoc" class="buttonFlat2" onclick = "fullscreenClicked(event,this)" style="top:5px; right: 5px;">
+          <img id="imgVisite" src="../../Assets/Icons/fullscreen.png" style="width: 100%; height: 100%;">
+        </div>
+        <div id="minimizeButtonDoc" class="buttonFlat2" onclick = "minimizedClicked(event,this)" style="top:5px; right: 60px;">
+          <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
+        </div>
+        <div id="closeButtonDoc" class="buttonFlat2" onclick = "closeClicked(event,this)" type = "doc" style="top:5px; right: 115px;">
+          <img src="../../Assets/Icons/close.png" style="width: 100%; height: 100%;">
+        </div>
+      </div>
+
+      <div id="document_img" class="source" allowDrag="on" scale="1" style="width: 30%;">
+        <img src="../Assets/Images/document2.png" alt="" style="pointer-events: none; height: 100%; width: 100%;">
+        <div id="resizeButtonImg" class="buttonResize">
+          <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
+        </div>
+        <div id="fullscreenButtonImg" class="buttonFlat2" onclick = "fullscreenClicked(event,this)" style="top:5px; right: 5px;">
+          <img id="imgVisite" src="../../Assets/Icons/fullscreen.png" style="width: 100%; height: 100%;">
+        </div>
+        <div id="minimizeButtonImg" class="buttonFlat2" onclick = "minimizedClicked(event,this)" style="top:5px; right: 60px;">
+          <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
+        </div>
+        <div id="closeButtonImg" class="buttonFlat2" onclick = "closeClicked(event,this)" type = "doc" style="top:5px; right: 115px;">
+          <img src="../../Assets/Icons/close.png" style="width: 100%; height: 100%;">
+        </div>
+      </div>
+      
+      <div id="arid1b_sources" class="source" allowDrag="on" scale="1" style="width: 50%;">
+        <img src="../Assets/Images/arid1b.png" alt="" style="height: 100%; width: 100%; pointer-events: none;">
+        <div id="resizeButtonArid" class="buttonResize">
+          <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
+        </div>
+        <div id="fullscreenButtonArid" class="buttonFlat2" onclick = "fullscreenClicked(event,this)" style="top:5px; right: 5px;">
+          <img src="../../Assets/Icons/fullscreen.png" style="width: 100%; height: 100%;">
+        </div>
+        <div id="minimizeButtonArid" class="buttonFlat2" onclick = "minimizedClicked(event,this)" style="top:5px; right: 60px;">
+          <img src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
+        </div>
+        <div id="closeButtonArid" class="buttonFlat2" onclick = "closeClicked(event,this)" type = "gene" button="arid1b_button" style="top:5px; right: 115px;">
+          <img src="../../Assets/Icons/close.png" style="width: 100%; height: 100%;">
+        </div>
+      </div>
+
+      <div id="srms_sources" class="source" allowDrag="on" scale="1" style="width: 50%;">
+        <img src="../Assets/Images/srms.png" alt="" style="height: 100%; width: 100%; pointer-events: none;">
+        <div id="resizeButtonSrms" class="buttonResize">
+          <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
+        </div>
+        <div id="fullscreenButtonSrms" class="buttonFlat2" onclick = "fullscreenClicked(event,this)" style="top:5px; right: 5px;">
+          <img src="../../Assets/Icons/fullscreen.png" style="width: 100%; height: 100%;">
+        </div>
+        <div id="minimizeButtonSrms" class="buttonFlat2" onclick = "minimizedClicked(event,this)" style="top:5px; right: 60px;">
+          <img src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
+        </div>
+        <div id="closeButtonSrms" class="buttonFlat2" onclick = "closeClicked(event,this)" type = "gene" button="srms_button" style="top:5px; right: 115px;">
+          <img src="../../Assets/Icons/close.png" style="width: 100%; height: 100%;">
+        </div>
+      </div>
+
+      <div id="zdhhc13_sources" class="source" allowDrag="on" scale="1" style="width: 50%;">
+        <img src="../Assets/Images/zdhhc13.png" alt="" style="height: 100%; width: 100%; pointer-events: none;">
+        <div id="resizeButtonZdhh" class="buttonResize">
+          <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
+        </div>
+        <div id="fullscreenButtonZdhh" class="buttonFlat2" onclick = "fullscreenClicked(event,this)" style="top:5px; right: 5px;">
+          <img src="../../Assets/Icons/fullscreen.png" style="width: 100%; height: 100%;">
+        </div>
+        <div id="minimizeButtonZdhh" class="buttonFlat2" onclick = "minimizedClicked(event,this)" style="top:5px; right: 60px;">
+          <img src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
+        </div>
+        <div id="closeButtonZdhh" class="buttonFlat2" onclick = "closeClicked(event,this)" type = "gene" button="zdhhc13_button" style="top:5px; right: 115px;">
+          <img src="../../Assets/Icons/close.png" style="width: 100%; height: 100%;">
+        </div>
+      </div>
+      <div id="visiteButton" class="button" onclick = "buttonClicked(event,this)" style="top: 100ox; left:100px;" >
+
+      </div>
+    </div>
+  </div>
+
+   </body>
+    <script>
+      var currentLink = ""
+      let explorationArea = document.getElementById("explorationArea")
+
+      // let visiteArea = document.getElementById("visiteArea")
+      // let geneArea = document.getElementById("geneArea")
+
+      let windowWidth = window.innerWidth
+      let windowHeight = window.innerHeight
+      let explorationAreaWidth = window.innerWidth
+      let explorationAreaHeight = window.innerHeight-50
+
+      explorationArea.style.height = explorationAreaHeight+"px"
+      explorationArea.style.width = explorationAreaWidth+"px"
+
+      
+      // modeMenu.setAttribute("active","false")
+
+      let currentLayer = document.getElementById("patient")
+      let resizeTarget = null
+      let oldX = 0
+      let oldY = 0
+      let resizeable = false
+
+      document.oncontextmenu = function() {
+        return false;
+      }
+
+      var topLayerIndex = 2
+
+      // $( "#geneArea" ).slideUp()
+      // $( "#visiteArea" ).slideUp()
+      // let hv = visiteArea.getBoundingClientRect().height
+      // let wg = geneArea.getBoundingClientRect().width
+
+      // TweenMax.to(visiteArea, 0.1, {y:hv})
+      // visiteArea.setAttribute("active","false")
+      // TweenMax.to(geneArea, 0.1, {x:wg})
+      // geneArea.setAttribute("active","false")
+
+      $( "#arid1b_sources" ).hide()
+      $( "#srms_sources" ).hide()
+      $( "#zdhhc13_sources" ).hide()
+      $( "#document_img" ).hide()
+      $( "#document_text" ).hide()
+
+      /* allelSlider.value = 95
+      let currentAF = 100-allelSlider.value      
+
+      $(".gene_button").filter(function() {
+          return  $(this).attr("af") < currentAF
+        }).slideUp()
+
+        $(".gene_button").filter(function() {
+            return  $(this).attr("af") > currentAF
+        }).slideDown()
+      
+      sliderLabel.innerHTML = "Allelfrequenz: "+(currentAF).toString()+"%"
+
+      allelSlider.oninput = function() {
+        currentAF = 100-allelSlider.value
+        console.log(currentAF)
+        sliderLabel.innerHTML = "Allelfrequenz: "+(currentAF).toString()+"%"
+
+        $(".gene_button").filter(function() {
+          return  $(this).attr("af") < currentAF
+        }).slideUp()
+
+        $(".gene_button").filter(function() {
+            return  $(this).attr("af") > currentAF
+        }).slideDown()
+      } */
+      
+     
+
+      // document.getElementById("tumor").style.height = (window.innerHeight-50)+"px"
+      // document.getElementById("patient").style.height = (window.innerHeight-50)+"px"
+      // document.getElementById("visite").style.height = (window.innerHeight-50)+"px"
+      
+      // $( "#modeMenu" ).hide()
+
+      function resizeWin(){
+        /*console.log(window.innerHeight)
+        document.getElementById("tumor").style.height = (window.innerHeight-50)+"px"
+        document.getElementById("patient").style.height = (window.innerHeight-50)+"px"
+        document.getElementById("visite").style.height = (window.innerHeight-50)+"px"*/
+      }
+
+      document.body.addEventListener('click',(event)=>{
+        console.log("clicked body",event.target.id,event.target.className)
+        // if(event.target.className!="button")$( "#modeMenu" ).hide()
+        // $( "#modeMenu" ).hide()
+        // if(!event.target.className.includes("ui"))document.getElementById("select").style.visibility = "hidden"
+      })
+
+      document.body.addEventListener('wheel',(event)=>{
+        // console.log("Mouse Wheel",event.target.style.transform)
+        if(event.target.className=="source"){
+          var scale = parseFloat(event.target.getAttribute("scale"))
+          scale+=event.deltaY*-0.001
+          TweenMax.to(event.target, 0.1, {css: {scale: scale}})
+          event.target.setAttribute("scale",scale.toString())
+        }
+      })
+
+      function buttonClicked(e,element){
+        console.log("button wurde gelickt",e,element)
+      }
+
+      function toggleArea(e,button){
+        e.stopPropagation()
+        e.preventDefault()
+        let area = document.getElementById( button.getAttribute("area"))
+        console.log(button.getAttribute("area"))
+        let x=0
+        let y=0
+        
+        switch(area.getAttribute("active")){
+          case "false":
+            x=0
+            y=0
+            area.setAttribute("active","true")
+            console.log(button.childNodes[1])
+            button.childNodes[1].src ="../../Assets/Icons/close.png"
+            break
+          case "true":
+            if(area.id=="geneArea"){
+              x=wg
+              button.childNodes[1].src ="../../Assets/Icons/gene.png"
+            }
+            if(area.id=="visiteArea"){
+              y=hv
+              button.childNodes[1].src ="../../Assets/Icons/visite.png"
+            }
+            area.setAttribute("active","false")
+            break          
+        }
+
+        TweenMax.to(area, 0.1, {y:y,x:x})
+        // $(area).slideDown(500)
+      }
+
+      function openDocument(element){
+
+        var doc_t = document.getElementById("document_text")
+        var doc_i = document.getElementById("document_img")
+        
+        TweenMax.to(element, 0.1, {css: {scale: 1}})    
+        element.setAttribute("scale","1")
+
+        if(element.id=="document_text_button"){
+          $( "#document_text" ).toggle()
+          bringToFront(doc_t)
+          doc_t.style.left = "20%"
+          doc_t.style.top = "25%"
+        }
+        if(element.id=="document_img_button"){
+          $( "#document_img" ).toggle()
+          bringToFront(doc_i)
+          doc_i.style.left = "50%"
+          doc_i.style.top = "20%"
+        }
+      }
+      
+      function openGeneSources(element){
+        console.log("open gene",element.id,element.getAttribute("active"))
+        
+        switch(element.getAttribute("active")){
+          case "false":
+            element.setAttribute("active","true")
+            TweenMax.to(element, 0.1, {x:-10})
+            break
+          case "true":
+            element.setAttribute("active","false")
+            TweenMax.to(element, 0.1, {x:0})
+            break
+        }
+
+        if(element.id=="arid1b_button"){
+          $( "#arid1b_sources" ).toggle()
+          var d = document.getElementById("arid1b_sources")
+          bringToFront(d)
+        
+          TweenMax.to(d, 0.1, {css: {scale: 1}})    
+          d.setAttribute("scale","1")
+        }
+        if(element.id=="srms_button"){
+          $( "#srms_sources" ).toggle()
+          var d = document.getElementById("srms_sources")
+          bringToFront(d)
+        
+          TweenMax.to(d, 0.1, {css: {scale: 1}})    
+          d.setAttribute("scale","1")
+        }
+        if(element.id=="zdhhc13_button"){
+          $( "#zdhhc13_sources" ).toggle()
+          var d = document.getElementById("zdhhc13_sources")
+          bringToFront(d)
+        
+          TweenMax.to(d, 0.1, {css: {scale: 1}})    
+          d.setAttribute("scale","1")
+        }
+      }
+
+      function layerClicked(element){
+        console.log(element.getAttribute("fullscreen"))
+        bringToFront(element)
+        currentLayer = element
+      }
+
+      function bringToFront(element){
+        console.log("BringToFront")
+        topLayerIndex++
+        element.style.zIndex =topLayerIndex
+        // document.getElementById("modeVisite").style.zIndex = topLayerIndex+1
+        // document.getElementById("modeTumor").style.zIndex = topLayerIndex+1
+      }
+
+      function placeLayer(element){
+        let pos = element.getAttribute('positionTest')
+        // console.log("positionTest",element.getAttribute('positionTest'))
+        // if(pos!="none")moveLayer(element,pos)
+        element.setAttribute('positionTest','none')
+        element.style.opacity = 1
+      }
+
+      function clickMove(button,position){
+        element = button.parentNode
+        moveLayer(element,position)
+      }
+
+      function moveLayer(element,position){
+        var h = explorationAreaHeight
+        var w = explorationAreaWidth
+
+        element.setAttribute("fullscreen","off")
+        element.setAttribute("allowDrag","on")
+
+        if(position.indexOf("left")>-1){
+          element.setAttribute("position","left")
+          TweenMax.to(element, 0.1, {css: {top: 0, left: 0, height: h, width:w/2}})
+        }
+        if(position.toString().indexOf("right")>-1){
+          element.setAttribute("position","right")
+          TweenMax.to(element, 0.1, {css: {top: 0, left: w/2, height: h, width:w/2}})
+        }
+        if(position.toString().indexOf("top")>-1){
+          element.setAttribute("position","top")
+          TweenMax.to(element, 0.1, {css: {top: 0, left: 0, height: h/2, width:w}})
+        }
+        if(position.toString().indexOf("bottom")>-1){
+          element.setAttribute("position","bottom")
+          TweenMax.to(element, 0.1, {css: {top:  h/2, left: 0, height: h/2, width:w}})
+        }
+        element.style.opacity = 1
+      }
+
+      function closeClicked(e,element){
+        let target = element.parentNode
+        if(element.getAttribute("type")=="gene"){
+          console.log("closing",element.getAttribute("button"))
+          let button = document.getElementById(element.getAttribute("button"))          
+          button.setAttribute("active","false")
+          TweenMax.to(button, 0.1, {x:0})
+        }
+        $(target).toggle()
+      }
+      
+      function minimizedClicked(e,element){
+        e.stopPropagation()
+        let layer = element.parentNode
+        let scale = parseFloat( layer.getAttribute("scale"))
+        var h = (window.innerHeight-50)/scale
+        var w = window.innerWidth/scale
+
+        element.parentNode.setAttribute("fullscreen","off")
+        element.parentNode.setAttribute("allowDrag","on")
+        // element.parentNode.style.boxShadow = "0px 0px 15px 5px  rgb(58, 58, 58)";
+        // TweenMax.to(element.parentNode, 0.1, {scale:0.7, onComplete:function(){
+        // }})            
+        // TweenMax.to(element.parentNode, 0.1, {css: {top: 150, left: 100, height: h/2, width:w/2}})
+        TweenMax.to(layer, 0.1, {css: {height: h/2, width:w/2}})
+        TweenMax.to(layer, 0.1, {css:{top:100,left:100}})
+      }
+
+      function fullscreenClicked(e,element){
+        e.stopPropagation()
+        let layer = element.parentNode
+        let scale = parseFloat( layer.getAttribute("scale"))
+        let parentLayer = layer.parentNode
+        // var h = (window.innerHeight-50)
+        // var w = window.innerWidth
+        let h = parentLayer.getBoundingClientRect().height/scale
+        let w = parentLayer.getBoundingClientRect().width/scale
+        let x = layer.getBoundingClientRect().x/1
+        let y = layer.getBoundingClientRect().y/1
+        let xP = parentLayer.getBoundingClientRect().x/1
+        let yP = parentLayer.getBoundingClientRect().y/1
+        let top = parentLayer.getBoundingClientRect().top
+
+        // switch(element.childNodes[1].src.toString().indexOf("exit")>0){
+        //   case false: 
+        //     element.childNodes[1].src = "../../Assets/Icons/fullscreen_exit.png"
+        layer.setAttribute("fullscreen","on")
+        layer.setAttribute("allowDrag","off")
+        layer.setAttribute("position","center")
+        // element.parentNode.style.boxShadow = "none";
+        bringToFront(element.parentNode)
+            // TweenMax.to(element.parentNode, 0.1, {scale:1})
+            // TweenMax.to(element.parentNode, 0.1, {css: {top: 50, left: 0}})
+          
+        let xPos = xP - x
+        let yPos = yP - y
+        
+        // console.log("FULLSCREEN",parentLayer,x,xP,xPos)
+        // TweenMax.to(layer, 0.1, {css: {top: 0, left: 0, height: h, width:w}})
+        TweenMax.to(layer, 0.1, {css: {height: h, width:w}})
+        TweenMax.to(layer, 0.1, {css:{top:0, left:0}})
+            // break
+          // case true: 
+          //   element.childNodes[1].src = "../../Assets/Icons/fullscreen.png"
+          //   break
+
+        // }
+        // console.log( element.childNodes[1].src.toString().indexOf("exit"))
+          
+      }
+      
+      // dragElement(document.getElementById("visite"))
+      // dragElement(document.getElementById("tumor"))
+      // dragElement(document.getElementById("patient"))
+
+      // dragElement(document.getElementById("arid1b_sources"))
+      // dragElement(document.getElementById("srms_sources"))
+      // dragElement(document.getElementById("zdhhc13_sources"))
+      // dragElement(document.getElementById("document_text"))
+      // dragElement(document.getElementById("document_img"))
+
+      function clicked(element){
+        TweenMax.to(element, 0.1, {scale:1.1, onComplete:function(){
+          TweenMax.to(element, 0.1, {scale:1.0, onComplete:function(){
+            // location = "./Apps/Unwetter/index.html"
+          }})
+        }})
+      }
+
+      function dragElement(elmnt) {
+        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+        if (document.getElementById(elmnt.id + "header")) {
+          // if present, the header is where you move the DIV from:
+          document.getElementById(elmnt.id + "header").onpointerdown = dragMouseDown;
+        } else {
+          // otherwise, move the DIV from anywhere inside the DIV:
+          // elmnt.onmousedown = dragMouseDown;
+          elmnt.onpointerdown = dragMouseDown;
+        }
+
+        function dragMouseDown(e) {
+          e.stopPropagation()
+          e = e || window.event
+          e.preventDefault()
+          // get the mouse cursor position at startup:
+          pos3 = e.clientX;
+          pos4 = e.clientY
+          // document.onmouseup = closeDragElement;
+          document.onpointerup = closeDragElement
+          // call a function whenever the cursor moves:
+          // document.onmousemove = elementDrag;
+          document.onpointermove = elementDrag
+          bringToFront(elmnt)
+        }
+
+        function elementDrag(e) {
+          if(elmnt.getAttribute("allowDrag")=="on"){
+            e = e || window.event
+            e.preventDefault()
+            // calculate the new cursor position:
+            pos1 = pos3 - e.clientX
+            pos2 = pos4 - e.clientY
+            pos3 = e.clientX
+            pos4 = e.clientY
+            // set the element's new position:
+            var r = elmnt.getBoundingClientRect().right
+            var l = elmnt.getBoundingClientRect().left
+            var w = elmnt.getBoundingClientRect().width
+            var h = elmnt.getBoundingClientRect().height
+
+            var ww = window.innerWidth
+            var wh = window.innerHeight
+
+            var lPos = 0
+            if((ww-r>10))lPos = elmnt.offsetLeft - pos1
+            if((ww-r<=10))lPos = ww-11-w
+
+            // console.log(collision(elmnt))
+            let pos = collision(elmnt)
+            elmnt.setAttribute('positionTest',pos)
+            elmnt.style.opacity = 0.8
+            /* if(pos!="none"){
+              elmnt.style.opacity = 0.5
+            }
+            if(pos=="none"){
+              elmnt.style.opacity = 1
+            } */
+
+         /*    TweenMax.to(elmnt, 0, {css: {top: (elmnt.offsetTop - pos2), left:lPos},onComplete:function(){                
+              // TweenMax.to(elmnt, 0, {css: {top: (elmnt.offsetTop + pos2), right:(w-15)}})
+              // TweenMax.to(elmnt, 0, {scale:1.9})
+            }}) */
+            // TweenMax.to(elmnt, 0.1, {x: e.clientX, transformOrigin:"0% 0%"}, 0)
+            
+            elmnt.style.top = (elmnt.offsetTop - pos2) + "px"
+            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px"
+
+            // elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+            // elmnt.style.left = (lPos) + "px";
+          }
+        }
+
+        function closeDragElement() {
+          // stop moving when mouse button is released:
+          // document.onmouseup = null;
+          document.onpointerup = null
+          // document.onmousemove = null;
+          document.onpointermove = null
+          elmnt.setAttribute('dragging','false')
+          elmnt.style.opacity = 1
+        }
+      }
+
+      resizeElement(document.getElementById("resizeButtonArid"))
+      resizeElement(document.getElementById("resizeButtonSrms"))
+      resizeElement(document.getElementById("resizeButtonZdhh"))
+
+      resizeElement(document.getElementById("resizeButtonDocument"))
+      resizeElement(document.getElementById("resizeButtonImg"))
+
+      function resizeElement(button) {
+        let elmnt = button.parentNode
+        button.onpointerdown = resizeMouseDown
+        let scale = 1.0
+
+        function resizeMouseDown(e) {
+          e.stopPropagation()
+          e = e || window.event
+          e.preventDefault()
+          oldX = 0
+          oldY = 0
+          scale = parseFloat(elmnt.getAttribute("scale"))
+          document.onpointerup = closeResizeElement
+          document.onpointermove = elementResize
+          bringToFront(elmnt)
+        }
+
+        function elementResize(e) {
+            e = e || window.event
+            e.preventDefault()
+            
+            if(elmnt.getAttribute("allowDrag")=="off")elmnt.setAttribute("allowDrag","on")
+            
+              let deltaX = 0
+              let deltaY = 0
+              if(oldX!=0) deltaX = (e.clientX - oldX)
+              if(oldY!=0) deltaY = (e.clientY - oldY)
+
+              oldX = e.clientX
+              oldY = e.clientY
+                            
+              let h = elmnt.getBoundingClientRect().height
+              let w = elmnt.getBoundingClientRect().width
+              h = (h + deltaY)/scale
+              w = (w + deltaX)/scale
+              elmnt.style.width = w + "px"
+              elmnt.style.height = h + "px"
+        }
+
+        function closeResizeElement() {
+          document.onpointerup = null;
+          document.onpointermove = null;
+        }
+      }
+      var dragItem =null
+
+    var active = false
+    var currentX
+    var currentY
+    var initialX
+    var initialY
+    var xOffset = 0
+    var yOffset = 0
+
+    var sources = document.getElementsByClassName("source")
+    var buttons = document.getElementsByClassName("button")
+
+    console.log("SOURCES: ",sources.length)
+    for (var i = 0; i < sources.length; i++) {
+      sources[i].setAttribute("offsetX","0")
+      sources[i].setAttribute("offsetY","0")
+    }
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].setAttribute("offsetX","0")
+      buttons[i].setAttribute("offsetY","0")
+    }
+
+    explorationArea.addEventListener("touchstart", dragStart, false)
+    explorationArea.addEventListener("touchend", dragEnd, false)
+    explorationArea.addEventListener("touchmove", drag, false)
+
+    explorationArea.addEventListener("mousedown", dragStart, false)
+    explorationArea.addEventListener("mouseup", dragEnd, false)
+    explorationArea.addEventListener("mousemove", drag, false)
+
+    function dragStart(e) {
+      xOffset = parseFloat(e.target.getAttribute("offsetX"))
+      yOffset = parseFloat(e.target.getAttribute("offsetY"))
+      console.log("DRAG START",xOffset,yOffset)
+      if (e.type === "touchstart") {
+        initialX = e.touches[0].clientX - xOffset;
+        initialY = e.touches[0].clientY - yOffset;
+      } else {
+        initialX = e.clientX - xOffset;
+        initialY = e.clientY - yOffset;
+      }
+
+      if (e.target.className == "source" || e.target.className == "button") {
+        active = true;
+        dragItem = e.target
+        bringToFront(dragItem)
+      }
+    }
+
+    function dragEnd(e) {
+      initialX = currentX;
+      initialY = currentY;
+
+      active = false;
+    }
+
+    function drag(e) {
+      if (active) {
+      
+        e.preventDefault();
+      
+        if (e.type === "touchmove") {
+          currentX = e.touches[0].clientX - initialX;
+          currentY = e.touches[0].clientY - initialY;
+        } else {
+          currentX = e.clientX - initialX;
+          currentY = e.clientY - initialY;
+        }
+
+        xOffset = currentX;
+        yOffset = currentY;
+        dragItem.setAttribute("offsetX",currentX)
+        dragItem.setAttribute("offsetY",currentY)
+
+        setTranslate(currentX, currentY, dragItem);
+      }
+    }
+
+    function setTranslate(xPos, yPos, el) {
+      el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+    }
+
+    function collision(div1) {
+      let test = false
+      let area = "none"
+      
+      if(div1.getBoundingClientRect().left < leftArea.getBoundingClientRect().right)area = "left"
+      if(div1.getBoundingClientRect().right > rightArea.getBoundingClientRect().left)area = "right"
+      if(div1.getBoundingClientRect().top < topArea.getBoundingClientRect().bottom)area = "top"
+      if(div1.getBoundingClientRect().bottom > bottomArea.getBoundingClientRect().top)area = "bottom"
+      return area;
+    }
+    
+    $( ".uiButtonFrame" ).on( "pointerenter", function() {
+      // console.log( this)
+      $( this ).find(".uiButtonBackground").css("box-shadow", "15px 15px 5px rgba(2, 2, 2, 0.308)")
+      $( this ).css("transform", "scale(1.1)")
+      // $( this ).find(".uiButtonBackground").css("transform", "scale(1.1)")
+      // $( this ).find(".uiText").css("transform", "scale(1.1)")
+      $( this ).css("text-shadow"," 8px 8px 5px rgba(2, 2, 2, 0.308)")
+    })
+
+    $( ".uiButtonFrame" ).on( "pointerleave", function() {
+      // console.log( this)
+      $( this ).find(".uiButtonBackground").css("box-shadow", "10px 10px 5px rgba(2, 2, 2, 0.308)")
+      $( this ).css("transform", "scale(1.0)")
+      // $( this ).find(".uiButtonBackground").css("transform", "scale(1.0)")
+      // $( this ).find(".uiText").css("transform", "scale(1.0)")
+      $( this ).css("text-shadow"," 5px 5px 5px rgba(2, 2, 2, 0.308)")
+    })
+
+    function gotoPage(element){
+        location = element.getAttribute("href")
+    }
+
+    function hover(element){
+      console.log("Hovering",element)
+    }
+
+      </script>
+  </script>
+</html>
