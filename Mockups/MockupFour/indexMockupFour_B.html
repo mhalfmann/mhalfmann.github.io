@@ -397,7 +397,7 @@
 
       </div> -->
     </div>
-    <div id = "contextmenu" class="contextMenu">
+    <div id = "contextmenu" class="contextMenu draggable" active="false">
       <div id = "contextMenuGenes" class="contextMenuItem" onclick = "toggleArea(event,this)" area="geneArea">
         <img src="../../Assets/Icons/gene.png" alt="">
       </div>
@@ -406,6 +406,9 @@
       </div>
       <div id = "contextMenuInfo" class="contextMenuItem" onclick = "toggleArea(event,this)" area="infoArea">
         <img src="../../Assets/Icons/info.png" alt="">
+      </div>
+      <div id = "contextMenuClose" class="contextMenuItem" onclick = "toggleArea(event,this)" area="contextmenu">
+        <img src="../../Assets/Icons/close.png" alt="">
       </div>
     </div>
       
@@ -452,9 +455,9 @@
       let oldY = 0
       let resizeable = false
 
-      document.oncontextmenu = function() {
-        return false;
-      }
+      // document.oncontextmenu = function() {
+      //   return false;
+      // }
 
       var topLayerIndex = 2
 
@@ -523,7 +526,7 @@
 
       document.body.addEventListener('click',(event)=>{
         console.log("clicked body",event.target.id,event.target.className)
-        $( "#contextmenu" ).hide()
+        // $( "#contextmenu" ).hide()
         // if(event.target.className!="button")$( "#modeMenu" ).hide()
         // $( "#modeMenu" ).hide()
         // if(!event.target.className.includes("ui"))document.getElementById("select").style.visibility = "hidden"
@@ -531,9 +534,15 @@
       
       document.body.addEventListener("contextmenu", (e)=>{
         console.log("context menu",e.clientX,e.clientY)
+        e.preventDefault()
         $( "#contextmenu" ).show()
-        contextMenu.style.left = e.clientX+"px"
-        contextMenu.style.top = e.clientY+"px"
+        
+        xOffset = parseFloat(contextmenu.getAttribute("offsetX"))
+        yOffset = parseFloat(contextmenu.getAttribute("offsetY"))
+        console.log(xOffset,yOffset)
+        contextMenu.style.left = (e.clientX-xOffset)+"px"
+        contextMenu.style.top = (e.clientY-yOffset)+"px"
+        contextMenu.setAttribute("active","true")
       })
 
       document.body.addEventListener('wheel',(event)=>{
@@ -1042,13 +1051,13 @@
     //   areas[i].setAttribute("offsetY","0")
     // }
 
-    explorationArea.addEventListener("touchstart", dragStart, false)
-    explorationArea.addEventListener("touchend", dragEnd, false)
-    explorationArea.addEventListener("touchmove", drag, false)
+    main.addEventListener("touchstart", dragStart, false)
+    main.addEventListener("touchend", dragEnd, false)
+    main.addEventListener("touchmove", drag, false)
 
-    explorationArea.addEventListener("mousedown", dragStart, false)
-    explorationArea.addEventListener("mouseup", dragEnd, false)
-    explorationArea.addEventListener("mousemove", drag, false)
+    main.addEventListener("mousedown", dragStart, false)
+    main.addEventListener("mouseup", dragEnd, false)
+    main.addEventListener("mousemove", drag, false)
 
     function dragStart(e) {
       xOffset = parseFloat(e.target.getAttribute("offsetX"))
