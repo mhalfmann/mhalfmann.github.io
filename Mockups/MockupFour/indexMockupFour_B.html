@@ -39,10 +39,20 @@
     opacity: 0;
     pointer-events: none;
   }
+  
   .area{
     position: absolute;
     background: rgb(79, 79, 79);
     opacity: 1;
+  }
+
+  .card{
+    position: absolute;
+    background: darkcyan;
+    padding: 20px; 
+    border-radius: 10px;
+    opacity: 1;
+    box-shadow: 0px 0px 15px 5px  rgb(58, 58, 58);
   }
 
   .layer{
@@ -70,6 +80,7 @@
     overflow: hidden;
     box-shadow: 0px 0px 15px 5px rgb(58, 58, 58);
   }
+
   .contextMenu{
     position: absolute;
     left: 100px;
@@ -109,7 +120,7 @@
     width: 50px;
     z-index: 300000;
     background: darkcyan;
-    opacity: 0.7;
+    opacity: 1;
     border-radius: 50%;
     box-shadow: 5px 5px 5px rgb(58, 58, 58);
   }
@@ -145,8 +156,8 @@
     z-index: 300000;
     margin: 10px;
     padding: 5px;
-    background: lightskyblue;
-    opacity: 0.7;
+    background:  rgb(113, 228, 228);
+    opacity: 1;
     border-radius: 50%;
     box-shadow: 5px 5px 5px rgb(58, 58, 58);
   }
@@ -157,8 +168,8 @@
     z-index: 300000;
     margin: 10px;
     padding: 5px;
-    background: lightskyblue;
-    opacity: 0.7;
+    background: rgb(113, 228, 228);
+    opacity: 1;
     border-radius: 50%;
     /* box-shadow: 5px 5px 5px rgb(58, 58, 58); */
   }
@@ -178,9 +189,18 @@
     /* box-shadow: 5px 5px 5px rgb(58, 58, 58); */
   }
 
-  .buttonFlat2:hover,.button:hover,.buttonSubmenu:hover,.buttonResize:hover,.contextMenuItem:hover{
+  .infoItem {
+    pointer-events: none;
+  }
+
+  .buttonFlat2:hover,.button:hover,.buttonResize:hover{
     opacity: 1;
   }
+
+  .buttonSubmenu:hover,.contextMenuItem:hover{
+    background: paleturquoise;
+  }
+  
   .buttonFlat:hover{
     opacity: 0.9;
   }
@@ -208,7 +228,7 @@
       <div id="topArea" class="moveArea" style="left:10%; top: 0px; height: 10%; width: 70%; background: cornflowerblue;"></div>
       <div id="bottomArea" class="moveArea" style="left:10%; bottom: 0px; height: 10%; width: 80%; background: darkgreen;" ></div>
       
-      <div id = "geneArea" class = "area" style="top: 0px; right: 0%; height: 100%; width: 10%;">
+      <div id = "geneArea" class = "area draggable" style="top: 0px; right: 0%; height: 100%; width: 10%;">
         <img src="../Assets/Images/geneList.png" alt="" style="pointer-events: none;">
         <div id="genefake" style="position: absolute; right: 0%; bottom: 18%; height: 30%; width: 100%; background: rgb(79, 79, 79);"></div>
         <div id="genefake" style="position: absolute; right: 0%; bottom: 4.5%; height: 13.5%; width: 100%; background: rgba(79, 79, 79);"></div>
@@ -237,7 +257,7 @@
 
       </div>
 
-      <div id = "visiteArea" class = "area" style="bottom: 0px; left: 0%; height: 15%; width: 90%; background: rgb(197, 84, 84);">
+      <div id = "visiteArea" class = "area draggable" style="bottom: 0px; left: 0%; height: 15%; width: 90%; background: rgb(197, 84, 84);">
         <img src="../Assets/Images/Timeline.png" width="100%" alt="" style="pointer-events: none;">
         <div id="document_text_button" class="document_button" onclick = "openDocument(this)"  active="false" style="left: 32%; bottom: 40%;">
         </div>
@@ -249,7 +269,19 @@
         </div>
       </div>
 
-      <div id="document_text" class="source" allowDrag="on" scale="1" style="width: 21%;">
+      <div id = "infoArea" class = "card draggable" style="bottom: 20%; left: 20%; ">
+        
+          <p class="infoItem">Vorname: Rainer</p>
+          <p class="infoItem">Nachname: Zufall</p>
+          <p class="infoItem">Alter: 61</p>
+          <p class="infoItem">Geschlecht: m&aumlnnlich</p>
+
+        <div id="modeInfo" class="buttonSubmenu" onclick = "toggleArea(event,this)" style = "left: 0px; top:-60px;" area="infoArea">
+          <img id="infoIcon" src="../../Assets/Icons/close.png" style="width: 100%; height: 100%;"> 
+        </div>
+      </div>
+
+      <div id="document_text" class="source draggable" allowDrag="on" scale="1" style="width: 21%;">
         <img src="../Assets/Images/document.png" alt="" style="pointer-events: none; height: 100%; width: 100%;">
         <div id="resizeButtonDocument" class="buttonResize">
           <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
@@ -265,7 +297,7 @@
         </div>
       </div>
 
-      <div id="document_img" class="source" allowDrag="on" scale="1" style="width: 30%;">
+      <div id="document_img" class="source draggable" allowDrag="on" scale="1" style="width: 30%;">
         <img src="../Assets/Images/document2.png" alt="" style="pointer-events: none; height: 100%; width: 100%;">
         <div id="resizeButtonImg" class="buttonResize">
           <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
@@ -281,7 +313,7 @@
         </div>
       </div>
       
-      <div id="arid1b_sources" class="source" allowDrag="on" scale="1" style="width: 50%;">
+      <div id="arid1b_sources" class="source draggable" allowDrag="on" scale="1" style="width: 50%;">
         <img src="../Assets/Images/arid1b.png" alt="" style="height: 100%; width: 100%; pointer-events: none;">
         <div id="resizeButtonArid" class="buttonResize">
           <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
@@ -297,7 +329,7 @@
         </div>
       </div>
 
-      <div id="srms_sources" class="source" allowDrag="on" scale="1" style="width: 50%;">
+      <div id="srms_sources" class="source draggable" allowDrag="on" scale="1" style="width: 50%;">
         <img src="../Assets/Images/srms.png" alt="" style="height: 100%; width: 100%; pointer-events: none;">
         <div id="resizeButtonSrms" class="buttonResize">
           <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
@@ -313,7 +345,7 @@
         </div>
       </div>
 
-      <div id="zdhhc13_sources" class="source" allowDrag="on" scale="1" style="width: 50%;">
+      <div id="zdhhc13_sources" class="source draggable" allowDrag="on" scale="1" style="width: 50%;">
         <img src="../Assets/Images/zdhhc13.png" alt="" style="height: 100%; width: 100%; pointer-events: none;">
         <div id="resizeButtonZdhh" class="buttonResize">
           <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
@@ -372,6 +404,9 @@
       <div id = "contextMenuVisite" class="contextMenuItem" onclick = "toggleArea(event,this)" area="visiteArea">
         <img src="../../Assets/Icons/visite.png" alt="">
       </div>
+      <div id = "contextMenuInfo" class="contextMenuItem" onclick = "toggleArea(event,this)" area="infoArea">
+        <img src="../../Assets/Icons/info.png" alt="">
+      </div>
     </div>
       
     <!-- <div id="modeSelectButton" class="button" style = "right: 100px; bottom: 10px;">
@@ -397,6 +432,7 @@
       let contextMenu = document.getElementById("contextmenu")
 
       let visiteArea = document.getElementById("visiteArea")
+      let infoArea = document.getElementById("infoArea")
       let geneArea = document.getElementById("geneArea")
 
       let windowWidth = window.innerWidth
@@ -433,6 +469,9 @@
       // TweenMax.to(geneArea, 0.1, {x:wg})
       geneArea.setAttribute("active","false")
       $(geneArea).hide()
+
+      infoArea.setAttribute("active","false")
+      $(infoArea).hide()
 
       $( "#arid1b_sources" ).hide()
       $( "#srms_sources" ).hide()
@@ -992,15 +1031,16 @@
 
     var sources = document.getElementsByClassName("source")
     var areas = document.getElementsByClassName("area")
+    var draggables = document.getElementsByClassName("draggable")
 
-    for (var i = 0; i < sources.length; i++) {
-      sources[i].setAttribute("offsetX","0")
-      sources[i].setAttribute("offsetY","0")
+    for (var i = 0; i < draggables.length; i++) {
+      draggables[i].setAttribute("offsetX","0")
+      draggables[i].setAttribute("offsetY","0")
     }
-    for (var i = 0; i < areas.length; i++) {
-      areas[i].setAttribute("offsetX","0")
-      areas[i].setAttribute("offsetY","0")
-    }
+    // for (var i = 0; i < areas.length; i++) {
+    //   areas[i].setAttribute("offsetX","0")
+    //   areas[i].setAttribute("offsetY","0")
+    // }
 
     explorationArea.addEventListener("touchstart", dragStart, false)
     explorationArea.addEventListener("touchend", dragEnd, false)
@@ -1013,7 +1053,7 @@
     function dragStart(e) {
       xOffset = parseFloat(e.target.getAttribute("offsetX"))
       yOffset = parseFloat(e.target.getAttribute("offsetY"))
-      console.log("DRAG START",e.target,yOffset)
+      // console.log("DRAG START",e.target,yOffset)
       if (e.type === "touchstart") {
         initialX = e.touches[0].clientX - xOffset;
         initialY = e.touches[0].clientY - yOffset;
@@ -1021,8 +1061,8 @@
         initialX = e.clientX - xOffset;
         initialY = e.clientY - yOffset;
       }
-
-      if (e.target.className == "source" || e.target.className == "area") {
+      if (e.target.classList.contains("draggable") ) {
+        console.log("++++++++++++++++++++++++")
         active = true;
         dragItem = e.target
         bringToFront(dragItem)
