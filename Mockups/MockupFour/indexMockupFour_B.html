@@ -24,9 +24,9 @@
     margin: 10px;
   }
 
-  input[type=number]::-webkit-inner-spin-button {
+  /* input[type=number]::-webkit-inner-spin-button {
     opacity: 1
-  }
+  } */
 
   img {
     max-width: 100%;
@@ -190,7 +190,21 @@
   }
 
   .infoItem {
-    pointer-events: none;
+    /* pointer-events: none; */
+    background: cornsilk;
+    padding: 5px;
+    margin: 5px;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .infoCategory{
+    font-weight: bold;
+    padding-right: 5px;
+  }
+
+  .infoEntry{
+    
   }
 
   .buttonFlat2:hover,.button:hover,.buttonResize:hover{
@@ -210,13 +224,15 @@
 <!-- <script src="./Javascript/TweenMax.min.js"></script> -->
   <!-- <body onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(255, 134, 48); font-family: "Open Sans";'>    
   <div style="position: absolute; left: 0px; top: 0%;height: 7vh; width:100%; background: rgb(255, 105, 0); text-align: center; color: white; font-size: 5vh; margin-bottom: 50px;">Applikationen</div> -->
-  <body onresize="resizeWin()" onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
+  <!-- <body onresize="resizeWin()" onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>     -->
+  <body onresize="resizeWin()" style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
     <!-- <div id ="header" style="position: absolute; left: 0px; top: 0%;height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px;"> -->
     
+      <!-- <p id="test" contentEditable="true" style="position: absolute; top: 200px; left: 500px; background: darkkhaki; z-index: 1000; font-size: 50px;"> Test</p> -->
 
   <!-- <div id="main" style ="position: absolute; left: 0px; top: 50px; z-index: 1; height: 93vh; width:100%; background: red; overflow: auto; padding-top: 5vh;"> -->
   <div id="main" style ="position: absolute; top: 0px; left: 0px; z-index: 1; height: 100%; width:100%; background: rgb(179, 244, 247); overflow: hidden;">
-    
+
     <div id ="header" style="position: absolute; left: 0px; top:0px; height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px; z-index: 999999;">
       Patient 0815  
     </div>
@@ -287,11 +303,42 @@
       </div>
 
       <div id = "infoArea" class = "card draggable" style="bottom: 20%; left: 20%; ">
-        
-          <p class="infoItem">Vorname: Rainer</p>
-          <p class="infoItem">Nachname: Zufall</p>
-          <p class="infoItem">Alter: 61</p>
-          <p class="infoItem">Geschlecht: m&aumlnnlich</p>
+
+        <div style="background: rgb(64, 88, 88); padding: 5px;">
+
+          <div class="infoItem">
+            <div class="infoCategory">
+              Vorname:
+            </div>
+            <div class="infoEntry" contentEditable="true">
+              Rainer
+            </div>
+          </div>
+          <div class="infoItem">
+            <div class="infoCategory">
+              Nachname:
+            </div>
+            <div class="infoEntry" contentEditable="true">
+              Zufall
+            </div>
+          </div>
+          <div class="infoItem">
+            <div class="infoCategory">
+              Alter:
+            </div>
+            <div class="infoEntry" contentEditable="true">
+              61
+            </div>
+          </div>
+          <div class="infoItem">
+            <div class="infoCategory">
+              Geschlecht:
+            </div>
+            <div class="infoEntry" contentEditable="true">
+              m&aumlnnlich
+            </div>
+          </div>
+        </div>
 
         <div id="closeInfo" class="buttonSubmenu" onclick = "toggleArea(event,this)" style = "left: 0px; top:-60px;" area="infoArea">
           <img id="infoIcon" src="../../Assets/Icons/close.png" style="width: 100%; height: 100%;"> 
@@ -443,6 +490,7 @@
 
    </body>
     <script>
+      
       var currentLink = ""
       let leftArea = document.getElementById("leftArea")
       let rightArea = document.getElementById("rightArea")
