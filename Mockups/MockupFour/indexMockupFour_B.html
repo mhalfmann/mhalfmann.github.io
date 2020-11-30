@@ -224,8 +224,8 @@
 <!-- <script src="./Javascript/TweenMax.min.js"></script> -->
   <!-- <body onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(255, 134, 48); font-family: "Open Sans";'>    
   <div style="position: absolute; left: 0px; top: 0%;height: 7vh; width:100%; background: rgb(255, 105, 0); text-align: center; color: white; font-size: 5vh; margin-bottom: 50px;">Applikationen</div> -->
-  <!-- <body onresize="resizeWin()" onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>     -->
-  <body onresize="resizeWin()" style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
+  <body onresize="resizeWin()" onselectstart = "cancelSelect(event,this)" style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
+  <!-- <body onresize="resizeWin()" style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>     -->
     <!-- <div id ="header" style="position: absolute; left: 0px; top: 0%;height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px;"> -->
     
       <!-- <p id="test" contentEditable="true" style="position: absolute; top: 200px; left: 500px; background: darkkhaki; z-index: 1000; font-size: 50px;"> Test</p> -->
@@ -588,8 +588,13 @@
       // document.getElementById("patient").style.height = (window.innerHeight-50)+"px"
       // document.getElementById("visite").style.height = (window.innerHeight-50)+"px"
       
-      // $( "#modeMenu" ).hide()
+      // $( "#modeMenu" ).hide()editabl
 
+      function cancelSelect(e,element){
+        console.log("start selecting",e.target.parentElement.contentEditable)
+        if(!e.target.parentElement.classList.contains("infoEntry"))e.preventDefault()
+        if(!e.target.parentElement.getAttribute("contentEditable"))e.preventDefault()
+      }
       function resizeWin(){
         /*console.log(window.innerHeight)
         document.getElementById("tumor").style.height = (window.innerHeight-50)+"px"
@@ -598,7 +603,7 @@
       }
 
       document.body.addEventListener('click',(event)=>{
-        console.log("clicked body",event.target.id,event.target.className)
+        // console.log("clicked body",event.target.id,event.target.className)
         // $( "#contextmenu" ).hide()
         // if(event.target.className!="button")$( "#modeMenu" ).hide()
         // $( "#modeMenu" ).hide()
@@ -851,7 +856,7 @@
       }
 
       function bringToFront(element){
-        console.log("BringToFront")
+        // console.log("BringToFront")
         topLayerIndex++
         element.style.zIndex =topLayerIndex
         document.getElementById("closeVisite").style.zIndex = topLayerIndex+1
@@ -1183,7 +1188,7 @@
         initialY = e.clientY - yOffset;
       }
       if (e.target.classList.contains("draggable") ) {
-        console.log("++++++++++++++++++++++++")
+        // console.log("++++++++++++++++++++++++")
         active = true;
         dragItem = e.target
         bringToFront(dragItem)
