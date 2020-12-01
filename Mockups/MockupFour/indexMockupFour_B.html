@@ -376,9 +376,25 @@
           <img src="../../Assets/Icons/close.png" style="width: 100%; height: 100%;">
         </div>
       </div>
+
+      <div id="document_pubmed" class="source draggable" allowDrag="on" scale="1" style="width: 30%;">
+        <img src="../Assets/Images/pubmed.png" alt="" style="pointer-events: none; height: 100%; width: 100%;">
+        <div id="resizeButtonPubmed" class="buttonResize">
+          <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
+        </div>
+        <div id="fullscreenButtonPubmed" class="buttonFlat2" onclick = "fullscreenClicked(event,this)" style="top:5px; right: 5px;">
+          <img id="imgVisite" src="../../Assets/Icons/fullscreen.png" style="width: 100%; height: 100%;">
+        </div>
+        <div id="minimizeButtonPubmed" class="buttonFlat2" onclick = "minimizedClicked(event,this)" style="top:5px; right: 60px;">
+          <img id="imgVisite" src="../../Assets/Icons/fullscreen_exit.png" style="width: 100%; height: 100%;">
+        </div>
+        <div id="closeButtonPubmed" class="buttonFlat2" onclick = "closeClicked(event,this)" type = "doc" style="top:5px; right: 115px;">
+          <img src="../../Assets/Icons/close.png" style="width: 100%; height: 100%;">
+        </div>
+      </div>
       
       <div id="arid1b_sources" class="source draggable" allowDrag="on" scale="1" style="width: 50%;">
-        <img src="../Assets/Images/arid1b.png" alt="" style="height: 100%; width: 100%; pointer-events: none;">
+        <img id="aridIMG" src="../Assets/Images/arid1b.png" alt="" style="height: 100%; width: 100%; pointer-events: none;">
         <div id="resizeButtonArid" class="buttonResize">
           <img src="../../Assets/Icons/resize.png" style="width: 100%; height: 100%;" alt="">
         </div>
@@ -391,6 +407,11 @@
         <div id="closeButtonArid" class="buttonFlat2" onclick = "closeClicked(event,this)" type = "gene" button="arid1b_button" style="top:5px; right: 115px;">
           <img src="../../Assets/Icons/close.png" style="width: 100%; height: 100%;">
         </div>
+        <div id="expandPubmedButton" class="buttonFlat2" onclick = "expandPubmed(event,this)" type = "gene" button="arid1b_button" style="bottom:0%; right: 30%; visibility: hidden;">
+          <img src="../../Assets/Icons/launch.png" style="width: 100%; height: 100%;">
+        </div>
+        <div id="buttonPubmed" onclick = "switchPubmed(event,this)" type = "gene" button="arid1b_button" style="position: absolute; background: chartreuse; top:0%; left: 63%; width: 7%; height: 100%; opacity: 0;"></div>
+        <div id="buttonSumary" onclick = "switchSummary(event,this)" type = "gene" button="arid1b_button" style="position: absolute; background: cornflowerblue; top:0%; left: 0%; width: 7%; height: 100%; opacity: 0;"></div>
       </div>
 
       <div id="srms_sources" class="source draggable" allowDrag="on" scale="1" style="width: 50%;">
@@ -554,6 +575,7 @@
       $( "#zdhhc13_sources" ).hide()
       $( "#document_img" ).hide()
       $( "#document_text" ).hide()
+      $( "#document_pubmed" ).hide()
 
       $( "#contextmenu" ).hide()
 
@@ -934,6 +956,23 @@
         // }
       } */
 
+      function expandPubmed(e,element){   
+        var doc = document.getElementById("document_pubmed");     
+        $( "#document_pubmed" ).show()
+        bringToFront(doc)
+        doc.style.left = e.clientX+"px"
+        doc.style.top = (e.clientY-100)+"px"
+      }
+      function switchPubmed(e,element){
+        document.getElementById("aridIMG").src = "../Assets/Images/arid1b_pubmed.png"
+        document.getElementById("expandPubmedButton").style.visibility = "visible"
+
+      }
+      function switchSummary(e,element){
+        document.getElementById("aridIMG").src = "../Assets/Images/arid1b.png"
+        document.getElementById("expandPubmedButton").style.visibility = "hidden"
+      }
+
       function closeClicked(e,element){
         let target = element.parentNode
         if(element.getAttribute("type")=="gene"){
@@ -1121,6 +1160,7 @@
 
       resizeElement(document.getElementById("resizeButtonDocument"))
       resizeElement(document.getElementById("resizeButtonImg"))
+      resizeElement(document.getElementById("resizeButtonPubmed"))
 
       function resizeElement(button) {
         let elmnt = button.parentNode
