@@ -91,7 +91,21 @@
     border-radius: 10px;
     /* border: solid 1px white; */
     background: darkcyan;
-    overflow: hidden;
+    /* overflow: hidden; */
+    box-shadow: 0px 0px 15px 5px rgb(58, 58, 58);
+  }
+
+  .contextMenu2{
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    z-index: 2;
+    /* height: 25vh; */
+    /* width:15vh; */
+    border-radius: 50%;
+    /* border: solid 1px white; */
+    background: darkcyan;
+    /* overflow: hidden; */
     box-shadow: 0px 0px 15px 5px rgb(58, 58, 58);
   }
 
@@ -174,6 +188,18 @@
     /* box-shadow: 5px 5px 5px rgb(58, 58, 58); */
   }
 
+  .contextMenuItem2{
+    width: 50px;
+    height: 50px;
+    z-index: 300000;
+    /* margin: 10px; */
+    /* padding: 5px; */
+    background: rgb(113, 228, 228);
+    opacity: 1;
+    border-radius: 50%;
+    box-shadow: 5px 5px 5px rgb(58, 58, 58);
+  }
+
   .buttonResize{
     position: absolute;
     width: 40px;
@@ -211,7 +237,7 @@
     opacity: 1;
   }
 
-  .buttonSubmenu:hover,.contextMenuItem:hover{
+  .buttonSubmenu:hover,.contextMenuItem:hover,.contextMenuItem2:hover{
     background: paleturquoise;
   }
   
@@ -482,7 +508,7 @@
 
       </div> -->
     </div>
-    <div id = "contextmenu" class="contextMenu draggable" active="false">
+    <!-- <div id = "contextmenu" class="contextMenu draggable" active="false">
       <div id = "contextMenuGenes" class="contextMenuItem" onclick = "toggleArea(event,this)" area="geneArea">
         <img src="../../Assets/Icons/gene.png" alt="">
       </div>
@@ -493,6 +519,20 @@
         <img src="../../Assets/Icons/info.png" alt="">
       </div>
       <div id = "contextMenuClose" class="contextMenuItem" onclick = "toggleArea(event,this)" area="contextmenu">
+        <img src="../../Assets/Icons/close.png" alt="">
+      </div>
+    </div> -->
+    <div id = "contextmenu" class="contextMenu2 draggable" active="false">
+      <div id = "contextMenuGenes" class="contextMenuItem2" onclick = "toggleArea(event,this)" area="geneArea" style="position: absolute; left: -60px; bottom: 40px;">
+        <img src="../../Assets/Icons/gene.png" alt="">
+      </div>
+      <div id = "contextMenuVisite" class="contextMenuItem2" onclick = "toggleArea(event,this)" area="visiteArea" style="position: absolute; left: 0px; bottom: 70px;">
+        <img src="../../Assets/Icons/visite.png" alt="">
+      </div>
+      <div id = "contextMenuInfo" class="contextMenuItem2" onclick = "toggleArea(event,this)" area="infoArea" style="position: absolute; left: 60px; bottom: 40px;">
+        <img src="../../Assets/Icons/info.png" alt="">
+      </div>
+      <div id = "contextMenuClose" class="contextMenuItem2" onclick = "toggleArea(event,this)" area="contextmenu" style="width: 60px; height: 60px;">
         <img src="../../Assets/Icons/close.png" alt="">
       </div>
     </div>
