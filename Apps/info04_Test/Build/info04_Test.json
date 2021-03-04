@@ -1,7 +1,7 @@
 {
 "companyName": "iwm",
 "productName": "infoanordnung04",
-"productVersion": "1.1",
+"productVersion": "1.0",
 "dataUrl": "info04_Test.data.unityweb",
 "wasmCodeUrl": "info04_Test.wasm.code.unityweb",
 "wasmFrameworkUrl": "info04_Test.wasm.framework.unityweb",
