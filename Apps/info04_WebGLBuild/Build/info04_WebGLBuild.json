@@ -1,7 +1,7 @@
 {
 "companyName": "iwm",
 "productName": "infoanordnung04",
-"productVersion": "1.0",
+"productVersion": "1.1",
 "dataUrl": "info04_WebGLBuild.data.unityweb",
 "wasmCodeUrl": "info04_WebGLBuild.wasm.code.unityweb",
 "wasmFrameworkUrl": "info04_WebGLBuild.wasm.framework.unityweb",
