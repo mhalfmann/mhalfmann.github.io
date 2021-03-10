@@ -1,1 +1,0 @@
-Hier können Vorlagen (Word, Powerpoint, Excel, Medien, etc.) abgelegt werden.
