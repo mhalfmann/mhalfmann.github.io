@@ -18,14 +18,22 @@
   .uiButtonFrame{
   }
   .thumbnail{
-    max-height: 200px;
+    /* max-height: 200px; */
+    /* max-width: 200px; */
+    width: 100px;
+    height: auto;
     padding: 10px;
+  }
+  .thumbnailFrame{
+    height: 100%;
+    width: 2%;
+    background: wheat;
+    padding: 10px;
+    align-items: center;
+    display: flex;
   }
   .uiDialogueElement{
     margin: 10px;
-  }
-  input[type=number]::-webkit-inner-spin-button {
-    opacity: 1
   }
 </style>
 <!-- <script src="./Javascript/jquery-3.4.0.min.js"></script> -->
@@ -36,7 +44,7 @@
     <div id ="header" style="position: absolute; left: 0px; top: 0%;height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px;">
       Museum 2D
     </div>
-  <div id="main" style ="position: absolute; left: 0px; top: 50px;height: 93vh; width:100%; overflow: hidden; padding-top: 5vh;">
+  <div id="main" style ="position: absolute; left: 0px; top: 50px;height: 93vh; width:100%; overflow: hidden; padding-top: 5vh; background: rgb(167, 187, 202);">
 
     <div id="goLeft" style ="position: absolute; left: 0px; top: 50%; height: 50px; width:50px; background: grey;">
       <img src="../../../Assets/Icons/arrow-back.png" width="50px">
@@ -44,32 +52,75 @@
     <div id="goRight" style ="position: absolute; right: 0px; top: 50%; height: 50px; width:50px; background: grey;">
       <img src="../../../Assets/Icons/arrow-forward.png" width="50px">
     </div>
-    <div id = "imageBar" style ="position: absolute; right: 10%; top: 50%; width:80%; display: flex; overflow-x: auto;">
-      
-      <img class="thumbnail" src="./assets/images/NorthWallImages/Gm903_cut.jpg" onclick = "showLargeImage(this)">
-      <img class="thumbnail" src="./assets/images/NorthWallImages/Pl.O.156_cut.png" onclick = "showLargeImage(this)">
-      <img class="thumbnail" src="./assets/images/NorthWallImages/Gm344_cut.jpg" onclick = "showLargeImage(this)">
-      <img class="thumbnail" rc="./assets/images/NorthWallImages/Gm1170_cut.jpg" onclick = "showLargeImage(this)">
-      <img class="thumbnail" src="./assets/images/NorthWallImages/Pl.O.2206_cut.png" onclick = "showLargeImage(this)">
-      <img class="thumbnail" src="./assets/images/NorthWallImages/Pl.O.2205_cut.png" onclick = "showLargeImage(this)">
-      <img class="thumbnail" src="./assets/images/NorthWallImages/Gm1000_cut.jpg" onclick = "showLargeImage(this)">
-      <img class="thumbnail" src="./assets/images/NorthWallImages/Gm338_cut.jpg" onclick = "showLargeImage(this)">
-      <img class="thumbnail" src="./assets/images/NorthWallImages/Gm339_cut.jpg" onclick = "showLargeImage(this)">
+    <div id = "imageBar" style ="position: absolute; right: 10%; top: 50%; height: 40%; width:80%; display: flex; overflow-x: auto;">
 
-      <img class="thumbnail" src="./assets/images/EastWallImages/Gm1079_cut.jpg" onclick = "showLargeImage(this)">
+      <div class="thumbailFrame">
+        <img class="thumbnail" src="./assets/images/NorthWallImages/Gm903_cut.jpg" onclick = "showLargeImage(this)">
+      </div>
+      <div class="thumbailFrame">
+        <img class="thumbnail" src="./assets/images/NorthWallImages/Pl.O.156_cut.png" onclick = "showLargeImage(this)">
+      </div>
+      <div class="thumbailFrame">
+        <img class="thumbnail" src="./assets/images/NorthWallImages/Gm344_cut.jpg" onclick = "showLargeImage(this)">
+      </div>
+      <div class="thumbailFrame">
+        <img class="thumbnail" src="./assets/images/NorthWallImages/Gm1170_cut.jpg" onclick = "showLargeImage(this)">
+      </div>
+      <div class="thumbailFrame">
+        <img class="thumbnail" src="./assets/images/NorthWallImages/Gm1170_cut.jpg" onclick = "showLargeImage(this)">
+      </div>
+      <div class="thumbailFrame">
+        <img class="thumbnail" src="./assets/images/NorthWallImages/Pl.O.2206_cut.png" onclick = "showLargeImage(this)">
+      </div>
+      <div class="thumbailFrame">
+        <img class="thumbnail" src="./assets/images/NorthWallImages/Pl.O.2205_cut.png" onclick = "showLargeImage(this)">
+      </div>
+      <div class="thumbailFrame">
+        <img class="thumbnail" src="./assets/images/NorthWallImages/Gm338_cut.jpg" onclick = "showLargeImage(this)">
+      </div>
+      <div class="thumbailFrame">
+        <img class="thumbnail" src="./assets/images/NorthWallImages/Gm339_cut.jpg" onclick = "showLargeImage(this)">
+      </div>
 
-      <img class="thumbnail" src="./assets/images/SouthWallImages/Gm1108_cut.jpg" onclick = "showLargeImage(this)">
-      <img class="thumbnail" src="./assets/images/SouthWallImages/Gm218_cut.jpg" onclick = "showLargeImage(this)">
-      <img class="thumbnail" src="./assets/images/SouthWallImages/Gm47_cut.jpg" onclick = "showLargeImage(this)">
-      <img class="thumbnail" src="./assets/images/SouthWallImages/Gm1093_cut.jpg" onclick = "showLargeImage(this)">
-      <img class="thumbnail" src="./assets/images/SouthWallImages/Gm1097_cut.jpg" onclick = "showLargeImage(this)">
-      <img class="thumbnail" src="./assets/images/SouthWallImages/Gm213_cut.jpg" onclick = "showLargeImage(this)">
-      <img class="thumbnail" src="./assets/images/SouthWallImages/Pl.O.680_cut.jpg" onclick = "showLargeImage(this)">
-      <img class="thumbnail" src="./assets/images/SouthWallImages/Gm217_cut.jpg" onclick = "showLargeImage(this)">
+      <div class="thumbailFrame">
+        <img class="thumbnail" src="./assets/images/EastWallImages/Gm1079_cut.jpg" onclick = "showLargeImage(this)">
+      </div>
 
-      <img class="thumbnail" src="./assets/images/WestWallImages/Gm1086_cut.jpg" onclick = "showLargeImage(this)">
-      <img class="thumbnail" src="./assets/images/WestWallImages/Gm1195_cut.jpg" onclick = "showLargeImage(this)">
-      <img class="thumbnail" src="./assets/images/WestWallImages/Gm1115_cut.jpg" onclick = "showLargeImage(this)">
+      <div class="thumbailFrame">
+        <img class="thumbnail" src="./assets/images/SouthWallImages/Gm1108_cut.jpg" onclick = "showLargeImage(this)">
+      </div>
+      <div class="thumbailFrame">
+        <img class="thumbnail" src="./assets/images/SouthWallImages/Gm218_cut.jpg" onclick = "showLargeImage(this)">
+      </div>
+      <div class="thumbailFrame">
+        <img class="thumbnail" src="./assets/images/SouthWallImages/Gm47_cut.jpg" onclick = "showLargeImage(this)">
+      </div>
+      <div class="thumbailFrame">
+        <img class="thumbnail" src="./assets/images/SouthWallImages/Gm1093_cut.jpg" onclick = "showLargeImage(this)">
+      </div>
+      <div class="thumbailFrame">
+        <img class="thumbnail" src="./assets/images/SouthWallImages/Gm1097_cut.jpg" onclick = "showLargeImage(this)">
+      </div>
+      <div class="thumbailFrame">
+        <img class="thumbnail" src="./assets/images/SouthWallImages/Gm213_cut.jpg" onclick = "showLargeImage(this)">
+      </div>
+      <div class="thumbailFrame">
+        <img class="thumbnail" src="./assets/images/SouthWallImages/Pl.O.680_cut.jpg" onclick = "showLargeImage(this)">
+      </div>
+      <div class="thumbailFrame">
+        <img class="thumbnail" src="./assets/images/SouthWallImages/Gm217_cut.jpg" onclick = "showLargeImage(this)">
+      </div>
+
+      <div class="thumbailFrame">
+        <img class="thumbnail" src="./assets/images/WestWallImages/Gm1086_cut.jpg" onclick = "showLargeImage(this)">
+      </div>
+      <div class="thumbailFrame">
+        <img class="thumbnail" src="./assets/images/WestWallImages/Gm1195_cut.jpg" onclick = "showLargeImage(this)">
+      </div>
+      <div class="thumbailFrame">
+        <img class="thumbnail" src="./assets/images/WestWallImages/Gm1115_cut.jpg" onclick = "showLargeImage(this)">
+      </div>
+
     </div>
 
     <div id="infoCard" style ="position: absolute; left: 10%; top: 10%; height: 80%; width:80%; background: grey; visibility: hidden;">
@@ -88,7 +139,7 @@
         Steinmaske "bocca della veritá" an, die der Legende nach<br>
         jedem Lügner die Hand abbeißt.
       </div>
-      <div id = "closeInfoCard" style ="position: absolute; right: 10%; bottom: 10%; height: 50px; width:50px; background: darkcyan;">
+      <div id = "closeInfoCard" style ="position: absolute; right: 10%; bottom: 10%; height: 50px; width:50px; background: darkgrey;">
         <img src="../../../Assets/Icons/close.png" width="50px">
       </div>
     </div>
