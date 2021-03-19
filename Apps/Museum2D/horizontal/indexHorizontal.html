@@ -17,6 +17,10 @@
     
   .uiButtonFrame{
   }
+  .thumbnail{
+    max-height: 200px;
+    padding: 10px;
+  }
   .uiDialogueElement{
     margin: 10px;
   }
@@ -40,32 +44,32 @@
     <div id="goRight" style ="position: absolute; right: 0px; top: 50%; height: 50px; width:50px; background: grey;">
       <img src="../../../Assets/Icons/arrow-forward.png" width="50px">
     </div>
-    <div id = "imageBar" style ="position: absolute; right: 10%; top: 50%; width:80%; display: flex; flex-direction: row; overflow-x: scroll;">
+    <div id = "imageBar" style ="position: absolute; right: 10%; top: 50%; width:80%; display: flex; overflow-x: auto;">
+      
+      <img class="thumbnail" src="./assets/images/NorthWallImages/Gm903_cut.jpg" onclick = "showLargeImage(this)">
+      <img class="thumbnail" src="./assets/images/NorthWallImages/Pl.O.156_cut.png" onclick = "showLargeImage(this)">
+      <img class="thumbnail" src="./assets/images/NorthWallImages/Gm344_cut.jpg" onclick = "showLargeImage(this)">
+      <img class="thumbnail" rc="./assets/images/NorthWallImages/Gm1170_cut.jpg" onclick = "showLargeImage(this)">
+      <img class="thumbnail" src="./assets/images/NorthWallImages/Pl.O.2206_cut.png" onclick = "showLargeImage(this)">
+      <img class="thumbnail" src="./assets/images/NorthWallImages/Pl.O.2205_cut.png" onclick = "showLargeImage(this)">
+      <img class="thumbnail" src="./assets/images/NorthWallImages/Gm1000_cut.jpg" onclick = "showLargeImage(this)">
+      <img class="thumbnail" src="./assets/images/NorthWallImages/Gm338_cut.jpg" onclick = "showLargeImage(this)">
+      <img class="thumbnail" src="./assets/images/NorthWallImages/Gm339_cut.jpg" onclick = "showLargeImage(this)">
 
-      <img src="./assets/images/NorthWallImages/Gm903_cut.jpg" width="10%" onclick = "showLargeImage(this)">
-      <img src="./assets/images/NorthWallImages/Pl.O.156_cut.png" width="10%" onclick = "showLargeImage(this)">
-      <img src="./assets/images/NorthWallImages/Gm344_cut.jpg" width="10%" onclick = "showLargeImage(this)">
-      <img src="./assets/images/NorthWallImages/Gm1170_cut.jpg" width="10%" onclick = "showLargeImage(this)">
-      <img src="./assets/images/NorthWallImages/Pl.O.2206_cut.png" width="10%" onclick = "showLargeImage(this)">
-      <img src="./assets/images/NorthWallImages/Pl.O.2205_cut.png" width="10%" onclick = "showLargeImage(this)">
-      <img src="./assets/images/NorthWallImages/Gm1000_cut.jpg" width="10%" onclick = "showLargeImage(this)">
-      <img src="./assets/images/NorthWallImages/Gm338_cut.jpg" width="10%" onclick = "showLargeImage(this)">
-      <img src="./assets/images/NorthWallImages/Gm339_cut.jpg" width="10%" onclick = "showLargeImage(this)">
+      <img class="thumbnail" src="./assets/images/EastWallImages/Gm1079_cut.jpg" onclick = "showLargeImage(this)">
 
-      <img src="./assets/images/EastWallImages/Gm1079_cut.jpg" width="10%" onclick = "showLargeImage(this)">
+      <img class="thumbnail" src="./assets/images/SouthWallImages/Gm1108_cut.jpg" onclick = "showLargeImage(this)">
+      <img class="thumbnail" src="./assets/images/SouthWallImages/Gm218_cut.jpg" onclick = "showLargeImage(this)">
+      <img class="thumbnail" src="./assets/images/SouthWallImages/Gm47_cut.jpg" onclick = "showLargeImage(this)">
+      <img class="thumbnail" src="./assets/images/SouthWallImages/Gm1093_cut.jpg" onclick = "showLargeImage(this)">
+      <img class="thumbnail" src="./assets/images/SouthWallImages/Gm1097_cut.jpg" onclick = "showLargeImage(this)">
+      <img class="thumbnail" src="./assets/images/SouthWallImages/Gm213_cut.jpg" onclick = "showLargeImage(this)">
+      <img class="thumbnail" src="./assets/images/SouthWallImages/Pl.O.680_cut.jpg" onclick = "showLargeImage(this)">
+      <img class="thumbnail" src="./assets/images/SouthWallImages/Gm217_cut.jpg" onclick = "showLargeImage(this)">
 
-      <img src="./assets/images/SouthWallImages/Gm1108_cut.jpg" width="10%" onclick = "showLargeImage(this)">
-      <img src="./assets/images/SouthWallImages/Gm218_cut.jpg" width="10%" onclick = "showLargeImage(this)">
-      <img src="./assets/images/SouthWallImages/Gm47_cut.jpg" width="10%" onclick = "showLargeImage(this)">
-      <img src="./assets/images/SouthWallImages/Gm1093_cut.jpg" width="10%" onclick = "showLargeImage(this)">
-      <img src="./assets/images/SouthWallImages/Gm1097_cut.jpg" width="10%" onclick = "showLargeImage(this)">
-      <img src="./assets/images/SouthWallImages/Gm213_cut.jpg" width="10%" onclick = "showLargeImage(this)">
-      <img src="./assets/images/SouthWallImages/Pl.O.680_cut.jpg" width="10%" onclick = "showLargeImage(this)">
-      <img src="./assets/images/SouthWallImages/Gm217_cut.jpg" width="10%" onclick = "showLargeImage(this)">
-
-      <img src="./assets/images/WestWallImages/Gm1086_cut.jpg" width="10%" onclick = "showLargeImage(this)">
-      <img src="./assets/images/WestWallImages/Gm1195_cut.jpg" width="10%" onclick = "showLargeImage(this)">
-      <img src="./assets/images/WestWallImages/Gm1115_cut.jpg" width="10%" onclick = "showLargeImage(this)">
+      <img class="thumbnail" src="./assets/images/WestWallImages/Gm1086_cut.jpg" onclick = "showLargeImage(this)">
+      <img class="thumbnail" src="./assets/images/WestWallImages/Gm1195_cut.jpg" onclick = "showLargeImage(this)">
+      <img class="thumbnail" src="./assets/images/WestWallImages/Gm1115_cut.jpg" onclick = "showLargeImage(this)">
     </div>
 
     <div id="infoCard" style ="position: absolute; left: 10%; top: 10%; height: 80%; width:80%; background: grey; visibility: hidden;">
