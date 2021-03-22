@@ -58,10 +58,10 @@
   <div id="main" style ="position: absolute; left: 0px; top: 0px;height: 100%; width:100%; overflow: hidden; padding-top: 5vh; background: rgb(116, 126, 138);">
 
     <div id="goLeft" style ="position: absolute; left: 0px; top: 40%; height: 5vh; width:5vh; background: rgb(63, 63, 63);">
-      <img src="../../../Assets/Icons/arrow-back.png" width="100%">
+      <img id="leftArrow" src="../../../Assets/Icons/arrow-back.png" width="100%">
     </div>
     <div id="goRight" style ="position: absolute; right: 0px; top: 40%; height: 5vh; width:5vh; background: rgb(63,63,63);">
-      <img src="../../../Assets/Icons/arrow-forward.png" width="100%">
+      <img id="rightArrow" src="../../../Assets/Icons/arrow-forward.png" width="100%">
     </div>
     
     <ul id = "imageBar" style ="list-style: none; position: absolute; right: 10%; top: 10%; height: 80%; width:80%; display: flex; overflow-x: auto;">
@@ -87,6 +87,9 @@
     let iCard = document.getElementById("infoCard")
     let iImage = document.getElementById("infoImageIMG")
     let imgBar = document.getElementById("imageBar")
+
+    let right = false;
+    let left = false;
 
     let screenHeight = window.innerHeight
     let screenWidth = window.innerWidth
@@ -135,17 +138,72 @@
       })
     }
 
+    document.addEventListener('keydown', function(event) {
+        if(event.keyCode == 37) {
+          $('#imageBar').animate({
+              scrollLeft: $('#imageBar').scrollLeft()-10
+          }, 0)
+        }
+        else if(event.keyCode == 39) {
+          $('#imageBar').animate({
+              scrollLeft: $('#imageBar').scrollLeft()+10
+          }, 0)
+        }
+    })
+/*let mousedownID = -1;  //Global ID of mouse down interval
+  function mousedown(event) {
+    if(mousedownID==-1)  //Prevent multimple loops!
+      mousedownID = setInterval(whilemousedown, 100 );
+  }
+  function mouseup(event) {
+    if(mousedownID!=-1) {  //Only stop if exists
+      clearInterval(mousedownID);
+      mousedownID=-1;
+    }
+  }
+  function whilemousedown(e) {
+    console.log("mouse down")
+    if(right){
+      $('#imageBar').animate({
+            scrollLeft: $('#imageBar').scrollLeft()+50
+        }, 10)
+    }
+    if(left){
+      $('#imageBar').animate({
+            scrollLeft: $('#imageBar').scrollLeft()-50
+        }, 10)
+    }
+  }
+//Assign events
+document.addEventListener("mousedown", mousedown);
+document.addEventListener("mouseup", mouseup);
+//Also clear the interval when user leaves the window with mouse
+document.addEventListener("mouseout", mouseup);
+
+    document.getElementById("goRight").addEventListener('pointerover',(e)=>{
+      right = true
+    })
+    document.getElementById("goRight").addEventListener('pointerleave',(e)=>{
+      right = false
+    })
+    document.getElementById("goLeft").addEventListener('pointerover',(e)=>{
+      left = true
+    })
+    document.getElementById("goLeft").addEventListener('pointerleave',(e)=>{
+      left = false
+    })*/
+
     document.getElementById("goRight").addEventListener('click',(e)=>{
         $('#imageBar').animate({
-            scrollLeft: $('#imageBar').scrollLeft()+100
-        }, 100)
+            scrollLeft: $('#imageBar').scrollLeft()+200
+        }, 500)
     })
 
     document.getElementById("goLeft").addEventListener('click',(e)=>{
         $('#imageBar').animate({
-            scrollLeft: $('#imageBar').scrollLeft()-100
-        }, 100)
-    })
+            scrollLeft: $('#imageBar').scrollLeft()-200
+        }, 500)
+    }) 
 
     document.getElementById("closeInfoCard").addEventListener('click',()=>{
       iCard.style.visibility = "hidden"
