@@ -31,14 +31,14 @@ let images = {
         'file':"./assets/images/NorthWallImages/Pl.O.2206_cut.png",
         'id':"PlO2206",
         'height':150,
-        'width': 48,
+        'width': 58,
         'text':"Die Werke des Meisters, der am Hochaltar des Münsters zu Breisach sein Monogramm 'HL' hinterließ, zählen zu den bizarrsten Schöpfungen deutscher Kunst. Vielleicht ist dieser Bildhauer mit einem in Freiburger Quellen genannten Hans Loy zu identifizieren. Hervorstechendes Merkmal seiner Figuren ist das plastisch-graphische Eigenleben der Gewandmassen. Dem vielfältig variierten und eigentümlich stilisierten Faltenwurf des Evangelisten wohnt heftige Bewegung inne. Sie verleiht ihm visionäre und ekstatische Züge."
     },
     PlO2205:{
         'file':"./assets/images/NorthWallImages/Pl.O.2205_cut.png",
         'id':"PlO2205",
         'height':150,
-        'width': 50,
+        'width': 55,
         'text':"Das Zusammenspiel des ausgemergelten, muskulösen Körpers, des knochigen Gesichtes und des nervös geknitterten Gewandes spiegelt die innere Unruhe des Täufers wider. Die Darstellung beschreibt eindrucksvoll den in der Wüste lebenden Asketen, der sich von Honig und Heuschrecken ernährte. Das Lamm symbolisiert Christus, der als unschuldiges Opfer die Sünden der Welt auf sich genommen und gesühnt hat. Die Figuren der beiden hll. Johannes waren gemeinsam in einem Flügelaltar aufgestellt."
     },
     Gm1000:{
