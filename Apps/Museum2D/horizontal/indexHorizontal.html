@@ -7,6 +7,7 @@
 <script src="../../../Javascript/hammer.js"></script>
 <script src="../../../Javascript/TweenMax.min.js"></script>
 <script src="../../../Javascript/jquery-3.4.0.min.js"></script>
+<script src="./images.js"></script>
 <link rel="stylesheet" type="text/css" href="../../../css/ui.css">
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
 <style>
@@ -63,9 +64,9 @@
       <img src="../../../Assets/Icons/arrow-forward.png" width="100%">
     </div>
     
-    <ul id = "imageBar" style ="list-style: none; position: absolute; right: 10%; top: 30%; height: 40%; width:80%; display: flex; overflow-x: auto;">
+    <ul id = "imageBar" style ="list-style: none; position: absolute; right: 10%; top: 10%; height: 80%; width:80%; display: flex; overflow-x: auto;">
 
-      <li class="thumbailFrame">
+      <!-- <li class="thumbailFrame">
         <img class="thumbnail" src="./assets/images/NorthWallImages/Gm903_cut.jpg" onclick = "showLargeImage(this)">
       </li>
       <li class="thumbailFrame">
@@ -136,45 +137,53 @@
       </li>
       <li class="thumbailFrame">
         <img class="thumbnail" src="./assets/images/WestWallImages/Gm1115_cut.jpg" onclick = "showLargeImage(this)">
-      </li>
-
+      </li> -->
     </ul>
 
-    <div id="infoCard" style ="position: absolute; left: 10%; top: 10%; height: 80%; width:80%; background: grey; visibility: hidden; box-shadow: 10px 10px 15px 5px rgb(80, 80, 80)">
+    <div id="infoCard" style ="position: absolute; left: 5%; top: 5%; height: 90%; width:90%; background: grey; visibility: hidden; box-shadow: 10px 10px 15px 5px rgb(80, 80, 80)">
       <div id="infoImage" style="position: absolute; left: 5%; top: 5%; height: 90%;"> 
-        <img id="infoImageIMG" src="./assets/images/WestWallImages/Gm1086_cut.jpg" height="100%" onclick = "showLargeImage(this)">
+        <img id="infoImageIMG" src="./assets/images/WestWallImages/Gm1086_cut.jpg" height="100%">
       </div>
-      <div id="infoText" style="position: absolute; right: 5%; top: 5%; height: 90%; width: 50%">
-        Das Gemälde zeigt eine seit dem Spätmittelalter<br>
-        häufig thematisierte "Weiberlist". Eine des Ehebruchs<br>
-        angeklagte Frau legt die Hand in den Löwenrachen. Sie<br>
-        bekennt, nur in den Armen ihres Ehemanns und des Narren<br>
-        gelegen zu haben. Da sie die Wahrheit spricht, beißt der<br>
-        Löwe nicht zu. Der Narr ist in Wirklichkeit ihr <br>
-        verkleideter Liebhaber. Von den Zeugen wird er jedoch <br>
-        nicht ernst genommen. Die Szene spielt auf die römische <br>
-        Steinmaske "bocca della veritá" an, die der Legende nach<br>
-        jedem Lügner die Hand abbeißt.
+      <div id="infoText" style="position: absolute; right: 5%; top: 5%; height: 90%; width: 15%">
+        
       </div>
       <div id = "closeInfoCard" style ="position: absolute; right: 10%; bottom: 10%; height: 50px; width:50px; background: darkgrey;">
         <img src="../../../Assets/Icons/close.png" width="50px">
       </div>
     </div>
     
-  <!-- <input type="file" name="inputfile" id="inputfile">  -->
   </div>
   </body>
   <script>
-    var iCard = document.getElementById("infoCard")
-    var iImage = document.getElementById("infoImageIMG")
+    let iCard = document.getElementById("infoCard")
+    let iImage = document.getElementById("infoImageIMG")
 
-              
-          /*   var fr=new FileReader()
-            fr.onload=function(){ 
-                document.getElementById("header").innerHTML = fr.result 
-            } 
-              
-            fr.readAsText(this.files[0]) */
+    // document.getElementById("header").innerHTML = Gm338.text
+    console.log(images)
+
+    for(var i=0; i<imageArray.length; i++){
+      let img = imageArray[i]
+
+      let thumbailFrame = document.createElement('li')
+      thumbailFrame.className ="thumbailFrame"
+      document.getElementById("imageBar").appendChild(thumbailFrame)
+
+      let thumbnail = document.createElement('img')
+      thumbnail.className ="thumbnail"
+      thumbnail.src = img.file
+      thumbnail.id = img.id
+      thumbnail.setAttribute('text',img.text)
+      thumbnail.style.width = 3*img.width+"px"
+      thumbnail.style.height = 3*img.height+"px"
+      thumbailFrame.appendChild(thumbnail)
+
+      thumbnail.addEventListener('click',(e)=>{
+        iCard.style.visibility = "visible"
+        iImage.src = e.target.src
+        document.getElementById("infoText").innerHTML = e.target.getAttribute('text')
+      })
+    }
+    
 
     document.getElementById("goRight").addEventListener('click',(e)=>{
         $('#imageBar').animate({
