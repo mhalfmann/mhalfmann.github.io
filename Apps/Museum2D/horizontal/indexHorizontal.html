@@ -87,9 +87,14 @@
   <script>
     let iCard = document.getElementById("infoCard")
     let iImage = document.getElementById("infoImageIMG")
+    let imgBar = document.getElementById("imageBar")
+
+    let screenHeight = window.innerHeight
+    let screenWidth = window.innerWidth
+    let imgBarHeight = imgBar.getBoundingClientRect().height
 
     // document.getElementById("header").innerHTML = Gm338.text
-    console.log(images)
+    console.log(screenWidth+" x "+screenHeight)
 
     for(var i=0; i<imageArray.length; i++){
       let img = imageArray[i]
@@ -99,6 +104,7 @@
       document.getElementById("imageBar").appendChild(thumbnailFrame)
 
       let thumbnail = document.createElement('img')
+
       thumbnail.className ="thumbnail"
       thumbnail.src = img.file
       thumbnail.id = img.id
@@ -106,6 +112,9 @@
       thumbnail.style.width = 3*img.width+"px"
       thumbnail.style.height = 3*img.height+"px"
       thumbnailFrame.appendChild(thumbnail)
+
+      let top = (imgBarHeight - 3*img.height)/2
+      thumbnail.style.marginTop = top+"px"
 
       thumbnail.addEventListener('click',(e)=>{
         iCard.style.visibility = "visible"
@@ -119,11 +128,13 @@
         let textWidth = document.getElementById("infoText").getBoundingClientRect().width
         let cardWidth = imgWidth+textWidth
 
+        let left = (screenWidth-cardWidth)/2
+
         iCard.style.width = cardWidth+"px"
         iCard.style.height = imgHeight+"px"
+        iCard.style.left = left+"px"
       })
     }
-    
 
     document.getElementById("goRight").addEventListener('click',(e)=>{
         $('#imageBar').animate({
