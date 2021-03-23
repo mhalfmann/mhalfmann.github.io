@@ -6,7 +6,9 @@
 <!-- <script src="./Javascript/aframe-ar.js"></script> -->
 <script src="../../../Javascript/hammer.js"></script>
 <script src="../../../Javascript/TweenMax.min.js"></script>
-<script src="../../../Javascript/jquery-3.4.0.min.js"></script>
+<script src="../../../Javascript/jquery-3.6.0.min.js"></script>
+<script src="../../../Javascript/jquery.csv.js"></script>
+<script src="../../../Javascript/papaparse.min.js"></script>
 <script src="../assets/images.js"></script>
 <link rel="stylesheet" type="text/css" href="../../../css/ui.css">
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
@@ -84,6 +86,31 @@
   </div>
   </body>
   <script>
+   /*  var data
+    $.ajax({
+      type: "GET",  
+      url: "../assets/Beschriftung.csv",
+      dataType: "text",       
+      success: function(response)  
+      {
+      data = $.csv.toArrays(response)
+      console.log(data)
+      }   
+    }) */
+    var data;
+
+    Papa.parse('../assets/Beschriftung.csv', {
+      header: true,
+      download: true,
+      dynamicTyping: true,
+      complete: function(results) {
+        // console.log(results);
+        data = results.data;
+        console.log(data[0]["Text deutsch"])
+        addImages()
+      }
+    })
+
     let iCard = document.getElementById("infoCard")
     let iImage = document.getElementById("infoImageIMG")
     let imgBar = document.getElementById("imageBar")
@@ -98,44 +125,49 @@
     // document.getElementById("header").innerHTML = Gm338.text
     console.log(screenWidth+" x "+screenHeight)
 
-    for(var i=0; i<imageArray.length; i++){
-      let img = imageArray[i]
+    // addImages()
 
-      let thumbnailFrame = document.createElement('li')
-      thumbnailFrame.className ="thumbailFrame"
-      document.getElementById("imageBar").appendChild(thumbnailFrame)
+    function addImages(){
+    
+      for(var i=0; i<imageArray.length; i++){
+        let img = imageArray[i]
 
-      let thumbnail = document.createElement('img')
+        let thumbnailFrame = document.createElement('li')
+        thumbnailFrame.className ="thumbailFrame"
+        document.getElementById("imageBar").appendChild(thumbnailFrame)
 
-      thumbnail.className ="thumbnail"
-      thumbnail.src = img.file
-      thumbnail.id = img.id
-      thumbnail.setAttribute('text',img.text)
-      thumbnail.style.width = 3*img.width+"px"
-      thumbnail.style.height = 3*img.height+"px"
-      thumbnailFrame.appendChild(thumbnail)
+        let thumbnail = document.createElement('img')
 
-      let top = (imgBarHeight - 3*img.height)/2
-      thumbnail.style.marginTop = top+"px"
+        thumbnail.className ="thumbnail"
+        thumbnail.src = img.file
+        thumbnail.id = img.id
+        thumbnail.setAttribute('text',img.text)
+        thumbnail.style.width = 3*img.width+"px"
+        thumbnail.style.height = 3*img.height+"px"
+        thumbnailFrame.appendChild(thumbnail)
 
-      thumbnail.addEventListener('click',(e)=>{
-        iCard.style.visibility = "visible"
-        iImage.src = e.target.src
-        document.getElementById("infoText").innerHTML = e.target.getAttribute('text')
+        let top = (imgBarHeight - 3*img.height)/2
+        thumbnail.style.marginTop = top+"px"
 
-        console.log(document.getElementById("infoImageIMG").getBoundingClientRect().width)
+        thumbnail.addEventListener('click',(e)=>{
+          iCard.style.visibility = "visible"
+          iImage.src = e.target.src
+          document.getElementById("infoText").innerHTML = e.target.getAttribute('text')
 
-        let imgWidth = document.getElementById("infoImage").getBoundingClientRect().width
-        let imgHeight = document.getElementById("infoImage").getBoundingClientRect().height
-        let textWidth = document.getElementById("infoText").getBoundingClientRect().width
-        let cardWidth = imgWidth+textWidth
+          console.log(document.getElementById("infoImageIMG").getBoundingClientRect().width)
 
-        let left = (screenWidth-cardWidth)/2
+          let imgWidth = document.getElementById("infoImage").getBoundingClientRect().width
+          let imgHeight = document.getElementById("infoImage").getBoundingClientRect().height
+          let textWidth = document.getElementById("infoText").getBoundingClientRect().width
+          let cardWidth = imgWidth+textWidth
 
-        iCard.style.width = cardWidth+"px"
-        iCard.style.height = imgHeight+"px"
-        iCard.style.left = left+"px"
-      })
+          let left = (screenWidth-cardWidth)/2
+
+          iCard.style.width = cardWidth+"px"
+          iCard.style.height = imgHeight+"px"
+          iCard.style.left = left+"px"
+        })
+      }
     }
 
     document.addEventListener('keydown', function(event) {
