@@ -7,8 +7,8 @@
 <script src="../../../Javascript/hammer.js"></script>
 <script src="../../../Javascript/TweenMax.min.js"></script>
 <script src="../../../Javascript/jquery-3.6.0.min.js"></script>
-<script src="../../../Javascript/jquery.csv.js"></script>
-<script src="../../../Javascript/papaparse.min.js"></script>
+<!-- <script src="../../../Javascript/jquery.csv.js"></script> -->
+<!-- <script src="../../../Javascript/papaparse.min.js"></script> -->
 <script src="../assets/images.js"></script>
 <link rel="stylesheet" type="text/css" href="../../../css/ui.css">
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
@@ -49,10 +49,6 @@
   }
 
 </style>
-<!-- <script src="./Javascript/jquery-3.4.0.min.js"></script> -->
-<!-- <script src="./Javascript/TweenMax.min.js"></script> -->
-  <!-- <body onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(255, 134, 48); font-family: "Open Sans";'>    
-  <div style="position: absolute; left: 0px; top: 0%;height: 7vh; width:100%; background: rgb(255, 105, 0); text-align: center; color: white; font-size: 5vh; margin-bottom: 50px;">Applikationen</div> -->
   <body onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
    <!--  <div id ="header" style="position: absolute; left: 0px; top: 0%;height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px;">
       Museum 2D
@@ -86,7 +82,7 @@
   </div>
   </body>
   <script>
-    console.log("Version 0.0.4")
+    console.log("Version 0.0.5")
    /*  var data
     $.ajax({
       type: "GET",  
@@ -98,7 +94,7 @@
       console.log(data)
       }   
     }) */
-    var data;
+   /*  var data;
 
     Papa.parse('../assets/Beschriftung.csv', {
       header: true,
@@ -110,7 +106,7 @@
         console.log(data[1]["Text deutsch"])
         addImages()
       }
-    })
+    }) */
 
     let iCard = document.getElementById("infoCard")
     let iImage = document.getElementById("infoImageIMG")
@@ -126,8 +122,8 @@
     // document.getElementById("header").innerHTML = Gm338.text
     console.log(screenWidth+" x "+screenHeight)
 
-    // addImages()
-
+    addImages()
+    console.log(images.Gm903)
     function addImages(){
     
       for(var i=0; i<imageArray.length; i++){
@@ -142,18 +138,18 @@
         thumbnail.className ="thumbnail"
         thumbnail.src = img.file
         thumbnail.id = img.id
-        // thumbnail.setAttribute('text',img.text)
+        thumbnail.setAttribute('text',img.text)
         thumbnail.style.width = 3*img.width+"px"
         thumbnail.style.height = 3*img.height+"px"
         thumbnailFrame.appendChild(thumbnail)
 
-        for(var j=0; j<data.length; j++){
+        /* for(var j=0; j<data.length; j++){
           if(data[j]["Inventarnummern"]!=null){            
               if( data[j]["Inventarnummern"].toString().indexOf(thumbnail.id)>-1){
                 thumbnail.setAttribute('text',data[j]["Text deutsch"].toString())
               }
           }
-        }
+        } */
 
         let top = (imgBarHeight - 3*img.height)/2
         thumbnail.style.marginTop = top+"px"
