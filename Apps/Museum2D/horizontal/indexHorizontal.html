@@ -122,12 +122,13 @@
     // document.getElementById("header").innerHTML = Gm338.text
     console.log(screenWidth+" x "+screenHeight)
 
+    console.log(images[1].id)
     addImages()
-    console.log(images.Gm903)
     function addImages(){
     
-      for(var i=0; i<imageArray.length; i++){
-        let img = imageArray[i]
+      for(var i=0; i<images.length; i++){
+        // let img = imageArray[i]
+        let img = images[i]
 
         let thumbnailFrame = document.createElement('li')
         thumbnailFrame.className ="thumbailFrame"
