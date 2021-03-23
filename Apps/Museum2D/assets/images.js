@@ -8,7 +8,7 @@ let images = {
     },
     PlO156:{
         'file':"../assets/images/NorthWallImages/Pl.O.156_cut.png",
-        'id':"PlO156",
+        'id':"Pl.O.156",
         'height':66.5,
         'width': 59,
         'text':"Die Flucht ist der Legenda Aurea entsprechend geschildert. Ein Palmzweig wird durch Engel herabgebogen. Josef erntet die Früchte, Maria und ihr Kind essen davon. Der Bildhauer nutzte einen Kupferstich Martin Schongauers als Vorlage für seine Komposition."
@@ -29,14 +29,14 @@ let images = {
     },
     PlO2206:{
         'file':"../assets/images/NorthWallImages/Pl.O.2206_cut.png",
-        'id':"PlO2206",
+        'id':"Pl.O.2206",
         'height':150,
         'width': 58,
         'text':"Die Werke des Meisters, der am Hochaltar des Münsters zu Breisach sein Monogramm 'HL' hinterließ, zählen zu den bizarrsten Schöpfungen deutscher Kunst. Vielleicht ist dieser Bildhauer mit einem in Freiburger Quellen genannten Hans Loy zu identifizieren. Hervorstechendes Merkmal seiner Figuren ist das plastisch-graphische Eigenleben der Gewandmassen. Dem vielfältig variierten und eigentümlich stilisierten Faltenwurf des Evangelisten wohnt heftige Bewegung inne. Sie verleiht ihm visionäre und ekstatische Züge."
     },
     PlO2205:{
         'file':"../assets/images/NorthWallImages/Pl.O.2205_cut.png",
-        'id':"PlO2205",
+        'id':"Pl.O.2205",
         'height':150,
         'width': 55,
         'text':"Das Zusammenspiel des ausgemergelten, muskulösen Körpers, des knochigen Gesichtes und des nervös geknitterten Gewandes spiegelt die innere Unruhe des Täufers wider. Die Darstellung beschreibt eindrucksvoll den in der Wüste lebenden Asketen, der sich von Honig und Heuschrecken ernährte. Das Lamm symbolisiert Christus, der als unschuldiges Opfer die Sünden der Welt auf sich genommen und gesühnt hat. Die Figuren der beiden hll. Johannes waren gemeinsam in einem Flügelaltar aufgestellt."
@@ -127,7 +127,7 @@ let images = {
     },
     PlO680:{
         'file':"../assets/images/SouthWallImages/Pl.O.680_cut.jpg",
-        'id':"PlO680",
+        'id':"Pl.O.680",
         'height':37,
         'width': 35.5,
         'text':"Die Szene war Teil einer Serie zum Thema der 'Weibermacht'. Männer erliegen darin den Reizen einer Frau und brechen dann die Gebote Gottes. So lässt sich Salomo durch die heidnische Tochter eines Pharao zum Anbeten ihrer Götzen verleiten."
