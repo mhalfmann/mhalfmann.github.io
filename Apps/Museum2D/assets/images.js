@@ -64,21 +64,21 @@ let images = {
     },
     Gm1079L:{
         'file':"../assets/images/EastWallImages/Gm1079L_cut.jpg",
-        'id':"GmGm1079L1000",
+        'id':"Gm1079",
         'height':121.4,
         'width': 32,
         'text':"Ab 1503 war Baldung in Nürnberg unter dem Einfluss Dürers tätig. Der Altar ist jedoch ein eigenständiges, signiertes Werk. Der junge Maler erscheint im Selbstbildnis auf der Mitteltafel im grünen Gewand, das auf seinen Übernamen anspielt. In Oberflächenbehandlung und Farbigkeit setzt Baldung eigenwillige Akzente, mit denen er sich von Dürer löst. Der Altar war wohl ein Auftrag des Erzbischofs Ernst von Magdeburg für die Maria-Magdalenen-Kapelle auf der Moritzburg in Halle, die er bis 1503 als neue Residenz errichten ließ."
     },
     Gm1079M:{
         'file':"../assets/images/EastWallImages/Gm1079M_cut.jpg",
-        'id':"Gm1079M",
+        'id':"Gm1079",
         'height':121.4,
         'width': 78.7,
         'text':"Ab 1503 war Baldung in Nürnberg unter dem Einfluss Dürers tätig. Der Altar ist jedoch ein eigenständiges, signiertes Werk. Der junge Maler erscheint im Selbstbildnis auf der Mitteltafel im grünen Gewand, das auf seinen Übernamen anspielt. In Oberflächenbehandlung und Farbigkeit setzt Baldung eigenwillige Akzente, mit denen er sich von Dürer löst. Der Altar war wohl ein Auftrag des Erzbischofs Ernst von Magdeburg für die Maria-Magdalenen-Kapelle auf der Moritzburg in Halle, die er bis 1503 als neue Residenz errichten ließ."
     },
     Gm1079R:{
         'file':"../assets/images/EastWallImages/Gm1079R_cut.jpg",
-        'id':"Gm1079R",
+        'id':"Gm1079",
         'height':121.4,
         'width': 32,
         'text':"Ab 1503 war Baldung in Nürnberg unter dem Einfluss Dürers tätig. Der Altar ist jedoch ein eigenständiges, signiertes Werk. Der junge Maler erscheint im Selbstbildnis auf der Mitteltafel im grünen Gewand, das auf seinen Übernamen anspielt. In Oberflächenbehandlung und Farbigkeit setzt Baldung eigenwillige Akzente, mit denen er sich von Dürer löst. Der Altar war wohl ein Auftrag des Erzbischofs Ernst von Magdeburg für die Maria-Magdalenen-Kapelle auf der Moritzburg in Halle, die er bis 1503 als neue Residenz errichten ließ."

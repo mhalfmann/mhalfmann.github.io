@@ -106,7 +106,6 @@
       complete: function(results) {
         // console.log(results);
         data = results.data;
-        console.log(data[0]["Text deutsch"])
         addImages()
       }
     })
@@ -141,10 +140,18 @@
         thumbnail.className ="thumbnail"
         thumbnail.src = img.file
         thumbnail.id = img.id
-        thumbnail.setAttribute('text',img.text)
+        // thumbnail.setAttribute('text',img.text)
         thumbnail.style.width = 3*img.width+"px"
         thumbnail.style.height = 3*img.height+"px"
         thumbnailFrame.appendChild(thumbnail)
+
+        for(var j=0; j<data.length; j++){
+          if(data[j]["Inventarnummern"]!=null){            
+              if( data[j]["Inventarnummern"].toString().indexOf(thumbnail.id)>-1){
+                thumbnail.setAttribute('text',data[j]["Text deutsch"].toString())
+              }
+          }
+        }
 
         let top = (imgBarHeight - 3*img.height)/2
         thumbnail.style.marginTop = top+"px"
