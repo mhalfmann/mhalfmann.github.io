@@ -56,10 +56,10 @@
     </div> -->
   <div id="main" style ="position: absolute; left: 0px; top: 0px;height: 100%; width:100%; overflow: hidden; padding-top: 5vh; background: rgb(116, 126, 138);">
 
-    <div id="goLeft" style ="position: absolute; left: 0px; top: 47vh; height: 6vh; width:6vh; background: rgb(63, 63, 63);">
+    <div id="goLeft" style ="position: absolute; left: 5px; top: 47vh; height: 6vh; width:6vh; background: rgb(63, 63, 63); border-radius: 5px;">
       <img id="leftArrow" src="../../../Assets/Icons/arrow-back.png" width="100%">
     </div>
-    <div id="goRight" style ="position: absolute; right: 0px; top: 47vh; height: 6vh; width:6vh; background: rgb(63,63,63);">
+    <div id="goRight" style ="position: absolute; right: 5px; top: 47vh; height: 6vh; width:6vh; background: rgb(63,63,63); border-radius: 5px;">
       <img id="rightArrow" src="../../../Assets/Icons/arrow-forward.png" width="100%">
     </div>
     
@@ -89,14 +89,33 @@
         <img src="../../../Assets/Icons/close.png" height="100%">
       </div>
     </div>
-    <!-- <div onclick="clickMe()" style="position: absolute; left: 5%; bottom: 5%; width: 300px; height: 300px; background: purple;"></div> -->
+    <div onclick="changeLang(this)" lang="DE" style="position: absolute; left: 5%; bottom: 5%; background: rgb(63, 63, 63); padding: 10px; color:white; border-radius: 5px;">
+      DE
+    </div>
     
   </div>
   </body>
   <script>
     console.log("Version: "+document.body.getAttribute('version'))
-    function clickMe(){
-      console.log("CLICK")
+
+    language = "DE"
+
+    function changeLang(target){
+      console.log("changing Language",target.innerHTML)
+      switch(target.getAttribute('lang')){
+        case "DE":
+          target.innerHTML = "EN"
+          target.setAttribute('lang','EN')
+          language = "EN"
+          document.getElementById("infoTextTXT").innerHTML = document.getElementById(iCard.getAttribute('imgID')).getAttribute('textEN')
+          break;
+        case "EN":
+          target.innerHTML = "DE"
+          target.setAttribute('lang','DE')
+          language = "DE"
+          document.getElementById("infoTextTXT").innerHTML = document.getElementById(iCard.getAttribute('imgID')).getAttribute('textDE')
+          break;
+      }
     }
    /*  var data
     $.ajax({
@@ -173,7 +192,7 @@
           thumbnail.style.marginRight = "2vw"
           thumbnail.style.marginLeft = "2vw"
         }
-        // thumbnail.setAttribute('text',img.text)
+        iCard.setAttribute('imgID',img.id)
 
         let f = imgBarHeight/maxImgHeight
 
@@ -192,11 +211,27 @@
                   if(k==0)infoTextString+="<b>"+header[k]+"</b>"
                   if(k!=0)infoTextString+=header[k]
                   infoTextString+="<br>"                  
-                }
-                
+                }                
                 infoTextString+="<br><br>"
                 infoTextString+=text[j].Text_deutsch.toString()
-                thumbnail.setAttribute('text',infoTextString)
+                thumbnail.setAttribute('textDE',infoTextString)
+              }
+          }
+          infoTextString = ""
+          if(text[j].Inventarnummern!=null){  
+                      
+              if( text[j].Inventarnummern.toString().indexOf(thumbnail.id)>-1){
+
+                let header = text[j].Überschrift_englisch.toString().split('\n')
+
+                for(var k=0; k<header.length; k++){
+                  if(k==0)infoTextString+="<b>"+header[k]+"</b>"
+                  if(k!=0)infoTextString+=header[k]
+                  infoTextString+="<br>"                  
+                }                
+                infoTextString+="<br><br>"
+                infoTextString+=text[j].Text_englisch.toString()
+                thumbnail.setAttribute('textEN',infoTextString)
               }
           }
         }
@@ -206,7 +241,8 @@
 
         thumbnail.addEventListener('click',(e)=>{
           iImage.src = e.target.src
-          document.getElementById("infoTextTXT").innerHTML = e.target.getAttribute('text')
+          if(language == "DE")document.getElementById("infoTextTXT").innerHTML = e.target.getAttribute('textDE')
+          if(language == "EN")document.getElementById("infoTextTXT").innerHTML = e.target.getAttribute('textEN')
 
           console.log(e.target.id)
         })
