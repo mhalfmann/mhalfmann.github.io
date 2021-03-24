@@ -138,9 +138,9 @@
     let imgBarHeight = imgBar.getBoundingClientRect().height
 
     // document.getElementById("header").innerHTML = Gm338.text
-    console.log(screenWidth+" x "+screenHeight)
-    console.log(images[1].file)
-    console.log(text[1].Überschrift_deutsch)
+    // console.log(screenWidth+" x "+screenHeight)
+    // console.log(images[1].file)
+    // console.log(text[1].Überschrift_deutsch)
 
     // addImages()
 
@@ -202,7 +202,6 @@
     }
 
     function loaded(img){
-      console.log("loaded",img)
 
       let imgOuterWidth = document.getElementById("infoImage").getBoundingClientRect().width
       let imgOuterHeight = document.getElementById("infoImage").getBoundingClientRect().height
@@ -219,7 +218,7 @@
       let imgPosY = (imgOuterHeight-imgInnerHeight)/2
       let txtPosY = (textOuterHeight-textInnerHeight)/2
 
-      console.log(imgOuterWidth,imgInnerWidth,imgPosX)
+      // console.log(imgOuterWidth,imgInnerWidth,imgPosX)
 
       // let left = (screenWidth-cardWidth)/2
 
@@ -306,7 +305,7 @@ document.addEventListener("mouseout", mouseup);
     })
 
     function showLargeImage(image){
-      console.log("showing image",image.src)
+      // console.log("showing image",image.src)
       iCard.style.visibility = "visible"
       iImage.src = image.src
     }
