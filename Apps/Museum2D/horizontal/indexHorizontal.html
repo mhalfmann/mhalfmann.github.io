@@ -8,7 +8,7 @@
 <script src="../../../Javascript/TweenMax.min.js"></script>
 <script src="../../../Javascript/jquery-3.6.0.min.js"></script>
 <!-- <script src="../../../Javascript/jquery.csv.js"></script> -->
-<!-- <script src="../../../Javascript/papaparse.min.js"></script> -->
+<script src="../../../Javascript/papaparse.min.js"></script>
 <script src="../assets/images.js"></script>
 <link rel="stylesheet" type="text/css" href="../../../css/ui.css">
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
@@ -49,7 +49,7 @@
   }
 
 </style>
-  <body onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
+  <body version="0.0.9" onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
    <!--  <div id ="header" style="position: absolute; left: 0px; top: 0%;height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px;">
       Museum 2D
     </div> -->
@@ -65,11 +65,9 @@
     <ul id = "imageBar" style ="list-style: none; position: absolute; right: 10%; top: 10%; height: 80%; width:80%; display: flex; overflow-x: auto;">
     </ul>
 
-    <div id="infoCard" style ="position: absolute; left: 5%; top: 5%; height: 90%; width:90%; background: rgb(80, 86, 93); visibility: hidden; box-shadow: 5px 5px 10px 5px rgb(0, 0, 0)">
-    <!-- <div id="infoCard" style ="position: absolute; left: 5%; top: 5%; background: grey; visibility: hidden; box-shadow: 10px 10px 15px 5px rgb(80, 80, 80)"> -->
-      <!-- <div id="infoImage" style="position: absolute; left: 5%; top: 5%; height: 90%;">  -->
-      <div id="infoImage" style="position: absolute; height: 80vh; max-width: 60vw; padding: 2vh;"> 
-        <img id="infoImageIMG" style = "max-height: 100%; max-width: 100%;">
+    <!-- <div id="infoCard" style ="position: absolute; left: 5%; top: 5%; height: 90%; width:70%; background: rgb(80, 86, 93); visibility: hidden; box-shadow: 5px 5px 10px 5px rgb(0, 0, 0)">
+          <div id="infoImage" style="position: absolute; height: 80vh; max-width: 60vw; padding: 2vh;"> 
+        <img id="infoImageIMG" onload="loaded(this)" style = "max-height: 100%; max-width: 90%;">
       </div>
       <div id="infoText" style="position: absolute; right: 0%; top: 0%; padding: 2vh; height: 80vh; width: 25vw; color: white">
         
@@ -77,12 +75,26 @@
       <div id = "closeInfoCard" style ="position: absolute; right: 0%; bottom: 0%; margin: 2vh; height: 5vh; width:5vh;">
         <img src="../../../Assets/Icons/close.png" width="100%">
       </div>
+    </div> -->
+
+    <div id="infoCard" style ="position: absolute; left: 15%; top: 5%; height: 90%; width:70%; background: rgb(80, 86, 93); visibility: hidden; box-shadow: 5px 5px 10px 5px rgb(0, 0, 0)">
+    <!-- <div id="infoCard" style ="position: absolute; left: 5%; top: 5%; background: grey; visibility: hidden; box-shadow: 10px 10px 15px 5px rgb(80, 80, 80)"> -->
+      <!-- <div id="infoImage" style="position: absolute; left: 5%; top: 5%; height: 90%;">  -->
+      <div id="infoImage" style="position: absolute; height: 100%; width: 70%;"> 
+        <img id="infoImageIMG" onload="loaded(this)" style = "position: absolute; max-height: 90%; max-width: 90%;">
+      </div>
+      <div id="infoText" style="position: absolute; right: 0%; top: 0%; height: 95%; width: 30%; color: white;">
+        <div id="infoTextTXT" style = "position: absolute; max-height: 100%; max-width: 100%; padding-right:5%;"></div>
+      </div>
+      <div id = "closeInfoCard" style ="position: absolute; right: 0%; bottom: 0%; margin: 0%; height: 5%;">
+        <img src="../../../Assets/Icons/close.png" height="100%">
+      </div>
     </div>
     
   </div>
   </body>
   <script>
-    console.log("Version 0.0.8")
+    console.log("Version: "+document.body.getAttribute('version'))
    /*  var data
     $.ajax({
       type: "GET",  
@@ -94,7 +106,7 @@
       console.log(data)
       }   
     }) */
-   /*  var data;
+    var data;
 
     Papa.parse('../assets/Beschriftung.csv', {
       header: true,
@@ -103,13 +115,14 @@
       complete: function(results) {
         // console.log(results);
         data = results.data;
-        console.log(data[1]["Text deutsch"])
-        addImages()
+        console.log("data[1]",data[1]["Text deutsch"])
+        // addImages()
       }
-    }) */
+    })
 
     let iCard = document.getElementById("infoCard")
     let iImage = document.getElementById("infoImageIMG")
+    let iText = document.getElementById("infoTextTXT")
     let imgBar = document.getElementById("imageBar")
 
     let right = false;
@@ -139,6 +152,10 @@
         thumbnail.className ="thumbnail"
         thumbnail.src = img.file
         thumbnail.id = img.id
+        if(img.id.toString().indexOf("Gm1079")==-1){
+          thumbnail.style.marginRight = "2vw"
+          thumbnail.style.marginLeft = "2vw"
+        }
         thumbnail.setAttribute('text',img.text)
         thumbnail.style.width = 3*img.width+"px"
         thumbnail.style.height = 3*img.height+"px"
@@ -156,25 +173,45 @@
         thumbnail.style.marginTop = top+"px"
 
         thumbnail.addEventListener('click',(e)=>{
-          iCard.style.visibility = "visible"
           iImage.src = e.target.src
-          document.getElementById("infoText").innerHTML = e.target.getAttribute('text')
+          document.getElementById("infoTextTXT").innerHTML = e.target.getAttribute('text')
 
-          console.log(document.getElementById("infoImageIMG").getBoundingClientRect().width)
           console.log(e.target.id)
-
-          let imgWidth = document.getElementById("infoImage").getBoundingClientRect().width
-          let imgHeight = document.getElementById("infoImage").getBoundingClientRect().height
-          let textWidth = document.getElementById("infoText").getBoundingClientRect().width
-          let cardWidth = imgWidth+textWidth
-
-          let left = (screenWidth-cardWidth)/2
-
-          iCard.style.width = cardWidth+"px"
-          iCard.style.height = imgHeight+"px"
-          iCard.style.left = left+"px"
         })
       }
+    }
+
+    function loaded(img){
+      console.log("loaded",img)
+
+      let imgOuterWidth = document.getElementById("infoImage").getBoundingClientRect().width
+      let imgOuterHeight = document.getElementById("infoImage").getBoundingClientRect().height
+      let textOuterWidth = document.getElementById("infoText").getBoundingClientRect().width
+      let textOuterHeight = document.getElementById("infoText").getBoundingClientRect().height
+      
+      let imgInnerWidth = document.getElementById("infoImageIMG").getBoundingClientRect().width
+      let imgInnerHeight = document.getElementById("infoImageIMG").getBoundingClientRect().height
+      let textInnerWidth = document.getElementById("infoTextTXT").getBoundingClientRect().width
+      let textInnerHeight = document.getElementById("infoTextTXT").getBoundingClientRect().height
+      // let cardWidth = imgWidth+textWidth      
+
+      let imgPosX = (imgOuterWidth-imgInnerWidth)/2
+      let imgPosY = (imgOuterHeight-imgInnerHeight)/2
+      let txtPosY = (textOuterHeight-textInnerHeight)/2
+
+      console.log(imgOuterWidth,imgInnerWidth,imgPosX)
+
+      // let left = (screenWidth-cardWidth)/2
+
+      // iCard.style.width = cardWidth+"px"
+      // iCard.style.height = imgHeight+"px"
+      // iCard.style.left = left+"px"
+      // iCard.style.left = "15%"
+      iImage.style.left = imgPosX+"px"
+      iImage.style.top = imgPosY+"px"
+      iText.style.top = txtPosY+"px"
+
+      iCard.style.visibility = "visible"
     }
 
     document.addEventListener('keydown', function(event) {
