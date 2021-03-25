@@ -50,7 +50,7 @@
   }
 
 </style>
-  <body version="0.1.1" onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
+  <body version="0.1.2" onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
    <!--  <div id ="header" style="position: absolute; left: 0px; top: 0%;height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px;">
       Museum 2D
     </div> -->
@@ -104,7 +104,7 @@
     language = "DE"
 
     function changeLang(target){
-      console.log("changing Language",target.innerHTML)
+      // console.log("changing Language",iCard.getAttribute('imgID'))
       switch(target.getAttribute('lang')){
         case "DE":
           target.innerHTML = "EN"
@@ -164,8 +164,8 @@
 
     // document.getElementById("header").innerHTML = Gm338.text
     // console.log(screenWidth+" x "+screenHeight)
-    console.log("images.js",images[1].file)
-    console.log("text.js",text[1].Text_deutsch)
+    // console.log("images.js",images[1].file)
+    // console.log("text.js",text[1].Text_deutsch)
 
     for(var i=0; i<images.length; i++){
         if(images[i].height>maxImgHeight) maxImgHeight = images[i].height
@@ -204,7 +204,6 @@
         if(img.id.toString().indexOf("Gm1079R")>-1){
           thumbnail.style.marginRight = "5vw"
         }
-        iCard.setAttribute('imgID',img.id)
 
         let f = imgBarHeight/maxImgHeight
 
@@ -218,6 +217,7 @@
 
         thumbnail.addEventListener('click',(e)=>{
           iImage.src = e.target.src
+          iCard.setAttribute('imgID', e.target.id)
           if(language == "DE")document.getElementById("infoTextTXT").innerHTML = e.target.getAttribute('textDE')
           if(language == "EN")document.getElementById("infoTextTXT").innerHTML = e.target.getAttribute('textEN')
 
