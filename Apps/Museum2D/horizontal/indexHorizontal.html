@@ -83,7 +83,7 @@
         <img id="infoImageIMG" onload="loaded(this)" style = "position: absolute; max-height: 90%; max-width: 90%;">
       </div>
       <div id="infoText" style="position: absolute; right: 0%; top: 0%; height: 95%; width: 30%; color: white;">
-        <div id="infoTextTXT" style = "position: absolute; max-height: 100%; max-width: 100%; padding-right:5%;"></div>
+        <div id="infoTextTXT" style = "position: absolute; max-height: 100%; max-width: 100%; padding-right:5%; font-size: 2vh"></div>
       </div>
       <div id = "closeInfoCard" style ="position: absolute; right: 0%; bottom: 0%; margin: 0%; height: 5%;">
         <img src="../../../Assets/Icons/close.png" height="100%">
@@ -92,58 +92,14 @@
     <div onclick="changeLang(this)" lang="DE" style="position: absolute; left: 5%; bottom: 5%; background: rgb(63, 63, 63); padding: 10px; color:white; border-radius: 5px;">
       DE
     </div>
+    <div id="output" style="opacity: 0; position: absolute; left: 55%; bottom: 5%; background: rgb(63, 63, 63); padding: 10px; color:white; border-radius: 5px;">
+      Output
+    </div>
     
   </div>
   </body>
   <script>
     console.log("Version: "+document.body.getAttribute('version'))
-
-    // console.log(sessionStorage.getItem("start"))
-    // sessionStorage.setItem("start", "true")
-
-    language = "DE"
-
-    function changeLang(target){
-      // console.log("changing Language",iCard.getAttribute('imgID'))
-      switch(target.getAttribute('lang')){
-        case "DE":
-          target.innerHTML = "EN"
-          target.setAttribute('lang','EN')
-          language = "EN"
-          if(iCard.style.visibility=="visible")document.getElementById("infoTextTXT").innerHTML = document.getElementById(iCard.getAttribute('imgID')).getAttribute('textEN')
-          break;
-        case "EN":
-          target.innerHTML = "DE"
-          target.setAttribute('lang','DE')
-          language = "DE"
-          if(iCard.style.visibility=="visible")document.getElementById("infoTextTXT").innerHTML = document.getElementById(iCard.getAttribute('imgID')).getAttribute('textDE')
-          break;
-      }
-    }
-   /*  var data
-    $.ajax({
-      type: "GET",  
-      url: "../assets/Beschriftung.csv",
-      dataType: "text",       
-      success: function(response)  
-      {
-      data = $.csv.toArrays(response)
-      console.log(data)
-      }   
-    }) */
-   /*  var data;
-
-    Papa.parse('../assets/Beschriftung.csv', {
-      header: true,
-      download: true,
-      dynamicTyping: true,
-      complete: function(results) {
-        // console.log(results);
-        data = results.data;
-        console.log("data[1]",data[1]["Text deutsch"])
-        // addImages()
-      }
-    }) */
 
     let iCard = document.getElementById("infoCard")
     let iImage = document.getElementById("infoImageIMG")
@@ -163,17 +119,36 @@
     let maxImgHeight = 0
     let maxImgWidth = 0
 
+    changeOrientation();
+
+    // console.log(sessionStorage.getItem("start"))
+    // sessionStorage.setItem("start", "true")
+
+    language = "DE"
+
+    function changeLang(target){
+      switch(target.getAttribute('lang')){
+        case "DE":
+          target.innerHTML = "EN"
+          target.setAttribute('lang','EN')
+          language = "EN"
+          if(iCard.style.visibility=="visible")document.getElementById("infoTextTXT").innerHTML = document.getElementById(iCard.getAttribute('imgID')).getAttribute('textEN')
+          break;
+        case "EN":
+          target.innerHTML = "DE"
+          target.setAttribute('lang','DE')
+          language = "DE"
+          if(iCard.style.visibility=="visible")document.getElementById("infoTextTXT").innerHTML = document.getElementById(iCard.getAttribute('imgID')).getAttribute('textDE')
+          break;
+      }
+    }
     // document.getElementById("header").innerHTML = Gm338.text
     // console.log(screenWidth+" x "+screenHeight)
-    // console.log("images.js",images[1].file)
-    // console.log("text.js",text[1].Text_deutsch)
 
     for(var i=0; i<images.length; i++){
         if(images[i].height>maxImgHeight) maxImgHeight = images[i].height
         if(images[i].width>maxImgWidth) maxImgWidth = images[i].width
     }
-    // console.log("maxImgHeight",maxImgHeight)
-    // console.log("maxImgWidth",maxImgWidth)
 
     addImages()
 
@@ -228,9 +203,8 @@
     }
 
     function addText(thumbnail){
-      for(var j=1; j<text.length; j++){
-          if(text[j].Inventarnummern!=null){  
-                      
+      for(var j=0; j<text.length; j++){
+          if(text[j].Inventarnummern!=null){
               if( text[j].Inventarnummern.toString().indexOf(thumbnail.id)>-1){
 
                 let header = text[j].Uberschrift_deutsch.toString().split('\n')
@@ -367,6 +341,26 @@ document.addEventListener("mouseout", mouseup);
     document.getElementById("closeInfoCard").addEventListener('click',()=>{
       iCard.style.visibility = "hidden"
     })
+    window.addEventListener("orientationchange", function() {
+      changeOrientation()
+    }, false)
+
+    function changeOrientation(){
+      if(window.orientation == 180 || window.orientation == 0){        
+        output.innerHTML="portrait mode"
+        let h = iCard.getBoundingClientRect().width
+        let fSize = h/50
+        iText.style.fontSize = fSize+"px"
+        // iText.style.fontSize="1.5vw"
+      }
+      else{        
+        output.innerHTML="landscape mode"
+        let h = iCard.getBoundingClientRect().height
+        let fSize = h/50
+        iText.style.fontSize = fSize+"px"
+        // iText.style.fontSize="1.5vh"
+      }
+    }
 
     function showLargeImage(image){
       // console.log("showing image",image.src)
