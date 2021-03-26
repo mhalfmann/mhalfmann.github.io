@@ -78,7 +78,7 @@
       </div>
     </div> -->
 
-    <div id="infoCard" style ="position: absolute; left: 15%; top: 5%; height: 90%; width:70%; background: rgb(80, 86, 93); visibility: hidden; box-shadow: 5px 5px 10px 5px rgb(0, 0, 0)">
+    <div id="infoCard" style ="position: absolute; left: 15%; top: 5%; height: 90%; width:70%; background: rgb(80, 86, 93); visibility: hidden; box-shadow: 10px 10px 10px 5px rgba(0, 0, 0, 0.568)">
       <div id="infoImage" style="position: absolute; height: 100%; width: 70%;"> 
         <img id="infoImageIMG" onload="loaded(this)" style = "position: absolute; max-height: 90%; max-width: 90%;">
       </div>
@@ -169,10 +169,6 @@
         thumbnail.src = img.file
         thumbnail.id = img.id
 
-        thumbnail.addEventListener('load',(e)=>{
-          // console.log("thumbnail loaded",e.target.id)
-          addText(e.target)
-        })
         thumbnail.style.marginRight = "5vw"
         if(img.id.toString().indexOf("Gm1079")>-1){
           thumbnail.style.marginRight = "1vw"
@@ -185,11 +181,15 @@
 
         thumbnail.style.width = f*img.width+"px"
         thumbnail.style.height = f*img.height+"px"
-
-        thumbnailFrame.appendChild(thumbnail)
         
         let top = (imgBarHeight - f*img.height)/2
         thumbnail.style.marginTop = top+"px"
+
+        thumbnailFrame.appendChild(thumbnail)        
+
+        thumbnail.addEventListener('load',(e)=>{
+          addText(e.target)
+        })
 
         thumbnail.addEventListener('click',(e)=>{
           iImage.src = e.target.src

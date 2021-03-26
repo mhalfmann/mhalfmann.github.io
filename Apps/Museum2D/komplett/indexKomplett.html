@@ -51,22 +51,8 @@
 
 </style>
   <body version="0.1.4" onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
-   <!--  <div id ="header" style="position: absolute; left: 0px; top: 0%;height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px;">
-      Museum 2D
-    </div> -->
-  <div id="main" style ="display: flex; flex-wrap: wrap; position: absolute; left: 0px; top: 0px;height: 100%; width:100%; overflow: hidden; padding-top: 5vh; background: rgb(116, 126, 138);">
 
-    <!-- <div id="infoCard" style ="position: absolute; left: 5%; top: 5%; height: 90%; width:70%; background: rgb(80, 86, 93); visibility: hidden; box-shadow: 5px 5px 10px 5px rgb(0, 0, 0)">
-          <div id="infoImage" style="position: absolute; height: 80vh; max-width: 60vw; padding: 2vh;"> 
-        <img id="infoImageIMG" onload="loaded(this)" style = "max-height: 100%; max-width: 90%;">
-      </div>
-      <div id="infoText" style="position: absolute; right: 0%; top: 0%; padding: 2vh; height: 80vh; width: 25vw; color: white">
-        
-      </div>
-      <div id = "closeInfoCard" style ="position: absolute; right: 0%; bottom: 0%; margin: 2vh; height: 5vh; width:5vh;">
-        <img src="../../../Assets/Icons/close.png" width="100%">
-      </div>
-    </div> -->
+  <div id="main" style ="display: flex; flex-wrap: wrap; position: absolute; left: 0px; top: 0px;height: 100%; width:100%; overflow: hidden; padding-top: 5vh; background: rgb(116, 126, 138);">
 
     <div id="infoCard" style ="position: absolute; left: 15%; top: 5%; height: 90%; width:70%; background: rgb(80, 86, 93); visibility: hidden; box-shadow: 5px 5px 10px 5px rgb(0, 0, 0)">
       <div id="infoImage" style="position: absolute; height: 100%; width: 70%;"> 
@@ -169,10 +155,10 @@
           thumbnail.style.marginRight = "5vw"
         }
 
-        // let f = imgBarHeight/maxImgHeight
+        let f = screenHeight/maxImgHeight*0.4
 
-        // thumbnail.style.width = f*img.width+"px"
-        // thumbnail.style.height = f*img.height+"px"
+        thumbnail.style.width = f*img.width+"px"
+        thumbnail.style.height = f*img.height+"px"
 
         thumbnailFrame.appendChild(thumbnail)
 
