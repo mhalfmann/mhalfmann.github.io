@@ -1,13 +1,16 @@
 <!doctype HTML>
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="../assets/text.js"></script>
+<script src="../assets/images.js"></script>
 <!-- <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1"> -->
 <!-- <script src="./Javascript/aframe.min.js"></script> -->
 <!-- <script src="./Javascript/aframe-ar.js"></script> -->
-<script src="../../../Javascript/hammer.js"></script>
+<!-- <script src="../../../Javascript/hammer.js"></script> -->
 <script src="../../../Javascript/TweenMax.min.js"></script>
-<script src="../../../Javascript/jquery-3.4.0.min.js"></script>
-<script src="../assets/images.js"></script>
+<script src="../../../Javascript/jquery-3.6.0.min.js"></script>
+<!-- <script src="../../../Javascript/jquery.csv.js"></script> -->
+<!-- <script src="../../../Javascript/papaparse.min.js"></script> -->
 <link rel="stylesheet" type="text/css" href="../../../css/ui.css">
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
 <style>
@@ -23,15 +26,15 @@
     /* max-width: 200px; */
     width: 100px;
     height: auto;
-    padding: 10px;
+    /* border: 5px solid red; */
+    /* padding: 10px; */
   }
   .thumbnailFrame{
-    height: 80%;
-    width: 2%;
-    background: rgb(253, 99, 99);
-    padding: 10px;
-    align-items: center;
-    display: flex;
+    /* background: rgb(253, 99, 99); */
+    /* border: 5px solid red; */
+    /* padding: 10px; */
+    /* align-items: center; */
+    /* display: flex; */
   }
   .uiDialogueElement{
     margin: 10px;
@@ -47,90 +50,238 @@
   }
 
 </style>
-<!-- <script src="./Javascript/jquery-3.4.0.min.js"></script> -->
-<!-- <script src="./Javascript/TweenMax.min.js"></script> -->
-  <!-- <body onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(255, 134, 48); font-family: "Open Sans";'>    
-  <div style="position: absolute; left: 0px; top: 0%;height: 7vh; width:100%; background: rgb(255, 105, 0); text-align: center; color: white; font-size: 5vh; margin-bottom: 50px;">Applikationen</div> -->
-  <body onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
+  <body version="0.1.4" onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
    <!--  <div id ="header" style="position: absolute; left: 0px; top: 0%;height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px;">
       Museum 2D
     </div> -->
-  <div id="main" style ="position: absolute; left: 0px; top: 0px;height: 100%; width:100%; overflow: hidden; padding-top: 5vh; background: rgb(116, 126, 138);">
+  <div id="main" style ="display: flex; flex-wrap: wrap; position: absolute; left: 0px; top: 0px;height: 100%; width:100%; overflow: hidden; padding-top: 5vh; background: rgb(116, 126, 138);">
 
-    <div id="board" style="position: absolute; left: 0%; display: flex; flex-direction: row;flex-wrap: wrap;">
-    </div>
-    <div id="infoCard" style ="position: absolute; left: 5%; top: 5%; height: 90%; width:90%; background: rgb(80, 86, 93); visibility: hidden; box-shadow: 5px 5px 10px 5px rgb(0, 0, 0)">
-    <!-- <div id="infoCard" style ="position: absolute; left: 5%; top: 5%; background: grey; visibility: hidden; box-shadow: 10px 10px 15px 5px rgb(80, 80, 80)"> -->
-      <!-- <div id="infoImage" style="position: absolute; left: 5%; top: 5%; height: 90%;">  -->
-      <div id="infoImage" style="position: absolute; height: 80vh; padding: 2vh;"> 
-        <img id="infoImageIMG" height="100%">
+    <!-- <div id="infoCard" style ="position: absolute; left: 5%; top: 5%; height: 90%; width:70%; background: rgb(80, 86, 93); visibility: hidden; box-shadow: 5px 5px 10px 5px rgb(0, 0, 0)">
+          <div id="infoImage" style="position: absolute; height: 80vh; max-width: 60vw; padding: 2vh;"> 
+        <img id="infoImageIMG" onload="loaded(this)" style = "max-height: 100%; max-width: 90%;">
       </div>
-      <div id="infoText" style="position: absolute; right: 0%; top: 0%; padding: 2vh; height: 80vh; width: 15vw; color: white">
+      <div id="infoText" style="position: absolute; right: 0%; top: 0%; padding: 2vh; height: 80vh; width: 25vw; color: white">
         
       </div>
-      <div id = "closeInfoCard" style ="position: absolute; right: 10%; bottom: 10%; height: 5vh; width:5vh;">
+      <div id = "closeInfoCard" style ="position: absolute; right: 0%; bottom: 0%; margin: 2vh; height: 5vh; width:5vh;">
         <img src="../../../Assets/Icons/close.png" width="100%">
       </div>
+    </div> -->
+
+    <div id="infoCard" style ="position: absolute; left: 15%; top: 5%; height: 90%; width:70%; background: rgb(80, 86, 93); visibility: hidden; box-shadow: 5px 5px 10px 5px rgb(0, 0, 0)">
+      <div id="infoImage" style="position: absolute; height: 100%; width: 70%;"> 
+        <img id="infoImageIMG" onload="loaded(this)" style = "position: absolute; max-height: 90%; max-width: 90%;">
+      </div>
+      <div id="infoText" style="position: absolute; right: 0%; top: 0%; height: 95%; width: 30%; color: white;">
+        <div id="infoTextTXT" style = "position: absolute; max-height: 100%; max-width: 100%; padding-right:5%; font-size: 2vh"></div>
+      </div>
+      <div id = "closeInfoCard" style ="position: absolute; right: 0%; bottom: 0%; margin: 0%; height: 5%;">
+        <img src="../../../Assets/Icons/close.png" height="100%">
+      </div>
+    </div>
+    <div onclick="changeLang(this)" lang="DE" style="position: absolute; left: 5%; bottom: 5%; background: rgb(63, 63, 63); padding: 10px; color:white; border-radius: 5px;">
+      DE
+    </div>
+    <div id="output" style="opacity: 0; position: absolute; left: 55%; bottom: 5%; background: rgb(63, 63, 63); padding: 10px; color:white; border-radius: 5px;">
+      Output
     </div>
     
   </div>
   </body>
   <script>
+    console.log("Version: "+document.body.getAttribute('version'))
+
     let iCard = document.getElementById("infoCard")
     let iImage = document.getElementById("infoImageIMG")
+    let iText = document.getElementById("infoTextTXT")
+    let imgBar = document.getElementById("imageBar")
 
-    let right = false;
-    let left = false;
+    let right = false
+    let left = false
+
+    let infoTextString = ""
 
     let screenHeight = window.innerHeight
     let screenWidth = window.innerWidth
 
+    let maxImgHeight = 0
+    let maxImgWidth = 0
+
+    // changeOrientation();
+
+    // console.log(sessionStorage.getItem("start"))
+    // sessionStorage.setItem("start", "true")
+
+    language = "DE"
+
+    function changeLang(target){
+      switch(target.getAttribute('lang')){
+        case "DE":
+          target.innerHTML = "EN"
+          target.setAttribute('lang','EN')
+          language = "EN"
+          if(iCard.style.visibility=="visible")document.getElementById("infoTextTXT").innerHTML = document.getElementById(iCard.getAttribute('imgID')).getAttribute('textEN')
+          break;
+        case "EN":
+          target.innerHTML = "DE"
+          target.setAttribute('lang','DE')
+          language = "DE"
+          if(iCard.style.visibility=="visible")document.getElementById("infoTextTXT").innerHTML = document.getElementById(iCard.getAttribute('imgID')).getAttribute('textDE')
+          break;
+      }
+    }
     // document.getElementById("header").innerHTML = Gm338.text
-    console.log(screenWidth+" x "+screenHeight)
+    // console.log(screenWidth+" x "+screenHeight)
 
-    for(var i=0; i<imageArray.length; i++){
-      let img = imageArray[i]
+    for(var i=0; i<images.length; i++){
+        if(images[i].height>maxImgHeight) maxImgHeight = images[i].height
+        if(images[i].width>maxImgWidth) maxImgWidth = images[i].width
+    }
 
-      let thumbnailFrame = document.createElement('div')
-      thumbnailFrame.className ="thumbailFrame"
-      document.getElementById("board").appendChild(thumbnailFrame)
+    addImages()
 
-      let thumbnail = document.createElement('img')
+    function addImages(){
+    
+      for(var i=0; i<images.length; i++){
+        // let img = imageArray[i]
+        let img = images[i]
+        infoTextString = ""
 
-      thumbnail.className ="thumbnail"
-      thumbnail.src = img.file
-      thumbnail.id = img.id
-      thumbnail.setAttribute('text',img.text)
-      thumbnail.style.width = 2.5*img.width+"px"
-      thumbnail.style.height = 2.5*img.height+"px"
-      thumbnailFrame.appendChild(thumbnail)
+        let thumbnailFrame = document.createElement('div')
+        thumbnailFrame.className ="thumbnailFrame"
+        document.getElementById("main").appendChild(thumbnailFrame)
 
-      thumbnail.addEventListener('click',(e)=>{
-        iCard.style.visibility = "visible"
-        iImage.src = e.target.src
-        document.getElementById("infoText").innerHTML = e.target.getAttribute('text')
+        let thumbnail = document.createElement('img')
 
-        console.log(document.getElementById("infoImageIMG").getBoundingClientRect().width)
+        thumbnail.className ="thumbnail"
+        thumbnail.src = img.file
+        thumbnail.id = img.id
 
-        let imgWidth = document.getElementById("infoImage").getBoundingClientRect().width
-        let imgHeight = document.getElementById("infoImage").getBoundingClientRect().height
-        let textWidth = document.getElementById("infoText").getBoundingClientRect().width
-        let cardWidth = imgWidth+textWidth
+        thumbnail.addEventListener('load',(e)=>{
+          // console.log("thumbnail loaded",e.target.id)
+          addText(e.target)
+        })
+        thumbnail.style.marginRight = "5vw"
+        if(img.id.toString().indexOf("Gm1079")>-1){
+          thumbnail.style.marginRight = "1vw"
+        }
+        if(img.id.toString().indexOf("Gm1079R")>-1){
+          thumbnail.style.marginRight = "5vw"
+        }
 
-        let left = (screenWidth-cardWidth)/2
+        // let f = imgBarHeight/maxImgHeight
 
-        iCard.style.width = cardWidth+"px"
-        iCard.style.height = imgHeight+"px"
-        iCard.style.left = left+"px"
-      })
+        // thumbnail.style.width = f*img.width+"px"
+        // thumbnail.style.height = f*img.height+"px"
+
+        thumbnailFrame.appendChild(thumbnail)
+
+        thumbnail.addEventListener('click',(e)=>{
+          iImage.src = e.target.src
+          iCard.setAttribute('imgID', e.target.id)
+          if(language == "DE")document.getElementById("infoTextTXT").innerHTML = e.target.getAttribute('textDE')
+          if(language == "EN")document.getElementById("infoTextTXT").innerHTML = e.target.getAttribute('textEN')
+
+          console.log(e.target.id)
+        })
+      }
+    }
+
+    function addText(thumbnail){
+      for(var j=0; j<text.length; j++){
+          if(text[j].Inventarnummern!=null){
+              if( text[j].Inventarnummern.toString().indexOf(thumbnail.id)>-1){
+
+                let header = text[j].Uberschrift_deutsch.toString().split('\n')
+
+                for(var k=0; k<header.length; k++){
+                  if(k==0)infoTextString+="<b>"+header[k]+"</b>"
+                  if(k!=0)infoTextString+=header[k]
+                  infoTextString+="<br>"                  
+                }                
+                infoTextString+="<br><br>"
+                infoTextString+=text[j].Text_deutsch.toString()
+                thumbnail.setAttribute('textDE',infoTextString)
+              }
+          }
+          infoTextString = ""
+          if(text[j].Inventarnummern!=null){  
+                      
+              if( text[j].Inventarnummern.toString().indexOf(thumbnail.id)>-1){
+
+                let header = text[j].Uberschrift_englisch.toString().split('\n')
+
+                for(var k=0; k<header.length; k++){
+                  if(k==0)infoTextString+="<b>"+header[k]+"</b>"
+                  if(k!=0)infoTextString+=header[k]
+                  infoTextString+="<br>"                  
+                }                
+                infoTextString+="<br><br>"
+                infoTextString+=text[j].Text_englisch.toString()
+                thumbnail.setAttribute('textEN',infoTextString)
+              }
+          }
+        }
+    }
+
+    function loaded(img){
+
+      let imgOuterWidth = document.getElementById("infoImage").getBoundingClientRect().width
+      let imgOuterHeight = document.getElementById("infoImage").getBoundingClientRect().height
+      let textOuterWidth = document.getElementById("infoText").getBoundingClientRect().width
+      let textOuterHeight = document.getElementById("infoText").getBoundingClientRect().height
+      
+      let imgInnerWidth = document.getElementById("infoImageIMG").getBoundingClientRect().width
+      let imgInnerHeight = document.getElementById("infoImageIMG").getBoundingClientRect().height
+      let textInnerWidth = document.getElementById("infoTextTXT").getBoundingClientRect().width
+      let textInnerHeight = document.getElementById("infoTextTXT").getBoundingClientRect().height
+      // let cardWidth = imgWidth+textWidth      
+
+      let imgPosX = (imgOuterWidth-imgInnerWidth)/2
+      let imgPosY = (imgOuterHeight-imgInnerHeight)/2
+      let txtPosY = (textOuterHeight-textInnerHeight)/2
+
+      // console.log(imgOuterWidth,imgInnerWidth,imgPosX)
+
+      // let left = (screenWidth-cardWidth)/2
+
+      // iCard.style.width = cardWidth+"px"
+      // iCard.style.height = imgHeight+"px"
+      // iCard.style.left = left+"px"
+      // iCard.style.left = "15%"
+      iImage.style.left = imgPosX+"px"
+      iImage.style.top = imgPosY+"px"
+      iText.style.top = txtPosY+"px"
+
+      iCard.style.visibility = "visible"
     }
 
     document.getElementById("closeInfoCard").addEventListener('click',()=>{
       iCard.style.visibility = "hidden"
     })
+    window.addEventListener("orientationchange", function() {
+      // changeOrientation()
+    }, false)
+
+    function changeOrientation(){
+      if(window.orientation == 180 || window.orientation == 0){        
+        output.innerHTML="portrait mode"
+        let h = iCard.getBoundingClientRect().width
+        let fSize = h/50
+        iText.style.fontSize = fSize+"px"
+        // iText.style.fontSize="1.5vw"
+      }
+      else{        
+        output.innerHTML="landscape mode"
+        let h = iCard.getBoundingClientRect().height
+        let fSize = h/50
+        iText.style.fontSize = fSize+"px"
+        // iText.style.fontSize="1.5vh"
+      }
+    }
 
     function showLargeImage(image){
-      console.log("showing image",image.src)
+      // console.log("showing image",image.src)
       iCard.style.visibility = "visible"
       iImage.src = image.src
     }
