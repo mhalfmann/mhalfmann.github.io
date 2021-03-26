@@ -97,6 +97,9 @@
     </div>
     
   </div>
+  <div id="overlay" style ="visibility: hidden; position: absolute; left: 0px; top: 0px; height: 100%; width:100%; background: rgb(116, 126, 138); color: white; text-align: center; font-size: 10vh;">
+  Press Space to start
+  </div>
   </body>
   <script>
     console.log("Version: "+document.body.getAttribute('version'))
@@ -272,16 +275,20 @@
     }
 
     document.addEventListener('keydown', function(event) {
-        if(event.keyCode == 37) {
-          $('#imageBar').animate({
-              scrollLeft: $('#imageBar').scrollLeft()-10
-          }, 0)
-        }
-        else if(event.keyCode == 39) {
-          $('#imageBar').animate({
-              scrollLeft: $('#imageBar').scrollLeft()+10
-          }, 0)
-        }
+      console.log("key down "+event.keyCode)
+      if(event.keyCode == 37) {
+        $('#imageBar').animate({
+            scrollLeft: $('#imageBar').scrollLeft()-20
+        }, 0)
+      }
+      if(event.keyCode == 39) {
+        $('#imageBar').animate({
+            scrollLeft: $('#imageBar').scrollLeft()+20
+        }, 0)
+      }
+      if(event.keyCode == 32) {
+        overlay.style.visibility = "hidden"
+      }
     })
 /*let mousedownID = -1;  //Global ID of mouse down interval
   function mousedown(event) {

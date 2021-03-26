@@ -71,7 +71,11 @@
     <div id="output" style="opacity: 0; position: absolute; left: 55%; bottom: 5%; background: rgb(63, 63, 63); padding: 10px; color:white; border-radius: 5px;">
       Output
     </div>
+
     
+  </div>
+  <div id="overlay" style ="visibility: hidden; position: absolute; left: 0px; top: 0px; height: 100%; width:100%; background: rgb(116, 126, 138); color: white; text-align: center; font-size: 10vh;">
+    Press Space to start
   </div>
   </body>
   <script>
@@ -271,5 +275,12 @@
       iCard.style.visibility = "visible"
       iImage.src = image.src
     }
+
+    document.addEventListener('keydown', function(event) {
+      // console.log("key down "+event.keyCode)
+      if(event.keyCode == 32) {
+        overlay.style.visibility = "hidden"
+      }
+    })
   </script>
 </html>
