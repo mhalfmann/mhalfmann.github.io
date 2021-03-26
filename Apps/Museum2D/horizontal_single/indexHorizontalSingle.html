@@ -59,7 +59,7 @@
     <div id="goLeft" style ="position: absolute; left: 5px; top: 47vh; height: 6vh; width:6vh; background: rgb(63, 63, 63); border-radius: 5px;">
       <img id="leftArrow" src="../../../Assets/Icons/arrow-back.png" width="100%">
     </div>
-    <div id="goRight" style ="position: absolute; right: 5px; top: 47vh; height: 6vh; width:6vh; background: rgb(63,63,63); border-radius: 5px;">
+    <div id="goRight" style ="position: absolute; right: 5px; top: 47vh; height: 6vh; width:6vh; background: rgb(63,63,63); border-radius: 5px; opacity: 0.1;">
       <img id="rightArrow" src="../../../Assets/Icons/arrow-forward.png" width="100%">
     </div>
     
@@ -159,8 +159,10 @@
     addImages()
 
     for(var i=1; i<thumbnailArray.length; i++){
-      console.log(thumbnailArray[i].id)
-      TweenMax.to(thumbnailArray[i], 0.1, {x:500, opacity:0, onComplete:function(){
+      // console.log(thumbnailArray[i].id)
+      
+      thumbnailArray[i].style.pointerEvents = "none"
+      TweenMax.to(thumbnailArray[i], 0, {x:500, opacity:0, onComplete:function(){
           
       }})
     }
@@ -309,7 +311,12 @@
     document.getElementById("goRight").addEventListener('click',(e)=>{  
       
       currentThumbnail--
+      goLeft.style.opacity = 1
+      if(currentThumbnail==0)goRight.style.opacity = 0.1
       if(currentThumbnail<0)currentThumbnail = 0
+      
+      thumbnailArray[currentThumbnail+1].style.pointerEvents = "none"
+      thumbnailArray[currentThumbnail].style.pointerEvents = "all"
 
       TweenMax.to(thumbnailArray[currentThumbnail+1], 0.5, {x:500, onComplete:function(){
           
@@ -323,13 +330,24 @@
       TweenMax.to(thumbnailArray[currentThumbnail], 0.2, {opacity:1, onComplete:function(){
           
       }})
+
+      if(iCard.style.visibility=="visible"){
+        iImage.src = thumbnailArray[currentThumbnail].src        
+        if(language == "DE")document.getElementById("infoTextTXT").innerHTML = thumbnailArray[currentThumbnail].getAttribute('textDE')
+        if(language == "EN")document.getElementById("infoTextTXT").innerHTML = thumbnailArray[currentThumbnail].getAttribute('textEN')
+      }
         
     })
 
     document.getElementById("goLeft").addEventListener('click',(e)=>{
       
       currentThumbnail++
+      goRight.style.opacity = 1
+      if(currentThumbnail==thumbnailArray.length-1)goLeft.style.opacity = 0.1
       if(currentThumbnail>thumbnailArray.length-1)currentThumbnail = thumbnailArray.length-1
+
+      thumbnailArray[currentThumbnail-1].style.pointerEvents = "none"
+      thumbnailArray[currentThumbnail].style.pointerEvents = "all"
 
       TweenMax.to(thumbnailArray[currentThumbnail-1], 0.5, {x:-500, onComplete:function(){
           
@@ -343,6 +361,12 @@
       TweenMax.to(thumbnailArray[currentThumbnail], 0.2, {opacity:1, onComplete:function(){
           
       }})
+
+      if(iCard.style.visibility=="visible"){
+        iImage.src = thumbnailArray[currentThumbnail].src        
+        if(language == "DE")document.getElementById("infoTextTXT").innerHTML = thumbnailArray[currentThumbnail].getAttribute('textDE')
+        if(language == "EN")document.getElementById("infoTextTXT").innerHTML = thumbnailArray[currentThumbnail].getAttribute('textEN')
+      }
 
     }) 
 
