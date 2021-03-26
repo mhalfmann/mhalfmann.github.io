@@ -52,7 +52,7 @@
 </style>
   <body version="0.1.4" onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
 
-  <div id="main" style ="display: flex; flex-wrap: wrap; position: absolute; left: 0px; top: 0px;height: 100%; width:100%; overflow: hidden; padding: 5vh; background: rgb(116, 126, 138);">
+  <div id="main" style ="display: flex; flex-wrap: wrap; position: absolute; left: 0px; top: 0px;height: 100%; width:100%; overflow: hidden; padding-left: 1vw; background: rgb(116, 126, 138);">
 
     <div id="infoCard" style ="position: absolute; left: 15%; top: 5%; height: 90%; width:70%; background: rgb(80, 86, 93); visibility: hidden; box-shadow: 10px 10px 10px 5px rgba(0, 0, 0, 0.568)">
       <div id="infoImage" style="position: absolute; height: 100%; width: 70%;"> 
@@ -65,7 +65,7 @@
         <img src="../../../Assets/Icons/close.png" height="100%">
       </div>
     </div>
-    <div onclick="changeLang(this)" lang="DE" style="position: absolute; left: 5%; bottom: 5%; background: rgb(63, 63, 63); padding: 10px; color:white; border-radius: 5px;">
+    <div onclick="changeLang(this)" lang="DE" style="position: absolute; right: 5%; bottom: 5%; background: rgb(63, 63, 63); padding: 10px; color:white; border-radius: 5px;">
       DE
     </div>
     <div id="output" style="opacity: 0; position: absolute; left: 55%; bottom: 5%; background: rgb(63, 63, 63); padding: 10px; color:white; border-radius: 5px;">
@@ -151,12 +151,17 @@
           // console.log("thumbnail loaded",e.target.id)
           addText(e.target)
         })
+
         thumbnail.style.marginRight = "5vw"
+        thumbnail.style.marginTop = Math.random()*7+"vh"
+
         if(img.id.toString().indexOf("Gm1079")>-1){
           thumbnail.style.marginRight = "1vw"
+          thumbnail.style.marginTop = "0vw"
         }
         if(img.id.toString().indexOf("Gm1079R")>-1){
           thumbnail.style.marginRight = "5vw"
+          thumbnail.style.marginTop = "0vw"
         }
 
         let f = screenHeight/maxImgHeight*0.4
