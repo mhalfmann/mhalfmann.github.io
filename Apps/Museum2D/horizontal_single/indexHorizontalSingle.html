@@ -63,7 +63,7 @@
       <img id="rightArrow" src="../../../Assets/Icons/arrow-forward.png" width="100%">
     </div>
     
-    <ul id = "imageBar" style ="list-style: none; position: absolute; right: 10%; top: 10%; height: 80%; width: 80%;overflow-y: hidden;">
+    <ul id = "imageBar" style ="list-style: none; position: absolute; right: 10%; top: 10%; height: 80%; width: 80%; overflow-y: hidden;">
     </ul>
 
     <!-- <div id="infoCard" style ="position: absolute; left: 5%; top: 5%; height: 90%; width:70%; background: rgb(80, 86, 93); visibility: hidden; box-shadow: 5px 5px 10px 5px rgb(0, 0, 0)">
@@ -173,9 +173,9 @@
         let img = images[i]
         infoTextString = ""
 
-        let thumbnailFrame = document.createElement('li')
-        thumbnailFrame.className ="thumbnailFrame"
-        document.getElementById("imageBar").appendChild(thumbnailFrame)
+        // let thumbnailFrame = document.createElement('li')
+        // thumbnailFrame.className ="thumbnailFrame"
+        // document.getElementById("imageBar").appendChild(thumbnailFrame)
 
         let thumbnail = document.createElement('img')
 
@@ -203,7 +203,7 @@
         thumbnail.style.top = top+"px"
         thumbnail.style.left = left+"px"
 
-        thumbnailFrame.appendChild(thumbnail)
+        document.getElementById("imageBar").appendChild(thumbnail)
 
         thumbnailArray.push(thumbnail)
 

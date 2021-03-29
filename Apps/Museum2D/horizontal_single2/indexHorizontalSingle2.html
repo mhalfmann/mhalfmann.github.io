@@ -50,7 +50,7 @@
   }
 
 </style>
-  <body version="0.1.4" onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
+  <body version="0.1.5" onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
    <!--  <div id ="header" style="position: absolute; left: 0px; top: 0%;height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px;">
       Museum 2D
     </div> -->
@@ -59,12 +59,11 @@
     <div id="goLeft" style ="position: absolute; left: 5px; top: 47vh; height: 6vh; width:6vh; background: rgb(63, 63, 63); border-radius: 5px;">
       <img id="leftArrow" src="../../../Assets/Icons/arrow-back.png" width="100%">
     </div>
-    <div id="goRight" style ="position: absolute; right: 5px; top: 47vh; height: 6vh; width:6vh; background: rgb(63,63,63); border-radius: 5px;">
+    <div id="goRight" style ="position: absolute; right: 5px; top: 47vh; height: 6vh; width:6vh; background: rgb(63,63,63); border-radius: 5px; opacity: 0.1;">
       <img id="rightArrow" src="../../../Assets/Icons/arrow-forward.png" width="100%">
     </div>
     
-    <!-- <ul id = "imageBar" style ="list-style: none; position: absolute; right: 10%; top: 10%; height: 80%; width:80%; display: flex; overflow-y: hidden; overflow-x: auto;"> -->
-    <ul id = "imageBar" style ="display: flex; overflow-x: auto; overflow-y: hidden; list-style: none; position: absolute; right: 10%; top: 10%; height: 80%; width:80%;">
+    <ul id = "imageBar" style ="list-style: none; position: absolute; right: 10%; top: 10%; height: 80%; width: 80%;overflow-y: hidden;">
     </ul>
 
     <!-- <div id="infoCard" style ="position: absolute; left: 5%; top: 5%; height: 90%; width:70%; background: rgb(80, 86, 93); visibility: hidden; box-shadow: 5px 5px 10px 5px rgb(0, 0, 0)">
@@ -123,6 +122,9 @@
     let maxImgHeight = 0
     let maxImgWidth = 0
 
+    let currentThumbnail = 0
+
+    let thumbnailArray = []
     // changeOrientation();
 
     // console.log(sessionStorage.getItem("start"))
@@ -155,7 +157,17 @@
     }
 
     addImages()
-  
+
+    for(var i=1; i<thumbnailArray.length; i++){
+      // console.log(thumbnailArray[i].id)
+      
+      thumbnailArray[i].style.pointerEvents = "none"
+      
+      TweenMax.to(thumbnailArray[i], 0, {"clipPath":"inset(0% 100% 0% 0%)",transformOrigin:"right"})
+      // TweenMax.to(thumbnailArray[i], 0, {x:500, opacity:0, onComplete:function(){
+          
+      // }})
+    }
     function addImages(){
     
       for(var i=0; i<images.length; i++){
@@ -165,13 +177,14 @@
 
         let thumbnailFrame = document.createElement('li')
         thumbnailFrame.className ="thumbnailFrame"
-        // document.getElementById("imageBar").appendChild(thumbnailFrame)
+        document.getElementById("imageBar").appendChild(thumbnailFrame)
 
         let thumbnail = document.createElement('img')
 
         thumbnail.className ="thumbnail"
         thumbnail.src = img.file
         thumbnail.id = img.id
+        thumbnail.style.position = "absolute"
 
         thumbnail.style.marginRight = "5vw"
         if(img.id.toString().indexOf("Gm1079")>-1){
@@ -187,9 +200,14 @@
         thumbnail.style.height = f*img.height+"px"
         
         let top = (imgBarHeight - f*img.height)/2
-        thumbnail.style.marginTop = top+"px"
+        let left = (imgBarWidth - f*img.width)/2
 
-        document.getElementById("imageBar").appendChild(thumbnail)        
+        thumbnail.style.top = top+"px"
+        thumbnail.style.left = left+"px"
+
+        thumbnailFrame.appendChild(thumbnail)
+
+        thumbnailArray.push(thumbnail)
 
         thumbnail.addEventListener('load',(e)=>{
           addText(e.target)
@@ -291,59 +309,74 @@
         overlay.style.visibility = "hidden"
       }
     })
-/*let mousedownID = -1;  //Global ID of mouse down interval
-  function mousedown(event) {
-    if(mousedownID==-1)  //Prevent multimple loops!
-      mousedownID = setInterval(whilemousedown, 100 );
-  }
-  function mouseup(event) {
-    if(mousedownID!=-1) {  //Only stop if exists
-      clearInterval(mousedownID);
-      mousedownID=-1;
-    }
-  }
-  function whilemousedown(e) {
-    console.log("mouse down")
-    if(right){
-      $('#imageBar').animate({
-            scrollLeft: $('#imageBar').scrollLeft()+50
-        }, 10)
-    }
-    if(left){
-      $('#imageBar').animate({
-            scrollLeft: $('#imageBar').scrollLeft()-50
-        }, 10)
-    }
-  }
-//Assign events
-document.addEventListener("mousedown", mousedown);
-document.addEventListener("mouseup", mouseup);
-//Also clear the interval when user leaves the window with mouse
-document.addEventListener("mouseout", mouseup);
 
-    document.getElementById("goRight").addEventListener('pointerover',(e)=>{
-      right = true
-    })
-    document.getElementById("goRight").addEventListener('pointerleave',(e)=>{
-      right = false
-    })
-    document.getElementById("goLeft").addEventListener('pointerover',(e)=>{
-      left = true
-    })
-    document.getElementById("goLeft").addEventListener('pointerleave',(e)=>{
-      left = false
-    })*/
+    document.getElementById("goRight").addEventListener('click',(e)=>{  
+      
+      currentThumbnail--
+      goLeft.style.opacity = 1
+      if(currentThumbnail==0)goRight.style.opacity = 0.1
+      if(currentThumbnail<0)currentThumbnail = 0
+      
+      thumbnailArray[currentThumbnail+1].style.pointerEvents = "none"
+      thumbnailArray[currentThumbnail].style.pointerEvents = "all"
 
-    document.getElementById("goRight").addEventListener('click',(e)=>{
-        $('#imageBar').animate({
-            scrollLeft: $('#imageBar').scrollLeft()+(imgBarWidth*0.5)
-        }, 500)
+      TweenMax.to(thumbnailArray[currentThumbnail+1], 0.5, {x:500, onComplete:function(){
+          
+      }})
+      // TweenMax.to(thumbnailArray[currentThumbnail+1], 0.5, {opacity:0, onComplete:function(){
+          
+      // }})
+      TweenMax.to(thumbnailArray[currentThumbnail], 0.5, {x:0, onComplete:function(){
+          
+      }})
+      // TweenMax.to(thumbnailArray[currentThumbnail], 0.2, {opacity:1, onComplete:function(){
+          
+      // }})
+
+      if(iCard.style.visibility=="visible"){
+        iImage.src = thumbnailArray[currentThumbnail].src        
+        if(language == "DE")document.getElementById("infoTextTXT").innerHTML = thumbnailArray[currentThumbnail].getAttribute('textDE')
+        if(language == "EN")document.getElementById("infoTextTXT").innerHTML = thumbnailArray[currentThumbnail].getAttribute('textEN')
+      }
+        
     })
 
     document.getElementById("goLeft").addEventListener('click',(e)=>{
-        $('#imageBar').animate({
-            scrollLeft: $('#imageBar').scrollLeft()-(imgBarWidth*0.5)
-        }, 500)
+      
+      currentThumbnail++
+      
+      // let h = thumbnailArray[currentThumbnail].getBoundingClientRect().height
+      // let h_1 = thumbnailArray[currentThumbnail-1].getBoundingClientRect().height
+      goRight.style.opacity = 1
+      if(currentThumbnail==thumbnailArray.length-1)goLeft.style.opacity = 0.1
+      if(currentThumbnail>thumbnailArray.length-1)currentThumbnail = thumbnailArray.length-1
+
+      thumbnailArray[currentThumbnail-1].style.pointerEvents = "none"
+      thumbnailArray[currentThumbnail].style.pointerEvents = "all"
+
+      // thumbnailArray[currentThumbnail].style.clip = "rect(0px, 50px, "+h+"px, 0px)"
+      // thumbnailArray[currentThumbnail].style.clipPath="inset(0% 90% 0% 0%)"
+
+      TweenMax.to(thumbnailArray[currentThumbnail-1], 1.5, {"clipPath":"inset(0% 100% 0% 0%)",transformOrigin:"right"})
+      TweenMax.to(thumbnailArray[currentThumbnail], 1.5, {"clipPath":"inset(0% 0% 0% 0%)",transformOrigin:"bottom"})
+      // TweenMax.to(thumbnailArray[currentThumbnail-1], 0.5, {"clip":"rect(0px, 10px, 100px, 0px)",transformOrigin:"right"})
+      // TweenMax.to(thumbnailArray[currentThumbnail-1], 0.5, {"scale":0.1,transformOrigin:"right"})
+      // TweenMax.to(thumbnailArray[currentThumbnail-1], 0.5, {opacity:0, onComplete:function(){
+          
+      // }})
+      // TweenMax.to(thumbnailArray[currentThumbnail], 0.5, {x:0, onComplete:function(){
+          
+      // }})
+      // TweenMax.to(thumbnailArray[currentThumbnail], 0.2, {opacity:1, onComplete:function(){
+          
+      // }})
+
+      if(iCard.style.visibility=="visible"){
+        iImage.src = thumbnailArray[currentThumbnail].src        
+        if(language == "DE")document.getElementById("infoTextTXT").innerHTML = thumbnailArray[currentThumbnail].getAttribute('textDE')
+        if(language == "EN")document.getElementById("infoTextTXT").innerHTML = thumbnailArray[currentThumbnail].getAttribute('textEN')
+      }
+
     }) 
 
     document.getElementById("closeInfoCard").addEventListener('click',()=>{
