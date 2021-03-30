@@ -309,10 +309,10 @@
     document.addEventListener('keydown', function(event) {
       console.log("key down "+event.keyCode)
       if(event.keyCode == 37) {
-        goToNext()
+        goToPrev()
       }
       if(event.keyCode == 39) {
-        goToPrev()
+        goToNext()
       }
       if(event.keyCode == 32) {
         if(!gameOver){
