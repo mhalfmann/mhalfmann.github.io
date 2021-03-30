@@ -1,17 +1,19 @@
 <!doctype HTML>
 <html>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
-<script src="../assets/text.js"></script>
-<script src="../assets/images.js"></script>
+<script src="./assets/text.js"></script>
+<script src="./assets/images.js"></script>
+<script src="./javascript/utility.js"></script>
+<script src="./javascript/variables.js"></script>
 <!-- <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1"> -->
 <!-- <script src="./Javascript/aframe.min.js"></script> -->
 <!-- <script src="./Javascript/aframe-ar.js"></script> -->
 <!-- <script src="../../../Javascript/hammer.js"></script> -->
-<script src="../../../Javascript/TweenMax.min.js"></script>
-<script src="../../../Javascript/jquery-3.6.0.min.js"></script>
+<script src="../../Javascript/TweenMax.min.js"></script>
+<script src="../../Javascript/jquery-3.6.0.min.js"></script>
 <!-- <script src="../../../Javascript/jquery.csv.js"></script> -->
 <!-- <script src="../../../Javascript/papaparse.min.js"></script> -->
-<link rel="stylesheet" type="text/css" href="../../../css/ui.css">
+<link rel="stylesheet" type="text/css" href="../../css/ui.css">
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
 <style>
   a, a:visited { 
@@ -62,7 +64,7 @@
         <div id="infoTextTXT" style = "position: absolute; max-height: 100%; max-width: 100%; padding-right:5%; font-size: 2vh"></div>
       </div>
       <div id = "closeInfoCard" style ="position: absolute; right: 0%; bottom: 0%; margin: 0%; height: 5%;">
-        <img src="../../../Assets/Icons/close.png" height="100%">
+        <img src="../../Assets/Icons/close.png" height="100%">
       </div>
     </div>
     <div onclick="changeLang(this)" lang="DE" style="position: absolute; right: 5%; bottom: 5%; background: rgb(63, 63, 63); padding: 10px; color:white; border-radius: 5px;">
@@ -99,13 +101,6 @@
 
     let maxImgHeight = 0
     let maxImgWidth = 0
-
-    let gameOver = false
-    let timer = 100
-    let minutes = 0
-    let seconds = 0
-    let minuteStr = ""
-    let secondStr = ""
 
     // changeOrientation();
 
@@ -192,43 +187,6 @@
       }
     }
 
-    function addText(thumbnail){
-      for(var j=0; j<text.length; j++){
-          if(text[j].Inventarnummern!=null){
-              if( text[j].Inventarnummern.toString().indexOf(thumbnail.id)>-1){
-
-                let header = text[j].Uberschrift_deutsch.toString().split('\n')
-
-                for(var k=0; k<header.length; k++){
-                  if(k==0)infoTextString+="<b>"+header[k]+"</b>"
-                  if(k!=0)infoTextString+=header[k]
-                  infoTextString+="<br>"                  
-                }                
-                infoTextString+="<br><br>"
-                infoTextString+=text[j].Text_deutsch.toString()
-                thumbnail.setAttribute('textDE',infoTextString)
-              }
-          }
-          infoTextString = ""
-          if(text[j].Inventarnummern!=null){  
-                      
-              if( text[j].Inventarnummern.toString().indexOf(thumbnail.id)>-1){
-
-                let header = text[j].Uberschrift_englisch.toString().split('\n')
-
-                for(var k=0; k<header.length; k++){
-                  if(k==0)infoTextString+="<b>"+header[k]+"</b>"
-                  if(k!=0)infoTextString+=header[k]
-                  infoTextString+="<br>"                  
-                }                
-                infoTextString+="<br><br>"
-                infoTextString+=text[j].Text_englisch.toString()
-                thumbnail.setAttribute('textEN',infoTextString)
-              }
-          }
-        }
-    }
-
     function loaded(img){
 
       let imgOuterWidth = document.getElementById("infoImage").getBoundingClientRect().width
@@ -268,29 +226,6 @@
       // changeOrientation()
     }, false)
 
-    function changeOrientation(){
-      if(window.orientation == 180 || window.orientation == 0){        
-        output.innerHTML="portrait mode"
-        let h = iCard.getBoundingClientRect().width
-        let fSize = h/50
-        iText.style.fontSize = fSize+"px"
-        // iText.style.fontSize="1.5vw"
-      }
-      else{        
-        output.innerHTML="landscape mode"
-        let h = iCard.getBoundingClientRect().height
-        let fSize = h/50
-        iText.style.fontSize = fSize+"px"
-        // iText.style.fontSize="1.5vh"
-      }
-    }
-
-    function showLargeImage(image){
-      // console.log("showing image",image.src)
-      iCard.style.visibility = "visible"
-      iImage.src = image.src
-    }
-
     document.addEventListener('keydown', function(event) {
       // console.log("key down "+event.keyCode)
       
@@ -301,33 +236,5 @@
         }
       }
     })
-    
-    function incrementCount(t){
-      setTimeText(t)
-      setInterval(function(){
-        t--
-        setTimeText(t)
-        if(t ==0){
-          overlay.style.visibility = "visible"
-          gameOver = true
-          overlayText.innerHTML = "Game Over"
-        }
-      },1000);
-    }
-
-    function setTimeText(cTime){
-      minutes = Math.floor(cTime / 60)
-        seconds = Math.round(cTime%60)
-
-        secondStr = seconds < 10 ?  "0" + Math.round(seconds) : seconds
-        minuteStr = minutes
-        if(seconds == 60){
-            secondStr = "00"
-            minuteStr = (minutes+1)
-        }
-
-        console.log( minuteStr+":"+secondStr)
-        timeText.innerHTML = minuteStr+":"+secondStr
-    }
   </script>
 </html>
