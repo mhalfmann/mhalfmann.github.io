@@ -21,10 +21,10 @@
   <body version="0.1.5" onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
   <div id="main">
 
-    <div id="goLeft" class="button" style ="left: 5px; top: 47vh; height: 6vh; width:6vh">
+    <div id="goLeft" onclick="goToPrev()" class="button" style ="left: 5px; top: 47vh; height: 6vh; width:6vh;">
       <img id="leftArrow" src="../../Assets/Icons/arrow-back.png" width="100%">
     </div>
-    <div id="goRight" class="button" style ="right: 5px; top: 47vh; height: 6vh; width:6vh;">
+    <div id="goRight" onclick="goToNext()" class="button" style ="right: 5px; top: 47vh; height: 6vh; width:6vh; opacity: 0.1;">
       <img id="rightArrow" src="../../Assets/Icons/arrow-forward.png" width="100%">
     </div>
     
@@ -232,10 +232,12 @@
       }
     })
 
-    /* document.getElementById("goRight").addEventListener('click',(e)=>{        
+    /* document.getElementById("goRight").addEventListener('click',(e)=>{
+      goToNext()
     })
 
     document.getElementById("goLeft").addEventListener('click',(e)=>{
+      goToPrev()
     })  */
 
     document.getElementById("closeInfoCard").addEventListener('click',()=>{
