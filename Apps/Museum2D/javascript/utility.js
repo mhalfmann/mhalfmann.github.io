@@ -3,9 +3,13 @@ function printTest(text){
 }
 
 function addText(thumbnail){
+  let query = thumbnail.id
+    if(query.endsWith("L"))query = query.substr(0, query.length-1)
+    if(query.endsWith("M"))query = query.substr(0, query.length-1)
+    if(query.endsWith("R"))query = query.substr(0, query.length-1)
     for(var j=0; j<text.length; j++){
         if(text[j].Inventarnummern!=null){
-            if( text[j].Inventarnummern.toString().indexOf(thumbnail.id)>-1){
+            if( text[j].Inventarnummern.toString().indexOf(query)>-1){
 
               let header = text[j].Uberschrift_deutsch.toString().split('\n')
 
@@ -22,7 +26,7 @@ function addText(thumbnail){
         infoTextString = ""
         if(text[j].Inventarnummern!=null){  
                     
-            if( text[j].Inventarnummern.toString().indexOf(thumbnail.id)>-1){
+            if( text[j].Inventarnummern.toString().indexOf(query)>-1){
 
               let header = text[j].Uberschrift_englisch.toString().split('\n')
 

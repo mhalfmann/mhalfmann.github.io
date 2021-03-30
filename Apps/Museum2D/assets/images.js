@@ -55,19 +55,19 @@ images = [
     },
     {
         'file':"./assets/images/EastWallImages/Gm1079L_cut.jpg",
-        'id':"Gm1079",
+        'id':"Gm1079L",
         'height':121.4,
         'width': 32
     },
     {
         'file':"./assets/images/EastWallImages/Gm1079M_cut.jpg",
-        'id':"Gm1079",
+        'id':"Gm1079M",
         'height':121.4,
         'width': 78.7
     },
     {
         'file':"./assets/images/EastWallImages/Gm1079R_cut.jpg",
-        'id':"Gm1079",
+        'id':"Gm1079R",
         'height':121.4,
         'width': 32
     },
