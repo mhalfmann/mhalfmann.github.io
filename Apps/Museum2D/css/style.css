@@ -25,7 +25,7 @@
     height: 100%;
     width:100%;
     overflow: hidden;
-    padding-top: 5vh;
+    /* padding-top: 5vh; */
     background: rgb(116, 126, 138);
   }
 
@@ -104,9 +104,9 @@
     top: 10%;
     height: 80%;
     width:80%;
-    background: yellowgreen;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    /* background: lightcoral; */
   }
   
   #imageBar::-webkit-scrollbar {
@@ -114,10 +114,9 @@
   }
   #timeText{
     position: absolute;
-    top: 5%;
-    right: 5%;
+    top: 1%;
+    right: 1%;
     color: white;
-    font-size: 5vh;
+    font-size: 3vh;
     font-weight: bold;
-    background: aquamarine;
   }
