@@ -72,3 +72,35 @@
     padding-right:5%;
     font-size: 2vh
   }
+  #closeInfoCard{
+    position: absolute;
+    right: 0%; bottom: 0%;
+    margin: 0%; height: 5%;
+  }
+  .button{
+    position: absolute;
+    background: rgb(63, 63, 63);
+    padding: 10px;
+    color:white;
+    border-radius: 5px;
+  }
+  #overlay{
+    visibility: visible;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width:100%;
+    background: rgb(116, 126, 138);
+    color: white;
+    text-align: center;
+  }
+  #overlayText{
+    position: absolute;
+    top: 45%;
+    width: 100%;
+    height: 10%;
+    color: white;
+    font-size: 10vh;
+    font-weight: bold;
+  }
