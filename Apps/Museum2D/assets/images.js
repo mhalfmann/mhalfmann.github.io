@@ -54,23 +54,23 @@ images = [
         'width': 56
     },
     {
-        'file':"./assets/images/EastWallImages/Gm1079L_cut.jpg",
-        'id':"Gm1079L",
+        'file':"./assets/images/EastWallImages/Gm1079_cut.png",
+        'id':"Gm1079",
         'height':121.4,
-        'width': 32
+        'width': 152
     },
-    {
-        'file':"./assets/images/EastWallImages/Gm1079M_cut.jpg",
-        'id':"Gm1079M",
-        'height':121.4,
-        'width': 78.7
-    },
-    {
-        'file':"./assets/images/EastWallImages/Gm1079R_cut.jpg",
-        'id':"Gm1079R",
-        'height':121.4,
-        'width': 32
-    },
+    // {
+    //     'file':"./assets/images/EastWallImages/Gm1079M_cut.jpg",
+    //     'id':"Gm1079M",
+    //     'height':121.4,
+    //     'width': 78.7
+    // },
+    // {
+    //     'file':"./assets/images/EastWallImages/Gm1079R_cut.jpg",
+    //     'id':"Gm1079R",
+    //     'height':121.4,
+    //     'width': 32
+    // },
     {
         'file':"./assets/images/SouthWallImages/Gm1108_cut.jpg",
         'id':"Gm1108",

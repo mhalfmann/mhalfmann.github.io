@@ -21,10 +21,10 @@
   <body onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
   <div id="main">
 
-    <div id="goLeft" onclick="goToPrev()" class="button" style ="left: 5px; top: 47vh; height: 6vh; width:6vh;">
+    <div id="goLeft" onclick="goToNext()" class="button" style ="left: 5px; top: 47vh; height: 6vh; width:6vh; opacity: 0.1;">
       <img id="leftArrow" src="../../Assets/Icons/arrow-back.png" width="100%">
     </div>
-    <div id="goRight" onclick="goToNext()" class="button" style ="right: 5px; top: 47vh; height: 6vh; width:6vh; opacity: 0.1;">
+    <div id="goRight" onclick="goToPrev()" class="button" style ="right: 5px; top: 47vh; height: 6vh; width:6vh;">
       <img id="rightArrow" src="../../Assets/Icons/arrow-forward.png" width="100%">
     </div>
     
@@ -143,14 +143,6 @@
         thumbnail.id = img.id
         thumbnail.style.position = "absolute"
 
-        thumbnail.style.marginRight = "5vw"
-        if(img.id.toString().indexOf("Gm1079")>-1){
-          thumbnail.style.marginRight = "1vw"
-        }
-        if(img.id.toString().indexOf("Gm1079R")>-1){
-          thumbnail.style.marginRight = "5vw"
-        }
-
         let f = imgBarHeight/maxImgHeight
 
         thumbnail.style.width = f*img.width+"px"
@@ -216,10 +208,10 @@
     document.addEventListener('keydown', function(event) {
       console.log("key down "+event.keyCode)
       if(event.keyCode == 37) {
-        goToPrev()
+        goToNext()
       }
       if(event.keyCode == 39) {
-        goToNext()
+        goToPrev()
       }
       if(event.keyCode == 32) {
         if(!gameOver){
@@ -267,11 +259,11 @@
           
       }})
 
-      if(iCard.style.visibility=="visible"){
+      /*if(iCard.style.visibility=="visible"){
         iImage.src = thumbnailArray[currentThumbnail].src        
         if(language == "DE")document.getElementById("infoTextTXT").innerHTML = thumbnailArray[currentThumbnail].getAttribute('textDE')
         if(language == "EN")document.getElementById("infoTextTXT").innerHTML = thumbnailArray[currentThumbnail].getAttribute('textEN')
-      }
+      }*/
 
     }
     function goToPrev(){
@@ -296,11 +288,11 @@
           
       }})
 
-      if(iCard.style.visibility=="visible"){
+      /*if(iCard.style.visibility=="visible"){
         iImage.src = thumbnailArray[currentThumbnail].src        
         if(language == "DE")document.getElementById("infoTextTXT").innerHTML = thumbnailArray[currentThumbnail].getAttribute('textDE')
         if(language == "EN")document.getElementById("infoTextTXT").innerHTML = thumbnailArray[currentThumbnail].getAttribute('textEN')
-      }
+      }*/
     }
   </script>
 </html>
