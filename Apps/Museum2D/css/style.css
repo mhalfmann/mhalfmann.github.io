@@ -18,16 +18,6 @@
     /* align-items: center; */
     /* display: flex; */
   }
-  
-  #imageBar::-webkit-scrollbar {
-    display: none;
-  }
-
-  #imageBar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
   #main {
     position: absolute;
     left: 0px;
@@ -103,4 +93,31 @@
     color: white;
     font-size: 10vh;
     font-weight: bold;
+  }
+  #imageBar{
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    list-style: none;
+    position: absolute;
+    right: 10%;
+    top: 10%;
+    height: 80%;
+    width:80%;
+    background: yellowgreen;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  #imageBar::-webkit-scrollbar {
+    display: none;
+  }
+  #timeText{
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    color: white;
+    font-size: 5vh;
+    font-weight: bold;
+    background: aquamarine;
   }
