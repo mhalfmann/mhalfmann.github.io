@@ -68,8 +68,6 @@ function addText(thumbnail){
           secondStr = "00"
           minuteStr = (minutes+1)
       }
-
-      console.log( minuteStr+":"+secondStr)
       timeText.innerHTML = minuteStr+":"+secondStr
   }  
 
