@@ -1,6 +1,6 @@
 <!doctype HTML>
 <html>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
 <script src="../assets/text.js"></script>
 <script src="../assets/images.js"></script>
 <!-- <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1"> -->
@@ -56,14 +56,14 @@
     </div> -->
   <div id="main" style ="position: absolute; left: 0px; top: 0px;height: 100%; width:100%; overflow: hidden; padding-top: 5vh; background: rgb(116, 126, 138);">
 
-    <div id="goLeft" style ="position: absolute; left: 5px; top: 47vh; height: 6vh; width:6vh; background: rgb(63, 63, 63); border-radius: 5px;">
+    <div id="goLeft" onclick="goToPrev()" style ="position: absolute; left: 5px; top: 47vh; height: 6vh; width:6vh; background: rgb(63, 63, 63); border-radius: 5px;">
       <img id="leftArrow" src="../../../Assets/Icons/arrow-back.png" width="100%">
     </div>
-    <div id="goRight" style ="position: absolute; right: 5px; top: 47vh; height: 6vh; width:6vh; background: rgb(63,63,63); border-radius: 5px; opacity: 0.1;">
+    <div id="goRight" onclick="goToNext()" style ="position: absolute; right: 5px; top: 47vh; height: 6vh; width:6vh; background: rgb(63,63,63); border-radius: 5px; opacity: 0.1;">
       <img id="rightArrow" src="../../../Assets/Icons/arrow-forward.png" width="100%">
     </div>
     
-    <ul id = "imageBar" style ="list-style: none; position: absolute; right: 10%; top: 10%; height: 80%; width: 80%; overflow-y: hidden;">
+    <ul id = "imageBar" style ="list-style: none; position: absolute; right: 10%; top: 10%; height: 80%; width: 80%; overflow: hidden;">
     </ul>
 
     <!-- <div id="infoCard" style ="position: absolute; left: 5%; top: 5%; height: 90%; width:70%; background: rgb(80, 86, 93); visibility: hidden; box-shadow: 5px 5px 10px 5px rgb(0, 0, 0)">
@@ -95,13 +95,21 @@
     <div id="output" style="opacity: 0; position: absolute; left: 55%; bottom: 5%; background: rgb(63, 63, 63); padding: 10px; color:white; border-radius: 5px;">
       Output
     </div>
+    <div id="timeText" style = "position: absolute; top: 5%; right: 5%; color: white; font-size: 5vh; font-weight: bold;">      
+      10:00
+    </div>
     
   </div>
-  <div id="overlay" style ="visibility: hidden; position: absolute; left: 0px; top: 0px; height: 100%; width:100%; background: rgb(116, 126, 138); color: white; text-align: center; font-size: 10vh;">
-  Press Space to start
+  <div id="overlay" style ="visibility: visible; position: absolute; left: 0px; top: 0px; height: 100%; width:100%; background: rgb(116, 126, 138); color: white; text-align: center;">
+    <div id="overlayText" style = "position: absolute; top: 45%; width: 100%; height: 10%; color: white; font-size: 10vh; font-weight: bold;">      
+      Bitte Leertaste drücken
+    </div>
   </div>
   </body>
   <script>
+    function testF(){
+      console.log("testF")
+    }
     console.log("Version: "+document.body.getAttribute('version'))
 
     let iCard = document.getElementById("infoCard")
@@ -125,6 +133,13 @@
     let currentThumbnail = 0
 
     let thumbnailArray = []
+
+    let gameOver = false
+    let timer = 100
+    let minutes = 0
+    let seconds = 0
+    let minuteStr = ""
+    let secondStr = ""
     // changeOrientation();
 
     // console.log(sessionStorage.getItem("start"))
@@ -294,21 +309,33 @@
     document.addEventListener('keydown', function(event) {
       console.log("key down "+event.keyCode)
       if(event.keyCode == 37) {
-        $('#imageBar').animate({
-            scrollLeft: $('#imageBar').scrollLeft()-20
-        }, 0)
+        goToNext()
       }
       if(event.keyCode == 39) {
-        $('#imageBar').animate({
-            scrollLeft: $('#imageBar').scrollLeft()+20
-        }, 0)
+        goToPrev()
       }
       if(event.keyCode == 32) {
-        overlay.style.visibility = "hidden"
+        if(!gameOver){
+          overlay.style.visibility = "hidden"
+          incrementCount(timer)
+        }
       }
     })
 
-    document.getElementById("goRight").addEventListener('click',(e)=>{  
+    /* document.getElementById("goRight").addEventListener('click',(e)=>{        
+    })
+
+    document.getElementById("goLeft").addEventListener('click',(e)=>{
+    })  */
+
+    document.getElementById("closeInfoCard").addEventListener('click',()=>{
+      iCard.style.visibility = "hidden"
+    })
+    window.addEventListener("orientationchange", function() {
+      // changeOrientation()
+    }, false)
+
+    function goToNext(){
       
       currentThumbnail--
       goLeft.style.opacity = 1
@@ -336,11 +363,9 @@
         if(language == "DE")document.getElementById("infoTextTXT").innerHTML = thumbnailArray[currentThumbnail].getAttribute('textDE')
         if(language == "EN")document.getElementById("infoTextTXT").innerHTML = thumbnailArray[currentThumbnail].getAttribute('textEN')
       }
-        
-    })
 
-    document.getElementById("goLeft").addEventListener('click',(e)=>{
-      
+    }
+    function goToPrev(){
       currentThumbnail++
       goRight.style.opacity = 1
       if(currentThumbnail==thumbnailArray.length-1)goLeft.style.opacity = 0.1
@@ -367,15 +392,7 @@
         if(language == "DE")document.getElementById("infoTextTXT").innerHTML = thumbnailArray[currentThumbnail].getAttribute('textDE')
         if(language == "EN")document.getElementById("infoTextTXT").innerHTML = thumbnailArray[currentThumbnail].getAttribute('textEN')
       }
-
-    }) 
-
-    document.getElementById("closeInfoCard").addEventListener('click',()=>{
-      iCard.style.visibility = "hidden"
-    })
-    window.addEventListener("orientationchange", function() {
-      // changeOrientation()
-    }, false)
+    }
 
     function changeOrientation(){
       if(window.orientation == 180 || window.orientation == 0){        
@@ -399,5 +416,33 @@
       iCard.style.visibility = "visible"
       iImage.src = image.src
     }
+    
+    function incrementCount(t){
+      setTimeText(t)
+      setInterval(function(){
+        t--
+        setTimeText(t)
+        if(t ==0){
+          overlay.style.visibility = "visible"
+          gameOver = true
+          overlayText.innerHTML = "Game Over"
+        }
+      },1000);
+    }
+
+  function setTimeText(cTime){
+    minutes = Math.floor(cTime / 60)
+      seconds = Math.round(cTime%60)
+
+      secondStr = seconds < 10 ?  "0" + Math.round(seconds) : seconds
+      minuteStr = minutes
+      if(seconds == 60){
+          secondStr = "00"
+          minuteStr = (minutes+1)
+      }
+
+      console.log( minuteStr+":"+secondStr)
+      timeText.innerHTML = minuteStr+":"+secondStr
+  }
   </script>
 </html>

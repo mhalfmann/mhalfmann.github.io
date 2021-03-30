@@ -1,6 +1,6 @@
 <!doctype HTML>
 <html>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
 <script src="../assets/text.js"></script>
 <script src="../assets/images.js"></script>
 <!-- <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1"> -->
@@ -71,11 +71,14 @@
     <div id="output" style="opacity: 0; position: absolute; left: 55%; bottom: 5%; background: rgb(63, 63, 63); padding: 10px; color:white; border-radius: 5px;">
       Output
     </div>
-
-    
+    <div id="timeText" style = "position: absolute; top: 5%; right: 5%; color: white; font-size: 5vh; font-weight: bold;">      
+      10:00
+    </div>    
   </div>
-  <div id="overlay" style ="visibility: hidden; position: absolute; left: 0px; top: 0px; height: 100%; width:100%; background: rgb(116, 126, 138); color: white; text-align: center; font-size: 10vh;">
-    Press Space to start
+  <div id="overlay" style ="visibility: visible; position: absolute; left: 0px; top: 0px; height: 100%; width:100%; background: rgb(116, 126, 138); color: white; text-align: center;">
+    <div id="overlayText" style = "position: absolute; top: 45%; width: 100%; height: 10%; color: white; font-size: 10vh; font-weight: bold;">      
+      Bitte Leertaste drücken
+    </div>
   </div>
   </body>
   <script>
@@ -96,6 +99,13 @@
 
     let maxImgHeight = 0
     let maxImgWidth = 0
+
+    let gameOver = false
+    let timer = 100
+    let minutes = 0
+    let seconds = 0
+    let minuteStr = ""
+    let secondStr = ""
 
     // changeOrientation();
 
@@ -283,9 +293,41 @@
 
     document.addEventListener('keydown', function(event) {
       // console.log("key down "+event.keyCode)
+      
       if(event.keyCode == 32) {
-        overlay.style.visibility = "hidden"
+        if(!gameOver){
+          overlay.style.visibility = "hidden"
+          incrementCount(timer)
+        }
       }
     })
+    
+    function incrementCount(t){
+      setTimeText(t)
+      setInterval(function(){
+        t--
+        setTimeText(t)
+        if(t ==0){
+          overlay.style.visibility = "visible"
+          gameOver = true
+          overlayText.innerHTML = "Game Over"
+        }
+      },1000);
+    }
+
+    function setTimeText(cTime){
+      minutes = Math.floor(cTime / 60)
+        seconds = Math.round(cTime%60)
+
+        secondStr = seconds < 10 ?  "0" + Math.round(seconds) : seconds
+        minuteStr = minutes
+        if(seconds == 60){
+            secondStr = "00"
+            minuteStr = (minutes+1)
+        }
+
+        console.log( minuteStr+":"+secondStr)
+        timeText.innerHTML = minuteStr+":"+secondStr
+    }
   </script>
 </html>
