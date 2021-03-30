@@ -1,0 +1,74 @@
+
+  a, a:visited { 
+    text-decoration: none; 
+    color: white;
+  }    
+  .thumbnail{
+    /* max-height: 200px; */
+    /* max-width: 200px; */
+    width: 100px;
+    height: auto;
+    /* border: 5px solid red; */
+    /* padding: 10px; */
+  }
+  .thumbnailFrame{
+    /* background: rgb(253, 99, 99); */
+    /* border: 5px solid red; */
+    /* padding: 10px; */
+    /* align-items: center; */
+    /* display: flex; */
+  }
+  
+  #imageBar::-webkit-scrollbar {
+    display: none;
+  }
+
+  #imageBar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  #main {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width:100%;
+    overflow: hidden;
+    padding-top: 5vh;
+    background: rgb(116, 126, 138);
+  }
+
+  #infoCard{
+    position: absolute;
+    left: 15%; top: 5%;
+    height: 90%; width:70%;
+    background: rgb(80, 86, 93);
+    visibility: hidden;
+    box-shadow: 10px 10px 10px 5px rgba(0, 0, 0, 0.568)
+  }
+  #infoImage{
+    position: absolute;
+    height: 100%;
+    width: 70%
+  }
+  #infoImageIMG{
+    position: absolute;
+    max-height: 90%;
+    max-width: 90%;
+  }
+  #infoText{
+    position: absolute;
+    right: 0%;
+    top: 0%;
+    height: 95%;
+    width: 30%;
+    color: white;
+  }
+  #infoTextTXT{
+    position: absolute;
+    max-height: 100%;
+    max-width: 100%;
+    padding-right:5%;
+    font-size: 2vh
+  }
