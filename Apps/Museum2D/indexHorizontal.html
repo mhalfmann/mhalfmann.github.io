@@ -65,6 +65,17 @@
     function hasFocus(element){
       console.log("focus is on "+element.id)
     }
+    let elem = document.documentElement
+    openFullscreen()
+    function openFullscreen() {
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+      } else if (elem.webkitRequestFullscreen) { /* Safari */
+        elem.webkitRequestFullscreen();
+      } else if (elem.msRequestFullscreen) { /* IE11 */
+        elem.msRequestFullscreen();
+      }
+    }
 
     let iCard = document.getElementById("infoCard")
     let iImage = document.getElementById("infoImageIMG")

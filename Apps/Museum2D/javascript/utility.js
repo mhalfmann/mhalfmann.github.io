@@ -2,6 +2,16 @@ function printTest(text){
     console.log(text)
 }
 
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen();
+  }
+}
+
 function addText(thumbnail){
   let query = thumbnail.id
     if(query.endsWith("L"))query = query.substr(0, query.length-1)
