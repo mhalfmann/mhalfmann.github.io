@@ -90,6 +90,7 @@
 
     // console.log(sessionStorage.getItem("start"))
     // sessionStorage.setItem("start", "true")
+    iCard.style.visibility="hidden"
 
     language = "DE"
 
@@ -159,12 +160,14 @@
         })
 
         thumbnail.addEventListener('click',(e)=>{
-          iImage.src = e.target.src
-          iCard.setAttribute('imgID', e.target.id)
-          if(language == "DE")document.getElementById("infoTextTXT").innerHTML = e.target.getAttribute('textDE')
-          if(language == "EN")document.getElementById("infoTextTXT").innerHTML = e.target.getAttribute('textEN')
+          if(iCard.style.visibility=="hidden"){
+            iImage.src = e.target.src
+            iCard.setAttribute('imgID', e.target.id)
+            if(language == "DE")document.getElementById("infoTextTXT").innerHTML = e.target.getAttribute('textDE')
+            if(language == "EN")document.getElementById("infoTextTXT").innerHTML = e.target.getAttribute('textEN')
 
-          console.log(e.target.id)
+            console.log(e.target.id)
+          }
         })
         thumbnailArray.push(thumbnail)
       }
@@ -301,7 +304,8 @@ document.addEventListener("mouseout", mouseup);
       $('#imageBar').animate({
           scrollLeft: $('#imageBar').scrollLeft()-(imgBarWidth*0.5)
       }, 500,animateComplete)
-    }) 
+    })
+
     function animateComplete(){
       console.log("animate completed")
       let dL = thumbnailArray[0].getBoundingClientRect().left-imgBar.getBoundingClientRect().left
@@ -310,6 +314,7 @@ document.addEventListener("mouseout", mouseup);
       if(dL>1)goLeft.style.opacity = 0.1
       if(dR<1)goRight.style.opacity = 0.1
     }
+    
     document.getElementById("closeInfoCard").addEventListener('click',()=>{
       iCard.style.visibility = "hidden"
     })
