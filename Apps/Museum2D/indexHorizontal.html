@@ -18,7 +18,7 @@
 <style>
 
 </style>
-  <body onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
+  <body onselectstart = 'return false' onwheel="preventScroll(event)" style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
   <div id="main">
 
     <div id="goLeft" class="button" style ="left: 5px; top: 47vh; height: 6vh; width:6vh">
@@ -206,17 +206,18 @@
         if(event.keyCode == 37) {
           console.log("left")
           imgBar.focus()
-          // console.log(imgBar)
-          // $('#imageBar').animate({
-          //     scrollLeft: $('#imageBar').scrollLeft()-(imgBarWidth*0.5)
-          // }, 500)
+         /*  $('#imageBar').animate({
+              scrollLeft: $('#imageBar').scrollLeft()-30
+              // scrollLeft: $('#imageBar').scrollLeft()-(imgBarWidth*0.5)
+          }, 0) */
         }
         if(event.keyCode == 39) {
           console.log("right")
           imgBar.focus()
-          // $('#imageBar').animate({
-          //     scrollLeft: $('#imageBar').scrollLeft()+(imgBarWidth*0.5)
-          // }, 500)
+          /* $('#imageBar').animate({
+              scrollLeft: $('#imageBar').scrollLeft()+30
+              // scrollLeft: $('#imageBar').scrollLeft()+(imgBarWidth*0.5)
+          }, 0) */
         }
         if(event.keyCode == 32) {
           if(!gameOver){
@@ -229,6 +230,10 @@
     document.addEventListener('keyup', function(event) {
       isKeyDown = false
     })
+
+    function preventScroll(e){
+      e.preventDefault()
+    }
 /*let mousedownID = -1;  //Global ID of mouse down interval
   function mousedown(event) {
     if(mousedownID==-1)  //Prevent multimple loops!
