@@ -98,7 +98,7 @@ a, a:visited {
 }
 #imageBar{
   display: flex;
-  overflow-x: auto;
+  overflow-x: hidden;
   overflow-y: hidden;
   list-style: none;
   position: absolute;
