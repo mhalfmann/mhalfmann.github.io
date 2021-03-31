@@ -83,6 +83,8 @@
 
     let maxImgHeight = 0
     let maxImgWidth = 0
+    
+    let thumbnailArray = []
 
     // changeOrientation();
 
@@ -164,6 +166,7 @@
 
           console.log(e.target.id)
         })
+        thumbnailArray.push(thumbnail)
       }
     }
 
@@ -200,12 +203,14 @@
     }
     let isKeyDown = false
     document.addEventListener('keydown', function(event) {
-      if(!isKeyDown){
+
+      // if(!isKeyDown){
         isKeyDown = true
         console.log("key down "+event.keyCode)
         if(event.keyCode == 37) {
           console.log("left")
           imgBar.focus()
+          goRight.style.opacity = 1
          /*  $('#imageBar').animate({
               scrollLeft: $('#imageBar').scrollLeft()-30
               // scrollLeft: $('#imageBar').scrollLeft()-(imgBarWidth*0.5)
@@ -214,6 +219,7 @@
         if(event.keyCode == 39) {
           console.log("right")
           imgBar.focus()
+          goLeft.style.opacity = 1
           /* $('#imageBar').animate({
               scrollLeft: $('#imageBar').scrollLeft()+30
               // scrollLeft: $('#imageBar').scrollLeft()+(imgBarWidth*0.5)
@@ -225,10 +231,16 @@
             incrementCount(timer)
           }
         }
-      }
+      // }
     })
     document.addEventListener('keyup', function(event) {
       isKeyDown = false
+      
+      // let dL = thumbnailArray[0].getBoundingClientRect().left-imgBar.getBoundingClientRect().left
+      // let dR = thumbnailArray[thumbnailArray.length-1].getBoundingClientRect().right-imgBar.getBoundingClientRect().right
+      // console.log(dL + " "+ dR)
+      // if(dL>1)goLeft.style.opacity = 0.1
+      // if(dR<1)goRight.style.opacity = 0.1
     })
 
     function preventScroll(e){
