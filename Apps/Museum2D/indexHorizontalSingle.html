@@ -62,6 +62,17 @@
   <script>
     console.log("Version: "+version)
 
+    let siteTitle = ''
+    window.addEventListener('blur', () => {
+      siteTitle = document.title
+      document.title = 'Come back!'
+      console.log("page left")
+    })
+    window.addEventListener('focus', () => {
+      document.title = siteTitle
+      console.log("page entered")
+    })
+
     let iCard = document.getElementById("infoCard")
     let iImage = document.getElementById("infoImageIMG")
     let iText = document.getElementById("infoTextTXT")

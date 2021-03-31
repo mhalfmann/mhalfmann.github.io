@@ -29,7 +29,7 @@
     </div>
     
     <!-- <ul id = "imageBar" style ="list-style: none; position: absolute; right: 10%; top: 10%; height: 80%; width:80%; display: flex; overflow-y: hidden; overflow-x: auto;"> -->
-    <ul id = "imageBar" onfocus="hasFocus(this)" tabindex="0" style="outline:none;">
+    <ul id = "imageBar" tabindex="0" style="outline:none;">
     </ul>
 
     <div id="infoCard">
@@ -62,20 +62,17 @@
   </body>
   <script>
     console.log("Version: "+version)
-    function hasFocus(element){
-      console.log("focus is on "+element.id)
-    }
-    let elem = document.documentElement
-    openFullscreen()
-    function openFullscreen() {
-      if (elem.requestFullscreen) {
-        elem.requestFullscreen();
-      } else if (elem.webkitRequestFullscreen) { /* Safari */
-        elem.webkitRequestFullscreen();
-      } else if (elem.msRequestFullscreen) { /* IE11 */
-        elem.msRequestFullscreen();
-      }
-    }
+
+    let siteTitle = ''
+    window.addEventListener('blur', () => {
+      siteTitle = document.title
+      document.title = 'Come back!'
+      console.log("page left")
+    })
+    window.addEventListener('focus', () => {
+      document.title = siteTitle
+      console.log("page entered")
+    })
 
     let iCard = document.getElementById("infoCard")
     let iImage = document.getElementById("infoImageIMG")
