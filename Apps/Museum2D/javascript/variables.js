@@ -5,4 +5,4 @@
     let seconds = 0
     let minuteStr = ""
     let secondStr = ""
-    let version="0.2.0" 
+    let version="0.2.1" 
