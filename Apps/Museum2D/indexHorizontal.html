@@ -145,7 +145,7 @@
         thumbnail.src = img.file
         thumbnail.id = img.id
 
-        thumbnail.style.marginRight = "5vw"
+        thumbnail.style.marginRight = "10vw"
         // if(img.id.toString().indexOf("Gm1079")>-1){
         //   thumbnail.style.marginRight = "1vw"
         // }
@@ -315,10 +315,10 @@ document.addEventListener("mouseout", mouseup);
     })
 
     function animateComplete(){
-      console.log("animate completed")
+      // console.log("animate completed")
       let dL = thumbnailArray[0].getBoundingClientRect().left-imgBar.getBoundingClientRect().left
       let dR = thumbnailArray[thumbnailArray.length-1].getBoundingClientRect().right-imgBar.getBoundingClientRect().right
-      console.log(dL + " "+ dR)
+      // console.log(dL + " "+ dR)
       if(dL>1)goLeft.style.opacity = 0.1
       if(dR<1)goRight.style.opacity = 0.1
     }
