@@ -29,7 +29,7 @@
     </div>
     
     <!-- <ul id = "imageBar" style ="list-style: none; position: absolute; right: 10%; top: 10%; height: 80%; width:80%; display: flex; overflow-y: hidden; overflow-x: auto;"> -->
-    <ul id = "imageBar">
+    <ul id = "imageBar" onfocus="hasFocus(this)" tabindex="0" style="outline:none;">
     </ul>
 
     <div id="infoCard">
@@ -62,6 +62,9 @@
   </body>
   <script>
     console.log("Version: "+version)
+    function hasFocus(element){
+      console.log("focus is on "+element.id)
+    }
 
     let iCard = document.getElementById("infoCard")
     let iImage = document.getElementById("infoImageIMG")
@@ -195,27 +198,36 @@
 
       iCard.style.visibility = "visible"
     }
-
+    let isKeyDown = false
     document.addEventListener('keydown', function(event) {
-      console.log("key down "+event.keyCode)
-      if(event.keyCode == 37) {
-        console.log("right")
-        $('#imageBar').animate({
-            scrollLeft: $('#imageBar').scrollLeft()-20
-        }, 0)
-      }
-      if(event.keyCode == 39) {
-        console.log("left")
-        $('#imageBar').animate({
-            scrollLeft: $('#imageBar').scrollLeft()+20
-        }, 0)
-      }
-      if(event.keyCode == 32) {
-        if(!gameOver){
-          overlay.style.visibility = "hidden"
-          incrementCount(timer)
+      if(!isKeyDown){
+        isKeyDown = true
+        console.log("key down "+event.keyCode)
+        if(event.keyCode == 37) {
+          console.log("left")
+          imgBar.focus()
+          // console.log(imgBar)
+          // $('#imageBar').animate({
+          //     scrollLeft: $('#imageBar').scrollLeft()-(imgBarWidth*0.5)
+          // }, 500)
+        }
+        if(event.keyCode == 39) {
+          console.log("right")
+          imgBar.focus()
+          // $('#imageBar').animate({
+          //     scrollLeft: $('#imageBar').scrollLeft()+(imgBarWidth*0.5)
+          // }, 500)
+        }
+        if(event.keyCode == 32) {
+          if(!gameOver){
+            overlay.style.visibility = "hidden"
+            incrementCount(timer)
+          }
         }
       }
+    })
+    document.addEventListener('keyup', function(event) {
+      isKeyDown = false
     })
 /*let mousedownID = -1;  //Global ID of mouse down interval
   function mousedown(event) {

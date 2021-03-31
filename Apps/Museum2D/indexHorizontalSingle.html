@@ -21,10 +21,10 @@
   <body onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
   <div id="main">
 
-    <div id="goLeft" onclick="goToNext()" class="button" style ="left: 5px; top: 47vh; height: 6vh; width:6vh; opacity: 0.1;">
+    <div id="goLeft" onclick="goToPrev()" class="button" style ="left: 5px; top: 47vh; height: 6vh; width:6vh; opacity: 0.1;">
       <img id="leftArrow" src="../../Assets/Icons/arrow-back.png" width="100%">
     </div>
-    <div id="goRight" onclick="goToPrev()" class="button" style ="right: 5px; top: 47vh; height: 6vh; width:6vh;">
+    <div id="goRight" onclick="goToNext()" class="button" style ="right: 5px; top: 47vh; height: 6vh; width:6vh;">
       <img id="rightArrow" src="../../Assets/Icons/arrow-forward.png" width="100%">
     </div>
     
@@ -204,29 +204,34 @@
 
       iCard.style.visibility = "visible"
     }
-
+    
+    let isKeyDown = false
     document.addEventListener('keydown', function(event) {
-      console.log("key down "+event.keyCode)
-      if(event.keyCode == 37) {
-        goToNext()
-      }
-      if(event.keyCode == 39) {
-        goToPrev()
-      }
-      if(event.keyCode == 32) {
-        if(!gameOver){
-          overlay.style.visibility = "hidden"
-          incrementCount(timer)
+      if(!isKeyDown){
+        isKeyDown = true
+        console.log("key down "+event.keyCode)
+        if(event.keyCode == 37) {
+          goToPrev()
+        }
+        if(event.keyCode == 39) {
+          goToNext()
+        }
+        if(event.keyCode == 32) {
+          if(!gameOver){
+            overlay.style.visibility = "hidden"
+            incrementCount(timer)
+          }
         }
       }
     })
+    document.addEventListener('keyup', function(event) {
+      isKeyDown = false
+    })
 
     /* document.getElementById("goRight").addEventListener('click',(e)=>{
-      goToNext()
     })
 
     document.getElementById("goLeft").addEventListener('click',(e)=>{
-      goToPrev()
     })  */
 
     document.getElementById("closeInfoCard").addEventListener('click',()=>{
@@ -236,11 +241,11 @@
       // changeOrientation()
     }, false)
 
-    function goToNext(){
-      
+    function goToPrev(){
       currentThumbnail--
-      goLeft.style.opacity = 1
-      if(currentThumbnail==0)goRight.style.opacity = 0.1
+      console.log("go to next "+currentThumbnail)
+      goRight.style.opacity = 1
+      if(currentThumbnail==0)goLeft.style.opacity = 0.1
       if(currentThumbnail<0)currentThumbnail = 0
       
       thumbnailArray[currentThumbnail+1].style.pointerEvents = "none"
@@ -266,10 +271,11 @@
       }*/
 
     }
-    function goToPrev(){
+    function goToNext(){
       currentThumbnail++
-      goRight.style.opacity = 1
-      if(currentThumbnail==thumbnailArray.length-1)goLeft.style.opacity = 0.1
+      console.log("go to next "+currentThumbnail)
+      goLeft.style.opacity = 1
+      if(currentThumbnail==thumbnailArray.length-1)goRight.style.opacity = 0.1
       if(currentThumbnail>thumbnailArray.length-1)currentThumbnail = thumbnailArray.length-1
 
       thumbnailArray[currentThumbnail-1].style.pointerEvents = "none"
