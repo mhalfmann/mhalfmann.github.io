@@ -21,7 +21,7 @@
   <body onselectstart = 'return false' onwheel="preventScroll(event)" style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
   <div id="main">
 
-    <div id="goLeft" class="button" style ="left: 5px; top: 47vh; height: 6vh; width:6vh">
+    <div id="goLeft" class="button" style ="left: 5px; top: 47vh; height: 6vh; width:6vh; opacity: 0.1;">
       <img id="leftArrow" src="../../Assets/Icons/arrow-back.png" width="100%">
     </div>
     <div id="goRight" class="button" style ="right: 5px; top: 47vh; height: 6vh; width:6vh;">
@@ -204,22 +204,22 @@
     let isKeyDown = false
     document.addEventListener('keydown', function(event) {
 
-      // if(!isKeyDown){
+      if(!isKeyDown){
         isKeyDown = true
         console.log("key down "+event.keyCode)
         if(event.keyCode == 37) {
-          console.log("left")
+          /* console.log("left")
           imgBar.focus()
-          goRight.style.opacity = 1
+          goRight.style.opacity = 1 */
          /*  $('#imageBar').animate({
               scrollLeft: $('#imageBar').scrollLeft()-30
               // scrollLeft: $('#imageBar').scrollLeft()-(imgBarWidth*0.5)
           }, 0) */
         }
         if(event.keyCode == 39) {
-          console.log("right")
+          /* console.log("right")
           imgBar.focus()
-          goLeft.style.opacity = 1
+          goLeft.style.opacity = 1 */
           /* $('#imageBar').animate({
               scrollLeft: $('#imageBar').scrollLeft()+30
               // scrollLeft: $('#imageBar').scrollLeft()+(imgBarWidth*0.5)
@@ -231,7 +231,7 @@
             incrementCount(timer)
           }
         }
-      // }
+      }
     })
     document.addEventListener('keyup', function(event) {
       isKeyDown = false
@@ -290,17 +290,26 @@ document.addEventListener("mouseout", mouseup);
     })*/
 
     document.getElementById("goRight").addEventListener('click',(e)=>{
-        $('#imageBar').animate({
-            scrollLeft: $('#imageBar').scrollLeft()+(imgBarWidth*0.5)
-        }, 500)
+      goLeft.style.opacity = 1
+      $('#imageBar').animate({
+          scrollLeft: $('#imageBar').scrollLeft()+(imgBarWidth*0.5)
+      }, 500,animateComplete)
     })
 
     document.getElementById("goLeft").addEventListener('click',(e)=>{
-        $('#imageBar').animate({
-            scrollLeft: $('#imageBar').scrollLeft()-(imgBarWidth*0.5)
-        }, 500)
+      goRight.style.opacity = 1
+      $('#imageBar').animate({
+          scrollLeft: $('#imageBar').scrollLeft()-(imgBarWidth*0.5)
+      }, 500,animateComplete)
     }) 
-
+    function animateComplete(){
+      console.log("animate completed")
+      let dL = thumbnailArray[0].getBoundingClientRect().left-imgBar.getBoundingClientRect().left
+      let dR = thumbnailArray[thumbnailArray.length-1].getBoundingClientRect().right-imgBar.getBoundingClientRect().right
+      console.log(dL + " "+ dR)
+      if(dL>1)goLeft.style.opacity = 0.1
+      if(dR<1)goRight.style.opacity = 0.1
+    }
     document.getElementById("closeInfoCard").addEventListener('click',()=>{
       iCard.style.visibility = "hidden"
     })
