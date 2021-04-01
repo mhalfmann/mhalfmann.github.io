@@ -52,6 +52,9 @@
     <div id="timeText">
       10:00
     </div>
+    <!-- <div class="button" onclick="clickMe()" id="clickMe">
+      clickMe
+    </div> -->
     
   </div>
   <div id="overlay">
@@ -94,10 +97,14 @@
     
     let thumbnailArray = []
 
+    let leftIMG = null
+    let rightIMG = null
+
     // changeOrientation();
 
     // console.log(sessionStorage.getItem("start"))
     // sessionStorage.setItem("start", "true")
+
     iCard.style.visibility="hidden"
 
     language = "DE"
@@ -127,6 +134,17 @@
     }
 
     addImages()
+
+    function clickMe(){
+
+      // thumbnailArray[0].src = thumbnailArray[10].src
+
+      // thumbnailArray[0].style.width = thumbnailArray[10].width+"px"
+      // thumbnailArray[0].style.height = thumbnailArray[10].height+"px"
+      console.log("------------------------------")
+      console.log("offset left  " + getLeftImg())
+      console.log("offset right  " + getRightImg())
+    }
   
     function addImages(){
     
@@ -257,6 +275,51 @@
     function preventScroll(e){
       e.preventDefault()
     }
+
+    function getLeftImg(){
+      let leftPos = 0
+      let l = 0
+      for (var i=0; i<thumbnailArray.length; i++){
+        let thumb = thumbnailArray[i]
+        if(thumb.getBoundingClientRect().right>imgBar.getBoundingClientRect().left){
+          leftIMG = thumb
+          leftPos = i-1
+          break
+        }
+      }
+      
+      if(leftPos>-1)l = Math.abs(thumbnailArray[leftPos].getBoundingClientRect().left-imgBar.getBoundingClientRect().left)
+      console.log("leftIMG = " + leftIMG.id)
+      return l
+    }
+
+    function getRightImg(){
+      let rightPos = 0
+      let l = 0
+      for (var i=thumbnailArray.length-1; i>0; i--){
+        let thumb = thumbnailArray[i]
+        if(thumb.getBoundingClientRect().left<imgBar.getBoundingClientRect().right){
+          rightIMG = thumb
+          rightPos = i+1
+          break
+        }
+      }
+      
+      // l = Math.abs(thumbnailArray[rightPos].getBoundingClientRect().right-rightIMG.getBoundingClientRect().right)
+      if(rightPos<thumbnailArray.length)l = Math.abs(thumbnailArray[rightPos].getBoundingClientRect().right-imgBar.getBoundingClientRect().right)
+
+      /*for (var i=rightPos; i<thumbnailArray.length-1; i++){
+        let diff = thumbnailArray[i+1].getBoundingClientRect().left-thumbnailArray[i].getBoundingClientRect().left
+        l+=diff
+        if(l>imgBar.getBoundingClientRect().width){
+          l-=diff
+          break
+        }
+      }*/
+      console.log("rightIMG = " + rightIMG.id)
+      // console.log(imgBar.getBoundingClientRect().width+"  "+l)
+      return l
+    }
 /*let mousedownID = -1;  //Global ID of mouse down interval
   function mousedown(event) {
     if(mousedownID==-1)  //Prevent multimple loops!
@@ -302,16 +365,20 @@ document.addEventListener("mouseout", mouseup);
 
     document.getElementById("goRight").addEventListener('click',(e)=>{
       goLeft.style.opacity = 1
+      let offset = getRightImg()
       $('#imageBar').animate({
-          scrollLeft: $('#imageBar').scrollLeft()+(imgBarWidth*0.5)
-      }, 500,animateComplete)
+          // scrollLeft: $('#imageBar').scrollLeft()+(imgBarWidth*0.5)
+          scrollLeft: $('#imageBar').scrollLeft()+(offset)
+      }, 1.5*offset,animateComplete)
     })
 
     document.getElementById("goLeft").addEventListener('click',(e)=>{
       goRight.style.opacity = 1
+      let offset = getLeftImg()
       $('#imageBar').animate({
-          scrollLeft: $('#imageBar').scrollLeft()-(imgBarWidth*0.5)
-      }, 500,animateComplete)
+          // scrollLeft: $('#imageBar').scrollLeft()-(imgBarWidth*0.5)
+          scrollLeft: $('#imageBar').scrollLeft()-(offset)
+      }, 1.5*offset,animateComplete)
     })
 
     function animateComplete(){
@@ -326,6 +393,7 @@ document.addEventListener("mouseout", mouseup);
     document.getElementById("closeInfoCard").addEventListener('click',()=>{
       iCard.style.visibility = "hidden"
     })
+
     window.addEventListener("orientationchange", function() {
       // changeOrientation()
     }, false)
