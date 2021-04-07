@@ -197,7 +197,9 @@
             if(language == "DE")document.getElementById("infoTextTXT").innerHTML = e.target.getAttribute('textDE')
             if(language == "EN")document.getElementById("infoTextTXT").innerHTML = e.target.getAttribute('textEN')
 
-            // console.log(e.target.id)
+            // console.log(e.target.id,currentTime)
+            infoCardStartTime = getCurrentTime()
+            logString("infoCardOpened","Object#"+e.target.id+"*TimeStamp#"+getCurrentTime())
             disableArrowButtons()
           }
         })
@@ -268,6 +270,7 @@
         }
       }
     })
+
     document.addEventListener('keyup', function(event) {
       isKeyDown = false
       
@@ -398,6 +401,8 @@ document.addEventListener("mouseout", mouseup);
     
     document.getElementById("closeInfoCard").addEventListener('click',()=>{
       iCard.style.visibility = "hidden"
+      let deltaT = (getCurrentTime()-infoCardStartTime)/1000
+      logString("infoCardClosed","Object#"+iCard.getAttribute('imgID')+"*TimeStamp#"+getCurrentTime()+"*ViewingTime#"+deltaT)
       enableArrowButtons()
     })
 

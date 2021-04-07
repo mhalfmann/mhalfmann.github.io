@@ -1,3 +1,7 @@
+function getCurrentTime(){
+  let d = new Date()
+  return d.getTime()
+}
 function printTest(text){
     console.log(text)
 }
@@ -63,6 +67,7 @@ function addText(thumbnail){
     setTimeText(t)
     setInterval(function(){
       t--
+      currentTime++
       setTimeText(t)
       if(t ==0){
         overlay.style.visibility = "visible"
