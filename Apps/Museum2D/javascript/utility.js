@@ -114,3 +114,26 @@ function addText(thumbnail){
     if(typeof window.iwmstudy_access != 'undefined')window.iwmstudy_access.logAction(action,dict)
     if(typeof window.iwmstudy_access == 'undefined')console.log('logging',action,dict)
   }
+
+  let opacityLeft = 1.0
+  let opacityRight = 1.0
+
+  function enableArrowButtons(){
+    document.getElementById("goLeft").style.pointerEvents = "all"
+    document.getElementById("goRight").style.pointerEvents = "all"
+
+    document.getElementById("goLeft").style.opacity = opacityLeft
+    document.getElementById("goRight").style.opacity = opacityRight
+  }
+
+  function disableArrowButtons(){
+    document.getElementById("goLeft").style.pointerEvents = "none"
+    document.getElementById("goRight").style.pointerEvents = "none"
+
+    opacityLeft = document.getElementById("goLeft").style.opacity
+    opacityRight = document.getElementById("goRight").style.opacity
+
+    document.getElementById("goLeft").style.opacity = 0.1
+    document.getElementById("goRight").style.opacity = 0.1
+
+  }

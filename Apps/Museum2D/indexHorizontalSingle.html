@@ -188,8 +188,7 @@
           if(language == "EN")document.getElementById("infoTextTXT").innerHTML = e.target.getAttribute('textEN')
 
           console.log(e.target.id)
-          goLeft.style.pointerEvents = "none"
-          goRight.style.pointerEvents = "none"
+          disableArrowButtons()
         })
       }
     }
@@ -257,8 +256,7 @@
 
     document.getElementById("closeInfoCard").addEventListener('click',()=>{
       iCard.style.visibility = "hidden"
-      goLeft.style.pointerEvents = "all"
-      goRight.style.pointerEvents = "all"
+      enableArrowButtons()
     })
     window.addEventListener("orientationchange", function() {
       // changeOrientation()
