@@ -101,3 +101,16 @@ function addText(thumbnail){
       // iText.style.fontSize="1.5vh"
     }
   }
+
+  function logString(action,data){
+    var dict = {}
+    
+    var entries = data.split("*");
+    for (var i=0; i<entries.length; i++){
+        dict[entries[i].split("#")[0]]=entries[i].split("#")[1]
+    }
+
+    // window.iwmstudy_access.logAction("greeting",dict)
+    if(typeof window.iwmstudy_access != 'undefined')window.iwmstudy_access.logAction(action,dict)
+    if(typeof window.iwmstudy_access == 'undefined')console.log('logging',action,dict)
+  }

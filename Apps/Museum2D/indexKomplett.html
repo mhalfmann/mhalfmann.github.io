@@ -1,10 +1,16 @@
 <!doctype HTML>
+
 <html>
+<head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+</head>
+<body onselectstart = 'return false' onwheel="preventScroll(event)" style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
+
 <script src="./assets/text.js"></script>
 <script src="./assets/images.js"></script>
 <script src="./javascript/utility.js"></script>
 <script src="./javascript/variables.js"></script>
+<script src="../../../../app/iwm_studyaddon.js"></script>
 <!-- <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1"> -->
 <!-- <script src="./Javascript/aframe.min.js"></script> -->
 <!-- <script src="./Javascript/aframe-ar.js"></script> -->
@@ -15,11 +21,6 @@
 <!-- <script src="../../../Javascript/papaparse.min.js"></script> -->
 <link rel="stylesheet" type="text/css" href="./css/style.css">
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
-<style>
-
-</style>
-  <body onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
-
   <div id="main">
 
     <div id="infoCard">
@@ -48,9 +49,13 @@
       Bitte Leertaste drücken
     </div>
   </div>
-  </body>
   <script>
     console.log("Version: "+version)
+    var dict = {}
+    dict["Hallo"]="Horst"
+    // window.iwmstudy_access.logAction("greeting",dict)
+    if(typeof window.iwmstudy_access != 'undefined')window.iwmstudy_access.logAction("greeting",dict)
+    if(typeof window.iwmstudy_access == 'undefined')console.log('logging',"greeting",dict)
 
     let iCard = document.getElementById("infoCard")
     let iImage = document.getElementById("infoImageIMG")
@@ -203,4 +208,5 @@
       }
     })
   </script>
+  </body>
 </html>
