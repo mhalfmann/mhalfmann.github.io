@@ -42,7 +42,7 @@
       <div id="infoText">
         <div id="infoTextTXT"></div>
       </div>
-      <div id = "closeInfoCard">
+      <div id = "closeInfoCard" onclick="closeInfoCard()">
         <img src="../../Assets/Icons/close.png" height="100%">
       </div>
     </div>
@@ -64,11 +64,6 @@
   </div>
   <script>
     console.log("Version: "+version)
-    var dict = {}
-    dict["Hallo"]="Heinz"
-    // window.iwmstudy_access.logAction("greeting",dict)
-    if(typeof window.iwmstudy_access != 'undefined')window.iwmstudy_access.logAction("greeting",dict)
-    if(typeof window.iwmstudy_access == 'undefined')console.log('logging',"greeting",dict)
 
     let siteTitle = ''
     window.addEventListener('blur', () => {
@@ -161,6 +156,8 @@
         thumbnail.src = img.file
         thumbnail.id = img.id
         thumbnail.style.position = "absolute"
+        
+        viewingTimes[img.id]=0
 
         let f = imgBarHeight/maxImgHeight
 
@@ -256,12 +253,6 @@
     document.getElementById("goLeft").addEventListener('click',(e)=>{
     })  */
 
-    document.getElementById("closeInfoCard").addEventListener('click',()=>{
-      iCard.style.visibility = "hidden"
-      let deltaT = (getCurrentTime()-infoCardStartTime)/1000
-      logString("infoCardClosed","Object#"+iCard.getAttribute('imgID')+"*TimeStamp#"+getCurrentTime()+"*ViewingTime#"+deltaT)
-      enableArrowButtons()
-    })
     window.addEventListener("orientationchange", function() {
       // changeOrientation()
     }, false)

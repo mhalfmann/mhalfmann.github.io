@@ -43,7 +43,7 @@
       <div id="infoText">
         <div id="infoTextTXT"></div>
       </div>
-      <div id = "closeInfoCard">
+      <div id = "closeInfoCard" onclick="closeInfoCard()">
         <img src="../../Assets/Icons/close.png" height="100%">
       </div>
     </div>
@@ -137,6 +137,7 @@
     }
 
     addImages()
+    // console.log(viewingTimes)
 
     function clickMe(){
 
@@ -165,6 +166,8 @@
         thumbnail.className ="thumbnail"
         thumbnail.src = img.file
         thumbnail.id = img.id
+        
+        viewingTimes[img.id]=0
 
         thumbnail.style.marginRight = "10vw"
         // if(img.id.toString().indexOf("Gm1079")>-1){
@@ -282,10 +285,6 @@
       // if(dR<1)goRight.style.opacity = 0.1
     })
 
-    function preventScroll(e){
-      e.preventDefault()
-    }
-
     function getLeftImg(){
       let leftPos = 0
       let l = 0
@@ -400,13 +399,6 @@ document.addEventListener("mouseout", mouseup);
       if(dR<1)goRight.style.opacity = 0.1
     }
     
-    document.getElementById("closeInfoCard").addEventListener('click',()=>{
-      iCard.style.visibility = "hidden"
-      let deltaT = (getCurrentTime()-infoCardStartTime)
-      logString("infoCardClosed","Object#"+iCard.getAttribute('imgID')+"*TimeStamp#"+getCurrentTime()+"*ViewingTime#"+deltaT)
-      enableArrowButtons()
-    })
-
     window.addEventListener("orientationchange", function() {
       // changeOrientation()
     }, false)

@@ -63,6 +63,20 @@ function addText(thumbnail){
     iCard.style.visibility = "visible"
     iImage.src = image.src
   }
+  function closeInfoCard(){
+    iCard.style.visibility = "hidden"
+      let id_ = iCard.getAttribute('imgID')
+      
+      infoCardEndTime = getCurrentTime()
+      let deltaT = (infoCardEndTime-infoCardStartTime)
+      
+      viewingTimes[id_]=viewingTimes[id_]+deltaT
+
+      infoCardSequence+=" "+id_+"_"+deltaT
+      
+      logString("infoCardClosed","Object#"+id_+"*TimeStamp#"+getCurrentTime()+"*ViewingTime#"+deltaT)
+      enableArrowButtons()
+  }
     
   function incrementCount(t){
     setTimeText(t)
@@ -71,9 +85,18 @@ function addText(thumbnail){
       currentTime++
       setTimeText(t)
       if(t ==0){
+        closeInfoCard()
         overlay.style.visibility = "visible"
         gameOver = true
         overlayText.innerHTML = "Game Over"
+        let viewingTimesData = ""
+        for(var key in viewingTimes) {
+          var value = viewingTimes[key]
+          viewingTimesData+="Z_"+key+"#"+value+"*"
+        }
+        logString("end","TimeStamp#"+getCurrentTime())
+        logString("infoCardSequence","InfoCardSequence#"+infoCardSequence)
+        logString("viewingTimes",viewingTimesData)
       }
     },1000);
   }
@@ -144,4 +167,8 @@ function addText(thumbnail){
     document.getElementById("goLeft").style.opacity = 0.1
     document.getElementById("goRight").style.opacity = 0.1
 
+  }
+
+  function preventScroll(e){
+    e.preventDefault()
   }
