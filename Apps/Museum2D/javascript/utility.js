@@ -109,6 +109,8 @@ function addText(thumbnail){
   }
 
   function logString(action,data){
+    if(data.endsWith("*"))data=data.substr(0,data.length-1)
+    data+="*Condition#2D"
     var dict = {}
     
     var entries = data.split("*");
