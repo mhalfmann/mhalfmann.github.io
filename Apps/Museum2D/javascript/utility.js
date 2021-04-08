@@ -1,6 +1,7 @@
 function getCurrentTime(){
   let d = new Date()
-  return d.getTime()
+
+  return (d.getTime()-startTime)/1000
 }
 function printTest(text){
     console.log(text)

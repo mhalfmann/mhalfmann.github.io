@@ -8,3 +8,5 @@ let secondStr = ""
 let version="0.2.5"
 let currentTime = 0
 let infoCardStartTime = 0
+let startTime = 0
+let infoCardSequence = ""

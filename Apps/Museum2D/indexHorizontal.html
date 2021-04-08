@@ -265,6 +265,9 @@
         if(event.keyCode == 32) {
           if(!gameOver){
             overlay.style.visibility = "hidden"
+            
+            let d = new Date() 
+            startTime = d.getTime()
             incrementCount(timer)
           }
         }
@@ -401,7 +404,7 @@ document.addEventListener("mouseout", mouseup);
     
     document.getElementById("closeInfoCard").addEventListener('click',()=>{
       iCard.style.visibility = "hidden"
-      let deltaT = (getCurrentTime()-infoCardStartTime)/1000
+      let deltaT = (getCurrentTime()-infoCardStartTime)
       logString("infoCardClosed","Object#"+iCard.getAttribute('imgID')+"*TimeStamp#"+getCurrentTime()+"*ViewingTime#"+deltaT)
       enableArrowButtons()
     })
