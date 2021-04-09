@@ -80,6 +80,8 @@
       console.log("page entered")
     })
 
+    let condition = "2D_Multi"
+
     let iCard = document.getElementById("infoCard")
     let iImage = document.getElementById("infoImageIMG")
     let iText = document.getElementById("infoTextTXT")
@@ -207,38 +209,6 @@
         thumbnailArray.push(thumbnail)
       }
     }
-
-    function loaded(img){
-
-      let imgOuterWidth = document.getElementById("infoImage").getBoundingClientRect().width
-      let imgOuterHeight = document.getElementById("infoImage").getBoundingClientRect().height
-      let textOuterWidth = document.getElementById("infoText").getBoundingClientRect().width
-      let textOuterHeight = document.getElementById("infoText").getBoundingClientRect().height
-      
-      let imgInnerWidth = document.getElementById("infoImageIMG").getBoundingClientRect().width
-      let imgInnerHeight = document.getElementById("infoImageIMG").getBoundingClientRect().height
-      let textInnerWidth = document.getElementById("infoTextTXT").getBoundingClientRect().width
-      let textInnerHeight = document.getElementById("infoTextTXT").getBoundingClientRect().height
-      // let cardWidth = imgWidth+textWidth      
-
-      let imgPosX = (imgOuterWidth-imgInnerWidth)/2
-      let imgPosY = (imgOuterHeight-imgInnerHeight)/2
-      let txtPosY = (textOuterHeight-textInnerHeight)/2
-
-      // console.log(imgOuterWidth,imgInnerWidth,imgPosX)
-
-      // let left = (screenWidth-cardWidth)/2
-
-      // iCard.style.width = cardWidth+"px"
-      // iCard.style.height = imgHeight+"px"
-      // iCard.style.left = left+"px"
-      // iCard.style.left = "15%"
-      iImage.style.left = imgPosX+"px"
-      iImage.style.top = imgPosY+"px"
-      iText.style.top = txtPosY+"px"
-
-      iCard.style.visibility = "visible"
-    }
     let isKeyDown = false
     document.addEventListener('keydown', function(event) {
 
@@ -264,8 +234,14 @@
           }, 0) */
         }
         if(event.keyCode == 32) {
-          if(!gameOver){
+          if(!gameOver && !running){
+            running = true
             overlay.style.visibility = "hidden"
+            let data = ""
+            for(var i=0; i<thumbnailArray.length; i++){
+              data+="Z_"+thumbnailArray[i].id+"#"+isObjectVisible(thumbnailArray[i])+"*"
+            }
+            logString("ObjectsVisibleTotal",data)
             
             let d = new Date() 
             startTime = d.getTime()
@@ -374,7 +350,9 @@ document.addEventListener("mouseout", mouseup);
 
     document.getElementById("goRight").addEventListener('click',(e)=>{
       goLeft.style.opacity = 1
+      disableThumbnails()
       let offset = getRightImg()
+      logString("RotationChange","ChangeDirection#Right")
       $('#imageBar').animate({
           // scrollLeft: $('#imageBar').scrollLeft()+(imgBarWidth*0.5)
           scrollLeft: $('#imageBar').scrollLeft()+(offset)
@@ -383,7 +361,9 @@ document.addEventListener("mouseout", mouseup);
 
     document.getElementById("goLeft").addEventListener('click',(e)=>{
       goRight.style.opacity = 1
+      disableThumbnails()
       let offset = getLeftImg()
+      logString("RotationChange","ChangeDirection#Left")
       $('#imageBar').animate({
           // scrollLeft: $('#imageBar').scrollLeft()-(imgBarWidth*0.5)
           scrollLeft: $('#imageBar').scrollLeft()-(offset)
@@ -391,12 +371,18 @@ document.addEventListener("mouseout", mouseup);
     })
 
     function animateComplete(){
-      // console.log("animate completed")
+      console.log("animate completed")
       let dL = thumbnailArray[0].getBoundingClientRect().left-imgBar.getBoundingClientRect().left
       let dR = thumbnailArray[thumbnailArray.length-1].getBoundingClientRect().right-imgBar.getBoundingClientRect().right
       // console.log(dL + " "+ dR)
       if(dL>1)goLeft.style.opacity = 0.1
       if(dR<1)goRight.style.opacity = 0.1
+      enableThumbnails()
+      let data = ""
+      for(var i=0; i<thumbnailArray.length; i++){
+        data+="Z_"+thumbnailArray[i].id+"#"+isObjectVisible(thumbnailArray[i])+"*"
+      }
+      logString("ObjectsVisibleTotal",data)
     }
     
     window.addEventListener("orientationchange", function() {

@@ -76,6 +76,8 @@
       console.log("page entered")
     })
 
+  let condition = "2D_Single"
+
     let iCard = document.getElementById("infoCard")
     let iImage = document.getElementById("infoImageIMG")
     let iText = document.getElementById("infoTextTXT")
@@ -169,6 +171,7 @@
 
         thumbnail.style.top = top+"px"
         thumbnail.style.left = left+"px"
+        thumbnail.style.opacity = 1
 
         document.getElementById("imageBar").appendChild(thumbnail)
 
@@ -191,38 +194,6 @@
         })
       }
     }
-
-    function loaded(img){
-
-      let imgOuterWidth = document.getElementById("infoImage").getBoundingClientRect().width
-      let imgOuterHeight = document.getElementById("infoImage").getBoundingClientRect().height
-      let textOuterWidth = document.getElementById("infoText").getBoundingClientRect().width
-      let textOuterHeight = document.getElementById("infoText").getBoundingClientRect().height
-      
-      let imgInnerWidth = document.getElementById("infoImageIMG").getBoundingClientRect().width
-      let imgInnerHeight = document.getElementById("infoImageIMG").getBoundingClientRect().height
-      let textInnerWidth = document.getElementById("infoTextTXT").getBoundingClientRect().width
-      let textInnerHeight = document.getElementById("infoTextTXT").getBoundingClientRect().height
-      // let cardWidth = imgWidth+textWidth      
-
-      let imgPosX = (imgOuterWidth-imgInnerWidth)/2
-      let imgPosY = (imgOuterHeight-imgInnerHeight)/2
-      let txtPosY = (textOuterHeight-textInnerHeight)/2
-
-      // console.log(imgOuterWidth,imgInnerWidth,imgPosX)
-
-      // let left = (screenWidth-cardWidth)/2
-
-      // iCard.style.width = cardWidth+"px"
-      // iCard.style.height = imgHeight+"px"
-      // iCard.style.left = left+"px"
-      // iCard.style.left = "15%"
-      iImage.style.left = imgPosX+"px"
-      iImage.style.top = imgPosY+"px"
-      iText.style.top = txtPosY+"px"
-
-      iCard.style.visibility = "visible"
-    }
     
     let isKeyDown = false
     document.addEventListener('keydown', function(event) {
@@ -236,8 +207,17 @@
           // goToNext()
         }
         if(event.keyCode == 32) {
-          if(!gameOver){
+          if(!gameOver && !running){
+            running = true
+            let data = ""
+            for(var i=0; i<thumbnailArray.length; i++){
+              data+="Z_"+thumbnailArray[i].id+"#"+isObjectVisible(thumbnailArray[i])+"*"
+            }
+            logString("ObjectsVisibleTotal",data)
             overlay.style.visibility = "hidden"
+            
+            let d = new Date() 
+            startTime = d.getTime()
             incrementCount(timer)
           }
         }
@@ -257,7 +237,8 @@
       // changeOrientation()
     }, false)
 
-    function goToPrev(){
+    function goToPrev(){      
+      logString("RotationChange","ChangeDirection#Left")
       currentThumbnail--
       console.log("go to next "+currentThumbnail)
       goRight.style.opacity = 1
@@ -274,7 +255,12 @@
           
       }})
       TweenMax.to(thumbnailArray[currentThumbnail], 0.5, {x:0, onComplete:function(){
-          
+          console.log("new Thumbnail visible")
+            let data = ""
+            for(var i=0; i<thumbnailArray.length; i++){
+              data+="Z_"+thumbnailArray[i].id+"#"+isObjectVisible(thumbnailArray[i])+"*"
+            }
+            logString("ObjectsVisibleTotal",data)
       }})
       TweenMax.to(thumbnailArray[currentThumbnail], 0.2, {opacity:1, onComplete:function(){
           
@@ -288,6 +274,7 @@
 
     }
     function goToNext(){
+      logString("RotationChange","ChangeDirection#Right")
       currentThumbnail++
       console.log("go to next "+currentThumbnail)
       goLeft.style.opacity = 1
@@ -304,6 +291,12 @@
           
       }})
       TweenMax.to(thumbnailArray[currentThumbnail], 0.5, {x:0, onComplete:function(){
+          console.log("new Thumbnail visible")
+            let data = ""
+            for(var i=0; i<thumbnailArray.length; i++){
+              data+="Z_"+thumbnailArray[i].id+"#"+isObjectVisible(thumbnailArray[i])+"*"
+            }
+            logString("ObjectsVisibleTotal",data)
           
       }})
       TweenMax.to(thumbnailArray[currentThumbnail], 0.2, {opacity:1, onComplete:function(){

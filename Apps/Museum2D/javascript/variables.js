@@ -1,6 +1,7 @@
 
 let gameOver = false
-let timer = 10
+let running = false
+let timer = 100
 let minutes = 0
 let seconds = 0
 let minuteStr = ""

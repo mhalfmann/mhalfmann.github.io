@@ -56,7 +56,39 @@ function addText(thumbnail){
             }
         }
       }
-  }  
+  }
+
+  function loaded(img){
+
+    let imgOuterWidth = document.getElementById("infoImage").getBoundingClientRect().width
+    let imgOuterHeight = document.getElementById("infoImage").getBoundingClientRect().height
+    let textOuterWidth = document.getElementById("infoText").getBoundingClientRect().width
+    let textOuterHeight = document.getElementById("infoText").getBoundingClientRect().height
+    
+    let imgInnerWidth = document.getElementById("infoImageIMG").getBoundingClientRect().width
+    let imgInnerHeight = document.getElementById("infoImageIMG").getBoundingClientRect().height
+    let textInnerWidth = document.getElementById("infoTextTXT").getBoundingClientRect().width
+    let textInnerHeight = document.getElementById("infoTextTXT").getBoundingClientRect().height
+    // let cardWidth = imgWidth+textWidth      
+
+    let imgPosX = (imgOuterWidth-imgInnerWidth)/2
+    let imgPosY = (imgOuterHeight-imgInnerHeight)/2
+    let txtPosY = (textOuterHeight-textInnerHeight)/2
+
+    // console.log(imgOuterWidth,imgInnerWidth,imgPosX)
+
+    // let left = (screenWidth-cardWidth)/2
+
+    // iCard.style.width = cardWidth+"px"
+    // iCard.style.height = imgHeight+"px"
+    // iCard.style.left = left+"px"
+    // iCard.style.left = "15%"
+    iImage.style.left = imgPosX+"px"
+    iImage.style.top = imgPosY+"px"
+    iText.style.top = txtPosY+"px"
+
+    iCard.style.visibility = "visible"
+  }
 
   function showLargeImage(image){
     // console.log("showing image",image.src)
@@ -133,7 +165,7 @@ function addText(thumbnail){
 
   function logString(action,data){
     if(data.endsWith("*"))data=data.substr(0,data.length-1)
-    data+="*Condition#2D"
+    data+="*Condition#"+condition
     var dict = {}
     
     var entries = data.split("*");
@@ -167,6 +199,26 @@ function addText(thumbnail){
     document.getElementById("goLeft").style.opacity = 0.1
     document.getElementById("goRight").style.opacity = 0.1
 
+  }
+
+  function disableThumbnails(){
+    for(var i=1; i<thumbnailArray.length; i++){      
+      thumbnailArray[i].style.pointerEvents = "none"
+    }
+  }
+  function enableThumbnails(){
+    for(var i=1; i<thumbnailArray.length; i++){      
+      thumbnailArray[i].style.pointerEvents = "all"
+    }
+  }
+  function isObjectVisible(obj){
+    let test = false
+    let objPos = obj.getBoundingClientRect().left + obj.getBoundingClientRect().width*0.5
+    let imgBarL = imgBar.getBoundingClientRect().left
+    let imgBarR = imgBar.getBoundingClientRect().right
+    if(condition == "2D_Multi")if(objPos >= imgBarL && objPos <= imgBarR) test = true
+    if(condition == "2D_Single")if(obj.style.opacity == 1) test = true
+    return test
   }
 
   function preventScroll(e){
