@@ -68,6 +68,7 @@
   </div>
   <script>
     console.log("Version: "+version)
+    console.log("URL: "+location)
 
     let siteTitle = ''
     window.addEventListener('blur', () => {
@@ -202,6 +203,8 @@
 
             // console.log(e.target.id,currentTime)
             infoCardStartTime = getCurrentTime()
+            let deltaT = infoCardStartTime - infoCardEndTime
+            infoCardSequence+=" None_"+deltaT
             logString("infoCardOpened","Object#"+e.target.id+"*TimeStamp#"+getCurrentTime())
             disableArrowButtons()
           }
@@ -245,6 +248,7 @@
             
             let d = new Date() 
             startTime = d.getTime()
+            infoCardEndTime = getCurrentTime()
             incrementCount(timer)
           }
         }

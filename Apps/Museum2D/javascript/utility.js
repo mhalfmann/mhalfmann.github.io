@@ -97,17 +97,17 @@ function addText(thumbnail){
   }
   function closeInfoCard(){
     iCard.style.visibility = "hidden"
-      let id_ = iCard.getAttribute('imgID')
-      
-      infoCardEndTime = getCurrentTime()
-      let deltaT = (infoCardEndTime-infoCardStartTime)
-      
-      viewingTimes[id_]=viewingTimes[id_]+deltaT
+    let id_ = iCard.getAttribute('imgID')
+    
+    infoCardEndTime = getCurrentTime()
+    let deltaT = (infoCardEndTime-infoCardStartTime)
+    
+    viewingTimes[id_]=viewingTimes[id_]+deltaT
 
-      infoCardSequence+=" "+id_+"_"+deltaT
-      
-      logString("infoCardClosed","Object#"+id_+"*TimeStamp#"+getCurrentTime()+"*ViewingTime#"+deltaT)
-      enableArrowButtons()
+    infoCardSequence+=" "+id_+"_"+deltaT
+    
+    logString("infoCardClosed","Object#"+id_+"*TimeStamp#"+getCurrentTime()+"*ViewingTime#"+deltaT)
+    enableArrowButtons()
   }
     
   function incrementCount(t){
@@ -117,7 +117,11 @@ function addText(thumbnail){
       currentTime++
       setTimeText(t)
       if(t ==0){
-        closeInfoCard()
+        if(iCard.style.visibility == "visible")closeInfoCard()
+        if(iCard.style.visibility == "hidden"){          
+          let deltaT = getCurrentTime() - infoCardEndTime
+          infoCardSequence+=" None_"+deltaT
+        }
         overlay.style.visibility = "visible"
         gameOver = true
         overlayText.innerHTML = "Game Over"
