@@ -1,7 +1,7 @@
 {
 "companyName": "IWM",
 "productName": "VirtualMuseumHall",
-"productVersion": "0.5",
+"productVersion": "0.6",
 "dataUrl": "MuseumHall.data.unityweb",
 "wasmCodeUrl": "MuseumHall.wasm.code.unityweb",
 "wasmFrameworkUrl": "MuseumHall.wasm.framework.unityweb",
