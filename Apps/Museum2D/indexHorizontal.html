@@ -68,7 +68,8 @@
   </div>
   <script>
     console.log("Version: "+version)
-    console.log("URL: "+location)
+    // console.log("URL: "+location)
+    if(location.toString().indexOf("github.io")>-1)timer = 1000
 
     let siteTitle = ''
     window.addEventListener('blur', () => {
