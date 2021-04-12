@@ -105,9 +105,9 @@ function addText(thumbnail){
     viewingTimes[id_]=viewingTimes[id_]+deltaT
 
     objectSequence+=" "+id_+"_"+deltaT
-    objectNumberSequence+=" objectNumber"+objNumbers[id_]+"_"+deltaT
+    objectNumberSequence+=" objectNumber"+iCard.getAttribute("objNumber")+"_"+deltaT
     
-    logString("infoCardClosed","ObjectName#"+id_+"*ObjectNumber#"+objNumbers[id_]+"*ViewingTime#"+deltaT)
+    logString("infoCardClosed","ObjectName#"+id_+"*ObjectNumber#"+iCard.getAttribute("objNumber")+"*ViewingTime#"+deltaT)
     enableArrowButtons()
   }
     

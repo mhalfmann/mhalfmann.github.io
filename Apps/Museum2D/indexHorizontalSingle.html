@@ -158,6 +158,7 @@
         thumbnail.className ="thumbnail"
         thumbnail.src = img.file
         thumbnail.id = img.id
+        thumbnail.setAttribute("objNumber",(i+1).toString())
         thumbnail.style.position = "absolute"
         
         viewingTimes[img.id]=0
@@ -185,6 +186,7 @@
         thumbnail.addEventListener('click',(e)=>{
           iImage.src = e.target.src
           iCard.setAttribute('imgID', e.target.id)
+          iCard.setAttribute('objNumber', e.target.getAttribute("objNumber"))
           if(language == "DE")document.getElementById("infoTextTXT").innerHTML = e.target.getAttribute('textDE')
           if(language == "EN")document.getElementById("infoTextTXT").innerHTML = e.target.getAttribute('textEN')
 
@@ -194,7 +196,7 @@
           objectSequence+=" None_"+deltaT
           objectNumberSequence+=" None_"+deltaT
                     
-          logString("infoCardOpened","ObjectName#"+e.target.id+"*ObjectNumber#"+objNumbers[e.target.id])
+          logString("infoCardOpened","ObjectName#"+e.target.id+"*ObjectNumber#"+e.target.getAttribute("objNumber"))
           disableArrowButtons()
         })
       }
@@ -225,7 +227,7 @@
             }
             logString("ObjectsVisibleTotal",data)
             overlay.style.visibility = "hidden"
-            
+
             incrementCount(timer)
           }
         }

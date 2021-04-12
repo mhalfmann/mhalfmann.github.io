@@ -75,8 +75,6 @@
     // console.log("URL: "+location)
     if(location.toString().indexOf("github.io")>-1)timer = 1000
 
-    console.log("***",objNumbers["Gm1115"])
-
     let siteTitle = ''
     window.addEventListener('blur', () => {
       siteTitle = document.title
@@ -176,6 +174,7 @@
         thumbnail.className ="thumbnail"
         thumbnail.src = img.file
         thumbnail.id = img.id
+        thumbnail.setAttribute("objNumber",(i+1).toString())
         
         viewingTimes[img.id]=0
 
@@ -205,6 +204,7 @@
           if(iCard.style.visibility=="hidden"){
             iImage.src = e.target.src
             iCard.setAttribute('imgID', e.target.id)
+            iCard.setAttribute('objNumber', e.target.getAttribute("objNumber"))
             if(language == "DE")document.getElementById("infoTextTXT").innerHTML = e.target.getAttribute('textDE')
             if(language == "EN")document.getElementById("infoTextTXT").innerHTML = e.target.getAttribute('textEN')
 
@@ -213,7 +213,7 @@
             let deltaT = infoCardStartTime - infoCardEndTime
             objectSequence+=" None_"+deltaT
             objectNumberSequence+=" None_"+deltaT
-            logString("infoCardOpened","ObjectName#"+e.target.id+"*ObjectNumber#"+objNumbers[e.target.id])
+            logString("infoCardOpened","ObjectName#"+e.target.id+"*ObjectNumber#"+e.target.getAttribute("objNumber"))
             disableArrowButtons()
           }
         })
