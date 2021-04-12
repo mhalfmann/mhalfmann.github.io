@@ -66,10 +66,16 @@
       Bitte Leertaste drücken
     </div>
   </div>
+  <div id="leftBar" class = "fovBar" style = "left: 30%; top: 0%;">
+  </div>
+  <div id="rightBar" class = "fovBar" style = "right: 30%; top: 0%;">
+  </div>
   <script>
     console.log("Version: "+version)
     // console.log("URL: "+location)
     if(location.toString().indexOf("github.io")>-1)timer = 1000
+
+    console.log("***",objNumbers["Gm1115"])
 
     let siteTitle = ''
     window.addEventListener('blur', () => {
@@ -205,8 +211,9 @@
             // console.log(e.target.id,currentTime)
             infoCardStartTime = getCurrentTime()
             let deltaT = infoCardStartTime - infoCardEndTime
-            infoCardSequence+=" None_"+deltaT
-            logString("infoCardOpened","Object#"+e.target.id+"*TimeStamp#"+getCurrentTime())
+            objectSequence+=" None_"+deltaT
+            objectNumberSequence+=" None_"+deltaT
+            logString("infoCardOpened","ObjectName#"+e.target.id+"*ObjectNumber#"+objNumbers[e.target.id])
             disableArrowButtons()
           }
         })
@@ -242,14 +249,21 @@
             running = true
             overlay.style.visibility = "hidden"
             let data = ""
-            for(var i=0; i<thumbnailArray.length; i++){
-              data+="Z_"+thumbnailArray[i].id+"#"+isObjectVisible(thumbnailArray[i])+"*"
-            }
-            logString("ObjectsVisibleTotal",data)
             
             let d = new Date() 
             startTime = d.getTime()
             infoCardEndTime = getCurrentTime()
+
+            for(var i=0; i<thumbnailArray.length; i++){
+              data+="Z_"+thumbnailArray[i].id+"#"+isObjectVisible(thumbnailArray[i])+"*"
+            }
+            logString("ObjectsVisibleTotal",data)
+
+            data = ""
+            for(var i=0; i<thumbnailArray.length; i++){
+              data+="Z_"+thumbnailArray[i].id+"#"+isObjectVisibleCenter(thumbnailArray[i])+"*"
+            }
+            logString("ObjectsVisibleCenter",data)
             incrementCount(timer)
           }
         }
@@ -357,7 +371,7 @@ document.addEventListener("mouseout", mouseup);
       goLeft.style.opacity = 1
       disableThumbnails()
       let offset = getRightImg()
-      logString("RotationChange","ChangeDirection#Right")
+      logString("ArrowClick","ChangeDirection#Right")
       $('#imageBar').animate({
           // scrollLeft: $('#imageBar').scrollLeft()+(imgBarWidth*0.5)
           scrollLeft: $('#imageBar').scrollLeft()+(offset)
@@ -368,7 +382,7 @@ document.addEventListener("mouseout", mouseup);
       goRight.style.opacity = 1
       disableThumbnails()
       let offset = getLeftImg()
-      logString("RotationChange","ChangeDirection#Left")
+      logString("ArrowClick","ChangeDirection#Left")
       $('#imageBar').animate({
           // scrollLeft: $('#imageBar').scrollLeft()-(imgBarWidth*0.5)
           scrollLeft: $('#imageBar').scrollLeft()-(offset)
@@ -380,7 +394,7 @@ document.addEventListener("mouseout", mouseup);
       let dL = thumbnailArray[0].getBoundingClientRect().left-imgBar.getBoundingClientRect().left
       let dR = thumbnailArray[thumbnailArray.length-1].getBoundingClientRect().right-imgBar.getBoundingClientRect().right
       // console.log(dL + " "+ dR)
-      if(dL>1)goLeft.style.opacity = 0.1
+      if(dL>-1)goLeft.style.opacity = 0.1
       if(dR<1)goRight.style.opacity = 0.1
       enableThumbnails()
       let data = ""
@@ -388,6 +402,12 @@ document.addEventListener("mouseout", mouseup);
         data+="Z_"+thumbnailArray[i].id+"#"+isObjectVisible(thumbnailArray[i])+"*"
       }
       logString("ObjectsVisibleTotal",data)
+            
+      data = ""
+      for(var i=0; i<thumbnailArray.length; i++){
+        data+="Z_"+thumbnailArray[i].id+"#"+isObjectVisibleCenter(thumbnailArray[i])+"*"
+      }
+      logString("ObjectsVisibleCenter",data)
     }
     
     window.addEventListener("orientationchange", function() {

@@ -191,8 +191,10 @@
           // console.log(e.target.id)
           infoCardStartTime = getCurrentTime()
           let deltaT = infoCardStartTime - infoCardEndTime
-          infoCardSequence+=" None_"+deltaT
-          logString("infoCardOpened","Object#"+e.target.id+"*TimeStamp#"+getCurrentTime())
+          objectSequence+=" None_"+deltaT
+          objectNumberSequence+=" None_"+deltaT
+                    
+          logString("infoCardOpened","ObjectName#"+e.target.id+"*ObjectNumber#"+objNumbers[e.target.id])
           disableArrowButtons()
         })
       }
@@ -213,15 +215,17 @@
           if(!gameOver && !running){
             running = true
             let data = ""
+            
+            let d = new Date() 
+            startTime = d.getTime()
+            infoCardEndTime = getCurrentTime()
+
             for(var i=0; i<thumbnailArray.length; i++){
               data+="Z_"+thumbnailArray[i].id+"#"+isObjectVisible(thumbnailArray[i])+"*"
             }
             logString("ObjectsVisibleTotal",data)
             overlay.style.visibility = "hidden"
             
-            let d = new Date() 
-            startTime = d.getTime()
-            infoCardEndTime = getCurrentTime()
             incrementCount(timer)
           }
         }
@@ -242,7 +246,7 @@
     }, false)
 
     function goToPrev(){      
-      logString("RotationChange","ChangeDirection#Left")
+      logString("ArrowClick","ChangeDirection#Left")
       currentThumbnail--
       console.log("go to next "+currentThumbnail)
       goRight.style.opacity = 1
@@ -278,7 +282,7 @@
 
     }
     function goToNext(){
-      logString("RotationChange","ChangeDirection#Right")
+      logString("ArrowClick","ChangeDirection#Right")
       currentThumbnail++
       console.log("go to next "+currentThumbnail)
       goLeft.style.opacity = 1

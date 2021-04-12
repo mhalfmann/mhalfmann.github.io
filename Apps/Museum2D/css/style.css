@@ -13,13 +13,6 @@ a, a:visited {
   /* border: 5px solid red; */
   /* padding: 10px; */
 }
-.thumbnailFrame{
-  /* background: rgb(253, 99, 99); */
-  /* border: 5px solid red; */
-  /* padding: 10px; */
-  /* align-items: center; */
-  /* display: flex; */
-}
 #main {
   position: absolute;
   left: 0px;
@@ -121,4 +114,12 @@ a, a:visited {
   color: white;
   font-size: 3vh;
   font-weight: bold;
+  visibility: visible;
+}
+.fovBar{
+  position: absolute;
+  width: 1%;
+  height: 100%;
+  background: lime;
+  visibility: hidden;
 }

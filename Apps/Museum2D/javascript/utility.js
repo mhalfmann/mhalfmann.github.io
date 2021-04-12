@@ -104,9 +104,10 @@ function addText(thumbnail){
     
     viewingTimes[id_]=viewingTimes[id_]+deltaT
 
-    infoCardSequence+=" "+id_+"_"+deltaT
+    objectSequence+=" "+id_+"_"+deltaT
+    objectNumberSequence+=" objectNumber"+objNumbers[id_]+"_"+deltaT
     
-    logString("infoCardClosed","Object#"+id_+"*TimeStamp#"+getCurrentTime()+"*ViewingTime#"+deltaT)
+    logString("infoCardClosed","ObjectName#"+id_+"*ObjectNumber#"+objNumbers[id_]+"*ViewingTime#"+deltaT)
     enableArrowButtons()
   }
     
@@ -120,7 +121,8 @@ function addText(thumbnail){
         if(iCard.style.visibility == "visible")closeInfoCard()
         if(iCard.style.visibility == "hidden"){          
           let deltaT = getCurrentTime() - infoCardEndTime
-          infoCardSequence+=" None_"+deltaT
+          objectSequence+=" None_"+deltaT
+          objectNumberSequence+=" None_"+deltaT
         }
         overlay.style.visibility = "visible"
         gameOver = true
@@ -131,7 +133,8 @@ function addText(thumbnail){
           viewingTimesData+="Z_"+key+"#"+value+"*"
         }
         logString("end","TimeStamp#"+getCurrentTime())
-        logString("infoCardSequence","InfoCardSequence#"+infoCardSequence)
+        logString("objectSequence","ObjectSequence#"+objectSequence)
+        logString("objectNumberSequence","ObjectNumberSequence#"+objectNumberSequence)
         logString("viewingTimes",viewingTimesData)
       }
     },1000);
@@ -170,13 +173,14 @@ function addText(thumbnail){
   function logString(action,data){
     if(data.endsWith("*"))data=data.substr(0,data.length-1)
     data+="*Condition#"+condition
+    data+="*TimeStamp#"+getCurrentTime()
+
     var dict = {}
     
     var entries = data.split("*");
     for (var i=0; i<entries.length; i++){
         dict[entries[i].split("#")[0]]=entries[i].split("#")[1]
     }
-
     // window.iwmstudy_access.logAction("greeting",dict)
     if(typeof window.iwmstudy_access != 'undefined')window.iwmstudy_access.logAction(action,dict)
     if(typeof window.iwmstudy_access == 'undefined')console.log('logging',action,dict)
@@ -222,6 +226,17 @@ function addText(thumbnail){
     let imgBarR = imgBar.getBoundingClientRect().right
     if(condition == "2D_Multi")if(objPos >= imgBarL && objPos <= imgBarR) test = true
     if(condition == "2D_Single")if(obj.style.opacity == 1) test = true
+    return test
+  }
+
+  function isObjectVisibleCenter(obj){
+    let test = false
+    let objPos = obj.getBoundingClientRect().left + obj.getBoundingClientRect().width*0.5
+    let left = leftBar.getBoundingClientRect().left
+    let right = rightBar.getBoundingClientRect().right
+    if(condition == "2D_Multi")if(objPos >= left && objPos <= right) test = true
+    if(condition == "2D_Single")if(obj.style.opacity == 1) test = true
+    // if(test)console.log(obj.id)
     return test
   }
 
