@@ -118,24 +118,7 @@ function addText(thumbnail){
       currentTime++
       setTimeText(t)
       if(t ==0){
-        if(iCard.style.visibility == "visible")closeInfoCard()
-        if(iCard.style.visibility == "hidden"){          
-          let deltaT = getCurrentTime() - infoCardEndTime
-          objectSequence+=" None_"+deltaT
-          objectNumberSequence+=" None_"+deltaT
-        }
-        overlay.style.visibility = "visible"
-        gameOver = true
-        overlayText.innerHTML = "Game Over"
-        let viewingTimesData = ""
-        for(var key in viewingTimes) {
-          var value = viewingTimes[key]
-          viewingTimesData+="Z_"+key+"#"+value+"*"
-        }
-        logString("end","TimeStamp#"+getCurrentTime())
-        logString("objectSequence","ObjectSequence#"+objectSequence)
-        logString("objectNumberSequence","ObjectNumberSequence#"+objectNumberSequence)
-        logString("viewingTimes",viewingTimesData)
+        exit()
       }
     },1000);
   }
@@ -242,4 +225,28 @@ function addText(thumbnail){
 
   function preventScroll(e){
     e.preventDefault()
+  }
+
+  function exit(){
+    console.log("EXIT")
+    if(iCard.style.visibility == "visible")closeInfoCard()
+    if(iCard.style.visibility == "hidden"){          
+      let deltaT = getCurrentTime() - infoCardEndTime
+      objectSequence+=" None_"+deltaT
+      objectNumberSequence+=" None_"+deltaT
+    }
+    overlay.style.visibility = "visible"
+    gameOver = true
+    overlayText.style.top = (screenHeight/2 - overlayText.getBoundingClientRect().height/2) +"px"
+    overlayText.innerHTML = "Ende <br><br>Bitte rechts oben auf 'weiter' klicken um fortzufahren"
+    let viewingTimesData = ""
+    for(var key in viewingTimes) {
+      var value = viewingTimes[key]
+      viewingTimesData+="Z_"+key+"#"+value+"*"
+    }
+    logString("end","TimeStamp#"+getCurrentTime())
+    logString("objectSequence","ObjectSequence#"+objectSequence)
+    logString("objectNumberSequence","ObjectNumberSequence#"+objectNumberSequence)
+    logString("viewingTimes",viewingTimesData)
+    iwmstudy_access.enableNextButton()
   }

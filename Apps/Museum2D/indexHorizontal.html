@@ -47,8 +47,11 @@
         <img src="../../Assets/Icons/close.png" height="100%">
       </div>
     </div>
-    <div class="button" onclick="changeLang(this)" lang="DE" style="right: 5%; bottom: 5%;">
+   <!--  <div class="button" onclick="changeLang(this)" lang="DE" style="right: 5%; bottom: 5%;">
       DE
+    </div> -->
+    <div class="button" onclick="exit(this)" lang="DE" style="right: 5%; bottom: 5%;">
+      Beenden
     </div>
     <div id="output" style="opacity: 0; position: absolute; left: 55%; bottom: 5%; background: rgb(63, 63, 63); padding: 10px; color:white; border-radius: 5px;">
       Output
@@ -118,7 +121,7 @@
 
     iCard.style.visibility="hidden"
 
-    language = "DE"
+    overlayText.style.top = (screenHeight/2 - overlayText.getBoundingClientRect().height/2) +"px"
 
     function changeLang(target){
       switch(target.getAttribute('lang')){
@@ -255,15 +258,16 @@
             infoCardEndTime = getCurrentTime()
 
             for(var i=0; i<thumbnailArray.length; i++){
-              data+="Z_"+thumbnailArray[i].id+"#"+isObjectVisible(thumbnailArray[i])+"*"
+              data+="Z"+thumbnailArray[i].id+"#"+isObjectVisible(thumbnailArray[i])+"*"
             }
             logString("ObjectsVisibleTotal",data)
 
             data = ""
             for(var i=0; i<thumbnailArray.length; i++){
-              data+="Z_"+thumbnailArray[i].id+"#"+isObjectVisibleCenter(thumbnailArray[i])+"*"
+              data+="Z"+thumbnailArray[i].id+"#"+isObjectVisibleCenter(thumbnailArray[i])+"*"
             }
             logString("ObjectsVisibleCenter",data)
+            
             incrementCount(timer)
           }
         }
@@ -399,13 +403,13 @@ document.addEventListener("mouseout", mouseup);
       enableThumbnails()
       let data = ""
       for(var i=0; i<thumbnailArray.length; i++){
-        data+="Z_"+thumbnailArray[i].id+"#"+isObjectVisible(thumbnailArray[i])+"*"
+        data+="Z"+thumbnailArray[i].id+"#"+isObjectVisible(thumbnailArray[i])+"*"
       }
       logString("ObjectsVisibleTotal",data)
             
       data = ""
       for(var i=0; i<thumbnailArray.length; i++){
-        data+="Z_"+thumbnailArray[i].id+"#"+isObjectVisibleCenter(thumbnailArray[i])+"*"
+        data+="Z"+thumbnailArray[i].id+"#"+isObjectVisibleCenter(thumbnailArray[i])+"*"
       }
       logString("ObjectsVisibleCenter",data)
     }

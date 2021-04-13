@@ -1,7 +1,7 @@
 
 let gameOver = false
 let running = false
-let timer = 10
+let timer = 86400
 let minutes = 0
 let seconds = 0
 let minuteStr = ""
@@ -15,26 +15,4 @@ let objectNumberSequence = ""
 let objectSequence = ""
 let infoCardSequence = ""
 let viewingTimes = {}
-let objNumbers = {}
-
-objNumbers["Gm903"]="1"
-objNumbers["Pl.O.156"]="2"
-objNumbers["Gm344"]="3"
-objNumbers["Gm1170"]="4"
-objNumbers["Pl.O.2206"]="5"
-objNumbers["Pl.O.2205"]="6"
-objNumbers["Gm1000"]="7"
-objNumbers["Gm338"]="8"
-objNumbers["Gm339"]="9"
-objNumbers["Gm1079"]="10"
-objNumbers["Gm1108"]="11"
-objNumbers["Gm218"]="12"
-objNumbers["Gm47"]="13"
-objNumbers["Gm1093"]="14"
-objNumbers["Gm1097"]="15"
-objNumbers["Gm213"]="16"
-objNumbers["Pl.O.680"]="17"
-objNumbers["Gm217"]="18"
-objNumbers["Gm1086"]="19"
-objNumbers["Gm1195"]="20"
-objNumbers["Gm1115"]="21"
+let language = "DE"
