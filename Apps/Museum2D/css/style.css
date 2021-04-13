@@ -68,6 +68,7 @@ a, a:visited {
   padding: 10px;
   color:white;
   border-radius: 5px;
+  text-align: center;
 }
 #overlay{
   visibility: visible;
