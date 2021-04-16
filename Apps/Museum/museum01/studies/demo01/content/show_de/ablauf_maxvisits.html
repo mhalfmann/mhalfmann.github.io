@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    <body onload="iwmstudy_access.addInitFunction(init)">
+        <script src="../../../../app/iwm_studyaddon.js"></script>
+        <div id="iwmstudy_masterbox">
+            <div id="iwmstudy_centerbox">
+                <div id="iwmstudy_headlinebox">
+                    <!-- start of headline area -->
+                    Ablaufsteuerung - Anzahl Seitenbesuche
+                    <!-- end of headline area -->
+                </div>
+
+                <div id="iwmstudy_contentbox">
+                    <!-- start of content area -->
+                    <div class="iwmstudy_text">
+                       Seitenbesuche: <span id="visitslabel"></span> (Limit 3)
+                    </div> 
+                    <div class="iwmstudy_custom">
+                        <script>
+                            function init() {
+                                visitslabel.innerHTML = iwmstudy_access.getPageinfo().currentvisits
+                            }
+                        </script>
+                    </div>               
+                    <!-- end of content area -->
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

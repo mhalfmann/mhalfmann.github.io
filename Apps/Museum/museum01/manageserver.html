@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>IWM Study Server Management</title>
+        <meta name="description" content="IWM Study Server Management" />
+        <meta name="author" content="Leibniz-Institut fuer Wissensmedien Tuebingen, Andre Klemke" />
+        <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+        <link rel="stylesheet" href="app/styles/bulma.min.css" />
+        <script defer src="app/styles/fontawesome/js/all.js"></script>
+        <link rel="stylesheet" href="app/styles/styles.css?201912161500" />
+    </head>
+    <body onload="createIWMStudyServerManager()">
+        <script src="app/lib/sjcl.js"></script>
+        <script src="app/lib/jszip.js"></script>
+        <script src="./studies/globalconfig.js"></script>
+        <script src="app/iwm_manageserver.js"></script>
+        <section class="section has-text-centered is-paddingless">
+            <div class="content">
+                <img id="headerimg" src="app/styles/headermanage_lightgrey.jpg" />
+                <img id="logoimgmanage" src="app/styles/logo_empty.png" />
+                <div id="logotextmanage">Study</div>
+            </div>
+        </section>
+        <section class="section" id="manageservermain">
+            <div class="tabs is-boxed is-fullwidth">
+                <ul>
+                    <li id="menu_login" class="is-active" onclick="iwmstudy_manager.changeView(event)">
+                        <a>
+                            <span class="icon is-small"><i class="fas fa-sign-in-alt" aria-hidden="true"></i></span>
+                            <span>Login</span>
+                        </a>
+                    </li>
+                    <li id="menu_subject" onclick="iwmstudy_manager.changeView(event)">
+                        <a>
+                            <span class="icon is-small"><i class="fas fa-users" aria-hidden="true"></i></span>
+                            <span>Probanden verwalten</span>
+                        </a>
+                    </li>
+                    <li id="menu_reporting" onclick="iwmstudy_manager.changeView(event)">
+                        <a>
+                            <span class="icon is-small"><i class="fas fa-file-download" aria-hidden="true"></i></span>
+                            <span>Datenabruf</span>
+                        </a>
+                    </li>
+                    <li id="menu_user" onclick="iwmstudy_manager.changeView(event)">
+                        <a>
+                            <span class="icon is-small"><i class="fas fa-user-tie" aria-hidden="true"></i></span>
+                            <span>Benutzer verwalten</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div id="login_view" class="container view">
+                <h1 class="title">Login</h1>
+                <br/>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Studie</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field is-grouped">
+                            <p class="control has-icons-left">
+                                <input class="input" id="login_studyid" type="text" placeholder="Studien-ID" />
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-flask"></i>
+                                </span>
+                            </p>
+                            <p class="control" style="padding-top: 6px;">
+                                <label for="login_studyidnew"><input id="login_studyidnew" type="checkbox" style="width: 24px; height: 24px; position: relative; vertical-align: middle; bottom: 1px;" /> neu anlegen (nur masteradmin)</label>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Server-URL</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control has-icons-left">
+                                <input class="input" id="login_serverurl" type="text" placeholder="Adresse des Servers" />
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-server"></i>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Benutzer</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control has-icons-left">
+                                <input class="input" id="login_user" type="text" placeholder="" />
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Passwort</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control has-icons-left">
+                                <input class="input" id="login_password" type="password" placeholder="" />
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-lock"></i>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <!-- Left empty for spacing -->
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <button id="login_loginbtn" class="button has-text-white has-background-grey" onclick="iwmstudy_manager.login(event)" style="min-width: 200px;">
+                                    Login
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br /><br /><br /><br />
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Rechte</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control has-icons-left">
+                                <input class="input" id="login_role" type="text" placeholder="" disabled="disabled" />
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-user-tag"></i>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Letzter Login</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control has-icons-left">
+                                <input class="input" id="login_lastlogin" type="text" placeholder="" disabled="disabled" />
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <!-- Left empty for spacing -->
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <button id="login_logoutbtn" class="button has-text-white has-background-grey" onclick="iwmstudy_manager.logout(event)" style="min-width: 200px;" disabled="disabled">
+                                    Logout
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="subject_view" class="container view">
+                <h1 class="title">Probanden</h1>
+                <div id="subject_box">
+                    <table id="subject_table">
+                        <tr>
+                            <td>Gruppe</td>
+                            <td>Benutzer-ID</td>
+                            <td>Versuchslauf</td>
+                            <td>Bedingung</td>
+                            <td>Startzeit</td>
+                            <td>aktuelle Seite</td>
+                            <td>letzter Wechsel</td>
+                            <td>Status</td>
+                            <td>Passwort</td>
+                        </tr>
+                    </table>
+                </div>
+                <br />
+                <table id="subject_statstable">                   
+                    <tr>
+                        <td>completed:</td>
+                        <td id="subject_statscompleted"></td>                        
+                    </tr>
+                    <tr>
+                        <td>aborted:</td>
+                        <td id="subject_statsaborted"></td>                        
+                    </tr>
+                    <tr>
+                        <td>advanced:</td>
+                        <td id="subject_statsadvanced"></td>                        
+                    </tr>
+                    <tr>
+                        <td>andere:</td>
+                        <td id="subject_statsother"></td>                        
+                    </tr>
+                    <tr>
+                        <td>gesamt:</td>
+                        <td id="subject_statstotal"></td>                        
+                    </tr>
+                </table>                
+                <br />
+                <div class="field is-horizontal">
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <button class="button has-text-white has-background-grey" onclick="iwmstudy_manager.subjectRefresh()">
+                                    Liste aktualisieren
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="subject_password_view" class="container view">
+                <h1 class="title">Probanden Passwort ändern</h1>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Benutzer-ID</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control has-icons-left">
+                                <input class="input" id="subject_password_userid" type="text" placeholder="" disabled="disabled" />
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Gruppe</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control has-icons-left">
+                                <input class="input" id="subject_password_group" type="text" placeholder="" disabled="disabled" />
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-building"></i>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Passwort</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control has-icons-left">
+                                <input class="input" id="subject_password_password" type="password" placeholder="" />
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-lock"></i>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <!-- Left empty for spacing -->
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <button id="subject_password_changepasswordbtn" class="button has-text-white has-background-grey" onclick="iwmstudy_manager.subjectChangePasswordSend(event)" style="min-width: 200px;">
+                                    Passwort ändern
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="reporting_view" class="container view">
+                <h1 class="title">Datenabruf</h1>
+                <br/>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">compact (csv)</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control" style="vertical-align: middle;">
+                                <button class="button has-text-white has-background-grey" onclick="iwmstudy_manager.reportingCSVCompact()">
+                                    generieren
+                                </button>
+                                <a id="reporting_linkcsvcompactsave" style="margin-left: 20px; color: #dddddd; text-decoration: none; font-weight: 600; display: inline-block; margin-top: 7px;">speichern</a>
+                                <a id="reporting_linkcsvcompactshow" style="margin-left: 20px; color: #dddddd; text-decoration: none; font-weight: 600; display: inline-block; margin-top: 7px;">anzeigen</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">pagevisits (csv)</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control" style="vertical-align: middle;">
+                                <button class="button has-text-white has-background-grey" onclick="iwmstudy_manager.reportingCSVPagevisits()">
+                                    generieren
+                                </button>
+                                <a id="reporting_linkcsvpagevisitssave" style="margin-left: 20px; color: #dddddd; text-decoration: none; font-weight: 600; display: inline-block; margin-top: 7px;">speichern</a>
+                                <a id="reporting_linkcsvpagevisitsshow" style="margin-left: 20px; color: #dddddd; text-decoration: none; font-weight: 600; display: inline-block; margin-top: 7px;">anzeigen</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">actionlog (csv)</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control" style="vertical-align: middle;">
+                                <button class="button has-text-white has-background-grey" onclick="iwmstudy_manager.reportingCSVActionlog()">
+                                    generieren
+                                </button>
+                                <a id="reporting_linkcsvactionlogdownload" style="margin-left: 20px; color: #dddddd; text-decoration: none; font-weight: 600; display: inline-block; margin-top: 7px;"> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">anonymousdata (csv)</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control" style="vertical-align: middle;">
+                                <button class="button has-text-white has-background-grey" onclick="iwmstudy_manager.reportingCSVAnonymousData()">
+                                    generieren
+                                </button>
+                                <a id="reporting_linkcsvanonymousdatasave" style="margin-left: 20px; color: #dddddd; text-decoration: none; font-weight: 600; display: inline-block; margin-top: 7px;">speichern</a>
+                                <a id="reporting_linkcsvanonymousdatashow" style="margin-left: 20px; color: #dddddd; text-decoration: none; font-weight: 600; display: inline-block; margin-top: 7px;">anzeigen</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">files (zip)</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control" style="vertical-align: middle;">
+                                <button class="button has-text-white has-background-grey" onclick="iwmstudy_manager.reportingFiles()">
+                                    generieren
+                                </button>
+                                <a id="reporting_linkfilesdownload" style="margin-left: 20px; color: #dddddd; text-decoration: none; font-weight: 600; display: inline-block; margin-top: 7px;"> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="user_view" class="container view">
+                <h1 class="title">Benutzer</h1>
+                <div id="user_box">
+                    <table id="user_table">
+                        <tr>
+                            <td>ID</td>
+                            <td>Rechte</td>
+                            <td>Studien</td>
+                            <td>Gruppen</td>
+                            <td>letzter Login</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <br />
+                <div class="field is-horizontal">
+                    <div class="field-body">
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button class="button has-text-white has-background-grey" onclick="iwmstudy_manager.userRefresh()">
+                                    Liste aktualisieren
+                                </button>
+                            </div>
+                            <div class="control">
+                                <button class="button has-text-white has-background-grey" onclick="iwmstudy_manager.userCreate()">
+                                    Benutzer anlegen
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="user_create_view" class="container view">
+                <h1 class="title">Benutzer anlegen</h1>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Benutzer-ID</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control has-icons-left">
+                                <input class="input" id="user_create_userid" type="text" placeholder="" />
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-user-tie"></i>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Passwort</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control has-icons-left">
+                                <input class="input" id="user_create_password" type="text" placeholder="" />
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-lock"></i>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Rechte</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control has-icons-left">
+                                <div class="select">
+                                    <select id="user_create_role" onchange="iwmstudy_manager.userCreateEditRoleChanged(event)">
+                                        <option value="masteradmin">masteradmin</option>
+                                        <option value="studyadmin">studyadmin</option>
+                                        <option value="groupadmin">groupadmin</option>
+                                    </select>
+                                </div>
+                                <div class="icon is-small is-left">
+                                    <i class="fas fa-user-tag"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Studien</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control has-icons-left">
+                                <input class="input" id="user_create_studies" type="text" placeholder="" disabled="disabled" />
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-flask"></i>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Gruppen</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control has-icons-left">
+                                <input class="input" id="user_create_groups" type="text" placeholder="" disabled="disabled" />
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-building"></i>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <!-- Left empty for spacing -->
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <button id="user_create_createbtn" class="button has-text-white has-background-grey" onclick="iwmstudy_manager.userCreateSend(event)" style="min-width: 200px;">
+                                    anlegen
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="user_edit_view" class="container view">
+                <h1 class="title">Benutzer bearbeiten</h1>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Benutzer-ID</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control has-icons-left">
+                                <input class="input" id="user_edit_userid" type="text" placeholder="" disabled="disabled" />
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-user-tie"></i>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Passwort</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control has-icons-left">
+                                <input class="input" id="user_edit_password" type="text" placeholder="" disabled="disabled" />
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-lock"></i>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Rechte</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control has-icons-left">
+                                <div class="select">
+                                    <select id="user_edit_role" onchange="iwmstudy_manager.userCreateEditRoleChanged(event)">
+                                        <option value="masteradmin">masteradmin</option>
+                                        <option value="studyadmin">studyadmin</option>
+                                        <option value="groupadmin">groupadmin</option>
+                                    </select>
+                                </div>
+                                <div class="icon is-small is-left">
+                                    <i class="fas fa-user-tag"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Studien</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control has-icons-left">
+                                <input class="input" id="user_edit_studies" type="text" placeholder="" disabled="disabled" />
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-flask"></i>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Gruppen</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control has-icons-left">
+                                <input class="input" id="user_edit_groups" type="text" placeholder="" disabled="disabled" />
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-building"></i>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <!-- Left empty for spacing -->
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <button id="user_edit_editbtn" class="button has-text-white has-background-grey" onclick="iwmstudy_manager.userEditSend(event)" style="min-width: 200px;">
+                                    absenden
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br /><br />
+                <h1 class="title">Benutzer löschen</h1>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <!-- Left empty for spacing -->
+                    </div>
+                    <div class="field-body">
+                        <div class="field is-grouped">
+                            <p class="control">
+                                <button id="user_edit_deletebtn" class="button has-text-white has-background-grey" onclick="iwmstudy_manager.userDeleteSend(event)" disabled="disabled" style="min-width: 200px;">
+                                    löschen
+                                </button>
+                            </p>
+                            <p class="control" style="padding-top: 6px;">
+                                <label for="user_edit_deleteapproval"><input id="user_edit_deleteapproval" type="checkbox" style="width: 24px; height: 24px; position: relative; vertical-align: middle; bottom: 1px;" onclick="iwmstudy_manager.userDeleteCheck(event)" /> Löschung freigeben</label>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer id="footer" class="footer">
+            <div class="container level">
+                <div class="level-item has-text-centered is-size-7-mobile">
+                    <a id="impressumlink" href="http://www.iwm-tuebingen.de/www/de/impressum/index.html" target="_blank">Impressum</a>
+                </div>
+                <div class="level-item has-text-centered is-size-7-mobile">
+                    <div class="content">
+                        <span id="copyrighttext">&copy; Leibniz-Institut f&uuml;r Wissensmedien, </span>
+                        <span id="versiontext">v. 2.XXX</span>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered is-size-7-mobile">
+                    <a id="privacylink" href="http://www.iwm-tuebingen.de/www/de/datenschutz/index.html" target="_blank">Datenschutz</a>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

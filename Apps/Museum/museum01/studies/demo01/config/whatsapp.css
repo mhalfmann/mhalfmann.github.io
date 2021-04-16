@@ -1,0 +1,132 @@
+@font-face
+{
+	font-family: 'Open Sans';
+	src: url('media/OpenSans-Regular.ttf') format('truetype');
+}
+
+html
+{
+	font-family: 'Open Sans';
+}
+
+body { 
+	font-family:Open Sans;
+	background-color:#777777;
+}
+
+#iwmstudy_masterbox{
+	width:100%;
+}
+
+#iwmstudy_centerbox{
+	width:700px;
+	height:880px;
+	border:solid 1px #9f9f9f;
+	margin:0px auto;
+	background-image:  url('media/whatsapp/background.jpg');
+	position:relative;
+}
+
+#iwmstudy_headlinebox
+{
+	visibility: hidden;
+}
+
+#iwmstudy_contentbox{
+	margin-left:5px;
+	width:690px;
+	font-size:30px;
+}
+
+#iwmstudy_controlsbox{
+	position:absolute;
+	right:100px;
+	top:35px;
+	width:140px;
+	height:70px;
+	border: 1px solid #424242;
+	background-color:#818181;
+}
+
+#iwmstudy_progressbox{
+	position:absolute;
+	left:550px;
+	top:100px;
+	width:206px;
+	height:10px;
+	border: 2px solid #bbbbbb;
+    background-color:#ffffff;
+    visibility: hidden;
+}
+
+#iwmstudy_progressbar{	
+	width:50px;
+	height:10px;	
+    background-color:#cccccc;
+    visibility: hidden;
+}
+
+#iwmstudy_mintimebox{
+	position:absolute;
+	right:50px;
+	top:39px;
+	width:246px;
+	text-align:center;
+	font-size: 10px;
+    color: #606060;
+    visibility: hidden;
+}
+
+#iwmstudy_maxtimebox{
+	position:absolute;
+	right:50px;
+	top:89px;
+	width:246px;
+	text-align:center;
+	font-size: 10px;
+    color: #606060;
+    visibility: hidden;
+}
+
+#iwmstudy_backbutton{
+	position:absolute;
+	left:550px;
+	top:60px;
+	width:100px;
+	height:30px;
+	font-size:16px;	
+	font-weight:600;
+    color:#606060 !important;
+    visibility: hidden;
+}
+
+#iwmstudy_backbutton:disabled{	
+	color:#cccccc !important;
+	background-color:#eeeeee;
+    border:thin solid rgb(169, 169, 169);	
+    visibility: hidden;	
+}
+
+#iwmstudy_nextbutton{
+	position:absolute;
+	right:120px;
+	top:55px;
+	width:102px;
+	height:32px;
+	font-size:16px;	
+	font-weight:600;
+	color:#dddddd !important;
+    z-index: 1000;	
+    padding: 0px;
+    border: 1px solid #424242;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    background-color: #6e6e6e; 
+}
+
+#iwmstudy_nextbutton:disabled{	
+	color:#bbbbbb !important;
+    border:2px solid #cccccc;
+	background-color:#dddddd;	
+}

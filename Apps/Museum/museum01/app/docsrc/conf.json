@@ -1,0 +1,19 @@
+{
+    "recurseDepth": 10,
+    "opts": {
+        "template": "./docsrc/themes/default",
+        "encoding": "utf8",
+        "destination": "../doc/interactive",
+        "recurse": true,
+        "private": false
+    },
+    "source": {
+        "include": [
+           "plugins"
+        ],
+        "exclude": [],
+        "includePattern": ".+\\.js(doc|x)?$",
+        "excludePattern": "(^|\\/|\\\\)_"
+    },
+    "plugins": ["plugins/markdown"]
+}

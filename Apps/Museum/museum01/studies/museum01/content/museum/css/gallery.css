@@ -1,0 +1,67 @@
+div.gallery {
+  margin: auto;
+    /* border: 1px solid #ccc; */
+  }
+  .thumbnail{
+    margin: auto;
+    border-radius: 5px;
+  }
+  .imageButton{
+    border-radius: 5px;
+    /* box-shadow: 7px 7px 5px rgba(2, 2, 2, 0.308); */
+  }
+  .screenshot{
+    border-radius: 5px;
+    box-shadow: 7px 7px 5px rgba(2, 2, 2, 0.308);
+  }
+  div.gallery img:hover {
+    transform: scale(1.5);
+    transform-origin: bottom left;
+  }
+  
+  .gallery img {
+    height: 20vh;
+    width: auto;
+    margin: auto;
+    border-radius: 5px;
+    box-shadow: 7px 7px 5px rgba(2, 2, 2, 0.308);
+  }
+  
+  div.desc {
+    padding: 15px;
+    color: white;
+    text-align: center;
+    text-shadow: 5px 5px 5px rgba(2, 2, 2, 0.308);
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  .responsive {
+    /* background: red; */
+    position: relative;
+    padding: 0 6px;
+    margin: 50px;
+    float: left;
+    width: 24.99999%;
+  }
+  
+  @media only screen and (max-width: 700px) {
+    .responsive {
+      width: 49.99999%;
+      margin: 6px 0;
+    }
+  }
+  
+  @media only screen and (max-width: 500px) {
+    .responsive {
+      width: 100%;
+    }
+  }
+  
+  .clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+  }

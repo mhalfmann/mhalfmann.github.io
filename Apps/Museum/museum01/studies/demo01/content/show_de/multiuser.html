@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    <body onload="iwmstudy_access.addInitFunction(init)">
+        <script src="../../../../app/iwm_studyaddon.js"></script>
+        <div id="iwmstudy_masterbox">
+            <div id="iwmstudy_centerbox">
+                <div id="iwmstudy_headlinebox">
+                    <!-- start of headline area -->
+                    Multiuser
+                    <!-- end of headline area -->
+                </div>
+
+                <div id="iwmstudy_contentbox">
+                    <!-- start of content area -->
+                    <h2 class="iwmstudy_heading">Multiuser-Funktionen der Versuchsumgebung:</h2>
+                    <ul class="iwmstudy_unorderedlist">				
+                        <li>Mehrere Benutzer pro Versuchslauf, ggf. unterschiedliche Inhalte</li>
+                        <li>Haltepunkte, die alle Versuchspersonen erreicht haben müssen, bevor "weiter" freigeschaltet wird</li>
+                        <li>Chat mit anderen Versuchspersonen im Versuchslauf</li>
+                        <li>beliebige Funktionen können bei anderen Versuchspersonen im gleichen Versuchslauf aufgerufen werden,<br>z.B. um gemeinsam eine interaktive Aufgabe zu erfüllen</li>                
+                    </ul>
+                    <div class="iwmstudy_custom">
+                        <textarea id="output" style="width: 80%; height: 30%; font-size: calc(0.6vw + 1.2vh); font-family: 'Open Sans'; padding: 5px; overflow-x: hidden; overflow-y: scroll; margin-top: 2vh;" readonly="readonly"></textarea>
+                        <br/>
+                        <input id="input" type="text" style="width: 70%; font-size: calc(0.6vw + 1.2vh); font-family: 'Open Sans'; padding: 5px; margin-top:5px;"/>            
+                        <button type="button" style="width: 9.6%; font-size: calc(0.6vw + 1.2vh); font-family: 'Open Sans'; padding: 5px;" onclick="sendChatMessage(event)" disabled="disabled">senden</button>
+                    </div>    
+                    <div class="iwmstudy_text" style="margin-top: 0.5vh; font-size: calc(0.3vw + 0.6vh); font-weight: bold; color: grey;">
+                        Beispiel für einen Chat (inaktiv)
+                    </div>
+                    <div class="iwmstudy_custom">
+                        <script>
+                            function init(){
+                                iwmstudy_access.setChatReceiveFunction(receiveChatMessage)
+                            }
+                    
+                            function sendChatMessage(event){
+                                if(input.value != ""){
+                                    let cm = input.value
+                                    input.value = ""
+                                    iwmstudy_access.sendChatMessage(cm)
+                                }            
+                            }
+                    
+                            function receiveChatMessage(sender, text){
+                                output.value = output.value + "\n\r" + sender + ": " + text
+                            }
+                        </script>
+                    </div>
+                    <!-- end of content area -->
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    <body>
+        <script src="../../../../app/iwm_studyaddon.js"></script>
+        <div id="iwmstudy_masterbox">
+            <div id="iwmstudy_centerbox">
+                <div id="iwmstudy_headlinebox">
+                    <!-- start of headline area -->
+                    Dateistruktur
+                    <!-- end of headline area -->
+                </div>
+
+                <div id="iwmstudy_contentbox">
+                    <!-- start of content area -->
+					<h2 class="iwmstudy_heading">Hauptverzeichnis von IWMStudy:</h2>
+					<div class="iwmstudy_text" style="font-family: monospace; font-size: 1vw; font-weight:bold; line-height: 1vw;">
+						|-app</br>
+						|-doc</br>		
+						|-studies</br>
+							<span style="margin-left:3vw;">|-studienid</span></br>
+								<span style="margin-left:6vw;">|-config</span></br>
+								<span style="margin-left:6vw;">|-content</span></br>
+								<span style="margin-left:6vw;">|-draft</span></br>
+							<span style="margin-left:3vw; color:grey;">|-globalconfig.js</span></br>
+						<span style="color:grey">|-index.html</span></br>
+						<span style="color:grey">|-managelocal.html</span></br>
+						<span style="color:grey">|-manageserver.html</span></br>
+						<span style="color:grey">|-study.html</span>				
+					</div>
+					<div class="iwmstudy_spacer"></div>					
+					<h2 class="iwmstudy_heading">Dateien je Studie unter studienid:</h2>
+					<ul class="iwmstudy_unorderedlist" style="list-style-type: square">
+						<li><b>config</b><br>Für jede Bedingung zur Konfiguration eine js-Datei (<span class="iwmstudy_internallink" onclick="iwmstudy_access.linkto('konfiguration_bedingung')">Code-Beispiel</span>), benannt nach der ID der Bedingung. Zusätzlich studyconfig.js (<span class="iwmstudy_internallink" onclick="iwmstudy_access.linkto('konfiguration_studie')">Code-Beispiel</span>), über die die Studie insgesamt konfiguriert wird sowie Layouts als css.</li>
+						<li><b>content</b><br>Content wie HTML-Dateien (<span class="iwmstudy_internallink" onclick="iwmstudy_access.linkto('materialerstellung_code')">Code-Beispiel</span>), Bilder oder Videos.</li>
+						<li><b>draft</b><br>Quellmaterial zur Erzeugung der Studie wie z. B. Powerpoint- und Word-Dokumente, Excel-Ablauflisten oder Mediendateien.</li>
+					</ul>                   
+                    <!-- end of content area -->
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
