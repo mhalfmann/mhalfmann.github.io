@@ -97,7 +97,7 @@ function addText(thumbnail){
   }
   function closeInfoCard(){
     iCard.style.visibility = "hidden"
-    let id_ = iCard.getAttribute('imgID')
+    let id_ = iCard.getAttribute('imgID')+"Num"+iCard.getAttribute("objNumber")
     
     infoCardEndTime = getCurrentTime()
     let deltaT = (infoCardEndTime-infoCardStartTime)
@@ -242,7 +242,7 @@ function addText(thumbnail){
     let viewingTimesData = ""
     for(var key in viewingTimes) {
       var value = viewingTimes[key]
-      viewingTimesData+="Z_"+key+"#"+value+"*"
+      viewingTimesData+="Z"+key+"#"+value+"*"
     }
     logString("end","TimeStamp#"+getCurrentTime())
     logString("objectSequence","ObjectSequence#"+objectSequence)

@@ -180,8 +180,10 @@
         thumbnail.src = img.file
         thumbnail.id = img.id
         thumbnail.setAttribute("objNumber",(i+1).toString())
+
+        let idPos = img.id+"Num"+(i+1)
         
-        viewingTimes[img.id]=0
+        viewingTimes[idPos]=0
 
         thumbnail.style.marginRight = "10vw"
         // if(img.id.toString().indexOf("Gm1079")>-1){
@@ -218,7 +220,7 @@
             let deltaT = infoCardStartTime - infoCardEndTime
             objectSequence+=" None_"+deltaT
             objectNumberSequence+=" None_"+deltaT
-            logString("infoCardOpened","ObjectName#"+e.target.id+"*ObjectNumber#"+e.target.getAttribute("objNumber"))
+            logString("infoCardOpened","ObjectName#"+e.target.id+"Num"+iCard.getAttribute("objNumber")+"*ObjectNumber#"+e.target.getAttribute("objNumber"))
             disableArrowButtons()
           }
         })
@@ -260,13 +262,13 @@
             infoCardEndTime = getCurrentTime()
 
             for(var i=0; i<thumbnailArray.length; i++){
-              data+="Z"+thumbnailArray[i].id+"#"+isObjectVisible(thumbnailArray[i])+"*"
+              data+="Z"+thumbnailArray[i].id+"Num"+thumbnailArray[i].getAttribute("objNumber")+"#"+isObjectVisible(thumbnailArray[i])+"*"
             }
             logString("ObjectsVisibleTotal",data)
 
             data = ""
             for(var i=0; i<thumbnailArray.length; i++){
-              data+="Z"+thumbnailArray[i].id+"#"+isObjectVisibleCenter(thumbnailArray[i])+"*"
+              data+="Z"+thumbnailArray[i].id+"Num"+thumbnailArray[i].getAttribute("objNumber")+"#"+isObjectVisibleCenter(thumbnailArray[i])+"*"
             }
             logString("ObjectsVisibleCenter",data)
             
@@ -416,13 +418,13 @@ document.addEventListener("mouseout", mouseup);
       enableThumbnails()
       let data = ""
       for(var i=0; i<thumbnailArray.length; i++){
-        data+="Z"+thumbnailArray[i].id+"#"+isObjectVisible(thumbnailArray[i])+"*"
+        data+="Z"+thumbnailArray[i].id+"Num"+thumbnailArray[i].getAttribute("objNumber")+"#"+isObjectVisible(thumbnailArray[i])+"*"
       }
       logString("ObjectsVisibleTotal",data)
             
       data = ""
       for(var i=0; i<thumbnailArray.length; i++){
-        data+="Z"+thumbnailArray[i].id+"#"+isObjectVisibleCenter(thumbnailArray[i])+"*"
+        data+="Z"+thumbnailArray[i].id+"Num"+thumbnailArray[i].getAttribute("objNumber")+"#"+isObjectVisibleCenter(thumbnailArray[i])+"*"
       }
       logString("ObjectsVisibleCenter",data)
     }

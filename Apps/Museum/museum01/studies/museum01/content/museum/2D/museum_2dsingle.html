@@ -164,9 +164,11 @@
         thumbnail.src = img.file
         thumbnail.id = img.id
         thumbnail.setAttribute("objNumber",(i+1).toString())
-        thumbnail.style.position = "absolute"
+        thumbnail.style.position = "absolute"        
+
+        let idPos = img.id+"Num"+(i+1)
         
-        viewingTimes[img.id]=0
+        viewingTimes[idPos]=0
 
         let f = imgBarHeight/maxImgHeight
 
@@ -201,7 +203,7 @@
           objectSequence+=" None_"+deltaT
           objectNumberSequence+=" None_"+deltaT
                     
-          logString("infoCardOpened","ObjectName#"+e.target.id+"*ObjectNumber#"+e.target.getAttribute("objNumber"))
+          logString("infoCardOpened","ObjectName#"+e.target.id+"Num"+iCard.getAttribute("objNumber")+"*ObjectNumber#"+e.target.getAttribute("objNumber"))
           disableArrowButtons()
         })
       }
@@ -229,7 +231,7 @@
             infoCardEndTime = getCurrentTime()
 
             for(var i=0; i<thumbnailArray.length; i++){
-              data+="Z"+thumbnailArray[i].id+"#"+isObjectVisible(thumbnailArray[i])+"*"
+              data+="Z"+thumbnailArray[i].id+"Num"+thumbnailArray[i].getAttribute("objNumber")+"#"+isObjectVisible(thumbnailArray[i])+"*"
             }
             logString("ObjectsVisibleTotal",data)
 
@@ -274,7 +276,7 @@
             console.log("new Thumbnail visible")
               let data = ""
               for(var i=0; i<thumbnailArray.length; i++){
-                data+="Z"+thumbnailArray[i].id+"#"+isObjectVisible(thumbnailArray[i])+"*"
+                data+="Z"+thumbnailArray[i].id+"Num"+thumbnailArray[i].getAttribute("objNumber")+"#"+isObjectVisible(thumbnailArray[i])+"*"
               }
               logString("ObjectsVisibleTotal",data)
         }})
@@ -312,7 +314,7 @@
             console.log("new Thumbnail visible")
               let data = ""
               for(var i=0; i<thumbnailArray.length; i++){
-                data+="Z"+thumbnailArray[i].id+"#"+isObjectVisible(thumbnailArray[i])+"*"
+                data+="Z"+thumbnailArray[i].id+"Num"+thumbnailArray[i].getAttribute("objNumber")+"#"+isObjectVisible(thumbnailArray[i])+"*"
               }
               logString("ObjectsVisibleTotal",data)
             
