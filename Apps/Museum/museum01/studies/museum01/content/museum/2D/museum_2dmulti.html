@@ -114,6 +114,8 @@
     let leftIMG = null
     let rightIMG = null
 
+    goRight.style.opacity = 1
+
     // changeOrientation();
 
     // console.log(sessionStorage.getItem("start"))
@@ -372,25 +374,36 @@ document.addEventListener("mouseout", mouseup);
     })*/
 
     document.getElementById("goRight").addEventListener('click',(e)=>{
-      goLeft.style.opacity = 1
-      disableThumbnails()
-      let offset = getRightImg()
-      logString("ArrowClick","ChangeDirection#Right")
-      $('#imageBar').animate({
-          // scrollLeft: $('#imageBar').scrollLeft()+(imgBarWidth*0.5)
-          scrollLeft: $('#imageBar').scrollLeft()+(offset)
-      }, 1.5*offset,animateComplete)
+      // console.log(goRight.style.opacity)
+      
+      if(goRight.style.opacity == 1){
+        goLeft.style.opacity = 1
+        disableThumbnails()
+        console.log("goRight")
+        let offset = getRightImg()
+        logString("ArrowClick","ChangeDirection#Right")
+        $('#imageBar').animate({
+            // scrollLeft: $('#imageBar').scrollLeft()+(imgBarWidth*0.5)
+            scrollLeft: $('#imageBar').scrollLeft()+(offset)
+        }, 1.5*offset,animateComplete)
+
+      }
     })
 
     document.getElementById("goLeft").addEventListener('click',(e)=>{
-      goRight.style.opacity = 1
-      disableThumbnails()
-      let offset = getLeftImg()
-      logString("ArrowClick","ChangeDirection#Left")
-      $('#imageBar').animate({
-          // scrollLeft: $('#imageBar').scrollLeft()-(imgBarWidth*0.5)
-          scrollLeft: $('#imageBar').scrollLeft()-(offset)
-      }, 1.5*offset,animateComplete)
+      // console.log(goLeft.style.opacity)
+      
+      if(goLeft.style.opacity == 1){
+        goRight.style.opacity = 1
+        disableThumbnails()
+        console.log("goLeft")
+        let offset = getLeftImg()
+        logString("ArrowClick","ChangeDirection#Left")
+        $('#imageBar').animate({
+            // scrollLeft: $('#imageBar').scrollLeft()-(imgBarWidth*0.5)
+            scrollLeft: $('#imageBar').scrollLeft()-(offset)
+        }, 1.5*offset,animateComplete)
+      }
     })
 
     function animateComplete(){

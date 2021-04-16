@@ -105,6 +105,8 @@
     let thumbnailArray = []
     
     overlayText.style.top = (screenHeight/2 - overlayText.getBoundingClientRect().height/2) +"px"
+    
+    goRight.style.opacity = 1
 
     // changeOrientation();
 
@@ -250,34 +252,36 @@
       // changeOrientation()
     }, false)
 
-    function goToPrev(){      
-      logString("ArrowClick","ChangeDirection#Left")
-      currentThumbnail--
-      console.log("go to next "+currentThumbnail)
-      goRight.style.opacity = 1
-      if(currentThumbnail==0)goLeft.style.opacity = 0.1
-      if(currentThumbnail<0)currentThumbnail = 0
-      
-      thumbnailArray[currentThumbnail+1].style.pointerEvents = "none"
-      thumbnailArray[currentThumbnail].style.pointerEvents = "all"
+    function goToPrev(){
+      if(goLeft.style.opacity == 1){
+        logString("ArrowClick","ChangeDirection#Left")
+        currentThumbnail--
+        // console.log("go to next "+currentThumbnail)
+        goRight.style.opacity = 1
+        if(currentThumbnail==0)goLeft.style.opacity = 0.1
+        if(currentThumbnail<0)currentThumbnail = 0
+        
+        thumbnailArray[currentThumbnail+1].style.pointerEvents = "none"
+        thumbnailArray[currentThumbnail].style.pointerEvents = "all"
 
-      TweenMax.to(thumbnailArray[currentThumbnail+1], 0.5, {x:500, onComplete:function(){
-          
-      }})
-      TweenMax.to(thumbnailArray[currentThumbnail+1], 0.5, {opacity:0, onComplete:function(){
-          
-      }})
-      TweenMax.to(thumbnailArray[currentThumbnail], 0.5, {x:0, onComplete:function(){
-          console.log("new Thumbnail visible")
-            let data = ""
-            for(var i=0; i<thumbnailArray.length; i++){
-              data+="Z"+thumbnailArray[i].id+"#"+isObjectVisible(thumbnailArray[i])+"*"
-            }
-            logString("ObjectsVisibleTotal",data)
-      }})
-      TweenMax.to(thumbnailArray[currentThumbnail], 0.2, {opacity:1, onComplete:function(){
-          
-      }})
+        TweenMax.to(thumbnailArray[currentThumbnail+1], 0.5, {x:500, onComplete:function(){
+            
+        }})
+        TweenMax.to(thumbnailArray[currentThumbnail+1], 0.5, {opacity:0, onComplete:function(){
+            
+        }})
+        TweenMax.to(thumbnailArray[currentThumbnail], 0.5, {x:0, onComplete:function(){
+            console.log("new Thumbnail visible")
+              let data = ""
+              for(var i=0; i<thumbnailArray.length; i++){
+                data+="Z"+thumbnailArray[i].id+"#"+isObjectVisible(thumbnailArray[i])+"*"
+              }
+              logString("ObjectsVisibleTotal",data)
+        }})
+        TweenMax.to(thumbnailArray[currentThumbnail], 0.2, {opacity:1, onComplete:function(){
+            
+        }})
+    }
 
       /*if(iCard.style.visibility=="visible"){
         iImage.src = thumbnailArray[currentThumbnail].src        
@@ -287,34 +291,36 @@
 
     }
     function goToNext(){
-      logString("ArrowClick","ChangeDirection#Right")
-      currentThumbnail++
-      console.log("go to next "+currentThumbnail)
-      goLeft.style.opacity = 1
-      if(currentThumbnail==thumbnailArray.length-1)goRight.style.opacity = 0.1
-      if(currentThumbnail>thumbnailArray.length-1)currentThumbnail = thumbnailArray.length-1
+      if(goRight.style.opacity == 1){
+        logString("ArrowClick","ChangeDirection#Right")
+        currentThumbnail++
+        // console.log("go to next "+currentThumbnail)
+        goLeft.style.opacity = 1
+        if(currentThumbnail==thumbnailArray.length-1)goRight.style.opacity = 0.1
+        if(currentThumbnail>thumbnailArray.length-1)currentThumbnail = thumbnailArray.length-1
 
-      thumbnailArray[currentThumbnail-1].style.pointerEvents = "none"
-      thumbnailArray[currentThumbnail].style.pointerEvents = "all"
+        thumbnailArray[currentThumbnail-1].style.pointerEvents = "none"
+        thumbnailArray[currentThumbnail].style.pointerEvents = "all"
 
-      TweenMax.to(thumbnailArray[currentThumbnail-1], 0.5, {x:-500, onComplete:function(){
-          
-      }})
-      TweenMax.to(thumbnailArray[currentThumbnail-1], 0.5, {opacity:0, onComplete:function(){
-          
-      }})
-      TweenMax.to(thumbnailArray[currentThumbnail], 0.5, {x:0, onComplete:function(){
-          console.log("new Thumbnail visible")
-            let data = ""
-            for(var i=0; i<thumbnailArray.length; i++){
-              data+="Z"+thumbnailArray[i].id+"#"+isObjectVisible(thumbnailArray[i])+"*"
-            }
-            logString("ObjectsVisibleTotal",data)
-          
-      }})
-      TweenMax.to(thumbnailArray[currentThumbnail], 0.2, {opacity:1, onComplete:function(){
-          
-      }})
+        TweenMax.to(thumbnailArray[currentThumbnail-1], 0.5, {x:-500, onComplete:function(){
+            
+        }})
+        TweenMax.to(thumbnailArray[currentThumbnail-1], 0.5, {opacity:0, onComplete:function(){
+            
+        }})
+        TweenMax.to(thumbnailArray[currentThumbnail], 0.5, {x:0, onComplete:function(){
+            console.log("new Thumbnail visible")
+              let data = ""
+              for(var i=0; i<thumbnailArray.length; i++){
+                data+="Z"+thumbnailArray[i].id+"#"+isObjectVisible(thumbnailArray[i])+"*"
+              }
+              logString("ObjectsVisibleTotal",data)
+            
+        }})
+        TweenMax.to(thumbnailArray[currentThumbnail], 0.2, {opacity:1, onComplete:function(){
+            
+        }})
+      }
 
       /*if(iCard.style.visibility=="visible"){
         iImage.src = thumbnailArray[currentThumbnail].src        
