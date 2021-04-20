@@ -250,3 +250,24 @@ function addText(thumbnail){
     logString("viewingTimes",viewingTimesData)
     iwmstudy_access.enableNextButton()
   }
+
+  function shiftArrayLeft(a){
+    let l = a.length
+    let tempElement = a[0]
+    for (var i=0; i<l-1;i++){
+      a[i]=a[i+1]
+    }
+
+    a[l-1]=tempElement
+  }
+
+  function shiftArrayRight(a){
+    let l = a.length
+    let tempElement = a[l-1]
+
+    for (var i=l-1; i>0;i--){
+      a[i]=a[i-1]
+    }
+
+    a[0]=tempElement
+  }

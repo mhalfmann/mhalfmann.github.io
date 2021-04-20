@@ -16,3 +16,4 @@ let objectSequence = ""
 let infoCardSequence = ""
 let viewingTimes = {}
 let language = "DE"
+let infinity = true

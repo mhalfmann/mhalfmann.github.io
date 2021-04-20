@@ -1,0 +1,335 @@
+<!doctype HTML>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+</head>
+<body onselectstart = 'return false' onwheel="preventScroll(event)" style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
+
+<script src="./assets/text.js"></script>
+<script src="./assets/images.js"></script>
+<script src="./javascript/utility.js"></script>
+<script src="./javascript/variables.js"></script>
+<script src="../../../../../app/iwm_studyaddon.js"></script>
+<!-- <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1"> -->
+<!-- <script src="./Javascript/aframe.min.js"></script> -->
+<!-- <script src="./Javascript/aframe-ar.js"></script> -->
+<!-- <script src="../../../Javascript/hammer.js"></script> -->
+<script src="../Javascript/TweenMax.min.js"></script>
+<script src="../Javascript/jquery-3.6.0.min.js"></script>
+<!-- <script src="../../../Javascript/jquery.csv.js"></script> -->
+<!-- <script src="../../../Javascript/papaparse.min.js"></script> -->
+<link rel="stylesheet" type="text/css" href="./css/style.css">
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+<style>
+
+</style>
+  <div id="main">
+
+    <div id="goLeft" onclick="goToPrev()" class="button" style ="left: 5px; top: 47vh; height: 6vh; width:6vh; opacity: 0.1;">
+      <img id="leftArrow" src="../Assets/Icons/arrow-back.png" width="100%">
+    </div>
+    <div id="goRight" onclick="goToNext()" class="button" style ="right: 5px; top: 47vh; height: 6vh; width:6vh;">
+      <img id="rightArrow" src="../Assets/Icons/arrow-forward.png" width="100%">
+    </div>
+    
+    <ul id = "imageBar">
+    </ul>
+
+    <div id="infoCard">
+      <div id="infoImage"> 
+        <img id="infoImageIMG" onload="loaded(this)" >
+      </div>
+      <div id="infoText">
+        <div id="infoTextTXT"></div>
+      </div>
+      <div id = "closeInfoCard" onclick="closeInfoCard()">
+        <img src="../Assets/Icons/close.png" height="100%">
+      </div>
+    </div>
+    <!--  <div class="button" onclick="changeLang(this)" lang="DE" style="right: 5%; bottom: 5%;">
+       DE
+     </div> -->
+     <div class="button" onclick="exit(this)" lang="DE" style="right: 5%; bottom: 5%;">
+      Galerie<br>verlassen
+     </div>
+    <div id="output" style="opacity: 0; position: absolute; left: 55%; bottom: 5%; background: rgb(63, 63, 63); padding: 10px; color:white; border-radius: 5px;">
+      Output
+    </div>
+    <div id="timeText">
+      10:00
+    </div>
+    
+  </div>
+  <div id="overlay">
+    <div id="overlayText">      
+      Bitte Leertaste drücken
+    </div>
+  </div>
+  <script>
+    console.log("Version: "+version)
+    if(location.toString().indexOf("github.io")>-1)timer = 1000
+
+    let siteTitle = ''
+    window.addEventListener('blur', () => {
+      siteTitle = document.title
+      document.title = 'Come back!'
+      console.log("page left")
+    })
+    window.addEventListener('focus', () => {
+      document.title = siteTitle
+      console.log("page entered")
+    })
+
+  let condition = "2D_Single"
+
+    let iCard = document.getElementById("infoCard")
+    let iImage = document.getElementById("infoImageIMG")
+    let iText = document.getElementById("infoTextTXT")
+    let imgBar = document.getElementById("imageBar")
+
+    let right = false
+    let left = false
+
+    let infoTextString = ""
+
+    let screenHeight = window.innerHeight
+    let screenWidth = window.innerWidth
+    let imgBarHeight = imgBar.getBoundingClientRect().height
+    let imgBarWidth = imgBar.getBoundingClientRect().width
+
+    let maxImgHeight = 0
+    let maxImgWidth = 0
+
+    let currentThumbnail = 0
+
+    let thumbnailArray = []
+    
+    overlayText.style.top = (screenHeight/2 - overlayText.getBoundingClientRect().height/2) +"px"
+    
+    goRight.style.opacity = 1
+
+    // changeOrientation();
+
+    // console.log(sessionStorage.getItem("start"))
+    // sessionStorage.setItem("start", "true")
+
+    function changeLang(target){
+      switch(target.getAttribute('lang')){
+        case "DE":
+          target.innerHTML = "EN"
+          target.setAttribute('lang','EN')
+          language = "EN"
+          if(iCard.style.visibility=="visible")document.getElementById("infoTextTXT").innerHTML = document.getElementById(iCard.getAttribute('imgID')).getAttribute('textEN')
+          break;
+        case "EN":
+          target.innerHTML = "DE"
+          target.setAttribute('lang','DE')
+          language = "DE"
+          if(iCard.style.visibility=="visible")document.getElementById("infoTextTXT").innerHTML = document.getElementById(iCard.getAttribute('imgID')).getAttribute('textDE')
+          break;
+      }
+    }
+    // document.getElementById("header").innerHTML = Gm338.text
+    // console.log(screenWidth+" x "+screenHeight)
+
+    for(var i=0; i<images.length; i++){
+        if(images[i].height>maxImgHeight) maxImgHeight = images[i].height
+        if(images[i].width>maxImgWidth) maxImgWidth = images[i].width
+    }
+
+    addImages()
+
+    for(var i=1; i<thumbnailArray.length; i++){
+      // console.log(thumbnailArray[i].id)
+      
+      thumbnailArray[i].style.pointerEvents = "none"
+      TweenMax.to(thumbnailArray[i], 0, {x:500, opacity:0, onComplete:function(){
+          
+      }})
+    }
+    function addImages(){
+    
+      for(var i=0; i<images.length; i++){
+        // let img = imageArray[i]
+        let img = images[i]
+        infoTextString = ""
+
+        // let thumbnailFrame = document.createElement('li')
+        // thumbnailFrame.className ="thumbnailFrame"
+        // document.getElementById("imageBar").appendChild(thumbnailFrame)
+
+        let thumbnail = document.createElement('img')
+
+        thumbnail.className ="thumbnail"
+        thumbnail.src = img.file
+        thumbnail.id = img.id
+        thumbnail.setAttribute("objNumber",(i+1).toString())
+        thumbnail.style.position = "absolute"        
+
+        let idPos = img.id+"Num"+(i+1)
+        
+        viewingTimes[idPos]=0
+
+        let f = imgBarHeight/maxImgHeight
+
+        thumbnail.style.width = f*img.width+"px"
+        thumbnail.style.height = f*img.height+"px"
+        
+        let top = (imgBarHeight - f*img.height)/2
+        let left = (imgBarWidth - f*img.width)/2
+
+        thumbnail.style.top = top+"px"
+        thumbnail.style.left = left+"px"
+        thumbnail.style.opacity = 1
+
+        document.getElementById("imageBar").appendChild(thumbnail)
+
+        thumbnailArray.push(thumbnail)
+
+        thumbnail.addEventListener('load',(e)=>{
+          addText(e.target)
+        })
+
+        thumbnail.addEventListener('click',(e)=>{
+          iImage.src = e.target.src
+          iCard.setAttribute('imgID', e.target.id)
+          iCard.setAttribute('objNumber', e.target.getAttribute("objNumber"))
+          if(language == "DE")document.getElementById("infoTextTXT").innerHTML = e.target.getAttribute('textDE')
+          if(language == "EN")document.getElementById("infoTextTXT").innerHTML = e.target.getAttribute('textEN')
+
+          // console.log(e.target.id)
+          infoCardStartTime = getCurrentTime()
+          let deltaT = infoCardStartTime - infoCardEndTime
+          objectSequence+=" None_"+deltaT
+          objectNumberSequence+=" None_"+deltaT
+                    
+          logString("infoCardOpened","ObjectName#"+e.target.id+"Num"+iCard.getAttribute("objNumber")+"*ObjectNumber#"+e.target.getAttribute("objNumber"))
+          disableArrowButtons()
+        })
+      }
+    }
+    
+    let isKeyDown = false
+    document.addEventListener('keydown', function(event) {
+      if(!isKeyDown){
+        isKeyDown = true
+        console.log("key down "+event.keyCode)
+        if(event.keyCode == 37) {
+          // goToPrev()
+        }
+        if(event.keyCode == 39) {
+          // goToNext()
+        }
+        if(event.keyCode == 32) {
+          if(!gameOver && !running){
+            running = true
+            overlay.style.visibility = "hidden"
+            let data = ""
+            
+            let d = new Date() 
+            startTime = d.getTime()
+            infoCardEndTime = getCurrentTime()
+
+            for(var i=0; i<thumbnailArray.length; i++){
+              data+="Z"+thumbnailArray[i].id+"Num"+thumbnailArray[i].getAttribute("objNumber")+"#"+isObjectVisible(thumbnailArray[i])+"*"
+            }
+            logString("ObjectsVisibleTotal",data)
+
+            incrementCount(timer)
+          }
+        }
+      }
+    })
+    document.addEventListener('keyup', function(event) {
+      isKeyDown = false
+    })
+
+    /* document.getElementById("goRight").addEventListener('click',(e)=>{
+    })
+
+    document.getElementById("goLeft").addEventListener('click',(e)=>{
+    })  */
+
+    window.addEventListener("orientationchange", function() {
+      // changeOrientation()
+    }, false)
+
+    function goToPrev(){
+      if(goLeft.style.opacity == 1){
+        logString("ArrowClick","ChangeDirection#Left")
+        currentThumbnail--
+        // console.log("go to next "+currentThumbnail)
+        goRight.style.opacity = 1
+        if(currentThumbnail==0)goLeft.style.opacity = 0.1
+        if(currentThumbnail<0)currentThumbnail = 0
+        
+        thumbnailArray[currentThumbnail+1].style.pointerEvents = "none"
+        thumbnailArray[currentThumbnail].style.pointerEvents = "all"
+
+        TweenMax.to(thumbnailArray[currentThumbnail+1], 0.5, {x:500, onComplete:function(){
+            
+        }})
+        TweenMax.to(thumbnailArray[currentThumbnail+1], 0.5, {opacity:0, onComplete:function(){
+            
+        }})
+        TweenMax.to(thumbnailArray[currentThumbnail], 0.5, {x:0, onComplete:function(){
+            console.log("new Thumbnail visible")
+              let data = ""
+              for(var i=0; i<thumbnailArray.length; i++){
+                data+="Z"+thumbnailArray[i].id+"Num"+thumbnailArray[i].getAttribute("objNumber")+"#"+isObjectVisible(thumbnailArray[i])+"*"
+              }
+              logString("ObjectsVisibleTotal",data)
+        }})
+        TweenMax.to(thumbnailArray[currentThumbnail], 0.2, {opacity:1, onComplete:function(){
+            
+        }})
+    }
+
+      /*if(iCard.style.visibility=="visible"){
+        iImage.src = thumbnailArray[currentThumbnail].src        
+        if(language == "DE")document.getElementById("infoTextTXT").innerHTML = thumbnailArray[currentThumbnail].getAttribute('textDE')
+        if(language == "EN")document.getElementById("infoTextTXT").innerHTML = thumbnailArray[currentThumbnail].getAttribute('textEN')
+      }*/
+
+    }
+    function goToNext(){
+      if(goRight.style.opacity == 1){
+        logString("ArrowClick","ChangeDirection#Right")
+        currentThumbnail++
+        // console.log("go to next "+currentThumbnail)
+        goLeft.style.opacity = 1
+        if(currentThumbnail==thumbnailArray.length-1)goRight.style.opacity = 0.1
+        if(currentThumbnail>thumbnailArray.length-1)currentThumbnail = thumbnailArray.length-1
+
+        thumbnailArray[currentThumbnail-1].style.pointerEvents = "none"
+        thumbnailArray[currentThumbnail].style.pointerEvents = "all"
+
+        TweenMax.to(thumbnailArray[currentThumbnail-1], 0.5, {x:-500, onComplete:function(){
+            
+        }})
+        TweenMax.to(thumbnailArray[currentThumbnail-1], 0.5, {opacity:0, onComplete:function(){
+            
+        }})
+        TweenMax.to(thumbnailArray[currentThumbnail], 0.5, {x:0, onComplete:function(){
+            console.log("new Thumbnail visible")
+              let data = ""
+              for(var i=0; i<thumbnailArray.length; i++){
+                data+="Z"+thumbnailArray[i].id+"Num"+thumbnailArray[i].getAttribute("objNumber")+"#"+isObjectVisible(thumbnailArray[i])+"*"
+              }
+              logString("ObjectsVisibleTotal",data)
+            
+        }})
+        TweenMax.to(thumbnailArray[currentThumbnail], 0.2, {opacity:1, onComplete:function(){
+            
+        }})
+      }
+
+      /*if(iCard.style.visibility=="visible"){
+        iImage.src = thumbnailArray[currentThumbnail].src        
+        if(language == "DE")document.getElementById("infoTextTXT").innerHTML = thumbnailArray[currentThumbnail].getAttribute('textDE')
+        if(language == "EN")document.getElementById("infoTextTXT").innerHTML = thumbnailArray[currentThumbnail].getAttribute('textEN')
+      }*/
+    }
+  </script>
+  </body>
+</html>

@@ -115,17 +115,6 @@
     let rightIMG = null
 
     goRight.style.opacity = 1
-    
-    // let testArray = [1,2,3,4,5,6,7,8,9,10]
-    // console.log("testarray",testArray)
-    // shiftArrayRight(testArray)
-    // shiftArrayRight(testArray)
-    // shiftArrayRight(testArray)
-    // console.log("testarray",testArray)
-    // shiftArrayLeft(testArray)
-    // shiftArrayLeft(testArray)
-    // shiftArrayLeft(testArray)
-    // console.log("testarray",testArray)
 
     // changeOrientation();
 
@@ -190,7 +179,6 @@
         thumbnail.className ="thumbnail"
         thumbnail.src = img.file
         thumbnail.id = img.id
-        // thumbnail.style.position="absolute"
         thumbnail.setAttribute("objNumber",(i+1).toString())
 
         let idPos = img.id+"Num"+(i+1)
@@ -198,7 +186,6 @@
         viewingTimes[idPos]=0
 
         thumbnail.style.marginRight = "10vw"
-        thumbnail.style.order = i
         // if(img.id.toString().indexOf("Gm1079")>-1){
         //   thumbnail.style.marginRight = "1vw"
         // }
@@ -238,13 +225,8 @@
           }
         })
         thumbnailArray.push(thumbnail)
-      // console.log("new image")
       }
     }
-    /* for(var i = 1; i<thumbnailArray.length; i++){
-      console.log(thumbnailArray[i-1].getBoundingClientRect().right)
-      thumbnailArray[i].style.left = thumbnailArray[i-1].getBoundingClientRect().right+"px"
-    } */
     let isKeyDown = false
     document.addEventListener('keydown', function(event) {
 
@@ -305,64 +287,6 @@
       // if(dL>1)goLeft.style.opacity = 0.1
       // if(dR<1)goRight.style.opacity = 0.1
     })
-    function shiftImagesRight(){
-        // let rightThumnail = thumbnailArray[thumbnailArray.length-1]
-
-        // console.log("right",rightThumnail.id,rightThumnail.getBoundingClientRect().right)
-        // let newThumbnail = thumbnailArray[0]
-        // document.getElementById("imageBar").appendChild(newThumbnail)
-        // newThumbnail.style.left = rightThumnail.getBoundingClientRect().right+"px"
-
-        // console.log("new",newThumbnail.id,newThumbnail.getBoundingClientRect().left,newThumbnail.getBoundingClientRect().width)
-        // thumbnailArray.splice(0,1)
-        // thumbnailArray.push(newThumbnail)
-        // console.log(newThumbnail.style.left)
-
-        // thumbnailArray[0].style.left = thumbnailArray[thumbnailArray.length-1].getBoundingClientRect().right+"px"
-
-        console.log( "Order",thumbnailArray[0].style.order);
-
-        shiftArrayLeft(thumbnailArray)
-
-        // console.log(thumbnailArray)
-
-        for(var i=0; i<thumbnailArray.length; i++){          
-          thumbnailArray[i].style.order = i
-        }
-    }
-    function shiftImagesLeft(){
-        console.log( "Order",thumbnailArray[0].style.order);
-
-        shiftArrayRight(thumbnailArray)
-
-        // console.log(thumbnailArray)
-
-        for(var i=0; i<thumbnailArray.length; i++){          
-          thumbnailArray[i].style.order = i
-        }
-    }
-    function getNumLeftImgs(){
-      let count = 0
-      for (var i=0; i<thumbnailArray.length; i++){
-        let thumb = thumbnailArray[i]
-        if(thumb.getBoundingClientRect().right<imgBar.getBoundingClientRect().left){
-          count++
-        }
-      }
-      console.log("left images",count)
-      return count
-    }
-    function getNumRightImgs(){
-      let count = 0
-      for (var i=0; i<thumbnailArray.length; i++){
-        let thumb = thumbnailArray[i]
-        if(thumb.getBoundingClientRect().left>imgBar.getBoundingClientRect().right){
-          count++
-        }
-      }
-      console.log("right images",count)
-      return count
-    }
 
     function getLeftImg(){
       let leftPos = 0
@@ -377,7 +301,7 @@
       }
       
       if(leftPos>-1)l = Math.abs(thumbnailArray[leftPos].getBoundingClientRect().left-imgBar.getBoundingClientRect().left)
-      // console.log("leftIMG = " + leftIMG.id)
+      console.log("leftIMG = " + leftIMG.id)
       return l
     }
 
@@ -404,7 +328,7 @@
           break
         }
       }*/
-      // console.log("rightIMG = " + rightIMG.id)
+      console.log("rightIMG = " + rightIMG.id)
       // console.log(imgBar.getBoundingClientRect().width+"  "+l)
       return l
     }
@@ -457,14 +381,14 @@ document.addEventListener("mouseout", mouseup);
       if(goRight.style.opacity == 1){
         goLeft.style.opacity = 1
         disableThumbnails()
+        console.log("goRight")
         let offset = getRightImg()
         logString("ArrowClick","ChangeDirection#Right")
-        // imageBar.scrollBy(2, 0);
-        /* $('#imageBar').animate({
+        $('#imageBar').animate({
             // scrollLeft: $('#imageBar').scrollLeft()+(imgBarWidth*0.5)
             scrollLeft: $('#imageBar').scrollLeft()+(offset)
-        }, 1.5*offset,animateComplete) */
-        shiftImagesRight()
+        }, 1.5*offset,animateComplete)
+
       }
     })
 
@@ -477,11 +401,10 @@ document.addEventListener("mouseout", mouseup);
         console.log("goLeft")
         let offset = getLeftImg()
         logString("ArrowClick","ChangeDirection#Left")
-        /* $('#imageBar').animate({
+        $('#imageBar').animate({
             // scrollLeft: $('#imageBar').scrollLeft()-(imgBarWidth*0.5)
             scrollLeft: $('#imageBar').scrollLeft()-(offset)
-        }, 1.5*offset,animateComplete) */
-        shiftImagesLeft()
+        }, 1.5*offset,animateComplete)
       }
     })
 
@@ -490,8 +413,8 @@ document.addEventListener("mouseout", mouseup);
       let dL = thumbnailArray[0].getBoundingClientRect().left-imgBar.getBoundingClientRect().left
       let dR = thumbnailArray[thumbnailArray.length-1].getBoundingClientRect().right-imgBar.getBoundingClientRect().right
       // console.log(dL + " "+ dR)
-      // if(dL>-1)goLeft.style.opacity = 0.1
-      // if(dR<1)goRight.style.opacity = 0.1
+      if(dL>-1)goLeft.style.opacity = 0.1
+      if(dR<1)goRight.style.opacity = 0.1
       enableThumbnails()
       let data = ""
       for(var i=0; i<thumbnailArray.length; i++){
@@ -504,17 +427,6 @@ document.addEventListener("mouseout", mouseup);
         data+="Z"+thumbnailArray[i].id+"Num"+thumbnailArray[i].getAttribute("objNumber")+"#"+isObjectVisibleCenter(thumbnailArray[i])+"*"
       }
       logString("ObjectsVisibleCenter",data)
-
-      /*if(getNumRightImgs()<10){
-        for(var i=0; i<1; i++){
-          shiftImagesRight()
-        }
-      }
-      if(getNumLeftImgs()<10){
-        for(var i=0; i<1; i++){
-          shiftImagesLeft()
-        }
-      }*/
     }
     
     window.addEventListener("orientationchange", function() {
