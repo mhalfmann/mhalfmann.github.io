@@ -25,7 +25,7 @@ IWM.conditionconfig = {
         { pageid: "consent", src: "consent.html", nextid: "instr", backallowed: true },
         { pageid: "instr", src: "instr.html", nextid: "museum" },
 
-        { pageid: "museum", src: "museum/2D/museum_2dmulti.html", nextid: "withdraw", layout: "allblack_flex" },
+        { pageid: "museum", src: "museum/2DMulti/museum_2dmulti.html", nextid: "withdraw", layout: "allblack_flex" },
 
         { pageid: "withdraw", src: "withdraw.html", nextid: "studyinf", advpage: true },
         { pageid: "studyinf", src: "studyinf.html", nextid: "end" },
