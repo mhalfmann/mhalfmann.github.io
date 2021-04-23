@@ -1,5 +1,0 @@
-**/node_modules
-doc/interactive/
-
-#e.g. lock files of open office '.~lock.name.docx
-.~*
