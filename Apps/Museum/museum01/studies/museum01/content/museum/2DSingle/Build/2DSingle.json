@@ -1,7 +1,7 @@
 {
 "companyName": "DefaultCompany",
 "productName": "VirtualMuseumHall2D",
-"productVersion": "0.1",
+"productVersion": "0.3",
 "dataUrl": "2DSingle.data.unityweb",
 "wasmCodeUrl": "2DSingle.wasm.code.unityweb",
 "wasmFrameworkUrl": "2DSingle.wasm.framework.unityweb",
