@@ -1,0 +1,159 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    <body onload="iwmstudy_access.addInitFunction(init)">
+        <script src="../../../../app/iwm_studyaddon.js"></script>
+        <div id="iwmstudy_masterbox">
+            <div id="iwmstudy_centerbox">
+                <div id="iwmstudy_headlinebox">
+                    <!-- start of headline area -->
+                    Interaktive Aufgaben
+                    <!-- end of headline area -->
+                </div>
+
+                <div id="iwmstudy_contentbox">
+                    <!-- start of content area -->
+                    <div class="iwmstudy_text">				
+                        In diesem Beispiel können mit der Maus Ellipsen über ein Bild gezeichnet und das Ergebnis gespeichert werden. Hinweis: Bei lokaler Verwendung wird das Hintergrundbild nicht mitgespeichert.
+                        <br/><br/>                
+                        Zeichenfläche:
+                        <br/>
+                    </div>                                  
+                    <div class="iwmstudy_custom" style="position: relative;">
+                        <canvas id="canvasstore" width="800" height="600" style="border:1px solid grey; position:absolute; left:0px; top:0px; z-index: 1;"></canvas>
+                        <img id="image" src="../media/bspbild.jpg" width="800" height="600" style="border:1px solid grey; position:absolute; left:0px; top:0px; z-index: 2;">			
+                        <canvas id="canvas" width="800" height="600" style="border:1px solid grey; position:absolute; left:0px; top:0px; z-index: 3;"></canvas>
+                        <canvas id="canvastmp" width="800" height="600" style="border:1px solid grey; position:absolute; left:0px; top:0px; z-index: 4; cursor: crosshair;"></canvas>			
+                        <button type="button" onclick="initStoreImage(event)" style="height: 40px; width: 120px; position:absolute; left:0px; top:620px;">Bild speichern</button>
+                        <button type="button" onclick="clearCanvas(event)" style="height: 40px; width: 120px; position:absolute; left:140px; top:620px;">zurücksetzen</button>
+                        <button id="modebutton" type="button" style="height: 40px; width: 120px; position:absolute; left:280px; top:620px;"> </button>
+                    </div>
+                    <div class="iwmstudy_custom">
+                        <script>
+                            var ctx = document.getElementById('canvas').getContext("2d")
+                            var starttime
+                            var x1, y1, x2, y2 // start and end points for ellipse       
+                    
+                            function initStoreImage(event) {
+                                event.currentTarget.disabled = true
+                                let ctxstore = canvasstore.getContext("2d")           
+                                if(iwmstudy_access.getStudyinfo().apporigin == "server"){
+                                    ctxstore.drawImage(image,0,0)
+                                }
+                                ctxstore.fillText(image.src, 10, 10)
+                                ctxstore.drawImage(canvas,0,0)
+                                canvasstore.toBlob(storeImage, "image/png")
+                            }
+                    
+                            function storeImage(blob) {
+                                let filename = "image_" + Date.now() + ".png"
+                                iwmstudy_access.storeFile(filename, blob)
+                            }        
+                    
+                            function init() {
+                                starttime = Date.now()            
+                                startDrawMode(null)
+                            }
+                    
+                            function clearCanvas(e) {
+                                ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)  
+                            }
+                    
+                            function startDrawMode(event) {
+                                modebutton.textContent = "radieren"
+                                modebutton.removeEventListener("click", startDrawMode)
+                                modebutton.addEventListener("click", startEreaseMode)
+                                canvastmp.addEventListener("mousedown", startEllipse)
+                                canvastmp.addEventListener("mousemove", doEllipse)
+                                canvastmp.addEventListener("mouseup", endEllipse)
+                                canvastmp.removeEventListener("mousedown", startErease)
+                                canvastmp.removeEventListener("mousemove", doErease)
+                                canvastmp.removeEventListener("mouseup", endErease)
+                            }
+                    
+                            function startEreaseMode(event) {
+                                modebutton.textContent = "zeichnen"
+                                modebutton.addEventListener("click", startDrawMode)
+                                modebutton.removeEventListener("click", startEreaseMode)
+                                canvastmp.removeEventListener("mousedown", startEllipse)
+                                canvastmp.removeEventListener("mousemove", doEllipse)
+                                canvastmp.removeEventListener("mouseup", endEllipse)
+                                canvastmp.addEventListener("mousedown", startErease)
+                                canvastmp.addEventListener("mousemove", doErease)
+                                canvastmp.addEventListener("mouseup", endErease)
+                            }
+                    
+                            function startErease(e) {
+                                canvastmp.isDrawing = true
+                            }
+                    
+                            function doErease(e) {
+                                if (!canvastmp.isDrawing) return
+                                let rect = canvastmp.getBoundingClientRect()
+                                let x = e.clientX - rect.left
+                                let y = e.clientY - rect.top
+                                let radius = 20                    
+                                ctx.globalCompositeOperation = 'destination-out'
+                                ctx.fillStyle = '#ff0000'
+                                ctx.beginPath()
+                                ctx.moveTo(x, y)
+                                ctx.arc(x, y, radius, 0, Math.PI * 2, false)
+                                ctx.fill()
+                            }        
+                    
+                            function endErease(e) {
+                                canvastmp.isDrawing = false
+                            }
+                    
+                            function startEllipse(e) {
+                                let rect = canvastmp.getBoundingClientRect();
+                                x1 = e.clientX - rect.left
+                                y1 = e.clientY - rect.top
+                                canvastmp.isDrawing = true
+                            }
+                    
+                            function doEllipse(e) {
+                                let ctxtmp = document.getElementById('canvastmp').getContext("2d")
+                                if (!canvastmp.isDrawing) return
+                                let rect = canvastmp.getBoundingClientRect()
+                                x2 = e.clientX - rect.left
+                                y2 = e.clientY - rect.top            
+                                ctxtmp.clearRect(0, 0, canvastmp.width, canvastmp.height)            
+                                drawEllipse(ctxtmp, x1, y1, x2, y2)
+                            }
+                            
+                            function endEllipse(event) {
+                                let ctxtmp = document.getElementById('canvastmp').getContext("2d")
+                                canvastmp.isDrawing = false
+                                ctxtmp.clearRect(0, 0, ctxtmp.canvas.width, ctxtmp.canvas.height)
+                                ctx.globalCompositeOperation = 'source-over'
+                                drawEllipse(ctx, x1, y1, x2, y2)
+                            }        
+                    
+                            function drawEllipse(context, x1, y1, x2, y2) {
+                                let radiusX = (x2 - x1) * 0.5  // radius for x based on input
+                                let radiusY = (y2 - y1) * 0.5  // radius for y based on input
+                                let centerX = x1 + radiusX     // calc center
+                                let centerY = y1 + radiusY
+                                let step = 0.01                // resolution of ellipse
+                                let a = step                   // counter
+                                let pi2 = Math.PI * 2 - step   // end angle            
+                                context.beginPath()            
+                                context.moveTo(centerX + radiusX * Math.cos(0), centerY + radiusY * Math.sin(0)) // set start point at angle 0
+                                for (; a < pi2; a += step) {
+                                    context.lineTo(centerX + radiusX * Math.cos(a), centerY + radiusY * Math.sin(a)) // draw ellipse
+                                }            
+                                context.closePath()
+                                context.strokeStyle = '#ff0000'
+                                context.lineWidth = 2
+                                context.stroke()
+                            }
+                        </script>
+                    </div>
+                    <!-- end of content area -->
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

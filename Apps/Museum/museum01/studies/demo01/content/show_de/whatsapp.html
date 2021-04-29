@@ -1,0 +1,384 @@
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+        #whatsapp_textbutton {
+            position: absolute;
+            top: 708px;
+            left: 622px;
+            width: 70px;
+            height: 70px;
+            border-radius: 35px;
+            border: 0px solid white;
+            color: white;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: rgb(8, 112, 119);
+        }
+
+        #whatsapp_textbuttonimg {
+            width: 50px;
+            height: 50px;
+        }
+
+        #whatsapp_textbutton:focus {
+            outline: none;
+        }
+
+        #whatsapp_textbutton:disabled {
+            opacity: 0.5;
+        }
+
+        #whatsapp_micbutton {
+            position: absolute;
+            top: 788px;
+            left: 622px;
+            width: 70px;
+            height: 70px;
+            border-radius: 35px;
+            border: 0px solid white;
+            color: white;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: rgb(8, 112, 119);            
+        }
+
+        #whatsapp_micbuttonimg {
+            width: 50px;
+            height: 50px;
+        }
+
+        #whatsapp_micbutton:focus {
+            outline: none;
+        }
+
+        #whatsapp_micbutton:disabled {
+            opacity: 0.5;
+        }
+
+        #whatsapp_textinput {
+            position: absolute;
+            top: 689;
+            left: 8;
+            width: 603px;
+            height: 180px;
+            border-radius: 20px;
+            background-color: white;
+            box-shadow: 5px 5px 3px grey;
+            border: 10px solid rgb(255, 255, 255);            
+            resize: none;            
+            font-size: 24px;
+            font-family: Arial, Helvetica, sans-serif; 
+        }
+
+        #whatsapp_textinput::-webkit-scrollbar {
+            width: 10px;           
+            background-color: rgb(233, 233, 233);
+        }
+
+        #whatsapp_textinput::-webkit-scrollbar-thumb {
+            background: rgb(151, 151, 151);            
+        }
+
+        #whatsapp_textinput:focus {
+            outline: none;            
+        }
+
+        #whatsapp_messagelist {
+            position: absolute;
+            left: 8px;
+            top: 92px;
+            width: 683px;
+            height: 588px;
+            background-color: inherit;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        #whatsapp_messagelist::-webkit-scrollbar {
+            width: 10px;           
+            background-color: rgb(179, 179, 179);
+        }
+
+        #whatsapp_messagelist::-webkit-scrollbar-thumb {
+            background: rgb(105, 105, 105);            
+        }
+
+        .whatsapp_msg_partner {
+            width: 545px;
+            background-color: rgb(250, 250, 250);
+            border-radius: 10px; 
+            margin-left: 20px;
+            box-shadow: 2px 2px 1px rgb(184, 184, 184);
+            margin-bottom: 15px;
+            padding: 7px;
+            font-size: 20px;           
+        }
+
+        .whatsapp_msg_own_text {
+            width: 536px;
+            background-color: rgb(224, 254, 198);
+            border-radius: 10px;
+            margin-left: 110px;
+            box-shadow: 2px 2px 1px rgb(184, 184, 184);
+            margin-bottom: 15px;       
+            padding: 7px; 
+            font-size: 20px;           
+        }
+
+        .whatsapp_msg_own_audio {
+            width: 336px;
+            height: 40px;
+            background-color: rgb(224, 254, 198);
+            border-radius: 10px;
+            margin-left: 310px;
+            box-shadow: 2px 2px 1px rgb(184, 184, 184);
+            margin-bottom: 15px;       
+            padding: 7px; 
+            font-size: 20px;           
+        }
+
+        .whatsapp_msg_footer {
+            font-size: 11px;
+            color: grey; 
+            float: right;  
+            margin-top: 16px;         
+        }
+
+        .whatsapp_msg_footer_audio {
+            font-size: 11px;
+            color: grey; 
+            float: right;  
+            margin-top: 28px;         
+        }
+
+        .whatsapp_msg_footerimg {
+            height: 9px;            
+        }
+
+        .whatsapp_msg_img {
+            height: 40px; 
+            float: left;           
+        }
+
+        .whatsapp_msg_span {
+            font-size: 16px; 
+            margin-left: 8px; 
+            margin-top: 8px;  
+            display: inline-block;        
+        }
+
+        #partnername {
+            color: white;
+            font-size: 24px;
+            position: absolute;
+            left: 130px;
+            top: 15px;
+        }
+
+        #partneronline {
+            color: white;
+            font-size: 16px;
+            position: absolute;
+            left: 130px;
+            top: 42px;           
+        }
+    </style>    
+</head>
+
+<body onload="iwmstudy_access.addInitFunction(init)">
+	<script src="../../../../app/iwm_studyaddon.js"></script>
+	<div id="iwmstudy_masterbox"><div id="iwmstudy_centerbox">		
+		
+		<!-- Inhalt -->
+		<div id="iwmstudy_contentbox">
+            <div id="partnername">Lisa</div>
+            <div id="partneronline"> </div>
+            <div id="whatsapp_messagelist">
+                <div class="whatsapp_msg_partner">
+                    Hi, ich bin Lisa :)<br><br>
+                    Ich finde das Thema der Studie hört sich super spannend an!<br>
+                    Allerdings habe ich bisher noch gar nichts darüber gelesen.<br><br>
+                    Kannst du mir erklären, um was es ging?<br><br>
+                    Bis jetzt sagt mir das alles gar nichts...
+                    <span id="ptt" class="whatsapp_msg_footer"></span>
+                </div>                
+            </div>			
+            <button id="whatsapp_textbutton" type="button"><img id="whatsapp_textbuttonimg" src="../../config/media/whatsapp/send.png"></button>
+            <button id="whatsapp_micbutton" type="button"><img id="whatsapp_micbuttonimg" src="../../config/media/whatsapp/mic_white.png"></button>            
+            <textarea id="whatsapp_textinput"></textarea>		
+		</div>
+
+    </div></div>
+    <script>        
+        var mediarecord
+        var audioChunks 
+        var partnertimetext 
+        var alltextstart
+        var allaudiostart
+        var alltext = "" 
+        var userid
+        var runid
+        var audiostart
+        var talkenabled = true
+        var writeenabled = true     
+
+        function init() {            
+            userid = iwmstudy_access.getStudyinfo()["user"]
+            runid = iwmstudy_access.getStudyinfo()["runid"]
+            let partnertime = new Date(Date.now() - 600000)
+            if(partnertime.getMinutes() < 10){
+                partnertimetext = partnertime.getHours() + ":0" + partnertime.getMinutes()
+            }
+            else{
+                partnertimetext = partnertime.getHours() + ":" + partnertime.getMinutes()
+            }
+            partneronline.innerHTML = "zuletzt online heute " + partnertimetext
+            ptt.innerHTML = partnertimetext            
+            if(talkenabled){               
+                whatsapp_micbutton.addEventListener("click", startRecording)            
+                navigator.mediaDevices.getUserMedia({ audio: true })
+                    .then(stream => {
+                        mediarecord = new MediaRecorder(stream)                    
+                        mediarecord.addEventListener("dataavailable", event => {
+                            audioChunks.push(event.data);
+                        })
+                        mediarecord.addEventListener("stop", () => {
+                            let audioduration = Date.now() - audiostart
+                            audioduration = Math.round(audioduration / 1000)
+                            let filename = Date.now() + "_" + runid + "_" + userid + ".webm"
+                            let audioBlob = new Blob(audioChunks);
+                            iwmstudy_access.storeFile(filename, audioBlob)
+                            addAudioMessage(filename, audioduration)
+                        })                        
+                    })                        
+            }
+            else{
+                whatsapp_micbutton.disabled = true
+                whatsapp_micbutton.style.visibility = "hidden"
+            } 
+            if(writeenabled){                
+                whatsapp_textbutton.addEventListener("click", addTextMessage)
+                whatsapp_textinput.addEventListener("input", startedFirstTextMessage)                  
+            }   
+            else{
+                whatsapp_textbutton.disabled = true
+                whatsapp_textinput.disabled = true
+            } 
+            iwmstudy_access.addFinalizeFunction(finalizeChat, async = false)       
+        }  
+
+        function finalizeChat(){
+            if(writeenabled && whatsapp_textinput.value.length > 0){
+                addTextMessage(null)
+            } 
+            if(talkenabled){
+                //todo
+            }           
+        }
+
+        function startedFirstTextMessage(e){
+            whatsapp_textinput.removeEventListener("input", startedFirstTextMessage)
+            alltextstart = Date.now()            
+        }
+        
+        function startRecording(e){
+            whatsapp_micbutton.removeEventListener("click",startRecording)            
+            whatsapp_micbutton.addEventListener("click",stopRecording)
+            whatsapp_micbuttonimg.src = "../../config/media/whatsapp/record.png"
+            if(allaudiostart == null){
+                allaudiostart = Date.now()                
+            }
+            audioChunks = []
+            audiostart = Date.now()
+            mediarecord.start()            
+        }
+
+        function stopRecording(e){
+            whatsapp_micbutton.removeEventListener("click",stopRecording)
+            whatsapp_micbutton.addEventListener("click",startRecording)
+            whatsapp_micbuttonimg.src = "../../config/media/whatsapp/mic_white.png"
+            mediarecord.stop()            
+        }
+
+        function addTextMessage(e){ 
+            let now = Date.now()           
+            let text = whatsapp_textinput.value 
+            if(text == ""){
+                text = "-"
+            }
+            iwmstudy_access.logAction("newtext",{value:text})            
+            whatsapp_textinput.value = ""
+            let messagebox = document.createElement("div")
+            messagebox.setAttribute("class", "whatsapp_msg_own_text")
+            let messagetext = document.createTextNode(text)
+            messagebox.appendChild(messagetext)
+            let messagefooter = document.createElement("span")
+            messagefooter.setAttribute("class", "whatsapp_msg_footer")
+            let time = new Date()
+            let footertime
+            if(time.getMinutes() < 10){
+                footertime = time.getHours() + ":0" + time.getMinutes()
+            }
+            else{
+                footertime = time.getHours() + ":" + time.getMinutes()
+            }            
+            let footertext = document.createTextNode(footertime)
+            messagefooter.appendChild(footertext)
+            let footerimg = document.createElement("img")
+            footerimg.setAttribute("class", "whatsapp_msg_footerimg")
+            footerimg.setAttribute("src", "../../config/media/whatsapp/received.png")            
+            messagefooter.appendChild(footerimg)
+            messagebox.appendChild(messagefooter)            
+            whatsapp_messagelist.appendChild(messagebox)
+            whatsapp_messagelist.scrollTop = whatsapp_messagelist.scrollHeight
+            let ts
+            if(time.getSeconds() < 10){
+                ts = "0" + time.getSeconds()
+            }
+            else{
+                ts = time.getSeconds()
+            } 
+            alltext = alltext + "|" + footertime + ":" + ts + ": " + text + "|"
+            iwmstudy_access.additionallogdata["completetext"] = alltext
+            iwmstudy_access.additionallogdata["completetexttime"] = now - alltextstart            
+        }
+
+        function addAudioMessage(filename, audioduration){
+            let now = Date.now() 
+            iwmstudy_access.logAction("newaudio",{file:filename, duration:audioduration})            
+            iwmstudy_access.additionallogdata["completeaudiotime"] = now - allaudiostart            
+
+            let messagebox = document.createElement("div")
+            messagebox.setAttribute("class", "whatsapp_msg_own_audio")            
+            let messageimg = document.createElement("img")
+            messageimg.setAttribute("class", "whatsapp_msg_img")
+            messageimg.setAttribute("src", "../../config/media/whatsapp/audio.png")            
+            messagebox.appendChild(messageimg)            
+            let messagespan = document.createElement("span")
+            messagespan.setAttribute("class", "whatsapp_msg_span")            
+            let text = "Sprachnachricht (Dauer " + audioduration + "s)"
+            let messagetext = document.createTextNode(text)
+            messagespan.appendChild(messagetext)
+            messagebox.appendChild(messagespan)
+            let messagefooter = document.createElement("span")
+            messagefooter.setAttribute("class", "whatsapp_msg_footer_audio")
+            let time = new Date()
+            let footertime
+            if(time.getMinutes() < 10){
+                footertime = time.getHours() + ":0" + time.getMinutes()
+            }
+            else{
+                footertime = time.getHours() + ":" + time.getMinutes()
+            }            
+            let footertext = document.createTextNode(footertime)
+            messagefooter.appendChild(footertext)
+            let footerimg = document.createElement("img")
+            footerimg.setAttribute("class", "whatsapp_msg_footerimg")
+            footerimg.setAttribute("src", "../../config/media/whatsapp/received.png")            
+            messagefooter.appendChild(footerimg)
+            messagebox.appendChild(messagefooter)            
+            whatsapp_messagelist.appendChild(messagebox)
+            whatsapp_messagelist.scrollTop = whatsapp_messagelist.scrollHeight            
+        }
+    </script>
+</body>

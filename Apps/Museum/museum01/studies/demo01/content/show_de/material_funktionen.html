@@ -1,0 +1,122 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    <body onload="iwmstudy_access.addInitFunction(init)">
+        <script src="../../../../app/iwm_studyaddon.js"></script>
+        <div id="iwmstudy_masterbox">
+            <div id="iwmstudy_centerbox">
+                <div id="iwmstudy_headlinebox">
+                    <!-- start of headline area -->
+                    Material: Zugriff auf zentrale Variablen und Funktionen
+                    <!-- end of headline area -->
+                </div>
+
+                <div id="iwmstudy_contentbox">
+                    <!-- start of content area -->
+                    <div class="iwmstudy_text">Über window.iwmstudy_access können verschiedene Variablen und Funktionen verwendet werden.</div>
+                    <h2 class="iwmstudy_heading">Variablen:</h2>
+                    <figure class="iwmstudy_table">
+                        <table>
+                            <tr>
+                                <th style="width: 35%">Variablenname</th>
+                                <th>Beschreibung</th>
+                            </tr>
+                            <tr>
+                                <td>additionallogdata = {}</td>
+                                <td>zusätzliche Logdaten können hier als Schlüssel/Wert abgelegt werden</td>
+                            </tr>
+                            <tr>
+                                <td>nextbutton_targetpage = null</td>
+                                <td>manuelle Änderungen der nächsten Seite im Ablauf</td>
+                            </tr>
+                        </table>
+                        <figcaption></figcaption>
+                    </figure>
+                    <h2 class="iwmstudy_heading">Funktionen:</h2>
+                    <figure class="iwmstudy_table">
+                        <table>
+                            <tr>
+                                <th style="width: 35%">Funktionsname</th>
+                                <th>Beschreibung</th>
+                            </tr>
+                            <tr>
+                                <td>linkto(target=null)</td>
+                                <td>Seitenwechsel zur angegebenen Seite</td>
+                            </tr>
+                            <tr>
+                                <td>linkback()</td>
+                                <td>Seitenwechsel zur vorgeordneten Seite</td>
+                            </tr>
+                            <tr>
+                                <td>getPageinfo()</td>
+                                <td>Informationen zur aktuellen Seite, z.B. Page-ID, Parameter, Timing, Visits.</td>
+							</tr>
+							<tr>
+                                <td>getPagegroupinfo()</td>
+                                <td>Informationen zur aktuellen Seitengruppe, z.B. Pagegroup-ID, Timing, Visits.</td>
+                            </tr>
+                            <tr>
+                                <td>getStudyinfo()</td>
+                                <td>Informationen zur Studie, z.B. Bedingung, User, Run-ID.</td>
+                            </tr>
+                            <tr>
+                                <td>getRuntimeData()</td>
+                                <td>Objekt zur Speicherung von Daten zur Laufzeit zwischen Seiten</td>
+							</tr>
+							<tr>
+                                <td>getExistingLogData()</td>
+                                <td>Gibt ein Objekt mit bei einem vorherigen Besuch auf dieser Seite gespeicherten Daten zurück (store_, storeopt_, additionallogdata).</td>
+                            </tr>
+                            <tr>
+                                <td>logAction(action, data = {})</td>
+                                <td>Loggt sofort eine action mit einem Objekt, das beliebige Schlüssel/Werte enthält</td>
+                            </tr>
+                            <tr>
+                                <td>storeFile(filename, blob)</td>
+                                <td>Speichert ein Blob unter dem filename in der Datenbank.</td>
+							</tr>
+							<tr>
+                                <td>addInitFunction(funct)</td>
+                                <td>Ruft funct nach abgeschlossener Initialisierung der Versuchsumgebung auf der Seite auf. Über funct kann dann eine eigene weitere Initialisierung des Materials erfolgen.</td>
+							</tr>
+							<tr>
+                                <td>addFinalizeFunction(funct, async=false)</td>
+                                <td>Definiert eine Funktion, die vor dem Verlassen der Seite ausgeführt wird.</td>
+							</tr>
+							<tr>
+                                <td>removeFinalizeFunctionAsyncWait()</td>
+                                <td>Beendet das Warten auf eine asynchrone FinalizeFunction.</td>
+							</tr>
+							<tr>
+                                <td>enableNextButton()</td>
+                                <td>aktiviert den Weiter-Button</td>
+							</tr>
+							<tr>
+                                <td>disableNextButton()</td>
+                                <td>deaktiviert den Weiter-Button</td>
+							</tr>
+							<tr>
+                                <td>doRPC(target, rpcname, rpcparams = []</td>
+                                <td>Führt beim User target eine registrierte Funktion aus.</td>
+                            </tr>
+							<tr>
+                                <td>weitere Funktionen</td>
+                                <td>im Handbuch dokumentiert</td>
+                            </tr>
+                        </table>
+                        <figcaption></figcaption>
+                    </figure>
+                    <div class="iwmstudy_custom">
+                        <script>
+                            function init() {
+                                console.log("init function called by iwmstudy_access")
+                            }
+                        </script>
+                    </div>
+                    <!-- end of content area -->
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

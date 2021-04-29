@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" href="TemplateData/style.css" />
+        <script src="TemplateData/UnityProgress.js"></script>
+        <script src="Build/UnityLoader.js"></script>
+    </head>
+    <body onload="iwmstudy_access.addInitFunction(init)">
+        <script src="../../../../../app/iwm_studyaddon.js"></script>
+        <div id="iwmstudy_masterbox">
+            <div id="iwmstudy_centerbox">
+                <div id="iwmstudy_contentbox">
+                    <!-- start of content area -->
+                    <div class="iwmstudy_custom" style="width: 100%; height: 100%">
+                        <div class="webgl-content" style="width: 100%; height: 100%">
+                            <div id="gameContainer" style="width: 100%; height: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="iwmstudy_custom">
+                        <script>
+                            var unityInstance
+
+                            function init() {
+                                unityInstance = UnityLoader.instantiate("gameContainer", "Build/2DSingle.json", { onProgress: UnityProgress })
+                            }
+
+                            function OnAppReady() {
+                                console.log("vr app ready")
+                                iwmstudy_access.logAction("vrappready", {})
+                                // unityInstance.SendMessage("control", "setName", iwmstudy_access.getStudyinfo().user)
+
+                                let time = 86400
+                                let language = "DE"
+                                
+                                unityInstance.SendMessage('control', 'setTime', time)
+                                unityInstance.SendMessage('control', 'setLanguage', language)
+                                unityInstance.SendMessage('control', 'hideTime')
+                            }
+
+                            function OnAppEnd() {
+                                console.log("vr app finished")
+                                iwmstudy_access.logAction("vrappfinished", {})
+                                iwmstudy_access.enableNextButton()
+                            }
+                        </script>
+                    </div>
+                    <!-- end of content area -->
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
