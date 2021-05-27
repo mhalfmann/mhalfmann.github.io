@@ -11,6 +11,16 @@
         </div>
         <script>
             var unityInstance = UnityLoader.instantiate("gameContainer", "Build/3D.json", { onProgress: UnityProgress })
+            let siteTitle = ''
+            window.addEventListener('blur', () => {
+            siteTitle = document.title
+            document.title = 'Come back!'
+            console.log("page left")
+            })
+            window.addEventListener('focus', () => {
+            document.title = siteTitle
+            console.log("page entered")
+            })
 
             function OnAppReady() {
                 console.log("vr app ready")
