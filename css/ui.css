@@ -51,8 +51,8 @@ body {
     background-color: rgb(58, 57, 57);
 }
 .uiButtonBackground:hover {
-    /* box-shadow: 17px 17px 5px rgba(2, 2, 2, 0.308);
-    transform: scale(1.1, 1.1); */
+    box-shadow: 17px 17px 5px rgba(2, 2, 2, 0.308);
+    transform: scale(1.1, 1.1);
 }
 
 .uiButton:active {
