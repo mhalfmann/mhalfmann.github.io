@@ -8,6 +8,7 @@
 <script src="../../Javascript/TweenMax.min.js"></script>
 <script src="../../Javascript/jquery-3.4.0.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../../css/ui.css">
+<style>
   a, a:visited { 
       text-decoration: none; 
       color: white;
@@ -26,29 +27,22 @@
 <!-- <script src="./Javascript/TweenMax.min.js"></script> -->
   <!-- <body onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(255, 134, 48); font-family: "Open Sans";'>    
   <div style="position: absolute; left: 0px; top: 0%;height: 7vh; width:100%; background: rgb(255, 105, 0); text-align: center; color: white; font-size: 5vh; margin-bottom: 50px;">Applikationen</div> -->
-  <body onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
-    <div id ="header" style="position: absolute; left: 0px; top: 0%;height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px;">
-      Applikationen
-  
-      <a href="../../index.html" style = "position: absolute; top: 0px; right: 5px;">
-        <div id = "buttonHome" class = "uiIcon" style="border-radius: 5px;">
-          <img id="home" src="../../Assets/Icons/home.png" style = "width: 35px">
-        </div>
-      </a>
-    </div>
+  <body onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(255, 105, 0); font-family: "Open Sans";'>    
+    <!-- <div id ="header" style="position: absolute; left: 0px; top: 0%;height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px;">
+     
+    </div> -->
 
-  <div id="main" style ="position: absolute; left: 0px; top: 50px;height: 93vh; width:100%; overflow: auto; padding-top: 5vh;">
-  
+  <div id="main" style ="position: absolute; left: 0px; width:100%; overflow: auto; padding-top: 1vh;">  
     
-    <div style="background: rgb(233, 137, 96);">
+    <div style="background: rgb(255, 179, 115); margin: 10px;">
       
-    <div style="color: white; text-align: left;">Unity Anwendungen</div><br>
-    <div style="display: flex; flex-direction: row;flex-wrap: wrap;">
+    <div style="color: white; text-align: center; font-size:30px;">Unity Anwendungen</div><br>
+    <div style="justify-content: center; display: flex; flex-direction: row;flex-wrap: wrap;">
     
       <a href="./2DSingle/2DSingle.html">
         <div id = "buttonMuseum" class="uiButtonFrame" onclick = "clicked(this)" >
           <img class="uiButtonBackground" src="../../Assets/Images/Museum2DSingle.png" style="height: 70%; padding: 0px;">
-          <div class="uiText" style="color: white; text-align: center;">Museum 2D Single</div>
+          <div class="uiText" style="color: white;">Museum 2D Single</div>
         </div>
       </a>
 
@@ -86,14 +80,10 @@
     </div>
     </div>
 
-    <div style="background: rgb(112, 146, 172);">
+    <div style="background: rgb(255, 179, 115);  margin: 10px;">
 
-      <div style="color: white; text-align: left;">Screenshots</div>
-      <div style="display: flex; flex-direction: row;flex-wrap: wrap;">
-        <!-- <div style = "margin: 35px">
-          <a href="../../Assets/Images/GNM 1.png"><img class="uiButtonBackground" src="../../Assets/Images/GNM 1.png" alt="IMG" style="width:384px;height:216px;"></a>
-        <div class="uiText" style="color: white; text-align: center;">Screenshot: GNM</div>
-        </div> -->
+      <div style="color: white; text-align: center; font-size:30px;">Screenshots</div>
+      <div style="justify-content: center; display: flex; flex-direction: row;flex-wrap: wrap;">
         <div style = "margin: 5px; margin-right: 50px;">
           <a href="../../Assets/Images/GNM 2.png"><img class="uiButtonBackground" src="../../Assets/Images/GNM 2.png" alt="IMG" style="width:384px;height:216px;"></a>
         <div class="uiText" style="color: white; text-align: center;">Screenshot: GNM Gruppierung</div>
@@ -104,11 +94,7 @@
         </div>
       </div>
 
-    <div style="display: flex; flex-direction: row;flex-wrap: wrap;">
-      <!-- <div style = "margin: 35px">
-        <a href="../../Assets/Images/GNM 1.png"><img class="uiButtonBackground" src="../../Assets/Images/GNM 1.png" alt="IMG" style="width:384px;height:216px;"></a>
-      <div class="uiText" style="color: white; text-align: center;">Screenshot: GNM</div>
-      </div> -->
+    <div style="justify-content: center; display: flex; flex-direction: row;flex-wrap: wrap;">
       <div style = "margin: 5px; margin-right: 50px;">
         <a href="../../Assets/Images/info04_1.png"><img class="uiButtonBackground" src="../../Assets/Images/info04_1.png" alt="IMG" style="width:384px;height:216px;"></a>
       <div class="uiText" style="color: white; text-align: center;">Screenshot: Infoanordnung04</div>
