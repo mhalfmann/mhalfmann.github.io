@@ -1,8 +1,0 @@
-# Erlaubt Uploads bis 100 MB (für upload-foto.php).
-# Nur wirksam, wenn Apache AllowOverride erlaubt (z. B. AllowOverride All).
-# Bei nginx: client_max_body_size 100M; in der Server-Config setzen (siehe docs/upload-413.md).
-LimitRequestBody 104857600
-<IfModule mod_php.c>
-    php_value upload_max_filesize 100M
-    php_value post_max_size 100M
-</IfModule>
