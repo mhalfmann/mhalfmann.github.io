@@ -65,23 +65,42 @@
   async function scanAlbum(def) {
     var folder = "./Assets/Screenshots/" + def.id + "/";
     var images = [];
-    var ext = await findFirstExisting(folder + "1");
-    if (!ext) {
-      return { id: def.id, title: def.title, images: [] };
+    var seen = {};
+
+    function addImage(img) {
+      if (!img || !img.src || seen[img.src]) return;
+      seen[img.src] = true;
+      images.push(img);
     }
 
-    images.push({
-      src: folder + "1" + ext,
-      alt: def.title + " 1"
-    });
+    // 1) Results from generate-screenshots.ps1 (supports any filenames)
+    var catalog = window.SCREENSHOTS_CATALOG && window.SCREENSHOTS_CATALOG.albums;
+    if (catalog) {
+      for (var c = 0; c < catalog.length; c++) {
+        if (catalog[c].id !== def.id) continue;
+        var catalogImages = catalog[c].images || [];
+        for (var j = 0; j < catalogImages.length; j++) {
+          addImage(catalogImages[j]);
+        }
+        break;
+      }
+    }
 
-    for (var i = 2; i <= MAX_PER_ALBUM; i++) {
-      var src = folder + i + ext;
-      if (!(await probeUrl(src))) break;
-      images.push({
-        src: src,
-        alt: def.title + " " + i
+    // 2) Live probe for numbered files (1.png, 2.png, …) – picks up new ones on F5
+    var ext = await findFirstExisting(folder + "1");
+    if (ext) {
+      addImage({
+        src: folder + "1" + ext,
+        alt: def.title + " 1"
       });
+      for (var i = 2; i <= MAX_PER_ALBUM; i++) {
+        var src = folder + i + ext;
+        if (!(await probeUrl(src))) break;
+        addImage({
+          src: src,
+          alt: def.title + " " + i
+        });
+      }
     }
 
     return { id: def.id, title: def.title, images: images };
@@ -175,7 +194,7 @@
     flat = flatten(activeAlbum);
     renderFilters();
     renderGrid();
-    setStatus(flat.length + " Screenshots");
+    setStatus(flat.length + " Bilder");
   }
 
   function openLightbox(index) {
@@ -227,14 +246,14 @@
   });
 
   async function boot() {
-    setStatus("Galerie wird gescannt…");
+    setStatus("Bildergallerie wird geladen…");
     var defs = albumDefs();
     var scanned = await Promise.all(defs.map(scanAlbum));
     albums = scanned.filter(function (a) {
       return a.images.length > 0;
     });
     if (!albums.length) {
-      setStatus("Keine Screenshots gefunden unter Assets/Screenshots/");
+      setStatus("Keine Bilder gefunden unter Assets/Screenshots/");
       grid.innerHTML = "";
       return;
     }

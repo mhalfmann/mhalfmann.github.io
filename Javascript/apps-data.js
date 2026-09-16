@@ -1,5 +1,5 @@
 window.APPS_CATALOG = {
-    "generated":  "2026-09-16T14:16:06.4902509+02:00",
+    "generated":  "2026-09-16T14:46:29.4129221+02:00",
     "apps":  [
                  {
                      "id":  "Info04",

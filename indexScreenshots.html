@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Screenshots</title>
+  <title>Bildergallerie</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
@@ -15,10 +15,10 @@
     <div id="listButton" class="uiIcon" aria-label="Menü">
       <img id="listIcon" src="./Assets/Icons/menu.png" alt="">
     </div>
-    <div class="site-header__title">Screenshots</div>
+    <div class="site-header__title">Bildergallerie</div>
     <div id="list">
       <div class="uiListItem" href="./indexApps.html" onclick="gotoPage(this)">Applikationen</div>
-      <div class="uiListItem" href="./indexScreenshots.html" onclick="gotoPage(this)">Screenshots</div>
+      <div class="uiListItem" href="./indexScreenshots.html" onclick="gotoPage(this)">Bildergallerie</div>
       <div class="uiListItem" href="./indexMockup.html" onclick="gotoPage(this)">Mockups</div>
     </div>
     <a class="home-link" href="./index.html" aria-label="Home">
@@ -30,7 +30,7 @@
 
   <main class="site-main">
     <div class="shot-toolbar">
-      <h1>Galerie</h1>
+      <h1>Bildergallerie</h1>
       <div id="shotStatus" class="shot-status"></div>
     </div>
     <div id="shotFilters" class="shot-filters" aria-label="Alben"></div>
@@ -39,7 +39,7 @@
 
   <div id="lightbox" class="lightbox" hidden>
     <div class="lightbox__backdrop" aria-hidden="true"></div>
-    <div class="lightbox__panel" role="dialog" aria-modal="true" aria-label="Screenshot-Ansicht">
+    <div class="lightbox__panel" role="dialog" aria-modal="true" aria-label="Bildansicht">
       <div class="lightbox__stage">
         <button type="button" id="lightboxPrev" class="lightbox__nav lightbox__nav--prev" aria-label="Vorheriges Bild">
           <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
@@ -63,7 +63,7 @@
 
   <script src="./Javascript/jquery-3.4.0.min.js"></script>
   <script src="./Javascript/site-nav.js"></script>
-  <!-- optional: album names from generate-screenshots.ps1; images are always live-scanned -->
+  <!-- screenshots-data.js = generate-screenshots.ps1 (auch unnummerierte Dateien) -->
   <script src="./Javascript/screenshots-data.js"></script>
   <script src="./Javascript/screenshots-gallery.js"></script>
 </body>
