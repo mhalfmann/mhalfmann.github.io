@@ -246,7 +246,7 @@
   });
 
   async function boot() {
-    setStatus("Bildergallerie wird geladen…");
+    setStatus("Bildergalerie wird geladen…");
     var defs = albumDefs();
     var scanned = await Promise.all(defs.map(scanAlbum));
     albums = scanned.filter(function (a) {
