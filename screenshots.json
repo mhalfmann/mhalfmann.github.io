@@ -1,5 +1,5 @@
 {
-    "generated":  "2026-09-16T14:22:30.7886400+02:00",
+    "generated":  "2026-09-16T14:41:55.9074463+02:00",
     "albums":  [
                    {
                        "id":  "FlightSimulator",
@@ -20,10 +20,24 @@
                                       {
                                           "src":  "./Assets/Screenshots/FlightSimulator/4.png",
                                           "alt":  "FlightSimulator 4"
+                                      }
+                                  ]
+                   },
+                   {
+                       "id":  "HolzHaus",
+                       "title":  "HolzHaus",
+                       "images":  [
+                                      {
+                                          "src":  "./Assets/Screenshots/HolzHaus/Foto0192.jpg",
+                                          "alt":  "HolzHaus Foto0192"
                                       },
                                       {
-                                          "src":  "./Assets/Screenshots/FlightSimulator/5.png",
-                                          "alt":  "FlightSimulator 5"
+                                          "src":  "./Assets/Screenshots/HolzHaus/Foto0193.jpg",
+                                          "alt":  "HolzHaus Foto0193"
+                                      },
+                                      {
+                                          "src":  "./Assets/Screenshots/HolzHaus/Foto0194.jpg",
+                                          "alt":  "HolzHaus Foto0194"
                                       }
                                   ]
                    },

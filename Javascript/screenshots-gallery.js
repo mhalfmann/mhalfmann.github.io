@@ -1,6 +1,9 @@
 /**
- * Screenshot gallery: album filters, grid, lightbox.
- * Expects window.SCREENSHOTS_CATALOG from screenshots-data.js
+ * Screenshot gallery with live auto-scan on every page load.
+ *
+ * Browsers cannot list folders on static hosts (GitHub Pages).
+ * We therefore probe numbered files (1.png, 2.png, …) in known albums.
+ * Adding e.g. Lego/13.png shows up after F5 – no PowerShell needed.
  */
 (function () {
   var grid = document.getElementById("shotGrid");
@@ -14,6 +17,14 @@
 
   if (!grid) return;
 
+  var EXTENSIONS = [".png", ".jpg", ".jpeg", ".webp", ".gif"];
+  var MAX_PER_ALBUM = 120;
+  var DEFAULT_ALBUMS = [
+    { id: "Lego", title: "Lego" },
+    { id: "FlightSimulator", title: "Flight Simulator" }
+  ];
+
+  var albums = [];
   var flat = [];
   var currentIndex = 0;
   var activeAlbum = "all";
@@ -23,14 +34,77 @@
     statusEl.textContent = msg || "";
   }
 
-  function flatten(albums, albumId) {
+  function probeUrl(url) {
+    return new Promise(function (resolve) {
+      var img = new Image();
+      var done = false;
+      function finish(ok) {
+        if (done) return;
+        done = true;
+        resolve(ok);
+      }
+      img.onload = function () {
+        finish(true);
+      };
+      img.onerror = function () {
+        finish(false);
+      };
+      // Cache-bust so a previously missing file is found after F5
+      img.src = url + (url.indexOf("?") >= 0 ? "&" : "?") + "_scan=" + Date.now();
+    });
+  }
+
+  async function findFirstExisting(basePathNoExt) {
+    for (var e = 0; e < EXTENSIONS.length; e++) {
+      var url = basePathNoExt + EXTENSIONS[e];
+      if (await probeUrl(url)) return EXTENSIONS[e];
+    }
+    return null;
+  }
+
+  async function scanAlbum(def) {
+    var folder = "./Assets/Screenshots/" + def.id + "/";
+    var images = [];
+    var ext = await findFirstExisting(folder + "1");
+    if (!ext) {
+      return { id: def.id, title: def.title, images: [] };
+    }
+
+    images.push({
+      src: folder + "1" + ext,
+      alt: def.title + " 1"
+    });
+
+    for (var i = 2; i <= MAX_PER_ALBUM; i++) {
+      var src = folder + i + ext;
+      if (!(await probeUrl(src))) break;
+      images.push({
+        src: src,
+        alt: def.title + " " + i
+      });
+    }
+
+    return { id: def.id, title: def.title, images: images };
+  }
+
+  function albumDefs() {
+    var catalog = window.SCREENSHOTS_CATALOG && window.SCREENSHOTS_CATALOG.albums;
+    if (catalog && catalog.length) {
+      return catalog.map(function (a) {
+        return { id: a.id, title: a.title || a.id };
+      });
+    }
+    return DEFAULT_ALBUMS.slice();
+  }
+
+  function flatten(albumId) {
     var list = [];
     albums.forEach(function (album) {
       if (albumId !== "all" && album.id !== albumId) return;
-      (album.images || []).forEach(function (img, i) {
+      (album.images || []).forEach(function (img) {
         list.push({
           src: img.src,
-          alt: img.alt || album.title + " " + (i + 1),
+          alt: img.alt,
           album: album.title,
           albumId: album.id
         });
@@ -39,7 +113,7 @@
     return list;
   }
 
-  function renderFilters(albums) {
+  function renderFilters() {
     if (!filters) return;
     filters.innerHTML = "";
 
@@ -50,14 +124,15 @@
       btn.textContent = label;
       btn.addEventListener("click", function () {
         activeAlbum = id;
-        render();
+        paint();
       });
       filters.appendChild(btn);
     }
 
     addChip("all", "Alle");
     albums.forEach(function (a) {
-      addChip(a.id, a.title + " (" + (a.images || []).length + ")");
+      if (!a.images.length) return;
+      addChip(a.id, a.title + " (" + a.images.length + ")");
     });
   }
 
@@ -96,11 +171,9 @@
     });
   }
 
-  function render() {
-    var data = window.SCREENSHOTS_CATALOG || { albums: [] };
-    var albums = data.albums || [];
-    renderFilters(albums);
-    flat = flatten(albums, activeAlbum);
+  function paint() {
+    flat = flatten(activeAlbum);
+    renderFilters();
     renderGrid();
     setStatus(flat.length + " Screenshots");
   }
@@ -153,9 +226,20 @@
     if (e.key === "ArrowRight") step(1);
   });
 
-  if (window.SCREENSHOTS_CATALOG) {
-    render();
-  } else {
-    setStatus("Keine Screenshots geladen. Bitte generate-screenshots.ps1 ausführen.");
+  async function boot() {
+    setStatus("Galerie wird gescannt…");
+    var defs = albumDefs();
+    var scanned = await Promise.all(defs.map(scanAlbum));
+    albums = scanned.filter(function (a) {
+      return a.images.length > 0;
+    });
+    if (!albums.length) {
+      setStatus("Keine Screenshots gefunden unter Assets/Screenshots/");
+      grid.innerHTML = "";
+      return;
+    }
+    paint();
   }
+
+  boot();
 })();
