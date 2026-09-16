@@ -1,15 +1,15 @@
 :root {
-  --bg-deep: #0b1220;
-  --bg: #121a2b;
-  --bg-elevated: #1a2438;
-  --surface: rgba(36, 48, 72, 0.72);
-  --border: rgba(148, 163, 184, 0.22);
-  --text: #e8eef7;
-  --text-muted: #9aabbf;
-  --accent: #6b8cbe;
-  --accent-strong: #7ea0d4;
-  --accent-soft: rgba(107, 140, 190, 0.18);
-  --shadow: 0 18px 40px rgba(4, 10, 22, 0.45);
+  --bg-deep: #f4f7fb;
+  --bg: #ffffff;
+  --bg-elevated: #ffffff;
+  --surface: #ffffff;
+  --border: rgba(100, 130, 160, 0.18);
+  --text: #2a3a4d;
+  --text-muted: #6b7c90;
+  --accent: #5a7eab;
+  --accent-strong: #4a6f9c;
+  --accent-soft: rgba(90, 126, 171, 0.12);
+  --shadow: 0 14px 36px rgba(70, 100, 140, 0.12);
   --radius: 16px;
   --header-h: 64px;
   --font: "Sora", "Segoe UI", sans-serif;
@@ -29,9 +29,9 @@ body.site-body {
   font-family: var(--font);
   color: var(--text);
   background:
-    radial-gradient(1200px 600px at 10% -10%, rgba(107, 140, 190, 0.22), transparent 55%),
-    radial-gradient(900px 500px at 90% 0%, rgba(71, 98, 133, 0.28), transparent 50%),
-    linear-gradient(160deg, var(--bg-deep), var(--bg) 45%, #182338);
+    radial-gradient(1000px 520px at 8% -5%, rgba(130, 170, 220, 0.18), transparent 55%),
+    radial-gradient(800px 480px at 92% 0%, rgba(170, 200, 230, 0.22), transparent 50%),
+    linear-gradient(180deg, #eef3f9 0%, #ffffff 42%, #f7fafc 100%);
   overflow-x: hidden;
 }
 
@@ -41,11 +41,11 @@ body.site-body::before {
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(148, 163, 184, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 163, 184, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(120, 150, 180, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120, 150, 180, 0.06) 1px, transparent 1px);
   background-size: 48px 48px;
-  mask-image: radial-gradient(circle at center, black 35%, transparent 85%);
-  opacity: 0.55;
+  mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+  opacity: 0.45;
 }
 
 a,
@@ -66,16 +66,18 @@ a:visited {
   align-items: center;
   justify-content: center;
   padding: 0 16px;
-  background: rgba(11, 18, 32, 0.82);
+  background: rgba(255, 255, 255, 0.88);
   border-bottom: 1px solid var(--border);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 4px 20px rgba(80, 110, 150, 0.06);
 }
 
 .site-header__title {
   font-size: clamp(1.15rem, 2.4vw, 1.55rem);
   font-weight: 600;
   letter-spacing: 0.02em;
+  color: var(--text);
 }
 
 .site-header .uiIcon {
@@ -124,7 +126,8 @@ a:visited {
 .site-header .uiIcon img {
   width: 22px;
   height: 22px;
-  opacity: 0.92;
+  opacity: 0.85;
+  filter: brightness(0) saturate(100%) invert(32%) sepia(12%) saturate(900%) hue-rotate(175deg);
 }
 
 #list {
@@ -177,6 +180,7 @@ a:visited {
   margin: 0;
   font-size: clamp(1.4rem, 3vw, 1.9rem);
   font-weight: 600;
+  color: var(--text);
 }
 
 .apps-status {
@@ -185,7 +189,7 @@ a:visited {
 }
 
 .apps-status.is-error {
-  color: #f0a8a8;
+  color: #c45c5c;
 }
 
 .apps-grid {
@@ -203,7 +207,7 @@ a:visited {
   background: var(--surface);
   border: 1px solid var(--border);
   overflow: hidden;
-  box-shadow: 0 10px 28px rgba(4, 10, 22, 0.28);
+  box-shadow: 0 8px 24px rgba(80, 110, 150, 0.1);
   transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
   cursor: pointer;
   animation: card-in 0.45s ease both;
@@ -220,13 +224,13 @@ a:visited {
 
 .app-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(126, 160, 212, 0.55);
-  box-shadow: 0 18px 36px rgba(4, 10, 22, 0.42);
+  border-color: rgba(90, 126, 171, 0.45);
+  box-shadow: 0 16px 32px rgba(80, 110, 150, 0.16);
 }
 
 .app-card__media {
   aspect-ratio: 1 / 0.85;
-  background: linear-gradient(145deg, #24314a, #1a2438);
+  background: linear-gradient(145deg, #e8eef6, #f5f8fc);
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -249,12 +253,14 @@ a:visited {
   align-items: center;
   justify-content: space-between;
   gap: 8px;
+  background: #fff;
 }
 
 .app-card__title {
   font-size: 0.98rem;
   font-weight: 600;
   letter-spacing: 0.01em;
+  color: var(--text);
 }
 
 .app-card__extras {
@@ -281,7 +287,7 @@ a:visited {
   font-size: clamp(2.2rem, 6vw, 3.4rem);
   font-weight: 700;
   letter-spacing: -0.03em;
-  background: linear-gradient(120deg, #dbe7f5 10%, #7ea0d4 55%, #a8bdd6 100%);
+  background: linear-gradient(120deg, #3d5a80 10%, #5a7eab 55%, #7a9ec4 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -310,21 +316,24 @@ a:visited {
   display: block;
   padding: 22px 18px;
   border-radius: var(--radius);
-  background: var(--surface);
+  background: #ffffff;
   border: 1px solid var(--border);
-  transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+  box-shadow: 0 8px 22px rgba(80, 110, 150, 0.08);
+  transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease, box-shadow 0.22s ease;
 }
 
 .home-link-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(126, 160, 212, 0.5);
-  background: rgba(42, 58, 88, 0.78);
+  border-color: rgba(90, 126, 171, 0.4);
+  background: #f8fbff;
+  box-shadow: 0 14px 28px rgba(80, 110, 150, 0.14);
 }
 
 .home-link-card strong {
   display: block;
   margin-bottom: 6px;
   font-size: 1.1rem;
+  color: var(--text);
 }
 
 .home-link-card span {
@@ -373,10 +382,11 @@ a:visited {
   cursor: pointer;
   background: var(--accent-soft);
   border: 1px solid var(--border);
+  color: var(--text);
 }
 
 .uiButton {
-  background-color: #2a3a54;
+  background-color: #5a7eab;
   border: 1px solid var(--border);
   border-radius: 8px;
   opacity: 0.95;
@@ -385,17 +395,17 @@ a:visited {
 }
 
 .uiButtonBackground {
-  background-color: #2a3a54;
+  background-color: #e8eef6;
   border-radius: 12px;
   opacity: 1;
-  color: white;
+  color: var(--text);
   font-size: 3vh;
-  box-shadow: 0 10px 22px rgba(4, 10, 22, 0.35);
+  box-shadow: 0 8px 18px rgba(80, 110, 150, 0.14);
   max-width: 100%;
 }
 
 .uiIcon {
-  color: white;
+  color: var(--text);
   background: transparent;
 }
 
@@ -409,39 +419,39 @@ a:visited {
   margin: 0 18px 36px;
   text-align: center;
   cursor: pointer;
-  text-shadow: 0 4px 12px rgba(2, 2, 2, 0.35);
+  text-shadow: none;
 }
 
 .uiButton2:hover {
-  background-color: rgba(126, 160, 212, 0.28);
+  background-color: rgba(90, 126, 171, 0.2);
 }
 
 .uiButtonBackground:hover {
-  box-shadow: 0 16px 28px rgba(4, 10, 22, 0.45);
+  box-shadow: 0 12px 24px rgba(80, 110, 150, 0.2);
   transform: scale(1.04);
 }
 
 .uiButton:active {
-  background-color: #24314a;
+  background-color: #4a6f9c;
   transform: translateY(2px);
 }
 
 .uiElement {
-  background-color: #2a3a54;
+  background-color: #ffffff;
   border: 1px solid var(--border);
   border-radius: 8px;
   opacity: 0.95;
-  color: white;
+  color: var(--text);
   font-size: 3vh;
 }
 
 .uiDialogue {
   position: absolute;
   padding: 12px;
-  background: var(--bg-elevated);
+  background: #ffffff;
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
-  color: white;
+  color: var(--text);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -450,16 +460,16 @@ a:visited {
 }
 
 .legende {
-  background-color: #2a3a54;
+  background-color: #ffffff;
   border: 1px solid var(--border);
   border-radius: 8px;
   opacity: 0.95;
   font-size: 3vh;
-  color: white;
+  color: var(--text);
 }
 
 .innerButton {
-  background-color: #3b4f6f;
+  background-color: #dce6f2;
 }
 
 .uiDialogueElement {

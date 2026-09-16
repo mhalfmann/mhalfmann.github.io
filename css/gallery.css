@@ -1,4 +1,4 @@
-/* Screenshot gallery – blue-gray theme */
+/* Bildergalerie – light blue-gray theme */
 
 .shot-toolbar {
   display: flex;
@@ -14,10 +14,11 @@
   margin: 0;
   font-size: clamp(1.4rem, 3vw, 1.9rem);
   font-weight: 600;
+  color: var(--text, #2a3a4d);
 }
 
 .shot-status {
-  color: var(--text-muted, #9aabbf);
+  color: var(--text-muted, #6b7c90);
   font-size: 0.95rem;
 }
 
@@ -31,26 +32,28 @@
 
 .shot-chip {
   appearance: none;
-  border: 1px solid var(--border, rgba(148, 163, 184, 0.22));
-  background: rgba(36, 48, 72, 0.55);
-  color: var(--text, #e8eef7);
+  border: 1px solid var(--border, rgba(100, 130, 160, 0.18));
+  background: #ffffff;
+  color: var(--text, #2a3a4d);
   font: inherit;
   font-size: 0.88rem;
   padding: 8px 14px;
   border-radius: 999px;
   cursor: pointer;
-  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+  box-shadow: 0 2px 8px rgba(80, 110, 150, 0.06);
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 .shot-chip:hover {
-  border-color: rgba(126, 160, 212, 0.55);
-  background: rgba(107, 140, 190, 0.18);
+  border-color: rgba(90, 126, 171, 0.45);
+  background: #f3f7fc;
 }
 
 .shot-chip.is-active {
-  background: rgba(107, 140, 190, 0.28);
-  border-color: rgba(126, 160, 212, 0.7);
-  color: #f2f6fb;
+  background: rgba(90, 126, 171, 0.14);
+  border-color: rgba(90, 126, 171, 0.5);
+  color: #3d5a80;
+  box-shadow: none;
 }
 
 .shot-grid {
@@ -63,8 +66,8 @@
 
 .shot-card {
   appearance: none;
-  border: 1px solid var(--border, rgba(148, 163, 184, 0.22));
-  background: rgba(36, 48, 72, 0.72);
+  border: 1px solid var(--border, rgba(100, 130, 160, 0.18));
+  background: #ffffff;
   border-radius: 16px;
   overflow: hidden;
   padding: 0;
@@ -73,7 +76,7 @@
   text-align: left;
   color: inherit;
   font: inherit;
-  box-shadow: 0 10px 28px rgba(4, 10, 22, 0.28);
+  box-shadow: 0 8px 22px rgba(80, 110, 150, 0.1);
   transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
   animation: shot-in 0.45s ease both;
 }
@@ -82,14 +85,14 @@
 .shot-card:focus-visible {
   outline: none;
   transform: translateY(-5px);
-  border-color: rgba(126, 160, 212, 0.55);
-  box-shadow: 0 18px 36px rgba(4, 10, 22, 0.42);
+  border-color: rgba(90, 126, 171, 0.45);
+  box-shadow: 0 16px 32px rgba(80, 110, 150, 0.16);
 }
 
 .shot-card__media {
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  background: linear-gradient(145deg, #24314a, #1a2438);
+  background: linear-gradient(145deg, #e8eef6, #f5f8fc);
 }
 
 .shot-card__media img {
@@ -111,18 +114,19 @@
   justify-content: space-between;
   gap: 10px;
   padding: 12px 14px;
+  background: #fff;
 }
 
 .shot-card__album {
   font-size: 0.85rem;
-  color: var(--text-muted, #9aabbf);
+  color: var(--text-muted, #6b7c90);
 }
 
 .shot-card__open {
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  color: #9eb6d8;
+  color: #5a7eab;
   opacity: 0;
   transform: translateX(4px);
   transition: opacity 0.2s ease, transform 0.2s ease;
@@ -166,7 +170,7 @@ body.lightbox-open {
 .lightbox__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(7, 12, 22, 0.82);
+  background: rgba(42, 58, 77, 0.45);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   animation: lb-fade 0.2s ease;
@@ -187,12 +191,12 @@ body.lightbox-open {
   position: relative;
   display: grid;
   place-items: center;
-  background: rgba(18, 26, 43, 0.9);
-  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: #ffffff;
+  border: 1px solid rgba(100, 130, 160, 0.18);
   border-radius: 18px;
   overflow: hidden;
   min-height: 40vh;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 24px 60px rgba(60, 90, 130, 0.22);
 }
 
 .lightbox__stage a {
@@ -218,18 +222,19 @@ body.lightbox-open {
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  border: 1px solid rgba(148, 163, 184, 0.28);
-  background: rgba(26, 36, 56, 0.88);
-  color: #e8eef7;
+  border: 1px solid rgba(100, 130, 160, 0.2);
+  background: rgba(255, 255, 255, 0.95);
+  color: #2a3a4d;
   display: grid;
   place-items: center;
   cursor: pointer;
+  box-shadow: 0 4px 14px rgba(80, 110, 150, 0.12);
   transition: background 0.15s ease, border-color 0.15s ease;
 }
 
 .lightbox__nav:hover {
-  background: rgba(107, 140, 190, 0.28);
-  border-color: rgba(126, 160, 212, 0.55);
+  background: #eef4fb;
+  border-color: rgba(90, 126, 171, 0.45);
 }
 
 .lightbox__nav--prev {
@@ -257,16 +262,17 @@ body.lightbox-open {
   width: 40px;
   height: 40px;
   border-radius: 12px;
-  border: 1px solid rgba(148, 163, 184, 0.28);
-  background: rgba(26, 36, 56, 0.88);
-  color: #e8eef7;
+  border: 1px solid rgba(100, 130, 160, 0.2);
+  background: rgba(255, 255, 255, 0.95);
+  color: #2a3a4d;
   cursor: pointer;
   display: grid;
   place-items: center;
+  box-shadow: 0 4px 14px rgba(80, 110, 150, 0.12);
 }
 
 .lightbox__close:hover {
-  background: rgba(107, 140, 190, 0.28);
+  background: #eef4fb;
 }
 
 .lightbox__close svg {
@@ -284,13 +290,13 @@ body.lightbox-open {
   justify-content: space-between;
   gap: 12px;
   padding: 0 4px;
-  color: #c4d0e0;
+  color: #4a5d72;
   font-size: 0.92rem;
 }
 
 .lightbox__counter {
   font-variant-numeric: tabular-nums;
-  color: #9eb6d8;
+  color: #5a7eab;
   font-weight: 600;
 }
 
