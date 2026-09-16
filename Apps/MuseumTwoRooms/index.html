@@ -27,35 +27,20 @@
 <!-- <script src="./Javascript/TweenMax.min.js"></script> -->
   <!-- <body onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(255, 134, 48); font-family: "Open Sans";'>    
   <div style="position: absolute; left: 0px; top: 0%;height: 7vh; width:100%; background: rgb(255, 105, 0); text-align: center; color: white; font-size: 5vh; margin-bottom: 50px;">Applikationen</div> -->
-  <body onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
-    <div id ="header" style="position: absolute; left: 0px; top: 0%;height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px;">
-      Applikationen
-  
-      <a href="../../index.html" style = "position: absolute; top: 0px; right: 5px;">
-        <div id = "buttonHome" class = "uiIcon" style="border-radius: 5px;">
-          <img id="home" src="../../Assets/Icons/home.png" style = "width: 35px">
+  <body class="site-body" onselectstart = 'return false'>    
+    <div id ="header" class="site-header">
+      <div class="site-header__title">Museum 2 Rooms</div>
+      <a class="home-link" href="../../index.html" aria-label="Home">
+        <div class="uiIcon">
+          <img id="home" src="../../Assets/Icons/home.png" alt="">
         </div>
       </a>
     </div>
 
-  <div id="main" style ="position: absolute; left: 0px; top: 50px;height: 93vh; width:100%; overflow: auto; padding-top: 5vh;">
+  <div id="main" class="site-main">
   
-    <div style="position: absolute; left: 0%; display: flex; flex-direction: row;flex-wrap: wrap;">
-    
-      <a href="./2DSingle/2DSingle.html">
-        <div id = "buttonMuseum" class="uiButtonFrame" onclick = "clicked(this)" >
-          <img class="uiButtonBackground" src="../../Assets/Images/Museum2DSingle.png" style="height: 70%; padding: 0px;">
-          <div class="uiText" style="color: white; text-align: center;">Museum 2D Single</div>
-        </div>
-      </a>
-
-      <a href="./2DMulti/2DMulti.html">
-        <div id = "buttonMuseum" class="uiButtonFrame" onclick = "clicked(this)" >
-          <img class="uiButtonBackground" src="../../Assets/Images/Museum2D.png" style="height: 70%; padding: 0px;">
-          <div class="uiText" style="color: white; text-align: center;">Museum 2D Multi</div>
-        </div>
-      </a>
-
+    <div class="tile-row">
+      <!-- 2D builds are incomplete in this folder (TemplateData only) -->
       <a href="./3D/3D.html">
         <div id = "buttonMuseum" class="uiButtonFrame" onclick = "clicked(this)" >
           <img class="uiButtonBackground" src="../../Assets/Images/MuesumHall.png" style="height: 70%; padding: 0px;">
@@ -87,9 +72,9 @@
       } */
 
       document.body.addEventListener('click',(event)=>{
-        console.log("clicked body",event.target.id)
-        if(event.target.id!="listIcon")$( "#list" ).hide()
-        if(!event.target.className.includes("ui"))document.getElementById("select").style.visibility = "hidden"
+        var className = event.target && event.target.className
+        var classStr = typeof className === "string" ? className : ""
+        if(!classStr.includes("ui"))document.getElementById("select").style.visibility = "hidden"
       })
 
       function clicked(element){
@@ -159,5 +144,4 @@
       console.log("Hovering",element)
     }
       </script>
-  </script>
 </html>

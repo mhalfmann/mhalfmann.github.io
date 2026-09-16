@@ -1,233 +1,50 @@
-<!doctype HTML>
-<html>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1"> -->
-<!-- <script src="./Javascript/aframe.min.js"></script> -->
-<!-- <script src="./Javascript/aframe-ar.js"></script> -->
-<script src="./Javascript/hammer.js"></script>
-<script src="./Javascript/TweenMax.min.js"></script>
-<script src="./Javascript/jquery-3.4.0.min.js"></script>
-<link rel="stylesheet" type="text/css" href="css/ui.css">
-<style>
-  a, a:visited { 
-      text-decoration: none; 
-      color: white;
-      }
-    
-  .uiButtonFrame{
-  }
-  .uiDialogueElement{
-    margin: 10px;
-  }
-  input[type=number]::-webkit-inner-spin-button {
-    opacity: 1
-  }
-</style>
-<!-- <script src="./Javascript/jquery-3.4.0.min.js"></script> -->
-<!-- <script src="./Javascript/TweenMax.min.js"></script> -->
-  <!-- <body onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(255, 134, 48); font-family: "Open Sans";'>    
-  <div style="position: absolute; left: 0px; top: 0%;height: 7vh; width:100%; background: rgb(255, 105, 0); text-align: center; color: white; font-size: 5vh; margin-bottom: 50px;">Applikationen</div> -->
-  <body onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
-    <title>Applikationen</title>
-    <div id ="header" style="position: absolute; left: 0px; top: 0%;height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px;">
-      Applikationen
-  
-      <div id = "listButton" class ="uiIcon" style="position: absolute; top: 0px; left: 5px; cursor: pointer; border-radius: 5px;">
-        <img id="listIcon" src="./Assets/Icons/menu.png" style = "width: 35px">
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Applikationen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/ui.css">
+</head>
+<body class="site-body" onselectstart="return false">
+  <header class="site-header">
+    <div id="listButton" class="uiIcon" aria-label="Menü">
+      <img id="listIcon" src="./Assets/Icons/menu.png" alt="">
+    </div>
+    <div class="site-header__title">Applikationen</div>
+    <div id="list">
+      <div class="uiListItem" href="./indexApps.html" onclick="gotoPage(this)">Applikationen</div>
+      <div class="uiListItem" href="./indexScreenshots.html" onclick="gotoPage(this)">Screenshots</div>
+      <div class="uiListItem" href="./indexMockup.html" onclick="gotoPage(this)">Mockups</div>
+    </div>
+    <a class="home-link" href="./index.html" aria-label="Home">
+      <div class="uiIcon">
+        <img src="./Assets/Icons/home.png" alt="">
       </div>
-  
-      <div id = "list" style ="position: absolute; top: 50px; background: rgb(24, 24, 24); z-index: 10000; color: white; box-shadow: 5px 5px 5px rgba(2, 2, 2, 0.637);"> 
-          <div id="linkApps" class="uiListItem" href="./indexApps.html" onclick = "gotoPage(this)" style="padding: 10px; cursor: pointer;">Applikationen</div>
-          <div id="link1" class="uiListItem" href="./indexScreenshots.html" onclick = "gotoPage(this)"  style="padding: 10px;">Screenshots</div>
-          <div id="link2" class="uiListItem" href="./indexMockup.html" onclick = "gotoPage(this)"  style="padding: 10px;">Mockups</div>
-      </div>
-  
-      <a href="./index.html" style = "position: absolute; top: 0px; right: 5px;">
-        <div id = "buttonHome" class = "uiIcon" style="border-radius: 5px;">      
-          <img id="home" src="./Assets/Icons/home.png" style = "width: 35px">
-        </div>
-      </a>
+    </a>
+  </header>
+
+  <main class="site-main">
+    <div class="apps-toolbar">
+      <h1>Apps</h1>
+      <div id="appsStatus" class="apps-status" hidden></div>
     </div>
 
-  <div id="main" style ="position: absolute; left: 0px; top: 50px;height: 93vh; width:100%; overflow: auto; padding-top: 5vh;">
-  
-    <div style="position: absolute; left: 0%; display: flex; flex-direction: row;flex-wrap: wrap;">
-    
-      <!-- <div href="./Apps/Unwetter/index.html?Test#">
-        <div id = "buttonUnwetter" n = "5" class="uiButtonFrame" onclick = "openDialogue(this)">
-          <img class="uiButtonBackground" src="./Assets//Images/blitz.jpg" style="height: 70%; padding: 0px; opacity: 1;">
-          <div class="uiText" style="color: white; text-align: center;" >Unwetter</div>
-        </div>
-      </div>
+    <div id="appsGrid" class="apps-grid" aria-live="polite"></div>
 
-      <div href="./Apps/Insel/index.html?Test#">
-        <div id = "buttonInsel" n = "2" class="uiButtonFrame" onclick = "openDialogue(this)">
-          <img class="uiButtonBackground" src="./Assets//Images/insel.jpg" style="height: 70%; padding: 0px;">
-          <div class="uiText" style="color: white; text-align: center;">Insel</div>
-        </div>
-      </div> -->
-
-      <!-- <a href="./Apps/info04_WebGLBuild/">
-        <div id = "buttonMuseum" class="uiButtonFrame" onclick = "clicked(this)" >
-          <img class="uiButtonBackground" src="./Assets//Images/info.png" style="height: 70%; padding: 0px;">
-          <div class="uiText" style="color: white; text-align: center;">info04_WebGLBuild</div>
-        </div>
-      </a> -->
-
-      <!-- <a href="./Apps/TestMolekuele/indexStart.html">
-        <div id = "buttonMolekuele" class="uiButtonFrame" onclick = "clicked(this)" >
-          <img class="uiButtonBackground" src="./Assets/Images/molekuel.png" style="height: 70%; padding: 0px;">
-          <div style="display: flex; flex-direction: row;">
-            <div class="uiText" style="color: white; text-align: center;">Molekuele</div>
-            <a href = "./Apps/TestMolekuele/assets/marker/Marker.pdf" style = "margin-left: 10px;" target = "_blank">
-              <img id="pdf" src="./Assets/Icons/pdf.png" style = "width: 4vw">
-            </a>        
-          </div>
-        </div>
-      </a> -->
-
-      <!-- <a href="./Apps/Museum/index.html">
-        <div id = "buttonMultiplayer" class="uiButtonFrame" onclick = "clicked(this)" >
-          <img class="uiButtonBackground" src="./Assets/Images/MuesumHall.png" style="height: 70%; padding: 0px;">
-          <div class="uiText" style="color: white; text-align: center;">App: Museum</div>
-        </div>
-      </a> -->
-
-      <a href="./Apps/Nutzergenerierte Inhalte/index.html">
-        <div id = "buttonMultiplayer" class="uiButtonFrame" onclick = "clicked(this)" >
-          <img class="uiButtonBackground" src="./Assets/Images/testapp.png" style="height: 70%; padding: 0px;">
-          <div class="uiText" style="color: white; text-align: center;">Nutzergenerierte Inhalte</div>
-        </div>
-      </a>
-
-      <!-- <a href="./Apps/MuseumTwoRooms/index.html">
-        <div id = "buttonMultiplayer" class="uiButtonFrame" onclick = "clicked(this)" >
-          <img class="uiButtonBackground" src="./Assets/Images/MuesumHall.png" style="height: 70%; padding: 0px;">
-          <div class="uiText" style="color: white; text-align: center;">Museum 2 Rooms</div>
-        </div>
-      </a> -->
-      <!-- <div>
-        <a href="./Assets/Images/info04_1.png"><img class="uiButtonBackground" src="./Assets/Images/info04_1.png" alt="IMG" style="width:192px;height:108px;"></a>
-      <div class="uiText" style="color: white; text-align: center;">Screenshot: GNM</div>
-      </div>
-      <div>
-        <a href="./Assets/Images/info04_1.png"><img class="uiButtonBackground" src="./Assets/Images/info04_1.png" alt="IMG" style="width:192px;height:108px;"></a>
-      <div class="uiText" style="color: white; text-align: center;">Screenshot: GNM Gruppierung</div>
-      </div>
-      <div>
-        <a href="./Assets/Images/info04_1.png"><img class="uiButtonBackground" src="./Assets/Images/info04_1.png" alt="IMG" style="width:192px;height:108px;"></a>
-      <div class="uiText" style="color: white; text-align: center;">Screenshot: Info04</div>
-      </div> -->
-      <div id = "select" class="uiDialogue" style = "top: 40%; left: 20%; visibility: hidden;">
-        <div style="display: flex; flex-direction: row;">
-          <div class="uiDialogueElement" style ="padding: 5px;">Modus:</div>
-          <input id="szene" class="uiDialogueElement" type="number" value="0" min="0" max="2">
-        </div>
-        <div id="link" class="uiButton2" onclick = "openLink(this)" style ="margin: 10px;">
-          Start
-        </div>
-      </div>
-
+    <div id="select" class="uiDialogue" style="visibility: hidden;">
+      <div class="uiDialogueElement">Modus:</div>
+      <input id="szene" class="uiDialogueElement" type="number" value="0" min="0" max="2">
+      <div id="link" class="uiButton2" onclick="openLink()" role="button">Start</div>
     </div>
-  </div>
-   </body>
-    <script>
-      var currentLink = "";
-      document.oncontextmenu = function() {
-        return false;
-      }
+  </main>
 
-      $( "#list" ).toggle();
-
-      document.getElementById("listButton").addEventListener("click",()=>{
-          $( "#list" ).toggle();
-      })
-      /* var x = document.getElementsByClassName("uiButtonFrame")
-      for (var i = 0; i < x.length; i++) {
-        x[i].style.textShadow = "5px 5px 5px rgba(2, 2, 2, 0.308)"
-      } */
-
-      document.body.addEventListener('click',(event)=>{
-        console.log("clicked body",event.target.id)
-        if(event.target.id!="listIcon")$( "#list" ).hide()
-        if(!event.target.className.includes("ui"))document.getElementById("select").style.visibility = "hidden"
-      })
-
-      function clicked(element){
-        TweenMax.to(element, 0.1, {scale:1.1, onComplete:function(){
-          TweenMax.to(element, 0.1, {scale:1.0, onComplete:function(){
-            // location = "./Apps/Unwetter/index.html"
-          }})
-        }})
-      }
-      
-      $( ".uiButtonFrame" ).on( "pointerenter", function() {
-        // console.log( this)
-        $( this ).find(".uiButtonBackground").css("box-shadow", "15px 15px 5px rgba(2, 2, 2, 0.308)")
-        $( this ).css("transform", "scale(1.1)")
-        // $( this ).find(".uiButtonBackground").css("transform", "scale(1.1)")
-        // $( this ).find(".uiText").css("transform", "scale(1.1)")
-        $( this ).css("text-shadow"," 8px 8px 5px rgba(2, 2, 2, 0.308)")
-      })
-
-      $( ".uiButtonFrame" ).on( "pointerleave", function() {
-        // console.log( this)
-        $( this ).find(".uiButtonBackground").css("box-shadow", "10px 10px 5px rgba(2, 2, 2, 0.308)")
-        $( this ).css("transform", "scale(1.0)")
-        // $( this ).find(".uiButtonBackground").css("transform", "scale(1.0)")
-        // $( this ).find(".uiText").css("transform", "scale(1.0)")
-        $( this ).css("text-shadow"," 5px 5px 5px rgba(2, 2, 2, 0.308)")
-      })
-
-      function openDialogue(element){
-        console.log(event.clientX,event.clientY)
-        // if(document.getElementById("select").style.visibility == "hidden"){
-          document.getElementById("select").style.visibility = "visible"
-          document.getElementById("select").style.top = event.clientY+"px"
-          document.getElementById("select").style.left = event.clientX+"px"
-        // }
-
-        currentLink =element.parentElement.getAttribute("href")
-        document.getElementById("szene").setAttribute("max",element.getAttribute("n"))
-        TweenMax.to(element, 0.1, {scale:1.1, onComplete:function(){
-          TweenMax.to(element, 0.1, {scale:1.0, onComplete:function(){
-          }})
-        }})
-      }
-      function openLink(link){
-        var s = document.getElementById("szene").value
-        console.log(s)
-        switch (currentLink.includes("?")){
-          case true:
-            currentLink +=s
-            break
-          case false:
-            currentLink +="?"+s
-            break
-          
-        }
-        location = currentLink
-        document.getElementById("szene").value = 0
-        // document.getElementById("select").style.visibility = "visible"
-      }
-      
-
-    function gotoPage(element){
-        location = element.getAttribute("href")
-    }
-
-    function hover(element){
-      console.log("Hovering",element)
-    }
-
-    document.getElementById('pdf').addEventListener('click',(e)=>{
-      e.stopPropagation()
-      TweenMax.to(e.target, 0.1, {scale:1.1, onComplete:function(){
-        TweenMax.to(e.target, 0.1, {scale:1.0, onComplete:function(){
-          // location = "./Apps/TestMolekuele/assets/marker/Marker.pdf?target=_blank"
-        }})
-      }})
-    })
-      </script>
-  </script>
+  <script src="./Javascript/jquery-3.4.0.min.js"></script>
+  <script src="./Javascript/site-nav.js"></script>
+  <script src="./Javascript/apps-data.js"></script>
+  <script src="./Javascript/apps-catalog.js"></script>
+</body>
 </html>

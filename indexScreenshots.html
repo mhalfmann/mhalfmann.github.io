@@ -1,274 +1,69 @@
-<!doctype HTML>
-<html>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1"> -->
-<script src="./Javascript/hammer.js"></script>
-<script src="./Javascript/TweenMax.min.js"></script>
-<script src="./Javascript/jquery-3.4.0.min.js"></script>
-<link rel="stylesheet" type="text/css" href="./css/ui.css">
-<link rel="stylesheet" type="text/css" href="./css/gallery.css">
-<style>
-  a, a:visited { 
-      text-decoration: none; 
-      color: white;
-      }
-    
-  .uiButtonFrame{
-    width: 25vh;
-    height: 25vh;
-    font-size: 3vh;
-    display: block;
-    margin-bottom: 50px;
-    text-align: center;
-    cursor: pointer;
-  }
-  .uiDialogue{
-    position: absolute;
-    /* width: 60%; */
-    padding: 10px;
-    background: bisque;
-    box-shadow: 10px 10px 10px rgb(39, 39, 39);
-    display: flex;
-    flex-direction: row;
-  }
-  .uiDialogueElement{
-    margin: 10px;
-  }
-  input[type=number]::-webkit-inner-spin-button {
-    opacity: 1
-  }
-</style>
-<script>
-  function imgLoaded(element){
-    var w = element.naturalWidth
-    var h = element.naturalHeight
-    var h_vh = parseInt(element.parentElement.parentElement.style.height.split('vh')[0])
-    var w_ = w/h * h_vh
-    element.parentElement.parentElement.style.width = w_+"vh"
-  }
-
-  function thumbnailLoaded(element){
-    var w = element.width
-    var w_p = element.parentElement.getBoundingClientRect().width
-    var diff = w_p - w
-    element.style.marginLeft = diff/2+"px"
-  }
-
-</script>
-<body onselectstart = 'return false' style='margin : 0px; overflow: hidden; background:  rgb(82, 82, 82); font-family: "Open Sans";'>    
-    <div id ="header" style="position: absolute; left: 0px; top: 0%;height: 50px; width:100%; background: rgb(24, 24, 24); text-align: center; color: white; font-size: 35px; margin-bottom: 50px;">
-        Screenshots
-
-      <div id = "listButton" class ="uiIcon" style="position: absolute; top: 0px; left: 5px; cursor: pointer; border-radius: 5px;">
-        <img id="listIcon" src="./Assets/Icons/menu.png" style = "width: 35px">
-      </div>
-    
-      <div id = "list" style ="position: absolute; top: 50px; background: rgb(24, 24, 24); z-index: 10000; color: white; box-shadow: 5px 5px 5px rgba(2, 2, 2, 0.637);"> 
-          <div id="linkApps" class="uiListItem" href="./indexApps.html" onclick = "gotoPage(this)" style="padding: 10px; cursor: pointer;">Applikationen</div>
-          <div id="link1" class="uiListItem" href="./indexScreenshots.html" onclick = "gotoPage(this)"  style="padding: 10px;">Screenshots</div>
-          <div id="link2" class="uiListItem" href="./indexMockup.html" onclick = "gotoPage(this)"  style="padding: 10px;">Mockups</div>
-      </div>
-    
-      <a href="./index.html" style = "position: absolute; top: 0px; right: 5px;">
-        <div id = "buttonHome" class = "uiIcon" style="border-radius: 5px;">      
-          <img id="home" src="./Assets/Icons/home.png" style = "width: 35px">
-        </div>
-      </a>
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Screenshots</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/ui.css">
+  <link rel="stylesheet" href="./css/gallery.css">
+</head>
+<body class="site-body">
+  <header class="site-header">
+    <div id="listButton" class="uiIcon" aria-label="Menü">
+      <img id="listIcon" src="./Assets/Icons/menu.png" alt="">
     </div>
+    <div class="site-header__title">Screenshots</div>
+    <div id="list">
+      <div class="uiListItem" href="./indexApps.html" onclick="gotoPage(this)">Applikationen</div>
+      <div class="uiListItem" href="./indexScreenshots.html" onclick="gotoPage(this)">Screenshots</div>
+      <div class="uiListItem" href="./indexMockup.html" onclick="gotoPage(this)">Mockups</div>
+    </div>
+    <a class="home-link" href="./index.html" aria-label="Home">
+      <div class="uiIcon">
+        <img src="./Assets/Icons/home.png" alt="">
+      </div>
+    </a>
+  </header>
 
-    <div id="main" style ="position: absolute; left: 0px; top: 50px;height: 100%; width:100%; overflow: auto; padding-top: 5vh; display: flex; flex-direction: column;">
-      
-      <div class="responsive">
-        <div class="gallery">
-          <!-- <a target="_blank" href="./Assets/Screenshots/FlightSimulator/iwm.png"> -->
-            <img class = "thumbnail" src="./Assets/Screenshots/Lego/1.png" onload = "thumbnailLoaded(this)" onclick = "openImage(this)" alt="IWM">
-          <!-- </a> -->
-          <div class="desc"></div>
-        </div>      
-      </div>
+  <main class="site-main">
+    <div class="shot-toolbar">
+      <h1>Galerie</h1>
+      <div id="shotStatus" class="shot-status"></div>
+    </div>
+    <div id="shotFilters" class="shot-filters" aria-label="Alben"></div>
+    <div id="shotGrid" class="shot-grid" aria-live="polite"></div>
+  </main>
 
-      <div class="responsive">
-        <div class="gallery">
-          <!-- <a target="_blank" href="./Assets/Screenshots/FlightSimulator/iwm2.png"> -->
-            <img class = "thumbnail" src="./Assets/Screenshots/Lego/2.png" onload = "thumbnailLoaded(this)"  onclick = "openImage(this)" alt="IWM">
-          <!-- </a> -->
-          <div class="desc"></div>
-        </div>      
-      </div>
-
-      <div class="responsive">
-        <div class="gallery">
-          <!-- <a target="_blank" href="./Assets/Screenshots/FlightSimulator/tuebingen.png"> -->
-            <img class = "thumbnail" src="./Assets/Screenshots/Lego/3.png" onload = "thumbnailLoaded(this)"  onclick = "openImage(this)" alt="IWM">
-          <!-- </a> -->
-          <div class="desc"></div>
-        </div>      
-      </div>
-
-      <div class="responsive">
-        <div class="gallery">
-          <!-- <a target="_blank" href="./Assets/Screenshots/FlightSimulator/tuebingen2.png"> -->
-            <img class = "thumbnail" src="./Assets/Screenshots/Lego/4.png" onload = "thumbnailLoaded(this)"  onclick = "openImage(this)" alt="IWM">
-          <!-- </a> -->
-          <div class="desc"></div>
-        </div>      
-      </div>
-      <div class="responsive">
-        <div class="gallery">
-          <!-- <a target="_blank" href="./Assets/Screenshots/FlightSimulator/tuebingen2.png"> -->
-            <img class = "thumbnail" src="./Assets/Screenshots/Lego/5.png" onload = "thumbnailLoaded(this)"  onclick = "openImage(this)" alt="IWM">
-          <!-- </a> -->
-          <div class="desc"></div>
-        </div>      
-      </div>
-      <div class="responsive">
-        <div class="gallery">
-          <!-- <a target="_blank" href="./Assets/Screenshots/FlightSimulator/tuebingen2.png"> -->
-            <img class = "thumbnail" src="./Assets/Screenshots/Lego/6.png" onload = "thumbnailLoaded(this)"  onclick = "openImage(this)" alt="IWM">
-          <!-- </a> -->
-          <div class="desc"></div>
-        </div>      
-      </div>
-      <div class="responsive">
-        <div class="gallery">
-          <!-- <a target="_blank" href="./Assets/Screenshots/FlightSimulator/tuebingen2.png"> -->
-            <img class = "thumbnail" src="./Assets/Screenshots/Lego/7.png" onload = "thumbnailLoaded(this)"  onclick = "openImage(this)" alt="IWM">
-          <!-- </a> -->
-          <div class="desc"></div>
-        </div>      
-      </div>
-      <div class="responsive">
-        <div class="gallery">
-          <!-- <a target="_blank" href="./Assets/Screenshots/FlightSimulator/tuebingen2.png"> -->
-            <img class = "thumbnail" src="./Assets/Screenshots/Lego/8.png" onload = "thumbnailLoaded(this)"  onclick = "openImage(this)" alt="IWM">
-          <!-- </a> -->
-          <div class="desc"></div>
-        </div>      
-      </div>
-      <div class="responsive">
-        <div class="gallery">
-          <!-- <a target="_blank" href="./Assets/Screenshots/FlightSimulator/tuebingen2.png"> -->
-            <img class = "thumbnail" src="./Assets/Screenshots/Lego/9.png" onload = "thumbnailLoaded(this)"  onclick = "openImage(this)" alt="IWM">
-          <!-- </a> -->
-          <div class="desc"></div>
-        </div>      
-      </div>
-      <div class="responsive">
-        <div class="gallery">
-          <!-- <a target="_blank" href="./Assets/Screenshots/FlightSimulator/tuebingen2.png"> -->
-            <img class = "thumbnail" src="./Assets/Screenshots/Lego/10.png" onload = "thumbnailLoaded(this)"  onclick = "openImage(this)" alt="IWM">
-          <!-- </a> -->
-          <div class="desc"></div>
-        </div>      
-      </div>
-      <div class="responsive">
-        <div class="gallery">
-          <!-- <a target="_blank" href="./Assets/Screenshots/FlightSimulator/tuebingen2.png"> -->
-            <img class = "thumbnail" src="./Assets/Screenshots/Lego/11.png" onload = "thumbnailLoaded(this)"  onclick = "openImage(this)" alt="IWM">
-          <!-- </a> -->
-          <div class="desc"></div>
-        </div>      
-      </div>
-      <div class="responsive">
-        <div class="gallery">
-          <!-- <a target="_blank" href="./Assets/Screenshots/FlightSimulator/tuebingen2.png"> -->
-            <img class = "thumbnail" src="./Assets/Screenshots/Lego/12.png" onload = "thumbnailLoaded(this)"  onclick = "openImage(this)" alt="IWM">
-          <!-- </a> -->
-          <div class="desc"></div>
-        </div>      
-      </div>
-
-      <div id="imageFrame" style ="position:fixed; top: 5vh; right: 5%; width: 100vw; height: 95vh;">
-        <div id = "back" class="imageButton" style ="position: absolute; top: 45%; left: 1vh; width: 3vh; height: 7%; background: rgb(255, 255, 255);">
-          <img src = "./Assets/Icons/arrow-back-black.png" style="width: 100%; height: 100%;">
-        </div>
-        <div id = "next" class="imageButton" style ="position: absolute; top: 45%; right: 1vh; width: 3vh; height: 7%; background: rgb(255, 255, 255);">
-          <img src = "./Assets/Icons/arrow-forward-black.png" style="width: 100%; height: 100%;">
-        </div>
-        <div id = "close" class="imageButton" style ="position: absolute; bottom: 1%; right: 1%; width: 3vh; height: 3vh; background: rgb(255, 255, 255);">
-          <img src = "./Assets/Icons/close-black.png" style="width: 100%; height: 100%;">
-        </div>
-        <a id = "imageLink" target="_blank" href="" >
-          <img class = "screenshot" id = "image" src="" onload = "imgLoaded(this)" style ="width: 100%; height: 100%; box-shadow: 2, 2, 2, 0.3080;">
+  <div id="lightbox" class="lightbox" hidden>
+    <div class="lightbox__backdrop" aria-hidden="true"></div>
+    <div class="lightbox__panel" role="dialog" aria-modal="true" aria-label="Screenshot-Ansicht">
+      <div class="lightbox__stage">
+        <button type="button" id="lightboxPrev" class="lightbox__nav lightbox__nav--prev" aria-label="Vorheriges Bild">
+          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <a id="lightboxLink" href="" target="_blank" rel="noopener noreferrer">
+          <img id="lightboxImage" alt="">
         </a>
+        <button type="button" id="lightboxNext" class="lightbox__nav lightbox__nav--next" aria-label="Nächstes Bild">
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+        <button type="button" id="lightboxClose" class="lightbox__close" aria-label="Schließen">
+          <svg viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg>
+        </button>
       </div>
-
+      <div class="lightbox__footer">
+        <span id="lightboxCaption"></span>
+        <span id="lightboxCounter" class="lightbox__counter"></span>
+      </div>
     </div>
+  </div>
+
+  <script src="./Javascript/jquery-3.4.0.min.js"></script>
+  <script src="./Javascript/site-nav.js"></script>
+  <script src="./Javascript/screenshots-data.js"></script>
+  <script src="./Javascript/screenshots-gallery.js"></script>
 </body>
-<script>
-    $( "#list" ).toggle()
-    $( "#imageFrame" ).toggle()
-
-    var count = 1
-
-    document.getElementById("listButton").addEventListener("click",()=>{
-        $( "#list" ).toggle()
-    })
-
-    document.getElementById("next").addEventListener("click",(e)=>{
-      e.stopPropagation()
-      count++
-      $( "#back" ).show()
-      if(count>12){
-        count = 1
-        // $( "#next" ).hide()
-      }
-      document.getElementById("imageLink").setAttribute("href","./Assets/Screenshots/Lego/"+count.toString()+".png")
-      document.getElementById("image").setAttribute("src","./Assets/Screenshots/Lego/"+count.toString()+".png")
-      // console.log(count)
-    })
-    document.getElementById("back").addEventListener("click",(e)=>{
-      e.stopPropagation()
-      count--
-      $( "#next" ).show()
-      if(count<1){
-        // $( "#back" ).hide()
-        count = 12
-      }
-      document.getElementById("imageLink").setAttribute("href","./Assets/Screenshots/Lego/"+count.toString()+".png")
-      document.getElementById("image").setAttribute("src","./Assets/Screenshots/Lego/"+count.toString()+".png")
-      // console.log(count)
-    })
-    document.getElementById("close").addEventListener("click",(e)=>{
-      e.stopPropagation()
-      $( "#imageFrame" ).hide()
-    })
-
-    document.body.addEventListener('click',(event)=>{
-      // console.log("clicked",event.target.className)
-      if(event.target.id!="listIcon")$( "#list" ).hide()
-      if(event.target.id!="image" && event.target.className!="thumbnail" )$( "#imageFrame" ).hide()
-      //if(!event.target.className.includes("ui"))document.getElementById("select").style.visibility = "hidden"
-    })
-
-    function openImage(element){
-      document.getElementById("image").setAttribute("src",element.getAttribute("src"))
-      document.getElementById("imageLink").setAttribute("href",element.getAttribute("src"))
-      $( "#imageFrame" ).show();      
-      element.style.zIndex = 1
-      document.getElementById("imageFrame").style.zIndex = 100
-      document.getElementById("imageFrame").style.opacity = 1
-    }
-
-    function gotoPage(element){
-        location = element.getAttribute("href")
-    }
-
-    $( ".responsive" ).on( "pointerenter", function() {
-        // console.log( this)
-        this.style.zIndex = 100
-        document.getElementById("imageFrame").style.zIndex = 1
-        document.getElementById("imageFrame").style.opacity = 0.5
-        // // $( this ).css('zIndex', '60')
-        // console.log( this.style.zIndex)
-    })
-    $( ".responsive" ).on( "pointerleave", function() {
-        // console.log( this)
-        this.style.zIndex = 1
-        document.getElementById("imageFrame").style.zIndex = 100
-        document.getElementById("imageFrame").style.opacity = 1
-        // // $( this ).css('zIndex', '60')
-        // console.log( this.style.zIndex)
-    })
-</script>
 </html>

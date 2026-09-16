@@ -1,0 +1,56 @@
+{
+    "generated":  "2026-09-16T14:16:06.4902509+02:00",
+    "apps":  [
+                 {
+                     "id":  "Info04",
+                     "title":  "Info04",
+                     "href":  "./Apps/Info04/index.html",
+                     "image":  "./Assets/Images/info.png"
+                 },
+                 {
+                     "id":  "Insel",
+                     "title":  "Insel",
+                     "href":  "./Apps/Insel/index.html?Test#",
+                     "image":  "./Assets/Images/insel.jpg",
+                     "modes":  2
+                 },
+                 {
+                     "id":  "Museum",
+                     "title":  "Museum",
+                     "href":  "./Apps/Museum/index.html",
+                     "image":  "./Assets/Images/MuesumHall.png"
+                 },
+                 {
+                     "id":  "MuseumBuilder",
+                     "title":  "Museum Builder",
+                     "href":  "./Apps/MuseumBuilder/index.html",
+                     "image":  "./Assets/Images/museum.png"
+                 },
+                 {
+                     "id":  "MuseumTwoRooms",
+                     "title":  "Museum 2 Rooms",
+                     "href":  "./Apps/MuseumTwoRooms/index.html",
+                     "image":  "./Assets/Images/Museum2.png"
+                 },
+                 {
+                     "id":  "TestMolekuele",
+                     "title":  "Molekuele",
+                     "href":  "./Apps/TestMolekuele/indexStart.html",
+                     "image":  "./Assets/Images/molekuel.png",
+                     "extras":  [
+                                    {
+                                        "label":  "Marker PDF",
+                                        "icon":  "./Assets/Icons/pdf.png",
+                                        "href":  "./Apps/TestMolekuele/assets/marker/Marker.pdf"
+                                    }
+                                ]
+                 },
+                 {
+                     "id":  "Unwetter",
+                     "title":  "Unwetter",
+                     "href":  "./Apps/Unwetter/index.html?Test#",
+                     "image":  "./Assets/Images/blitz.jpg",
+                     "modes":  5
+                 }
+             ]
+}
