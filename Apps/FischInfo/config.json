@@ -1,0 +1,129 @@
+{
+    "Fische":{
+        "Forelle":{
+            "url": "https://de.wikipedia.org/wiki/Forelle",
+            "model": "Forelle.glb",
+            "text": "Forelle.txt",
+            "quiz": [
+                {
+                    "question": "Zu welcher Familie gehört die Forelle?",
+                    "options": ["Lachsfische", "Karpfenfische", "Lippfische", "Kugelfischverwandte"],
+                    "correct": 0,
+                    "explanation": "Die Forelle (Salmo trutta) gehört zur Familie der Lachsfische."
+                },
+                {
+                    "question": "Welche Gewässer bevorzugt die Forelle?",
+                    "options": ["Warme, träge Teiche", "Kalte, sauerstoffreiche Gewässer", "Salzwasser in der Tiefsee", "Schnell fließende Warmflüsse"],
+                    "correct": 1,
+                    "explanation": "Forellen bevorzugen kalte, sauerstoffreiche Gewässer."
+                },
+                {
+                    "question": "Wann liegt die Laichzeit der Forelle?",
+                    "options": ["April bis Juli", "Oktober bis März", "Ganzjährig", "Nur im Hochsommer"],
+                    "correct": 1,
+                    "explanation": "Die Laichzeit der Forelle dauert von Oktober bis März."
+                }
+            ]
+        },
+        "Rotfeder":{
+            "url": "https://de.wikipedia.org/wiki/Rotfeder",
+            "model": "Rotfeder.glb",
+            "text": "Rotfeder.txt",
+            "quiz": [
+                {
+                    "question": "Woran erkennt man die Rotfeder besonders gut?",
+                    "options": ["An blauen Streifen am Bauch", "An roten oder orangefarbenen Flossen", "An einem Panzer aus Knochenplatten", "An einem einrastbaren Stachel"],
+                    "correct": 1,
+                    "explanation": "Die roten Flossen sind das typische Merkmal und Namensgeber der Rotfeder."
+                },
+                {
+                    "question": "Wo lebt die Rotfeder bevorzugt?",
+                    "options": ["In schnell fließenden Bergbächen", "In stehenden oder langsam fließenden Gewässern", "Im offenen Meer", "In unterirdischen Höhlen"],
+                    "correct": 1,
+                    "explanation": "Rotfedern leben in Seen, Teichen und ruhigen Flussabschnitten."
+                },
+                {
+                    "question": "Wovon ernährt sich die Rotfeder hauptsächlich?",
+                    "options": ["Von großen Raubfischen", "Von Wasserpflanzen und Algen", "Von Korallen", "Nur von Plankton im Meer"],
+                    "correct": 1,
+                    "explanation": "Rotfedern sind Allesfresser, ernähren sich aber überwiegend pflanzlich."
+                }
+            ]
+        },
+        "Druecker":{
+            "url": "https://de.wikipedia.org/wiki/Dr%C3%BCckerfische",
+            "model": "Druecker.glb",
+            "text": "Druecker.txt",
+            "quiz": [
+                {
+                    "question": "Wo leben Drückerfische vor allem?",
+                    "options": ["In Alpenseen", "In tropischen Korallenriffen", "In Flussmündungen", "In der Antarktis"],
+                    "correct": 1,
+                    "explanation": "Drückerfische leben in tropischen und subtropischen Meeren, besonders in Korallenriffen."
+                },
+                {
+                    "question": "Was ist der „Drückermechanismus“?",
+                    "options": ["Ein lautes Warngeräusch", "Ein einrastbarer Rückenstachel", "Ein Gift im Schleim", "Ein schneller Rückwärtsschwimm-Stoß"],
+                    "correct": 1,
+                    "explanation": "Der Stachel der ersten Rückenflosse kann einrasten und schützt vor Feinden."
+                },
+                {
+                    "question": "Wovon ernähren sich Drückerfische?",
+                    "options": ["Nur von Algen", "Von Krebsen, Muscheln und Seeigeln", "Von Walen", "Von Schwimmvögeln"],
+                    "correct": 1,
+                    "explanation": "Mit ihren starken Zähnen knacken sie harte Schalen von Krebsen, Muscheln und Seeigeln."
+                }
+            ]
+        },
+        "Junker":{
+            "url": "https://de.wikipedia.org/wiki/Meerjunker",
+            "model": "Junker.glb",
+            "text": "Junker.txt",
+            "quiz": [
+                {
+                    "question": "In welchen Meeren kommt der Meerjunker vor?",
+                    "options": ["Nur in der Nordsee", "Mittelmeer, Schwarzes Meer und Ostatlantik", "Nur im Pazifik", "Nur in der Ostsee"],
+                    "correct": 1,
+                    "explanation": "Der Meerjunker lebt im Mittelmeer, Schwarzen Meer und Ostatlantik."
+                },
+                {
+                    "question": "Was ist beim Meerjunker besonders?",
+                    "options": ["Er kann fliegen", "Er kann das Geschlecht wechseln", "Er lebt nur in Süßwasser", "Er hat keinen Schwanz"],
+                    "correct": 1,
+                    "explanation": "Viele Meerjunker sind zuerst Weibchen und können später zu Männchen werden."
+                },
+                {
+                    "question": "Welchen Lebensraum bevorzugt der Meerjunker?",
+                    "options": ["Tiefsee ab 1000 m", "Küstennähe mit Felsen, Algen und Seegras", "Offener Ozean ohne Grund", "Süßwasserseen"],
+                    "correct": 1,
+                    "explanation": "Er lebt küstennah in flachem Wasser, oft in Felsgebieten und Seegraswiesen."
+                }
+            ]
+        },
+        "Koffer":{
+            "url": "https://de.wikipedia.org/wiki/Kofferfische",
+            "model": "Koffer.glb",
+            "text": "Koffer.txt",
+            "quiz": [
+                {
+                    "question": "Wie sieht der Körper der Kofferfische aus?",
+                    "options": ["Lang und dünn wie ein Aal", "Kastenförmig mit hartem Panzer", "Flach wie ein Rochen", "Rund wie ein Kugelfisch ohne Panzer"],
+                    "correct": 1,
+                    "explanation": "Kofferfische haben einen eckigen, kastenförmigen Körper mit einem Panzer aus Knochenplatten."
+                },
+                {
+                    "question": "Womit können Kofferfische sich schützen?",
+                    "options": ["Mit elektrischen Schlägen", "Mit Gift (Pahutoxin)", "Mit Tinte wie ein Tintenfisch", "Mit extrem schnellem Schwimmen"],
+                    "correct": 1,
+                    "explanation": "Bei Gefahr oder Stress können Kofferfische das Gift Pahutoxin abgeben."
+                },
+                {
+                    "question": "Wo leben Kofferfische vor allem?",
+                    "options": ["In Bergseen", "In Korallenriffen und Küstengebieten", "In Flüssen", "In der Tiefsee"],
+                    "correct": 1,
+                    "explanation": "Kofferfische leben in tropischen Meeren, besonders in Korallenriffen und Seegraswiesen."
+                }
+            ]
+        }
+    }
+}

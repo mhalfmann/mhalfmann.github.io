@@ -1,6 +1,12 @@
 window.APPS_CATALOG = {
-    "generated":  "2026-09-16T14:46:29.4129221+02:00",
+    "generated":  "2026-09-16T15:03:30.6823892+02:00",
     "apps":  [
+                 {
+                     "id":  "FischInfo",
+                     "title":  "FischInfo",
+                     "href":  "./Apps/FischInfo/index.html",
+                     "image":  "./Assets/Images/testapp.png"
+                 },
                  {
                      "id":  "Info04",
                      "title":  "Info04",
