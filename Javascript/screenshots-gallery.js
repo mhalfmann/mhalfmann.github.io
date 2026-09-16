@@ -1,9 +1,7 @@
 /**
- * Screenshot gallery with live auto-scan on every page load.
- *
- * Browsers cannot list folders on static hosts (GitHub Pages).
- * We therefore probe numbered files (1.png, 2.png, …) in known albums.
- * Adding e.g. Lego/13.png shows up after F5 – no PowerShell needed.
+ * Screenshot gallery.
+ * Fast path: screenshots-data.js from generate-screenshots.ps1 (instant).
+ * Slow path (no catalog): probe numbered files 1.png, 2.png, …
  */
 (function () {
   var grid = document.getElementById("shotGrid");
@@ -37,10 +35,14 @@
   function probeUrl(url) {
     return new Promise(function (resolve) {
       var img = new Image();
+      var timer = setTimeout(function () {
+        finish(false);
+      }, 800);
       var done = false;
       function finish(ok) {
         if (done) return;
         done = true;
+        clearTimeout(timer);
         resolve(ok);
       }
       img.onload = function () {
@@ -49,71 +51,36 @@
       img.onerror = function () {
         finish(false);
       };
-      // Cache-bust so a previously missing file is found after F5
-      img.src = url + (url.indexOf("?") >= 0 ? "&" : "?") + "_scan=" + Date.now();
+      img.src = url;
     });
   }
 
   async function findFirstExisting(basePathNoExt) {
-    for (var e = 0; e < EXTENSIONS.length; e++) {
-      var url = basePathNoExt + EXTENSIONS[e];
-      if (await probeUrl(url)) return EXTENSIONS[e];
+    var checks = EXTENSIONS.map(function (ext) {
+      return probeUrl(basePathNoExt + ext).then(function (ok) {
+        return ok ? ext : null;
+      });
+    });
+    var results = await Promise.all(checks);
+    for (var i = 0; i < results.length; i++) {
+      if (results[i]) return results[i];
     }
     return null;
   }
 
-  async function scanAlbum(def) {
+  async function probeNumberedAlbum(def) {
     var folder = "./Assets/Screenshots/" + def.id + "/";
     var images = [];
-    var seen = {};
-
-    function addImage(img) {
-      if (!img || !img.src || seen[img.src]) return;
-      seen[img.src] = true;
-      images.push(img);
-    }
-
-    // 1) Results from generate-screenshots.ps1 (supports any filenames)
-    var catalog = window.SCREENSHOTS_CATALOG && window.SCREENSHOTS_CATALOG.albums;
-    if (catalog) {
-      for (var c = 0; c < catalog.length; c++) {
-        if (catalog[c].id !== def.id) continue;
-        var catalogImages = catalog[c].images || [];
-        for (var j = 0; j < catalogImages.length; j++) {
-          addImage(catalogImages[j]);
-        }
-        break;
-      }
-    }
-
-    // 2) Live probe for numbered files (1.png, 2.png, …) – picks up new ones on F5
     var ext = await findFirstExisting(folder + "1");
-    if (ext) {
-      addImage({
-        src: folder + "1" + ext,
-        alt: def.title + " 1"
-      });
-      for (var i = 2; i <= MAX_PER_ALBUM; i++) {
-        var src = folder + i + ext;
-        if (!(await probeUrl(src))) break;
-        addImage({
-          src: src,
-          alt: def.title + " " + i
-        });
-      }
-    }
+    if (!ext) return { id: def.id, title: def.title, images: [] };
 
+    images.push({ src: folder + "1" + ext, alt: def.title + " 1" });
+    for (var i = 2; i <= MAX_PER_ALBUM; i++) {
+      var src = folder + i + ext;
+      if (!(await probeUrl(src))) break;
+      images.push({ src: src, alt: def.title + " " + i });
+    }
     return { id: def.id, title: def.title, images: images };
-  }
-
-  function albumDefs() {
-    var catalog = window.SCREENSHOTS_CATALOG && window.SCREENSHOTS_CATALOG.albums;
-    if (catalog && catalog.length) {
-      return catalog.map(function (a) {
-        return { id: a.id, title: a.title || a.id };
-      });
-    }
-    return DEFAULT_ALBUMS.slice();
   }
 
   function flatten(albumId) {
@@ -246,14 +213,28 @@
   });
 
   async function boot() {
+    var catalog = window.SCREENSHOTS_CATALOG && window.SCREENSHOTS_CATALOG.albums;
+
+    // Fast: use generate-screenshots.ps1 output immediately
+    if (catalog && catalog.length) {
+      albums = catalog.filter(function (a) {
+        return a.images && a.images.length;
+      });
+      if (albums.length) {
+        paint();
+        return;
+      }
+    }
+
+    // Fallback without catalog: numbered probe (slower)
     setStatus("Bildergalerie wird geladen…");
-    var defs = albumDefs();
-    var scanned = await Promise.all(defs.map(scanAlbum));
+    var defs = DEFAULT_ALBUMS.slice();
+    var scanned = await Promise.all(defs.map(probeNumberedAlbum));
     albums = scanned.filter(function (a) {
       return a.images.length > 0;
     });
     if (!albums.length) {
-      setStatus("Keine Bilder gefunden unter Assets/Screenshots/");
+      setStatus("Keine Bilder gefunden. Bitte generate-screenshots.ps1 ausführen.");
       grid.innerHTML = "";
       return;
     }
