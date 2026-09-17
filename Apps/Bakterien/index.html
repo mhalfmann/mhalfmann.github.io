@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./style.css?v=8" />
+  <link rel="stylesheet" href="./style.css?v=11" />
   <script src="https://cdn.jsdelivr.net/npm/utif@3.1.0/UTIF.js"></script>
   <script src="https://unpkg.com/html5-qrcode" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
@@ -46,20 +46,18 @@
   <main class="iwm-main">
     <!-- Willkommen -->
     <section id="welcome" class="screen">
-      <div class="iwm-hero">
-        <div class="iwm-container">
-          <!-- <p class="iwm-hero-kicker">Das Leibniz-Institut für Wissensmedien</p> -->
-          <h1 class="iwm-hero-title">
-            Bakterien <span class="iwm-text-orange">entdecken und verstehen</span>
-          </h1>
-          <p class="iwm-hero-lead">
-            Scanne den QR-Code an einer Plakette, um Informationen und ein interaktives 3D-Modell zu sehen.
-          </p>
-          <button id="startScanBtn" class="iwm-btn-outline" type="button">
-            QR-Code scannen
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6l-6 6"/></svg>
-          </button>
-        </div>
+      <div class="iwm-container iwm-section">
+        <!-- <p class="iwm-hero-kicker">Das Leibniz-Institut für Wissensmedien</p> -->
+        <h1 class="iwm-hero-title">
+          Bakterien <span class="iwm-text-orange">entdecken und verstehen</span>
+        </h1>
+        <p class="iwm-hero-lead">
+          Scanne den QR-Code an einer Plakette, um Informationen und ein interaktives 3D-Modell zu sehen.
+        </p>
+        <button id="startScanBtn" class="iwm-btn-outline" type="button">
+          QR-Code scannen
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6l-6 6"/></svg>
+        </button>
       </div>
     </section>
 
@@ -145,13 +143,14 @@
   </main>
 
   <footer class="iwm-footer">
-    <!-- <div class="iwm-container iwm-footer-inner">
-      <a href="https://iwm-tuebingen.de/de" target="_blank" rel="noopener">iwm-tuebingen.de</a>
-      <span class="iwm-footer-sep">|</span>
-      <a href="https://iwm-tuebingen.de/de/impressum" target="_blank" rel="noopener">Impressum</a>
-      <span class="iwm-footer-sep">|</span>
-      <a href="https://iwm-tuebingen.de/de/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
-    </div> -->
+    <div class="iwm-container iwm-footer-inner">
+      powered by <img src="./Assets/Images/fis-logo.png" alt="Logo IWM Tübingen" class="iwm-logo" />
+      <!-- <a href="https://iwm-tuebingen.de/de" target="_blank" rel="noopener">iwm-tuebingen.de</a> -->
+      <!-- <span class="iwm-footer-sep">|</span> -->
+      <!-- <a href="https://iwm-tuebingen.de/de/impressum" target="_blank" rel="noopener">Impressum</a> -->
+      <!-- <span class="iwm-footer-sep">|</span> -->
+      <!-- <a href="https://iwm-tuebingen.de/de/datenschutz" target="_blank" rel="noopener">Datenschutz</a> -->
+    </div>
   </footer>
 
   <script src="./app.js?v=14" defer></script>

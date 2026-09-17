@@ -13,6 +13,13 @@
   --iwm-font: "Open Sans", "Segoe UI", system-ui, sans-serif;
   --iwm-container: 78rem;
   --iwm-nav-h: 5rem;
+  --iwm-page-gutter: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --iwm-page-gutter: 4rem;
+  }
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -45,17 +52,16 @@ a:hover { color: var(--iwm-orange); text-decoration: underline; text-underline-o
   width: 100%;
   max-width: var(--iwm-container);
   margin: 0 auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-@media (min-width: 768px) {
-  .iwm-container { padding-left: 4rem; padding-right: 4rem; }
+  padding-left: var(--iwm-page-gutter);
+  padding-right: var(--iwm-page-gutter);
 }
 
 .iwm-main { flex: 1; }
 
-.iwm-section { padding: 2rem 0 3rem; }
+.iwm-section {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
 .iwm-center { text-align: center; }
 
 /* ─── Meta-Navigation (oben) ─── */
@@ -101,6 +107,7 @@ a:hover { color: var(--iwm-orange); text-decoration: underline; text-underline-o
   justify-content: space-between;
   min-height: var(--iwm-nav-h);
   gap: 1rem;
+  
 }
 
 .iwm-logo-link { display: flex; align-items: center; flex-shrink: 0; }
@@ -117,7 +124,7 @@ a:hover { color: var(--iwm-orange); text-decoration: underline; text-underline-o
 }
 
 .iwm-nav-current {
-  font-size: 19px;
+  font-size: 30px;
   line-height: 33px;
   font-weight: 600;
   color: #677fc2;
@@ -168,11 +175,6 @@ a:hover { color: var(--iwm-orange); text-decoration: underline; text-underline-o
 }
 
 /* ─── Hero ─── */
-.iwm-hero {
-  padding: 2rem 0 3rem;
-  margin-bottom: 1rem;
-}
-
 .iwm-hero-kicker {
   font-size: 16px;
   line-height: 27px;
@@ -258,8 +260,6 @@ a:hover { color: var(--iwm-orange); text-decoration: underline; text-underline-o
   display: flex;
   flex-direction: column;
   min-height: calc(100dvh - 9.5rem);
-  padding-top: 1rem;
-  padding-bottom: 1rem;
 }
 
 #scanner .iwm-section-title {
