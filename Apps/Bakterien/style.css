@@ -1,8 +1,8 @@
 /* IWM Tübingen Design – Farben & Typo von iwm-tuebingen.de */
 :root {
-  --iwm-orange: #f05f00;
-  --iwm-orange-light: #ffe5c3;
-  --iwm-orange-hover: #d85400;
+  --iwm-orange: #677fc2;
+  --iwm-orange-light: #95cfee;
+  --iwm-orange-hover: #5f4edc;
   --iwm-black: #1b1f1f;
   --iwm-gray: #7c8383;
   --iwm-gray-dark: #434f4f;
@@ -38,7 +38,7 @@ a:hover { color: var(--iwm-orange); text-decoration: underline; text-underline-o
 
 .hidden { display: none !important; }
 
-.iwm-text-orange { color: #f05f00 !important; }
+.iwm-text-orange { color: #677fc2 !important; }
 
 /* ─── Container ─── */
 .iwm-container {
@@ -83,7 +83,7 @@ a:hover { color: var(--iwm-orange); text-decoration: underline; text-underline-o
   font-weight: 400;
 }
 
-.iwm-meta-nav a:hover { color: #f05f00; }
+.iwm-meta-nav a:hover { color: #677fc2; }
 
 /* ─── Hauptnavigation ─── */
 .iwm-main-nav {
@@ -120,7 +120,7 @@ a:hover { color: var(--iwm-orange); text-decoration: underline; text-underline-o
   font-size: 19px;
   line-height: 33px;
   font-weight: 600;
-  color: #f05f00;
+  color: #677fc2;
   white-space: nowrap;
 }
 
@@ -136,7 +136,7 @@ a:hover { color: var(--iwm-orange); text-decoration: underline; text-underline-o
   font-weight: 600;
   color: #1b1f1f;
   background: transparent;
-  border: 2px solid #f05f00;
+  border: 2px solid #677fc2;
   cursor: pointer;
   transition: background 0.15s, color 0.15s;
 }
@@ -149,13 +149,13 @@ a:hover { color: var(--iwm-orange); text-decoration: underline; text-underline-o
 }
 
 .iwm-btn-outline svg {
-  color: #f05f00;
+  color: #677fc2;
   flex-shrink: 0;
   transition: color 0.15s;
 }
 
 .iwm-btn-outline:hover {
-  background: #f05f00;
+  background: #677fc2;
   color: #ffffff;
 }
 
@@ -219,7 +219,7 @@ a:hover { color: var(--iwm-orange); text-decoration: underline; text-underline-o
   font-size: 21px;
   line-height: 30px;
   font-weight: 600;
-  color: #f05f00;
+  color: #677fc2;
   margin-bottom: 1rem;
 }
 
@@ -283,7 +283,7 @@ a:hover { color: var(--iwm-orange); text-decoration: underline; text-underline-o
   margin: 0.5rem 0 0;
   padding: 0.6rem 0.85rem;
   border: 1px solid #d7d9d9;
-  border-left: 4px solid #f05f00;
+  border-left: 4px solid #677fc2;
   background: #ffffff;
 }
 
@@ -362,7 +362,7 @@ a:hover { color: var(--iwm-orange); text-decoration: underline; text-underline-o
   width: 48px;
   height: 48px;
   border: 4px solid #ebecec;
-  border-top-color: #f05f00;
+  border-top-color: #677fc2;
   border-radius: 50%;
   margin: 2rem auto 1rem;
   animation: iwm-spin 0.9s linear infinite;
@@ -405,7 +405,7 @@ a:hover { color: var(--iwm-orange); text-decoration: underline; text-underline-o
   font-size: 21px;
   line-height: 30px;
   font-weight: 600;
-  color: #f05f00;
+  color: #677fc2;
   margin: 2rem 0 0.75rem;
 }
 
@@ -429,11 +429,11 @@ a:hover { color: var(--iwm-orange); text-decoration: underline; text-underline-o
 .iwm-markdown strong { color: #1b1f1f; font-weight: 700; }
 
 .iwm-markdown a {
-  color: #f05f00;
+  color: #677fc2;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
-.iwm-markdown a:hover { color: #d85400; }
+.iwm-markdown a:hover { color: #5f4edc; }
 
 .iwm-markdown hr {
   border: none;
@@ -496,7 +496,7 @@ a:hover { color: var(--iwm-orange); text-decoration: underline; text-underline-o
 }
 
 .fish-accordion[open] {
-  border-color: #f05f00;
+  border-color: #677fc2;
   box-shadow: 0 2px 8px rgba(240, 95, 0, 0.08);
 }
 
@@ -516,11 +516,11 @@ a:hover { color: var(--iwm-orange); text-decoration: underline; text-underline-o
 .fish-accordion-summary::-webkit-details-marker { display: none; }
 
 .fish-accordion-summary:hover {
-  background: #ffe5c3;
+  background: #95cfee;
 }
 
 .fish-accordion[open] > .fish-accordion-summary {
-  background: #f05f00;
+  background: #677fc2;
   color: #ffffff;
 }
 
@@ -556,7 +556,7 @@ a:hover { color: var(--iwm-orange); text-decoration: underline; text-underline-o
   left: 50%;
   width: 12px;
   height: 2px;
-  background: #f05f00;
+  background: #677fc2;
   transform: translate(-50%, -50%);
   transition: transform 0.2s, background 0.15s;
 }
@@ -600,7 +600,7 @@ a:hover { color: var(--iwm-orange); text-decoration: underline; text-underline-o
 }
 
 .iwm-source a {
-  color: #f05f00;
+  color: #677fc2;
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 2px;
@@ -644,7 +644,7 @@ a:hover { color: var(--iwm-orange); text-decoration: underline; text-underline-o
 }
 
 .quiz-number {
-  color: #f05f00;
+  color: #677fc2;
   margin-right: 0.25rem;
 }
 
@@ -668,7 +668,7 @@ a:hover { color: var(--iwm-orange); text-decoration: underline; text-underline-o
 }
 
 .quiz-option:hover:not(:disabled) {
-  border-color: #f05f00;
+  border-color: #677fc2;
   background: #fff8f2;
 }
 
@@ -712,7 +712,7 @@ a:hover { color: var(--iwm-orange); text-decoration: underline; text-underline-o
 .fish-quiz-result {
   margin-top: 1.25rem;
   padding: 1rem 1.1rem;
-  border: 2px solid #f05f00;
+  border: 2px solid #677fc2;
   background: #fff8f2;
   text-align: center;
 }
@@ -720,7 +720,7 @@ a:hover { color: var(--iwm-orange); text-decoration: underline; text-underline-o
 .quiz-score {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #f05f00;
+  color: #677fc2;
   margin-bottom: 0.35rem;
 }
 
@@ -799,7 +799,7 @@ a:hover { color: var(--iwm-orange); text-decoration: underline; text-underline-o
 
 /* ─── Footer (orange Balken wie IWM) ─── */
 .iwm-footer {
-  background: #f05f00;
+  background: #677fc2;
   color: #ffffff;
   min-height: 6rem;
   display: flex;
