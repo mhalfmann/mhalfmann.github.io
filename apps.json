@@ -1,6 +1,12 @@
 {
-    "generated":  "2026-09-16T15:03:30.6823892+02:00",
+    "generated":  "2026-09-17T16:43:57.4669793+02:00",
     "apps":  [
+                 {
+                     "id":  "Bakterien",
+                     "title":  "Bakterien",
+                     "href":  "./Apps/Bakterien/index.html",
+                     "image":  "./Assets/Images/testapp.png"
+                 },
                  {
                      "id":  "FischInfo",
                      "title":  "FischInfo",

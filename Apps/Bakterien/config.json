@@ -1,0 +1,117 @@
+{
+  "Inhalte": {
+    "gutes_bakterium": {
+      "qrText": "gutes_bakterium",
+      "name": "Gute Bakterien – Staphylokokken",
+      "model": "gutes_bakterium.glb",
+      "text": "gutes_bakterium.txt",
+      "images": [
+        {
+          "file": "gutes_bakterium.webp",
+          "alt": "Mikroskopische Aufnahme kugelförmiger Staphylokokken",
+          "caption": "Staphylokokken. Bild: Jeremiah Shuster, Core Facility Tübingen Structural Microscopy, TSM, Arbeitsgruppe Geomikrobiologie, Universität Tübingen."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Wo findet man Staphylokokken beim Menschen besonders häufig?",
+          "options": ["Auf der Haut und auf Schleimhäuten", "Ausschließlich im Magen", "Ausschließlich in den Knochen", "Nur im Blut"],
+          "correct": 0
+        },
+        {
+          "question": "Muss eine Besiedlung mit Staphylokokken krank machen?",
+          "options": ["Ja, immer", "Nein", "Nur im Winter", "Nur bei Kindern"],
+          "correct": 1
+        },
+        {
+          "question": "Wie sehen Staphylokokken typischerweise aus?",
+          "options": ["Stäbchenförmig", "Spiralförmig", "Kugelförmig und häufig traubenartig angeordnet", "Würfelförmig"],
+          "correct": 2
+        }
+      ]
+    },
+    "krankheitserreger": {
+      "qrText": "krankheitserreger",
+      "name": "Krankheitserreger – Staphylococcus aureus wird gefährlich",
+      "model": "krankheitserreger.glb",
+      "text": "krankheitserreger.txt",
+      "images": [
+        {
+          "file": "krankheitserreger.webp",
+          "alt": "Weiße Kolonie von Staphylococcus aureus auf rotem Blutagar",
+          "caption": "Eine Kolonie des potentiell krankheitserregenden (pathogenen) Staphylococcus aureus (weiß) wächst in einer Petrischale auf Blutagar-Nährmedium (rot). Foto: Jörg Jäger / Universität Tübingen."
+        }
+      ],
+      "source": "Quellen: CDC – Staphylococcus aureus Basics; MSD Manual – Staphylococcal Infections.",
+      "quiz": [
+        {
+          "question": "Was kann S. aureus auslösen, wenn es in den Körper eindringt?",
+          "options": ["Nur Schnupfen", "Haut- und schwere innere Infektionen", "Ausschließlich Zahnschmerzen", "Gar keine Erkrankungen"],
+          "correct": 1
+        }
+      ]
+    },
+    "mrsa": {
+      "qrText": "mrsa",
+      "name": "MRSA – der resistente Gegner",
+      "model": "mrsa.glb",
+      "text": "mrsa.txt",
+      "images": [
+        {
+          "file": "mrsa.webp",
+          "alt": "Mikroskopische Aufnahme gelber MRSA-Bakterien und eines roten weißen Blutkörperchens",
+          "caption": "Methicillin-resistente Staphylococcus-aureus-Bakterien (gelb) und ein abgestorbenes menschliches weißes Blutkörperchen (rot). Rasterelektronenmikroskopische Aufnahme. Bild: National Institute of Allergy and Infectious Diseases (NIAID)/NIH."
+        }
+      ],
+      "source": "Quellen: CDC – MRSA Basics und Laboratory Testing for MRSA; WHO – Antimicrobial Resistance.",
+      "quiz": [
+        {
+          "question": "Wofür steht das „R“ in MRSA?",
+          "options": ["Riesig", "Resistent", "Reproduzierend", "Reaktiv"],
+          "correct": 1
+        }
+      ]
+    },
+    "lugdunin": {
+      "qrText": "lugdunin",
+      "name": "Lugdunin – das Antibiotikum aus dem Mikrobiom",
+      "model": "lugdunin.glb",
+      "text": "lugdunin.txt",
+      "images": [
+        {
+          "file": "lugdunin_molekuel.webp",
+          "alt": "Molekülstruktur von Lugdunin",
+          "caption": "Molekülstruktur von Lugdunin. Visualisierung: Michael Pelzer / Universität Tübingen."
+        },
+        {
+          "file": "lugdunin_nase.webp",
+          "alt": "Künstlerische Darstellung des Kampfes zwischen Bakterien im Nasenmikrobiom",
+          "caption": "Kampf im Nasenmikrobiom: S. lugdunensis (beige) bekämpft den krankheitserregenden S. aureus (gelb) mit Hilfe von Lugdunin (lila). Künstlerische Darstellung. Bild: Michael Pelzer / Universität Tübingen."
+        }
+      ],
+      "source": "Quellen: Zipperer et al., Nature 2016 – Human commensals producing a novel antibiotic impair pathogen colonization; Bitschar et al., Nature Communications 2019.",
+      "quiz": [
+        {
+          "question": "Wer produziert Lugdunin?",
+          "options": ["Der Mensch selbst", "Staphylococcus lugdunensis", "MRSA", "Ein Bakteriophage"],
+          "correct": 1
+        }
+      ]
+    },
+    "phage": {
+      "qrText": "phage",
+      "name": "Phage – der Bakterienjäger",
+      "model": "phage.glb",
+      "text": "phage.txt",
+      "images": [],
+      "source": "Quellen: WHO Europe – Bacteriophages and their use in combating antimicrobial resistance und Building the evidence for bacteriophage therapy.",
+      "quiz": [
+        {
+          "question": "Was infiziert ein Bakteriophage?",
+          "options": ["Ausschließlich menschliche Zellen", "Bakterien", "Pflanzen", "Antibiotika"],
+          "correct": 1
+        }
+      ]
+    }
+  }
+}

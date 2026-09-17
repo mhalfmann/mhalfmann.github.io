@@ -1,0 +1,37 @@
+3.	MRSA – der resistente Gegner
+ 
+Methicillin-resistente Staphylococcus aureus-Bakterien (gelb) und ein abgestorbenes menschliches weißes Blutkörperchen (rot). Rasterelektronenmikroskopische (REM) Aufnahme.
+Bild: National Institute of Allergy and Infectious Diseases (NIAID)/NIH.
+
+🦠 Allgemeines
+•	MRSA bedeutet Methicillin-resistenter Staphylococcus aureus.
+•	Es handelt sich also um S. aureus, der gegen wichtige Antibiotika resistent geworden ist.
+•	MRSA kann Menschen ebenfalls unbemerkt besiedeln oder Infektionen verursachen. (cdc.gov)
+🛡️ Was bedeutet resistent?
+•	Bei MRSA wirken die meisten sogenannten Beta-Lactam-Antibiotika nicht mehr zuverlässig.
+•	Dazu gehören viele Penicilline und Cephalosporine.
+•	Häufig steckt dahinter das mecA-Gen. Es sorgt für ein verändertes Protein namens PBP2a, an das viele dieser Antibiotika kaum noch binden können. (cdc.gov)
+💊 Warum ist MRSA problematisch?
+•	Bei gewöhnlichem S. aureus stehen oft mehrere Standardantibiotika zur Verfügung.
+•	Bei MRSA fallen viele davon aus.
+•	Dadurch kann die Behandlung schwieriger werden und eine gezieltere Auswahl von Antibiotika erforderlich sein. (cdc.gov)
+🏥 Vorkommen
+•	MRSA kommt sowohl in Krankenhäusern als auch außerhalb von Krankenhäusern vor.
+•	Besonders wichtig ist er dort, wo Menschen Wunden, Katheter oder ein geschwächtes Immunsystem haben.
+•	Er kann über direkten Kontakt oder kontaminierte Gegenstände weitergegeben werden. (cdc.gov)
+🧬 Entstehung von Resistenzen
+•	Bakterien können durch genetische Veränderungen oder übertragene Resistenzgene widerstandsfähig werden.
+•	Antibiotika erzeugen anschließend einen Selektionsdruck: empfindliche Bakterien sterben, resistente können überleben und sich vermehren.
+•	Übermäßiger und falscher Antibiotikaeinsatz beschleunigt die Ausbreitung von Resistenzen. (cdc.gov)
+⚠️ Besonderheiten
+•	MRSA ist nicht automatisch „aggressiver“ als jeder andere S. aureus.
+•	Seine besondere Gefahr liegt vor allem darin, dass weniger Medikamente wirksam sind.
+•	MRSA ist aber nicht unheilbar – es stehen weiterhin geeignete Antibiotika und andere Behandlungsmöglichkeiten zur Verfügung. (cdc.gov)
+Quiz: Wofür steht das „R“ in MRSA?
+A) Riesig
+B) Resistent ✅
+C) Reproduzierend
+D) Reaktiv
+Quellen: CDC – MRSA Basics und Laboratory Testing for MRSA; WHO – Antimicrobial Resistance. (cdc.gov)
+
+

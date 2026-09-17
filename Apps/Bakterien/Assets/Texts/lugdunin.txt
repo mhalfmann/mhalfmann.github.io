@@ -1,0 +1,37 @@
+4.	Lugdunin – das Antibiotikum aus dem Mikrobiom
+ 
+Molekülstruktur von Lugdunin. Visualisierung: Michael Pelzer / Universität Tübingen
+
+ 
+Kampf im Nasenmikrobiom. S. lugduensis (beige) bekämpft den krankheitserregenden S. aureus (gelb) mit Hilfe von Lugdunin (lila) in der menschlichen Nase. Künstlerische Darstellung. Bild: Michael Pelzer / Universität Tübingen.
+
+🧪 Allgemeines
+•	Lugdunin ist ein natürlich gebildeter antibiotischer Stoff.
+•	Produziert wird er von bestimmten Stämmen des Haut- und Nasenbakteriums Staphylococcus lugdunensis.
+•	Entdeckt wurde Lugdunin von Forschenden unter Beteiligung der Universität Tübingen. Die Ergebnisse wurden 2016 in Nature veröffentlicht. (nature.com)
+👃 Wo entsteht Lugdunin?
+•	S. lugdunensis gehört bei manchen Menschen zur normalen Haut- und Nasenmikrobiota.
+•	Dort konkurriert das Bakterium mit anderen Mikroorganismen um seinen Lebensraum.
+•	Lugdunin verschafft ihm dabei einen Vorteil gegenüber bestimmten Konkurrenten.
+⚔️ Wirkung
+•	Lugdunin kann Staphylococcus aureus hemmen und abtöten.
+•	Das gilt auch für untersuchte MRSA-Stämme.
+•	Es gehört zu einer besonderen Klasse zyklischer Peptide. (nature.com)
+🛡️ Unterstützung für unsere Haut
+•	Lugdunin wirkt nicht nur direkt auf Bakterien.
+•	Experimente zeigen, dass es auch die angeborene Immunabwehr der Haut verstärken kann.
+•	Unter anderem regt es Hautzellen zur Bildung körpereigener antimikrobieller Stoffe an. (nature.com)
+🤝 Lugdunin gegen S. aureus
+•	Menschen, deren Nase von S. lugdunensis besiedelt war, trugen in der ursprünglichen Studie deutlich seltener gleichzeitig S. aureus.
+•	Im Tiermodell konnte Lugdunin die Besiedlung mit S. aureus reduzieren.
+•	Solche Wechselwirkungen zeigen, dass unser Mikrobiom Krankheitserreger aktiv beeinflussen kann. (nature.com)
+🔬 Besonderheiten
+•	Lugdunin wurde nicht in einem Bodenbakterium oder Pilz gefunden, sondern in einem Bakterium des menschlichen Mikrobioms.
+•	Deshalb ist seine Entdeckung ein schönes Beispiel dafür, dass auch unsere eigenen Mikroorganismen eine Quelle für neue Wirkstoffe sein können.
+•	Lugdunin ist Gegenstand der Forschung und kein regulär eingesetztes Medikament.
+Quiz: Wer produziert Lugdunin?
+A) Der Mensch selbst
+B) Staphylococcus lugdunensis ✅
+C) MRSA
+D) Ein Bakteriophage
+Quellen: Zipperer et al., Nature 2016 – Human commensals producing a novel antibiotic impair pathogen colonization; Bitschar et al., Nature Communications 2019. (nature.com)
