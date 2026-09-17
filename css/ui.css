@@ -351,6 +351,53 @@ a:visited {
     flex-direction: column;
     align-items: flex-start;
   }
+
+  .apps-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 12px;
+  }
+
+  .app-card__media {
+    aspect-ratio: 1 / 0.78;
+  }
+
+  .app-card__body {
+    padding: 8px 10px 10px;
+  }
+
+  .app-card__title {
+    font-size: 0.82rem;
+  }
+
+  .site-main {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .apps-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .app-card__media {
+    aspect-ratio: 1 / 0.72;
+  }
+
+  .app-card__body {
+    padding: 6px 8px 8px;
+  }
+
+  .app-card__title {
+    font-size: 0.75rem;
+    line-height: 1.25;
+  }
+
+  .app-card__extra img {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 @keyframes fade-up {
