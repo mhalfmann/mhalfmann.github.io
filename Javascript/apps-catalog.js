@@ -33,12 +33,12 @@
     media.className = "app-card__media";
 
     var img = document.createElement("img");
-    img.src = app.image || "./Assets/Images/FischInfo.png";
+    img.src = app.image || "./Assets/Images/Bakterien.png";
     img.alt = app.title || app.id || "App";
     img.loading = "lazy";
     img.onerror = function () {
       this.onerror = null;
-      this.src = "./Assets/Images/FischInfo.png";
+      this.src = "./Assets/Images/Bakterien.png";
     };
     media.appendChild(img);
 
