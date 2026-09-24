@@ -1,34 +1,37 @@
-2.	Krankheitserreger – Staphylococcus aureus wird gefährlich
+2. Krankheitserreger – Staphylococcus aureus wird gefährlich
  
-Eine Kolonie des potentiell krankheitserregenden (pathogenem) Staphylococcus aureus (weiss) wächst in einer Petrischale auf Blutagar-Nährmedium (rot). Foto: Jörg Jäger / Universität Tübingen.
-
-🦠 Allgemeines
-•	Staphylococcus aureus kann vom harmlosen Bewohner zum Krankheitserreger werden.
-•	Das kann beispielsweise geschehen, wenn Bakterien durch eine Verletzung tiefer ins Gewebe oder in die Blutbahn gelangen.
-•	Welche Folgen entstehen, hängt vom Bakterienstamm, vom Ort der Infektion und vom Immunsystem des Menschen ab. (cdc.gov)
+Kolonie von Staphylococcus aureus auf Blutagar. Foto: Jörg Jäger / Universität Tübingen.
+Staphylococcus aureus kann harmlos auf dem Körper leben – aber auch zum Krankheitserreger werden. Gefährlich wird es besonders, wenn das Bakterium durch eine Wunde tiefer ins Gewebe oder in die Blutbahn gelangt.
 🚪 Vom Bewohner zum Eindringling
-•	Unsere Haut und Schleimhäute bilden normalerweise eine wichtige Barriere.
-•	Wunden, Operationen oder medizinische Zugänge können Eintrittspforten bieten.
-•	Dann kann aus einer Besiedlung eine Infektion werden.
+•	Haut und Schleimhäute sind normalerweise eine Schutzbarriere.
+•	Wunden oder medizinische Zugänge können dem Bakterium den Weg ins Gewebe öffnen.
 🤒 Mögliche Erkrankungen
-•	Häufig verursacht S. aureus Haut- und Wundinfektionen, beispielsweise Abszesse.
-•	Es kann aber auch schwerere Erkrankungen wie Lungenentzündung, Blutstrominfektionen oder Sepsis hervorrufen.
-•	Auch ein S. aureus, der keine besonderen Antibiotikaresistenzen besitzt, kann gefährlich sein. (cdc.gov)
+•	Häufig sind Haut- und Wundinfektionen, zum Beispiel Abszesse.
+•	Es kann auch schwere Infektionen wie Lungenentzündung oder Sepsis auslösen.
 🛡️ Seine Waffen
-•	S. aureus besitzt zahlreiche Moleküle, mit denen es sich an Zellen anheften, Nährstoffe gewinnen oder der Immunabwehr entkommen kann.
-•	Verschiedene Stämme unterscheiden sich dabei deutlich.
-•	Einige produzieren zusätzlich Toxine, die menschliche Zellen schädigen können. (pmc.ncbi.nlm.nih.gov)
+•	S. aureus kann sich an Zellen anheften, Nährstoffe entziehen und der Immunabwehr entkommen.
+•	Einige Stämme produzieren giftige Stoffe (Toxine).
 💊 Behandlung
-•	Viele Infektionen durch gewöhnlichen, methicillin-empfindlichen S. aureus können mit Antibiotika behandelt werden.
-•	Welches Antibiotikum geeignet ist, hängt vom jeweiligen Stamm und der Infektion ab.
-•	Resistenztests im Labor können dabei helfen, die Behandlung auszuwählen.
+•	Viele Infektionen lassen sich mit Antibiotika behandeln.
+•	Welches Mittel wirkt, hängt vom jeweiligen Stamm und seinen Resistenzen ab.
+•	Resistenztests im Labor helfen die richtige Behandlung auszuwählen.
 🔄 Zwei Rollen – eine Art
-•	Kommensaler und pathogener S. aureus gehören zur gleichen Bakterienart.
-•	Deshalb ist die Grenze zwischen „gut“ und „böse“ biologisch nicht eindeutig.
-•	Für euer Spiel kann diese Unterscheidung trotzdem gut die beiden unterschiedlichen Rollen des Bakteriums darstellen.
-Quiz: Was kann S. aureus auslösen, wenn es in den Körper eindringt?
-A) Nur Schnupfen
-B) Haut- und schwere innere Infektionen ✅
-C) Ausschließlich Zahnschmerzen
-D) Gar keine Erkrankungen
-Quellen: CDC – Staphylococcus aureus Basics(cdc.gov); MSD Manual – Staphylococcal Infections. (cdc.gov
+•	Harmloser Bewohner und Krankheitserreger gehören zur gleichen Bakterienart der Staphylokokken.
+•	„Gut“ und „böse“ sind deshalb vereinfachte Rollen für das Spiel. Die Grenze ist nicht immer eindeutig.
+Kleines Quiz
+1. Wann kann S. aureus gefährlich werden?
+A) Wenn es tiefer ins Gewebe gelangt ✅
+B) Wenn es nur auf der Haut sitzt
+C) Nur bei Kälte
+D) Nur nachts
+2. Welche Erkrankung kann S. aureus verursachen?
+A) Abszesse ✅
+B) Ausschließlich Schnupfen
+C) Nur Zahnschmerzen
+D) Keine
+3. Sind kommensaler und pathogener S. aureus zwei verschiedene Arten?
+A) Ja
+B) Nein ✅
+C) Nur im Krankenhaus
+D) Nur bei MRSA
+Quellen: CDC – Staphylococcus aureus Basics; MSD Manual – Staphylococcal Infections.

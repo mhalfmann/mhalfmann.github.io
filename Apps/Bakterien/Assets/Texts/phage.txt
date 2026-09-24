@@ -1,32 +1,33 @@
-5.	Phage – der Bakterienjäger
-
-🦠 Allgemeines
-•	Bakteriophagen, kurz Phagen, sind Viren, die Bakterien infizieren.
-•	Viele Phagen sind auf bestimmte Bakterien oder sogar bestimmte Bakterienstämme spezialisiert.
-•	Menschliche Zellen sind nicht ihre eigentlichen Wirtszellen. (who.int)
+5. Phage – der Bakterienjäger
+Bakteriophagen – kurz Phagen – sind Viren, die Bakterien infizieren. Viele sind sehr spezialisiert und greifen nur bestimmte Bakterien oder Stämme an.
 🎯 Zielsuche
-•	Ein Phage muss zuerst ein passendes Bakterium erkennen.
-•	Dazu bindet er an bestimmte Strukturen auf dessen Oberfläche.
-•	Passt der Phage nicht zum Bakterium, kann er es nicht erfolgreich infizieren.
+•	Ein Phage muss zuerst ein passendes Bakterium erkennen und daran binden.
+•	Passt der Phage nicht zum Bakterium, kann er es meist nicht infizieren.
 🧬 Angriff
-•	Der Phage bringt sein Erbgut in das Bakterium.
-•	Anschließend kann er die Maschinerie der Bakterienzelle nutzen, um neue Phagen herzustellen.
-•	Bei lytischen Phagen wird die Bakterienzelle am Ende zerstört und neue Phagen werden freigesetzt. (who.int)
-⚔️ Phagen gegen resistente Bakterien
-•	Phagen können auch Bakterien angreifen, die gegen Antibiotika resistent sind.
-•	Deshalb wird untersucht, ob sie beispielsweise gegen MRSA eingesetzt werden können.
-•	Eine solche Behandlung nennt man Phagentherapie. (who.int)
-🔬 Forschung
-•	Phagentherapie wird seit mehr als 100 Jahren erforscht und in einigen Ländern eingesetzt.
-•	In vielen Ländern ist sie aber noch keine routinemäßige Standardbehandlung.
-•	Für eine breite medizinische Anwendung sind weitere klinische Studien nötig. (who.int)
-⚠️ Besonderheiten
-•	Phagen sind sehr spezifisch. Das kann ein Vorteil sein, weil andere nützliche Bakterien geschont werden.
-•	Gleichzeitig muss aber der richtige Phage zum richtigen Bakterium gefunden werden.
-•	Auch Bakterien können Resistenzen gegen Phagen entwickeln. (who.int)
-Quiz: Was infiziert ein Bakteriophage?
-A) Ausschließlich menschliche Zellen
-B) Bakterien ✅
-C) Pflanzen
-D) Antibiotika
-Quellen: WHO Europe – Bacteriophages and their use in combating antimicrobial resistance und Building the evidence for bacteriophage therapy. (who.int)
+•	Der Phage schleust sein Erbgut in das Bakterium ein.
+•	Lytische Phagen vermehren sich darin und zerstören die Bakterienzelle am Ende.
+⚔️ Gegen resistente Bakterien
+•	Phagen können auch antibiotikaresistente Bakterien angreifen.
+•	Deshalb werden sie als mögliche Therapie zum Beispiel gegen MRSA erforscht.
+•	Eine solche Behandlung nennt man Phagentherapie.
+🔬 Besonderheit
+•	Ihre hohe Spezifität kann nützliche Bakterien schonen.
+•	Dafür muss der richtige Phage zum richtigen Bakterium gefunden werden.
+•	Auch Bakterien können Resistenzen gegen Phagen entwickeln.
+Kleines Quiz
+1. Was infiziert ein Bakteriophage?
+A) Bakterien ✅
+B) Antibiotika
+C) Ausschließlich menschliche Zellen
+D) Mineralien
+2. Was geschieht bei einem lytischen Phagen?
+A) Die Bakterienzelle wird am Ende zerstört ✅
+B) Der Phage wird zum Antibiotikum
+C) Das Bakterium wird größer
+D) Nichts
+3. Warum sind Phagen für resistente Bakterien interessant?
+A) Sie können auch antibiotikaresistente Bakterien angreifen ✅
+B) Sie machen Antibiotika überflüssig
+C) Sie sind Bakterien
+D) Sie wirken gegen alle Viren
+Quellen: WHO Europe – Bacteriophages and their use in combating antimicrobial resistance; Building the evidence for bacteriophage therapy.

@@ -9,24 +9,24 @@
         {
           "file": "gutes_bakterium.webp",
           "alt": "Mikroskopische Aufnahme kugelförmiger Staphylokokken",
-          "caption": "Staphylokokken. Bild: Jeremiah Shuster, Core Facility Tübingen Structural Microscopy, TSM, Arbeitsgruppe Geomikrobiologie, Universität Tübingen."
+          "caption": "Staphylokokken. Bild: Jeremiah Shuster, Core Facility Tübingen Structural Microscopy (TSM), Arbeitsgruppe Geomikrobiologie, Universität Tübingen."
         }
       ],
       "quiz": [
         {
-          "question": "Wo findet man Staphylokokken beim Menschen besonders häufig?",
-          "options": ["Auf der Haut und auf Schleimhäuten", "Ausschließlich im Magen", "Ausschließlich in den Knochen", "Nur im Blut"],
+          "question": "Wo findet man Staphylokokken besonders häufig?",
+          "options": ["Auf Haut und Schleimhäuten", "Nur im Blut", "Nur im Magen", "Nur in Knochen"],
           "correct": 0
         },
         {
-          "question": "Muss eine Besiedlung mit Staphylokokken krank machen?",
-          "options": ["Ja, immer", "Nein", "Nur im Winter", "Nur bei Kindern"],
-          "correct": 1
+          "question": "Wie sehen Staphylokokken typischerweise aus?",
+          "options": ["Kugelförmig und oft traubenartig", "Spiralförmig", "Würfelförmig", "Lang und fadenförmig"],
+          "correct": 0
         },
         {
-          "question": "Wie sehen Staphylokokken typischerweise aus?",
-          "options": ["Stäbchenförmig", "Spiralförmig", "Kugelförmig und häufig traubenartig angeordnet", "Würfelförmig"],
-          "correct": 2
+          "question": "Macht eine Besiedlung mit Staphylokokken immer krank?",
+          "options": ["Ja", "Nein", "Nur im Winter", "Nur bei Erwachsenen"],
+          "correct": 1
         }
       ]
     },
@@ -38,15 +38,25 @@
       "images": [
         {
           "file": "krankheitserreger.webp",
-          "alt": "Weiße Kolonie von Staphylococcus aureus auf rotem Blutagar",
-          "caption": "Eine Kolonie des potentiell krankheitserregenden (pathogenen) Staphylococcus aureus (weiß) wächst in einer Petrischale auf Blutagar-Nährmedium (rot). Foto: Jörg Jäger / Universität Tübingen."
+          "alt": "Kolonie von Staphylococcus aureus auf Blutagar",
+          "caption": "Kolonie von Staphylococcus aureus auf Blutagar. Foto: Jörg Jäger / Universität Tübingen."
         }
       ],
       "source": "Quellen: CDC – Staphylococcus aureus Basics; MSD Manual – Staphylococcal Infections.",
       "quiz": [
         {
-          "question": "Was kann S. aureus auslösen, wenn es in den Körper eindringt?",
-          "options": ["Nur Schnupfen", "Haut- und schwere innere Infektionen", "Ausschließlich Zahnschmerzen", "Gar keine Erkrankungen"],
+          "question": "Wann kann S. aureus gefährlich werden?",
+          "options": ["Wenn es tiefer ins Gewebe gelangt", "Wenn es nur auf der Haut sitzt", "Nur bei Kälte", "Nur nachts"],
+          "correct": 0
+        },
+        {
+          "question": "Welche Erkrankung kann S. aureus verursachen?",
+          "options": ["Abszesse", "Ausschließlich Schnupfen", "Nur Zahnschmerzen", "Keine"],
+          "correct": 0
+        },
+        {
+          "question": "Sind kommensaler und pathogener S. aureus zwei verschiedene Arten?",
+          "options": ["Ja", "Nein", "Nur im Krankenhaus", "Nur bei MRSA"],
           "correct": 1
         }
       ]
@@ -60,21 +70,31 @@
         {
           "file": "mrsa.webp",
           "alt": "Mikroskopische Aufnahme gelber MRSA-Bakterien und eines roten weißen Blutkörperchens",
-          "caption": "Methicillin-resistente Staphylococcus-aureus-Bakterien (gelb) und ein abgestorbenes menschliches weißes Blutkörperchen (rot). Rasterelektronenmikroskopische Aufnahme. Bild: National Institute of Allergy and Infectious Diseases (NIAID)/NIH."
+          "caption": "Methicillin-resistente Staphylococcus aureus-Bakterien (gelb) und ein abgestorbenes weißes Blutkörperchen (rot). Bild: NIAID/NIH."
         }
       ],
-      "source": "Quellen: CDC – MRSA Basics und Laboratory Testing for MRSA; WHO – Antimicrobial Resistance.",
+      "source": "Quellen: CDC – MRSA Basics; CDC – Laboratory Testing for MRSA; WHO – Antimicrobial Resistance.",
       "quiz": [
         {
           "question": "Wofür steht das „R“ in MRSA?",
-          "options": ["Riesig", "Resistent", "Reproduzierend", "Reaktiv"],
-          "correct": 1
+          "options": ["Resistent", "Reaktiv", "Riesig", "Reproduzierend"],
+          "correct": 0
+        },
+        {
+          "question": "Warum ist MRSA schwieriger zu behandeln?",
+          "options": ["Viele Antibiotika wirken nicht mehr", "Es gibt gar keine Medikamente", "MRSA ist ein Virus", "Es lebt nur im Blut"],
+          "correct": 0
+        },
+        {
+          "question": "Was kann die Ausbreitung von Resistenzen begünstigen?",
+          "options": ["Unnötiger oder falscher Antibiotikaeinsatz", "Händewaschen", "Schlaf", "Kälte"],
+          "correct": 0
         }
       ]
     },
     "lugdunin": {
       "qrText": "lugdunin",
-      "name": "Lugdunin – das Antibiotikum aus dem Mikrobiom",
+      "name": "Lugdunin – die Waffe aus dem Mikrobiom",
       "model": "lugdunin.glb",
       "text": "lugdunin.txt",
       "images": [
@@ -86,14 +106,24 @@
         {
           "file": "lugdunin_nase.webp",
           "alt": "Künstlerische Darstellung des Kampfes zwischen Bakterien im Nasenmikrobiom",
-          "caption": "Kampf im Nasenmikrobiom: S. lugdunensis (beige) bekämpft den krankheitserregenden S. aureus (gelb) mit Hilfe von Lugdunin (lila). Künstlerische Darstellung. Bild: Michael Pelzer / Universität Tübingen."
+          "caption": "Kampf im Nasenmikrobiom: S. lugdunensis (beige) bekämpft S. aureus (gelb) mithilfe von Lugdunin (lila). Künstlerische Darstellung: Michael Pelzer / Universität Tübingen."
         }
       ],
       "source": "Quellen: Zipperer et al., Nature 2016 – Human commensals producing a novel antibiotic impair pathogen colonization; Bitschar et al., Nature Communications 2019.",
       "quiz": [
         {
           "question": "Wer produziert Lugdunin?",
-          "options": ["Der Mensch selbst", "Staphylococcus lugdunensis", "MRSA", "Ein Bakteriophage"],
+          "options": ["Staphylococcus lugdunensis", "Der Mensch selbst", "MRSA", "Ein Phage"],
+          "correct": 0
+        },
+        {
+          "question": "Gegen welches Bakterium kann Lugdunin wirken?",
+          "options": ["Staphylococcus aureus", "Nur Pflanzenzellen", "Ausschließlich Viren", "Gar keine Bakterien"],
+          "correct": 0
+        },
+        {
+          "question": "Ist Lugdunin bereits ein reguläres Medikament?",
+          "options": ["Ja", "Nein, es wird noch erforscht", "Nur gegen Grippe", "Nur als Impfstoff"],
           "correct": 1
         }
       ]
@@ -104,12 +134,22 @@
       "model": "phage.glb",
       "text": "phage.txt",
       "images": [],
-      "source": "Quellen: WHO Europe – Bacteriophages and their use in combating antimicrobial resistance und Building the evidence for bacteriophage therapy.",
+      "source": "Quellen: WHO Europe – Bacteriophages and their use in combating antimicrobial resistance; Building the evidence for bacteriophage therapy.",
       "quiz": [
         {
           "question": "Was infiziert ein Bakteriophage?",
-          "options": ["Ausschließlich menschliche Zellen", "Bakterien", "Pflanzen", "Antibiotika"],
-          "correct": 1
+          "options": ["Bakterien", "Antibiotika", "Ausschließlich menschliche Zellen", "Mineralien"],
+          "correct": 0
+        },
+        {
+          "question": "Was geschieht bei einem lytischen Phagen?",
+          "options": ["Die Bakterienzelle wird am Ende zerstört", "Der Phage wird zum Antibiotikum", "Das Bakterium wird größer", "Nichts"],
+          "correct": 0
+        },
+        {
+          "question": "Warum sind Phagen für resistente Bakterien interessant?",
+          "options": ["Sie können auch antibiotikaresistente Bakterien angreifen", "Sie machen Antibiotika überflüssig", "Sie sind Bakterien", "Sie wirken gegen alle Viren"],
+          "correct": 0
         }
       ]
     }

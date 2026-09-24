@@ -282,22 +282,28 @@ function linkifyContent(root) {
   });
 }
 
+function isCaptionLine(line) {
+  return /\b(?:Bild|Foto|Visualisierung|Darstellung)\s*:/i.test(line);
+}
+
+function isSectionHeading(line) {
+  return /^[\p{Extended_Pictographic}\uFE0F\u200D]/u.test(line);
+}
+
 function prepareInfoText(textRaw) {
   const lines = textRaw.replace(/\r/g, "").split("\n");
   const quizStart = lines.findIndex((line) => /^(?:Kleines Quiz|Quiz:)/i.test(line.trim()));
-  const contentLines = quizStart >= 0 ? lines.slice(0, quizStart) : lines;
+  const contentLines = quizStart >= 0 ? lines.slice(0, quizStart) : lines.slice();
 
   while (contentLines.length && !contentLines[0].trim()) contentLines.shift();
-  contentLines.shift();
-  while (contentLines.length && !/^(?:[-•]\s*|[\p{Extended_Pictographic}️])/u.test(contentLines[0].trim())) {
-    contentLines.shift();
-  }
+  if (contentLines.length) contentLines.shift();
 
   return contentLines.map((line) => {
     const trimmed = line.trim();
-    if (!trimmed) return "";
-    if (/^[•-]\s*/.test(trimmed)) return `- ${trimmed.replace(/^[•-]\s*/, "")}`;
-    return `## ${trimmed}`;
+    if (!trimmed || isCaptionLine(trimmed) || /^Quellen:/i.test(trimmed)) return "";
+    if (/^[•\-]\s+/.test(trimmed)) return `- ${trimmed.replace(/^[•\-]\s+/, "")}`;
+    if (isSectionHeading(trimmed)) return `## ${trimmed}`;
+    return trimmed;
   }).join("\n");
 }
 
